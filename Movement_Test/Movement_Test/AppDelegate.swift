@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,6 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+       
+        let rvc : UIViewController = GyroViewController()
+        rvc.view.backgroundColor = UIColor.darkGrayColor()
+        
+        
+        
+        
+        window = UIWindow()
+        window!.rootViewController = rvc
+        window!.makeKeyAndVisible()
         // Override point for customization after application launch.
         return true
     }

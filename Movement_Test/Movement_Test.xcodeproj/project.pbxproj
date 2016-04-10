@@ -8,20 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		453B5D001CB85BEF00FF61F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B5CFF1CB85BEF00FF61F8 /* AppDelegate.swift */; };
-		453B5D021CB85BEF00FF61F8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B5D011CB85BEF00FF61F8 /* ViewController.swift */; };
-		453B5D051CB85BEF00FF61F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 453B5D031CB85BEF00FF61F8 /* Main.storyboard */; };
 		453B5D071CB85BEF00FF61F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 453B5D061CB85BEF00FF61F8 /* Assets.xcassets */; };
-		453B5D0A1CB85BEF00FF61F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 453B5D081CB85BEF00FF61F8 /* LaunchScreen.storyboard */; };
+		4571D3071CBAC3C300039FF2 /* GyroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571D3061CBAC3C300039FF2 /* GyroViewController.swift */; };
+		4571D3091CBAC3C900039FF2 /* GyroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571D3081CBAC3C900039FF2 /* GyroView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		453B5CFC1CB85BEF00FF61F8 /* Movement_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movement_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		453B5CFF1CB85BEF00FF61F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		453B5D011CB85BEF00FF61F8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		453B5D041CB85BEF00FF61F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		453B5D061CB85BEF00FF61F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		453B5D091CB85BEF00FF61F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		453B5D0B1CB85BEF00FF61F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4571D3061CBAC3C300039FF2 /* GyroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroViewController.swift; sourceTree = "<group>"; };
+		4571D3081CBAC3C900039FF2 /* GyroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +53,28 @@
 			isa = PBXGroup;
 			children = (
 				453B5CFF1CB85BEF00FF61F8 /* AppDelegate.swift */,
-				453B5D011CB85BEF00FF61F8 /* ViewController.swift */,
-				453B5D031CB85BEF00FF61F8 /* Main.storyboard */,
 				453B5D061CB85BEF00FF61F8 /* Assets.xcassets */,
-				453B5D081CB85BEF00FF61F8 /* LaunchScreen.storyboard */,
 				453B5D0B1CB85BEF00FF61F8 /* Info.plist */,
+				4571D30B1CBAC3D600039FF2 /* Controllers */,
+				4571D30C1CBAC3DE00039FF2 /* Views */,
 			);
 			path = Movement_Test;
+			sourceTree = "<group>";
+		};
+		4571D30B1CBAC3D600039FF2 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4571D3061CBAC3C300039FF2 /* GyroViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		4571D30C1CBAC3DE00039FF2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4571D3081CBAC3C900039FF2 /* GyroView.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,9 +136,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				453B5D0A1CB85BEF00FF61F8 /* LaunchScreen.storyboard in Resources */,
 				453B5D071CB85BEF00FF61F8 /* Assets.xcassets in Resources */,
-				453B5D051CB85BEF00FF61F8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,31 +147,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				453B5D021CB85BEF00FF61F8 /* ViewController.swift in Sources */,
+				4571D3091CBAC3C900039FF2 /* GyroView.swift in Sources */,
 				453B5D001CB85BEF00FF61F8 /* AppDelegate.swift in Sources */,
+				4571D3071CBAC3C300039FF2 /* GyroViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		453B5D031CB85BEF00FF61F8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				453B5D041CB85BEF00FF61F8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		453B5D081CB85BEF00FF61F8 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				453B5D091CB85BEF00FF61F8 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		453B5D0C1CB85BEF00FF61F8 /* Debug */ = {
@@ -289,6 +282,7 @@
 				453B5D101CB85BEF00FF61F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
