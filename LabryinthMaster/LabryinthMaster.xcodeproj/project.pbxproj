@@ -7,11 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C5EF7F71CB9CA8200707CFF /* Maze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5EF7F61CB9CA8200707CFF /* Maze.swift */; };
+		0C5EF7F91CB9D0A700707CFF /* MazeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5EF7F81CB9D0A700707CFF /* MazeView.swift */; };
+		0C5EF7FB1CB9DC9B00707CFF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5EF7FA1CB9DC9B00707CFF /* Default-568h@2x.png */; };
 		453B5D1E1CB85C0600FF61F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */; };
 		453B5D251CB85C0600FF61F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 453B5D241CB85C0600FF61F8 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C5EF7F61CB9CA8200707CFF /* Maze.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maze.swift; sourceTree = "<group>"; };
+		0C5EF7F81CB9D0A700707CFF /* MazeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeView.swift; sourceTree = "<group>"; };
+		0C5EF7FA1CB9DC9B00707CFF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		453B5D1A1CB85C0600FF61F8 /* LabryinthMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabryinthMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		453B5D241CB85C0600FF61F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -32,6 +38,7 @@
 		453B5D111CB85C0600FF61F8 = {
 			isa = PBXGroup;
 			children = (
+				0C5EF7FA1CB9DC9B00707CFF /* Default-568h@2x.png */,
 				453B5D311CB85C3800FF61F8 /* Controllers */,
 				453B5D301CB85C3200FF61F8 /* Views */,
 				453B5D2F1CB85C2E00FF61F8 /* Model */,
@@ -61,6 +68,7 @@
 		453B5D2F1CB85C2E00FF61F8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0C5EF7F61CB9CA8200707CFF /* Maze.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -68,6 +76,7 @@
 		453B5D301CB85C3200FF61F8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0C5EF7F81CB9D0A700707CFF /* MazeView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -139,6 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				453B5D251CB85C0600FF61F8 /* Assets.xcassets in Resources */,
+				0C5EF7FB1CB9DC9B00707CFF /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +159,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C5EF7F91CB9D0A700707CFF /* MazeView.swift in Sources */,
+				0C5EF7F71CB9CA8200707CFF /* Maze.swift in Sources */,
 				453B5D1E1CB85C0600FF61F8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,6 +258,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LabryinthMaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -257,6 +270,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = LabryinthMaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -282,6 +296,7 @@
 				453B5D2E1CB85C0600FF61F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
