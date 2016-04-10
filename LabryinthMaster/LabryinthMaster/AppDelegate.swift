@@ -12,10 +12,28 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
-
+    
+    let tempViewController: UIViewController = UIViewController()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = tempViewController
+
+        tempViewController.view.backgroundColor = UIColor.yellowColor()
+        
+        let maze: Maze = Maze()
+        
+        let mazeView: MazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: window!.frame.width, height: window!.frame.width))
+        
+        for cell in maze.cells {
+            mazeView.addCell(cell.clear, AtX: cell.x, Y: cell.y)
+        }
+        
+        tempViewController.view.addSubview(mazeView)
+        
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
