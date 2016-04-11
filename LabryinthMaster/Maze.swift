@@ -17,7 +17,7 @@ struct MazeCell {
 class Maze {
     
     var cells: [MazeCell] = []
-    let dimension: Int = 30
+    let dimension: Int = 100
     
     init ()
     {

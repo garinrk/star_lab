@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let mazeView: MazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: window!.frame.width, height: window!.frame.width))
         
+//        mazeView.addCell(true, AtX: 0, Y: 0)
+        
         for cell in maze.cells {
             mazeView.addCell(cell.clear, AtX: cell.x, Y: cell.y)
         }

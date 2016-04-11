@@ -22,14 +22,18 @@ class MazeViewCell: UIView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
+        let context: CGContext? = UIGraphicsGetCurrentContext()
+        let background: CGRect = CGRect(x: bounds.minX, y: bounds.minY, width: bounds.width, height: bounds.height)
+        
         if clear
         {
-            backgroundColor = UIColor.whiteColor()
+            CGContextSetFillColorWithColor(context, UIColor.whiteColor().CGColor)
         }
         else
         {
-            backgroundColor = UIColor.redColor()
+            CGContextSetFillColorWithColor(context, UIColor.redColor().CGColor)
         }
+        CGContextFillRect(context, background)
     }
     
     func setClear(clear: Bool) {
@@ -41,7 +45,7 @@ class MazeViewCell: UIView {
 class MazeView: UIView {
     
     var cells: [MazeViewCell] = []
-    private var dimension: Int = 30
+    private var dimension: Int = 100
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,10 +71,9 @@ class MazeView: UIView {
         let yPos: CGFloat = bounds.minY + (CGFloat(y) * heightPortion)
         
         let newCell: MazeViewCell = MazeViewCell(frame: CGRect(x: xPos, y: yPos, width: widthPortion, height: heightPortion))
+        
         newCell.setClear(clear)
         cells.append(newCell)
         addSubview(newCell)
-        
-        setNeedsDisplay()
     }
 }
