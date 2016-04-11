@@ -25,12 +25,12 @@ class GyroViewController : UIViewController{
         super.viewDidLoad()
         
         gyroView.frame = UIScreen.mainScreen().bounds
-            gyroView.backgroundColor = UIColor.brownColor()
-            
-            movementManager.gyroUpdateInterval = 0.01
-            movementManager.accelerometerUpdateInterval = 0.01
-            
-            //Start Recording Data
+        gyroView.backgroundColor = UIColor.brownColor()
+        
+        movementManager.gyroUpdateInterval = 0.01
+        movementManager.accelerometerUpdateInterval = 0.01
+        
+        //Start Recording Data
 
         
         
@@ -79,11 +79,7 @@ class GyroViewController : UIViewController{
         let z = Double(round(1000*rotation.z)/1000)
         
         
-        dispatch_async(dispatch_get_main_queue(), {
-            self.gyroView.rollLabel.text = "Rot x: \(x.description)"
-            self.gyroView.pitchLabel.text = "Rot y: \(y.description)"
-            self.gyroView.yawLabel.text = "Rot z: \(z.description)"
-        })
+ 
         
         
         
