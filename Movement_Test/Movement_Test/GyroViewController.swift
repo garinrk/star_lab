@@ -27,27 +27,12 @@ class GyroViewController : UIViewController{
         gyroView.frame = UIScreen.mainScreen().bounds
             gyroView.backgroundColor = UIColor.brownColor()
             
-            movementManager.gyroUpdateInterval = 0.25
-            movementManager.accelerometerUpdateInterval = 0.25
+            movementManager.gyroUpdateInterval = 0.01
+            movementManager.accelerometerUpdateInterval = 0.01
             
             //Start Recording Data
-            
-            movementManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue()!) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
-                
-                self.outputAccData(accelerometerData!.acceleration)
-                if(NSError != nil) {
-                    print("\(NSError)")
-                }
-            }
+
         
-            movementManager.startGyroUpdatesToQueue(NSOperationQueue.currentQueue()!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
-                self.outputRotData(gyroData!.rotationRate)
-                if (NSError != nil){
-                    print("\(NSError)")
-                }
-                
-                
-            })
         
         self.view.addSubview(gyroView)
             

@@ -12,6 +12,7 @@
 		0C5EF7FB1CB9DC9B00707CFF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5EF7FA1CB9DC9B00707CFF /* Default-568h@2x.png */; };
 		453B5D1E1CB85C0600FF61F8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */; };
 		453B5D251CB85C0600FF61F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 453B5D241CB85C0600FF61F8 /* Assets.xcassets */; };
+		454BD8581CBC056B00C1DD1E /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454BD8571CBC056B00C1DD1E /* Gyro.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		453B5D241CB85C0600FF61F8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		453B5D291CB85C0600FF61F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		454BD8571CBC056B00C1DD1E /* Gyro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				0C5EF7F61CB9CA8200707CFF /* Maze.swift */,
+				454BD8571CBC056B00C1DD1E /* Gyro.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 			files = (
 				0C5EF7F91CB9D0A700707CFF /* MazeView.swift in Sources */,
 				0C5EF7F71CB9CA8200707CFF /* Maze.swift in Sources */,
+				454BD8581CBC056B00C1DD1E /* Gyro.swift in Sources */,
 				453B5D1E1CB85C0600FF61F8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
