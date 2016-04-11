@@ -13,7 +13,7 @@ class GyroViewController : UIViewController{
     
     
     var movementManager = CMMotionManager()
-    
+    var gyroView : GyroView = GyroView()
     
     
     
@@ -24,21 +24,21 @@ class GyroViewController : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        gyroView.frame = UIScreen.mainScreen().bounds
+            gyroView.backgroundColor = UIColor.brownColor()
             
-            
-            movementManager.gyroUpdateInterval = 0.2
-            movementManager.accelerometerUpdateInterval = 0.2
+            movementManager.gyroUpdateInterval = 0.25
+            movementManager.accelerometerUpdateInterval = 0.25
             
             //Start Recording Data
             
-//            movementManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue()!) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
-//                
-//                self.outputAccData(accelerometerData!.acceleration)
-//                if(NSError != nil) {
-//                    print("\(NSError)")
-//                }
-//            }
+            movementManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue()!) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
+                
+                self.outputAccData(accelerometerData!.acceleration)
+                if(NSError != nil) {
+                    print("\(NSError)")
+                }
+            }
         
             movementManager.startGyroUpdatesToQueue(NSOperationQueue.currentQueue()!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
                 self.outputRotData(gyroData!.rotationRate)
@@ -48,25 +48,57 @@ class GyroViewController : UIViewController{
                 
                 
             })
+        
+        self.view.addSubview(gyroView)
             
             
     }
     
+    
+    /**
+     Update the labels in the view to show the rounded values
+     of the acceleration data
+     
+     - parameter acceleration: <#acceleration description#>
+     */
     func outputAccData(acceleration: CMAcceleration){
+        
+        let x = Double(round(1000*acceleration.x)/1000)
+        let y = Double(round(1000*acceleration.y)/1000)
+        let z = Double(round(1000*acceleration.z)/1000)
         
      
         
-        print("ACC:\(acceleration.x).2f,\(acceleration.y).2f,\(acceleration.z).2f")
+        dispatch_async(dispatch_get_main_queue(), {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.gyroView.accXLabel.text = "Acc x: \(x.description)"
+                self.gyroView.accYLabel.text = "Acc y: \(y.description)"
+                self.gyroView.accZLabel.text = "Acc z: \(z.description)"
+            })
+        })
+        
         
         
     }
 
+    /**
+     Update the labels in the view to show the rounded values of the rotation
+     data from the gyroscpe
+     
+     - parameter rotation: CMRotatoinRate data
+     */
     func outputRotData(rotation: CMRotationRate){
         
+        let x = Double(round(1000*rotation.x)/1000)
+        let y = Double(round(1000*rotation.y)/1000)
+        let z = Double(round(1000*rotation.z)/1000)
         
         
-        
-       print("ROT:\(rotation.x).2f,\(rotation.y).2f,\(rotation.z).2f")
+        dispatch_async(dispatch_get_main_queue(), {
+            self.gyroView.rollLabel.text = "Rot x: \(x.description)"
+            self.gyroView.pitchLabel.text = "Rot y: \(y.description)"
+            self.gyroView.yawLabel.text = "Rot z: \(z.description)"
+        })
         
         
         
