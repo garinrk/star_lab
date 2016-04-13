@@ -42,29 +42,29 @@ class MazeViewCell: UIView {
         {
             CGContextMoveToPoint(context, bounds.minX, bounds.minY)
             CGContextAddLineToPoint(context, bounds.maxX, bounds.minY)
-            CGContextDrawPath(context, kCGPathStroke)
-//                CGPathDrawingMode.Stroke
+//            CGContextDrawPath(context, kCGPathStroke)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         if east
         {
             CGContextMoveToPoint(context, bounds.maxX, bounds.minY)
             CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-            CGContextDrawPath(context, kCGPathStroke)
-            //                CGPathDrawingMode.Stroke
+//            CGContextDrawPath(context, kCGPathStroke)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         if south
         {
             CGContextMoveToPoint(context, bounds.minX, bounds.maxY)
             CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-            CGContextDrawPath(context, kCGPathStroke)
-            //                CGPathDrawingMode.Stroke
+//            CGContextDrawPath(context, kCGPathStroke)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         if west
         {
             CGContextMoveToPoint(context, bounds.minX, bounds.minY)
             CGContextAddLineToPoint(context, bounds.minX, bounds.maxY)
-            CGContextDrawPath(context, kCGPathStroke)
-            //                CGPathDrawingMode.Stroke
+//            CGContextDrawPath(context, kCGPathStroke)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         
     }

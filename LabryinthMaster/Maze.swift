@@ -117,13 +117,13 @@ class Maze {
  
         var second: Int = -1
         
-        do {
+        repeat {
             second = Int(arc4random_uniform(4))
         } while second == first
 
         var third: Int = -1
         
-        do {
+        repeat {
             third = Int(arc4random_uniform(4))
         } while third == second || third == first
         
@@ -133,8 +133,7 @@ class Maze {
     }
 
     private func clearWallInCell(cell: MazeCell, InDir dir: Int)
-    {
-        
+    {        
         let neighbor: MazeCell? = neighborCell(cell, InDir: dir)
         
         switch dir {

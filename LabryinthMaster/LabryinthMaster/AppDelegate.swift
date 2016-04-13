@@ -9,10 +9,11 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate {
 
     var window: UIWindow?
     
+    let gameLoop: GameLoop = GameLoop()
     let tempViewController: UIViewController = UIViewController()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -26,19 +27,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let mazeView: MazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: window!.frame.width, height: window!.frame.width))
         
-//        mazeView.addCell(true, AtX: 0, Y: 0)
-        
         for cell in maze.cells {
             mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
         }
         
         tempViewController.view.addSubview(mazeView)
         
+        
+        gameLoop.delegate = self
+        gameLoop.start()
+        
         window?.makeKeyAndVisible()
         
         return true
     }
+    
+    
+    func update() {
+        
+    }
+    
 
+    
+    
+    
+    
+    
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -59,6 +74,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        gameLoop.stop()
     }
 
 
