@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        mazeView.addCell(true, AtX: 0, Y: 0)
         
         for cell in maze.cells {
-            mazeView.addCell(cell.clear, AtX: cell.x, Y: cell.y)
+            mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
         }
         
         tempViewController.view.addSubview(mazeView)
