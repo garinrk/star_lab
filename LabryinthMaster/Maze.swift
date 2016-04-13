@@ -19,8 +19,9 @@ struct MazeCell {
 
 class Maze {
     
-    var cells: [MazeCell] = []
     let dimension: Int = 30
+    var cells: [MazeCell] = []
+    private var visited: [Bool]?
     
     init ()
     {
@@ -38,7 +39,14 @@ class Maze {
     
     func generateMaze()
     {
+        visited = []
+
+        for var i = 0; i < cells.count; i++
+        {
+            visited![i] = false
+        }
         
+        carvePassagesFromX(0, Y: 0)
         
 //        Recursive division: This algorithm is somewhat similar to recursive backtracking, since they're both stack based, except this focuses on walls instead of passages. 
         
@@ -54,5 +62,62 @@ class Maze {
         
     }
     
+    private func carvePassagesFromX(x:Int, Y y:Int)
+    {
+        
+        
+        
+    }
+    
+
+    private func cellAtX(x: Int, Y y: Int) -> MazeCell?
+    {
+        if x < 0 || y < 0 || x >= dimension || y >= dimension
+        {
+            return nil
+        }
+        else {
+            return cells[x*dimension + y]
+        }
+    }
+    
+    /// dir: 0 = north, 1 = east, 2 = south, 3 = west
+    private func neighborCell(cell: MazeCell, InDir dir: Int) -> MazeCell?
+    {
+        switch dir {
+        case 0:
+            return cellAtX(cell.x, Y: cell.y-1)
+        case 1:
+            return cellAtX(cell.x+1, Y: cell.y)
+        case 2:
+            return cellAtX(cell.x, Y: cell.y+1)
+        case 3:
+            return cellAtX(cell.x-1, Y: cell.y)
+        default:
+            return nil
+        }
+    }
+    
+    
+    private func randomDirections() -> [Int]
+    {
+        let first: Int = Int(arc4random_uniform(4))
+ 
+        var second: Int = -1
+        
+        do {
+            second = Int(arc4random_uniform(4))
+        } while second == first
+
+        var third: Int = -1
+        
+        do {
+            third = Int(arc4random_uniform(4))
+        } while third == second || third == first
+        
+        let fourth: Int = 6 - (first + second + third)
+        
+        return [first, second, third, fourth]
+    }
     
 }
