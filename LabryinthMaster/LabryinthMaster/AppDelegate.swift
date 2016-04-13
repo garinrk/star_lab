@@ -9,12 +9,18 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDelegate {
 
     var window: UIWindow?
     
     let gameLoop: GameLoop = GameLoop()
+    let maze: Maze = Maze()
     let tempViewController: UIViewController = UIViewController()
+    
+    var mazeView: MazeView!
+    
+    let tempEnemy: Enemy = Enemy()
+    var tempEnemyView: EnemyView!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -23,9 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate {
 
         tempViewController.view.backgroundColor = UIColor.yellowColor()
         
-        let maze: Maze = Maze()
         
-        let mazeView: MazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: window!.frame.width, height: window!.frame.width))
+        mazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: window!.frame.width, height: window!.frame.width))
         
         for cell in maze.cells {
             mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
@@ -33,9 +38,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate {
         
         tempViewController.view.addSubview(mazeView)
         
+//        tempEnemyView = EnemyView(frame: mazeView.frame)
+//        tempEnemyView = EnemyView(frame: window!.bounds)
+//        tempViewController.view.addSubview(tempEnemyView)
+        
         
         gameLoop.delegate = self
         gameLoop.start()
+        
+        tempEnemy.delegate = self
         
         window?.makeKeyAndVisible()
         
@@ -44,6 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate {
     
     
     func update() {
+//        mazeView.setNeedsDisplay()
+        
+        tempEnemy.update()
         
     }
     
@@ -51,7 +65,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate {
     
     
     
+    // MARK: EnemyDelegate functions
+    func getMazeDimension() -> Int {
+        return maze.dimension
+    }
+
+    func enemyXChanged(enemy: Enemy, x: Int) {
+//        tempEnemyView.xPos = x
+    }
     
+    func enemyYChanged(enemy: Enemy, y: Int) {
+//        tempEnemyView.yPos = y
+    }
     
     
     func applicationWillResignActive(application: UIApplication) {

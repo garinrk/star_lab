@@ -34,7 +34,7 @@ class Enemy
             return _yPos
         }
         set {
-            _xPos = newValue
+            _yPos = newValue
             delegate?.enemyYChanged(self, y: _yPos)
         }
     }
@@ -42,7 +42,9 @@ class Enemy
     private var horizVelocity: Float
     private var vertVelocity: Float
     
-    private var moveSpeed: Float = 0.0
+    private var moveSpeed: Float = 2.0
+    private var updateTimer: Float = 0.0
+    private var updateTimer2: Float = 0.0
     
     weak var delegate: EnemyDelegate? = nil
     
@@ -61,6 +63,25 @@ class Enemy
         
         xPos = Int(arc4random_uniform(UInt32(dimension)))
         yPos = Int(arc4random_uniform(UInt32(dimension)))
+    }
+    
+    func update()
+    {
+        updateTimer += 0.1
+        updateTimer2 += 0.1
+        
+        if updateTimer >= moveSpeed
+        {
+            updateTimer = 0.0
+            yPos++
+        }
+        
+        if updateTimer2 >= moveSpeed * 1.4
+        {
+            updateTimer2 = 0.0
+            xPos++
+        }
+        
     }
     
     
