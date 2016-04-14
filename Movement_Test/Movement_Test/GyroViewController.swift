@@ -23,6 +23,8 @@ class GyroViewController : UIViewController{
     var gyroView : GyroView = GyroView()
     var player : PlayerCell?
     
+    var globalPlayerX : CGFloat = 50.0
+    var globalPlayerY : CGFloat = 50.0
     
     override func loadView() {
         super.loadView()
@@ -36,8 +38,8 @@ class GyroViewController : UIViewController{
         gyroView.frame = UIScreen.mainScreen().bounds
         gyroView.backgroundColor = UIColor.brownColor()
         
-        movementManager.gyroUpdateInterval = 0.5
-        movementManager.accelerometerUpdateInterval = 0.5
+        movementManager.gyroUpdateInterval = 0.1
+        movementManager.accelerometerUpdateInterval = 1/6.0
         
         //Start Recording Data
 
@@ -91,23 +93,20 @@ class GyroViewController : UIViewController{
                 
                 if x < 0{
                     self.gyroView.directionLabel.text = "Leaning Left"
-                    self.MovePlayer(.LEFT, magnitude: x)
                 }
                 else if x > 0 {
                     self.gyroView.directionLabel.text = "Leaning Right"
-                    self.MovePlayer(.RIGHT, magnitude: x)
                 }
                 
-                else if y > 0{
+                if y > 0{
                     self.gyroView.directionLabel2.text = "Leaning Back"
-                    self.MovePlayer(.UP, magnitude: y)
                 }
                 
                 else if y < 0{
                     self.gyroView.directionLabel2.text = "Leaning Forward"
-                    self.MovePlayer(.DOWN, magnitude: y)
                 }
                 
+                self.MovePlayer(CGFloat(x), magY: CGFloat(y))
                 
             })
         })
@@ -135,47 +134,63 @@ class GyroViewController : UIViewController{
         
     }
     
-    func MovePlayer(direction : PlayerDirection, magnitude : Double)
+    func MovePlayer(magX : CGFloat, magY : CGFloat)
     {
-        var origx : CGFloat = 50.0
-        var origy : CGFloat = 50.0
+        var currentX = globalPlayerX
+        var currentY = globalPlayerY
+        
         var newPlayer = PlayerCell()
+        newPlayer.tag = 99
         
+        var newX = globalPlayerX + magX * 10
+        var newY = globalPlayerY - magY * 10
         
-        var newX : CGFloat
-        var newY : CGFloat
+        newPlayer.frame = CGRectMake(newX, newY, 50, 50)
         
-        if direction == .DOWN{
-            
-
-            newY = origy + CGFloat(magnitude)
-            newPlayer.frame = CGRectMake(origx, newY, 50, 50)
-            self.gyroView.willRemoveSubview(player!)
-            self.gyroView.addSubview(newPlayer)
-        }
-        else if direction == .UP{
-            
-            newY = origy - CGFloat(magnitude)
-            newPlayer.frame = CGRectMake(origx, newY, 50, 50)
-            self.gyroView.addSubview(newPlayer)
-            
-        }
-        else if direction == .LEFT{
-            
-            newX = origx - CGFloat(magnitude)
-            newPlayer.frame = CGRectMake(newX, origy, 50, 50)
-            self.gyroView.addSubview(newPlayer)
-            
-        }
-        else if direction == .RIGHT{
-            newX = origx + CGFloat(magnitude)
-            newPlayer.frame = CGRectMake(newX, origy, 50, 50)
-            self.gyroView.addSubview(newPlayer)
-            
-            
+        for view in self.gyroView.subviews{
+            if view.tag == 99{
+                view.removeFromSuperview()
+            }
         }
         
-//        self.player.frame = CGRectMake(50, 50, 25, 25)
+        self.gyroView.addSubview(newPlayer)
+        
+        globalPlayerX = newX
+        globalPlayerY = newY
+        
+        
+        
+        
+        
+//        if direction == .DOWN{
+//            
+//
+//            newY = origy + CGFloat(magnitude) * 100
+//            newPlayer.frame = CGRectMake(origx, newY, 50, 50)
+//            self.gyroView.willRemoveSubview(player!)
+//            self.gyroView.addSubview(newPlayer)
+//        }
+//        else if direction == .UP{
+//            
+//            newY = origy - CGFloat(magnitude) * 100
+//            newPlayer.frame = CGRectMake(origx, newY, 50, 50)
+//            self.gyroView.addSubview(newPlayer)
+//            
+//        }
+//        else if direction == .LEFT{
+//            
+//            newX = origx - CGFloat(magnitude) * 100
+//            newPlayer.frame = CGRectMake(newX, origy, 50, 50)
+//            self.gyroView.addSubview(newPlayer)
+//            
+//        }
+//        else if direction == .RIGHT{
+//            newX = origx + CGFloat(magnitude) * 100
+//            newPlayer.frame = CGRectMake(newX, origy, 50, 50)
+//            self.gyroView.addSubview(newPlayer)
+//            
+//            
+//        }
     }
     
        

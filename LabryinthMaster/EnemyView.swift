@@ -48,5 +48,7 @@ class EnemyView: UIView {
         CGContextSetFillColorWithColor(context, UIColor.purpleColor().CGColor)
         CGContextFillRect(context, square)
         
+        
+        self.backgroundColor = UIColor(white: 1, alpha: 0.5)
     }
 }

@@ -1,84 +1,24 @@
 //
 //  AppDelegate.swift
-//  LabryinthMaster
+//  gyro_game
 //
-//  Created by Garin Richards on 4/8/16.
+//  Created by Garin Richards on 4/14/16.
 //  Copyright © 2016 Garin Richards. All rights reserved.
 //
 
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    let gameLoop: GameLoop = GameLoop()
-    let maze: Maze = Maze()
-    let tempViewController: UIViewController = UIViewController()
-    
-    var mazeView: MazeView!
-    
-    let tempEnemy: Enemy = Enemy()
-    var tempEnemyView: EnemyView!
-    
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = tempViewController
 
-        tempViewController.view.backgroundColor = UIColor.yellowColor()
-        
-        
-        mazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: window!.frame.width, height: window!.frame.width))
-        
-        for cell in maze.cells {
-            mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
-        }
-        
-        tempViewController.view.addSubview(mazeView)
-        
-        tempEnemyView = EnemyView(frame: mazeView.frame)
-//        tempEnemyView = EnemyView(frame: window!.bounds)
-        tempViewController.view.addSubview(tempEnemyView)
-        
-        
-        gameLoop.delegate = self
-        gameLoop.start()
-        
-        tempEnemy.delegate = self
-        
-        window?.makeKeyAndVisible()
-        
+
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Override point for customization after application launch.
         return true
     }
-    
-    
-    func update() {
-//        mazeView.setNeedsDisplay()
-        
-        tempEnemy.update()
-        
-    }
-    
 
-    
-    
-    
-    // MARK: EnemyDelegate functions
-    func getMazeDimension() -> Int {
-        return maze.dimension
-    }
-
-    func enemyXChanged(enemy: Enemy, x: Int) {
-        tempEnemyView.xPos = x
-    }
-    
-    func enemyYChanged(enemy: Enemy, y: Int) {
-        tempEnemyView.yPos = y
-    }
-    
-    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -99,8 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDe
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        
-        gameLoop.stop()
     }
 
 

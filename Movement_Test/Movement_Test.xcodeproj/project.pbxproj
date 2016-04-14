@@ -12,6 +12,7 @@
 		453B5D071CB85BEF00FF61F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 453B5D061CB85BEF00FF61F8 /* Assets.xcassets */; };
 		4571D3071CBAC3C300039FF2 /* GyroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571D3061CBAC3C300039FF2 /* GyroViewController.swift */; };
 		4571D3091CBAC3C900039FF2 /* GyroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571D3081CBAC3C900039FF2 /* GyroView.swift */; };
+		457F71FE1CBF3BE1008588B8 /* GameLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F71FD1CBF3BE1008588B8 /* GameLoop.swift */; };
 		4584EAD71CBEF185009DA9B1 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4584EAD61CBEF185009DA9B1 /* PlayerCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 		453B5D0B1CB85BEF00FF61F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4571D3061CBAC3C300039FF2 /* GyroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroViewController.swift; sourceTree = "<group>"; };
 		4571D3081CBAC3C900039FF2 /* GyroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroView.swift; sourceTree = "<group>"; };
+		457F71FD1CBF3BE1008588B8 /* GameLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLoop.swift; sourceTree = "<group>"; };
 		4584EAD61CBEF185009DA9B1 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -62,6 +64,7 @@
 				453B5D0B1CB85BEF00FF61F8 /* Info.plist */,
 				4571D30B1CBAC3D600039FF2 /* Controllers */,
 				4571D30C1CBAC3DE00039FF2 /* Views */,
+				457F71FD1CBF3BE1008588B8 /* GameLoop.swift */,
 			);
 			path = Movement_Test;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				457F71FE1CBF3BE1008588B8 /* GameLoop.swift in Sources */,
 				4584EAD71CBEF185009DA9B1 /* PlayerCell.swift in Sources */,
 				4571D3091CBAC3C900039FF2 /* GyroView.swift in Sources */,
 				453B5D001CB85BEF00FF61F8 /* AppDelegate.swift in Sources */,

@@ -1,0 +1,293 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		457F720C1CBFF90C008588B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F720B1CBFF90C008588B8 /* AppDelegate.swift */; };
+		457F720E1CBFF90C008588B8 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 457F720D1CBFF90C008588B8 /* art.scnassets */; };
+		457F72101CBFF90C008588B8 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F720F1CBFF90C008588B8 /* GameViewController.swift */; };
+		457F72151CBFF90C008588B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 457F72141CBFF90C008588B8 /* Assets.xcassets */; };
+		457F72221CC00A8A008588B8 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F72211CC00A8A008588B8 /* GameScene.swift */; };
+		457F72261CC00EAB008588B8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 457F72251CC00EAB008588B8 /* Default-568h@2x.png */; };
+		457F722A1CC00EDC008588B8 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 457F72291CC00EDC008588B8 /* GameScene.sks */; };
+		457F722E1CC01050008588B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457F722D1CC01050008588B8 /* LaunchScreen.storyboard */; };
+		457F72501CC0109F008588B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 457F724F1CC0109F008588B8 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		457F72081CBFF90C008588B8 /* gyro_game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gyro_game.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		457F720B1CBFF90C008588B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		457F720D1CBFF90C008588B8 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		457F720F1CBFF90C008588B8 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		457F72141CBFF90C008588B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		457F72191CBFF90C008588B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		457F72211CC00A8A008588B8 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		457F72251CC00EAB008588B8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		457F72291CC00EDC008588B8 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		457F722D1CC01050008588B8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		457F724F1CC0109F008588B8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		457F72051CBFF90C008588B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		457F71FF1CBFF90C008588B8 = {
+			isa = PBXGroup;
+			children = (
+				457F72251CC00EAB008588B8 /* Default-568h@2x.png */,
+				457F720A1CBFF90C008588B8 /* gyro_game */,
+				457F72091CBFF90C008588B8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		457F72091CBFF90C008588B8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				457F72081CBFF90C008588B8 /* gyro_game.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		457F720A1CBFF90C008588B8 /* gyro_game */ = {
+			isa = PBXGroup;
+			children = (
+				457F724F1CC0109F008588B8 /* Main.storyboard */,
+				457F722D1CC01050008588B8 /* LaunchScreen.storyboard */,
+				457F720B1CBFF90C008588B8 /* AppDelegate.swift */,
+				457F720D1CBFF90C008588B8 /* art.scnassets */,
+				457F720F1CBFF90C008588B8 /* GameViewController.swift */,
+				457F72141CBFF90C008588B8 /* Assets.xcassets */,
+				457F72191CBFF90C008588B8 /* Info.plist */,
+				457F72211CC00A8A008588B8 /* GameScene.swift */,
+				457F72291CC00EDC008588B8 /* GameScene.sks */,
+			);
+			path = gyro_game;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		457F72071CBFF90C008588B8 /* gyro_game */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 457F721C1CBFF90C008588B8 /* Build configuration list for PBXNativeTarget "gyro_game" */;
+			buildPhases = (
+				457F72041CBFF90C008588B8 /* Sources */,
+				457F72051CBFF90C008588B8 /* Frameworks */,
+				457F72061CBFF90C008588B8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = gyro_game;
+			productName = gyro_game;
+			productReference = 457F72081CBFF90C008588B8 /* gyro_game.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		457F72001CBFF90C008588B8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Garin Richards";
+				TargetAttributes = {
+					457F72071CBFF90C008588B8 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = PVTS86U6DQ;
+					};
+				};
+			};
+			buildConfigurationList = 457F72031CBFF90C008588B8 /* Build configuration list for PBXProject "gyro_game" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 457F71FF1CBFF90C008588B8;
+			productRefGroup = 457F72091CBFF90C008588B8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				457F72071CBFF90C008588B8 /* gyro_game */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		457F72061CBFF90C008588B8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				457F722A1CC00EDC008588B8 /* GameScene.sks in Resources */,
+				457F720E1CBFF90C008588B8 /* art.scnassets in Resources */,
+				457F72151CBFF90C008588B8 /* Assets.xcassets in Resources */,
+				457F72501CC0109F008588B8 /* Main.storyboard in Resources */,
+				457F722E1CC01050008588B8 /* LaunchScreen.storyboard in Resources */,
+				457F72261CC00EAB008588B8 /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		457F72041CBFF90C008588B8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				457F72221CC00A8A008588B8 /* GameScene.swift in Sources */,
+				457F72101CBFF90C008588B8 /* GameViewController.swift in Sources */,
+				457F720C1CBFF90C008588B8 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		457F721A1CBFF90C008588B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		457F721B1CBFF90C008588B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		457F721D1CBFF90C008588B8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = gyro_game/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.utah.cs4962.gyro-game";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		457F721E1CBFF90C008588B8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = gyro_game/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.utah.cs4962.gyro-game";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		457F72031CBFF90C008588B8 /* Build configuration list for PBXProject "gyro_game" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				457F721A1CBFF90C008588B8 /* Debug */,
+				457F721B1CBFF90C008588B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		457F721C1CBFF90C008588B8 /* Build configuration list for PBXNativeTarget "gyro_game" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				457F721D1CBFF90C008588B8 /* Debug */,
+				457F721E1CBFF90C008588B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 457F72001CBFF90C008588B8 /* Project object */;
+}

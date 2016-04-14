@@ -52,6 +52,7 @@ class GyroView : UIView{
         accZLabel.text = "AccZ Bitch"
         
         directionLabel.text = "Direction Bitch"
+        directionLabel2.text = "whoa"
         
         self.addSubview(accXLabel)
         self.addSubview(accYLabel)
