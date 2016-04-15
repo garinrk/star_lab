@@ -22,7 +22,7 @@ class GyroView : UIView{
     var directionLabel : UILabel = UILabel()
     var directionLabel2 : UILabel = UILabel()
     
-    var player: PlayerCell = PlayerCell()
+//    var player: PlayerCell = PlayerCell()
     
     
     
@@ -38,7 +38,7 @@ class GyroView : UIView{
         
         directionLabel.frame = CGRectMake(50, 400, 500, 200)
         directionLabel2.frame = CGRectMake(50, 450, 500, 200)
-        player.frame = CGRectMake(100, 100, 50, 50)
+//        player.frame = CGRectMake(100, 100, 50, 50)
         
         
         
@@ -65,7 +65,7 @@ class GyroView : UIView{
         self.addSubview(directionLabel)
         self.addSubview(directionLabel2)
         
-        self.addSubview(player)
+//        self.addSubview(player)
     }
     
     

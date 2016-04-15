@@ -11,12 +11,12 @@ import CoreMotion
 
 class Gyro {
     var gyroManager = CMMotionManager()
-    var accUpdateInterval = Double(0.01)
-    var gyroUpdateInterval = Double(0.01)
+    var accUpdateInterval = 1/60.0
+//    var gyroUpdateInterval = Double(0.01)
     
     func startGyroUpdates(){
         gyroManager.accelerometerUpdateInterval = accUpdateInterval
-        gyroManager.gyroUpdateInterval = gyroUpdateInterval
+//        gyroManager.gyroUpdateInterval = gyroUpdateInterval
         
         
         gyroManager.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue()!) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
@@ -27,14 +27,14 @@ class Gyro {
             }
         }
         
-        gyroManager.startGyroUpdatesToQueue(NSOperationQueue.currentQueue()!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
-            self.HandleRotData(gyroData!.rotationRate)
-            if (NSError != nil){
-                print("\(NSError)")
-            }
-            
-            
-        })
+//        gyroManager.startGyroUpdatesToQueue(NSOperationQueue.currentQueue()!, withHandler: { (gyroData: CMGyroData?, NSError) -> Void in
+//            self.HandleRotData(gyroData!.rotationRate)
+//            if (NSError != nil){
+//                print("\(NSError)")
+//            }
+//            
+//            
+//        })
         
     }
     
