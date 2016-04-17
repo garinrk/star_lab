@@ -10,15 +10,15 @@ import Foundation
 
 protocol EnemyDelegate: class {
     func getMazeDimension() -> Int
-    func enemyXChanged(enemy: Enemy, x: Int)
-    func enemyYChanged(enemy: Enemy, y: Int)
+    func enemyXChanged(enemy: Enemy, x: Float)
+    func enemyYChanged(enemy: Enemy, y: Float)
 }
 
 class Enemy
 {
     
-    private var _xPos: Int = 0
-    var xPos: Int {
+    private var _xPos: Float = 0.5
+    var xPos: Float {
         get {
             return _xPos
         }
@@ -28,8 +28,8 @@ class Enemy
         }
     }
     
-    private var _yPos: Int = 0
-    var yPos: Int {
+    private var _yPos: Float = 0.5
+    var yPos: Float {
         get {
             return _yPos
         }
@@ -42,15 +42,20 @@ class Enemy
     private var horizVelocity: Float
     private var vertVelocity: Float
     
+    private var lastTime: NSDate
+    
     private var moveSpeed: Float = 2.0
-    private var updateTimer: Float = 0.0
-    private var updateTimer2: Float = 0.0
     
     weak var delegate: EnemyDelegate? = nil
+    
+    var collided: Bool = false
     
     init() {
         horizVelocity = 0.0
         vertVelocity = 0.0
+        
+        lastTime = NSDate()
+        moveInRandomDirection()
     }
     
     func randomizeLocation()
@@ -61,27 +66,54 @@ class Enemy
         
         let dimension: Int = delegate!.getMazeDimension()
         
-        xPos = Int(arc4random_uniform(UInt32(dimension)))
-        yPos = Int(arc4random_uniform(UInt32(dimension)))
+        xPos = Float(arc4random_uniform(UInt32(dimension)))
+        yPos = Float(arc4random_uniform(UInt32(dimension)))
+    }
+    
+    func moveInRandomDirection()
+    {
+        let dir: Int = Int(arc4random_uniform(4))
+        switch dir {
+        case 0:
+            horizVelocity = 0.0
+            vertVelocity = -moveSpeed
+            break
+        case 1:
+            horizVelocity = moveSpeed
+            vertVelocity = 0.0
+            break
+        case 2:
+            horizVelocity = 0.0
+            vertVelocity = moveSpeed
+            break
+        case 3:
+            horizVelocity = -moveSpeed
+            vertVelocity = 0.0
+            break
+        default:
+            break
+        }
+        
     }
     
     func update()
     {
-        updateTimer += 0.1
-        updateTimer2 += 0.1
+        let currentTime: NSDate = NSDate()
+        let deltaTime: Float = Float(currentTime.timeIntervalSinceDate(lastTime))
+        lastTime = currentTime
         
-        if updateTimer >= moveSpeed
+//        collided = false
+        
+        if collided
         {
-            updateTimer = 0.0
-            yPos++
+            moveInRandomDirection()
+            collided = false
         }
-        
-        if updateTimer2 >= moveSpeed * 1.4
+        else
         {
-            updateTimer2 = 0.0
-            xPos++
+            yPos += horizVelocity * deltaTime
+            xPos += vertVelocity * deltaTime
         }
-        
     }
     
     

@@ -31,23 +31,13 @@ class Maze {
     
     init ()
     {
-        
-        
         for var i = 0; i < dimension; i++ {
             for var j = 0; j < dimension; j++ {
-                
-//                let diceRoll: Bool = Bool(Int(arc4random_uniform(2)))
-//                let diceRoll2: Bool = Bool(Int(arc4random_uniform(2)))
-//                
-//                cells.append(MazeCell(x: i, y: j, north: diceRoll, east: false, south: false, west: diceRoll2))
-                
                 cells.append(MazeCell(x: i, y: j))
             }
         }
         
-        
         generateMaze()
-        
     }
     
     func generateMaze()

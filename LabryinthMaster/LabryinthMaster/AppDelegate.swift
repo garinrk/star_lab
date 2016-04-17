@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDelegate, EnemyViewDelegate {
 
     var window: UIWindow?
     
@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDe
         gameLoop.start()
         
         tempEnemy.delegate = self
+        tempEnemyView.delegate = self
         
         window?.makeKeyAndVisible()
         
@@ -58,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDe
 //        mazeView.setNeedsDisplay()
         
         tempEnemy.update()
+        mazeView.detectCollisionWithRect(tempEnemyView.frame)
         
     }
     
@@ -70,14 +72,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDe
         return maze.dimension
     }
 
-    func enemyXChanged(enemy: Enemy, x: Int) {
+    func enemyXChanged(enemy: Enemy, x: Float) {
         tempEnemyView.xPos = x
     }
     
-    func enemyYChanged(enemy: Enemy, y: Int) {
+    func enemyYChanged(enemy: Enemy, y: Float) {
         tempEnemyView.yPos = y
     }
     
+    // MARK: EnemyViewDelegate functions
+    func detectCollisionFromEnemy(square: CGRect)
+    {
+        if mazeView.detectCollisionWithRect(square)
+        {
+            tempEnemy.collided = true
+        }
+    }
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

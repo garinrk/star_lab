@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol EnemyViewDelegate: class {
+    func detectCollisionFromEnemy(square: CGRect)
+}
+
 class EnemyView: UIView {
     
-    private var _xPos: Int = 0
-    var xPos: Int {
+    private var _xPos: Float = 0
+    var xPos: Float {
         get {
             return _xPos
         }
@@ -21,8 +25,8 @@ class EnemyView: UIView {
         }
     }
     
-    private var _yPos: Int = 0
-    var yPos: Int {
+    private var _yPos: Float = 0
+    var yPos: Float {
         get {
             return _yPos
         }
@@ -32,6 +36,8 @@ class EnemyView: UIView {
         }
     }
     
+    weak var delegate: EnemyViewDelegate? = nil
+    
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
@@ -39,8 +45,8 @@ class EnemyView: UIView {
         
         // draw square
         
-        let widthPortion: CGFloat = bounds.width / CGFloat(30) * 0.7
-        let heightPortion: CGFloat = bounds.height / CGFloat(30) * 0.7
+        let widthPortion: CGFloat = bounds.width / CGFloat(30) * 0.55
+        let heightPortion: CGFloat = bounds.height / CGFloat(30) * 0.55
         let x: CGFloat = bounds.minX + (CGFloat(xPos) * widthPortion)
         let y: CGFloat = bounds.minY + (CGFloat(yPos) * heightPortion)
 
@@ -48,7 +54,9 @@ class EnemyView: UIView {
         CGContextSetFillColorWithColor(context, UIColor.purpleColor().CGColor)
         CGContextFillRect(context, square)
         
+        delegate?.detectCollisionFromEnemy(square)
         
-        self.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        // clear the background
+        self.backgroundColor = UIColor(white: 1, alpha: 0)
     }
 }

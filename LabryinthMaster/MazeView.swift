@@ -9,10 +9,11 @@
 import UIKit
 
 class MazeViewCell: UIView {
-    private var north: Bool = true
-    private var east: Bool = true
-    private var south: Bool = true
-    private var west: Bool = true
+    var north: Bool = true
+    var east: Bool = true
+    var south: Bool = true
+    var west: Bool = true
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,28 +39,24 @@ class MazeViewCell: UIView {
         {
             CGContextMoveToPoint(context, bounds.minX, bounds.minY)
             CGContextAddLineToPoint(context, bounds.maxX, bounds.minY)
-//            CGContextDrawPath(context, kCGPathStroke)
             CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         if east
         {
             CGContextMoveToPoint(context, bounds.maxX, bounds.minY)
             CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-//            CGContextDrawPath(context, kCGPathStroke)
             CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         if south
         {
             CGContextMoveToPoint(context, bounds.minX, bounds.maxY)
             CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-//            CGContextDrawPath(context, kCGPathStroke)
             CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         if west
         {
             CGContextMoveToPoint(context, bounds.minX, bounds.minY)
             CGContextAddLineToPoint(context, bounds.minX, bounds.maxY)
-//            CGContextDrawPath(context, kCGPathStroke)
             CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         
@@ -73,11 +70,20 @@ class MazeViewCell: UIView {
 
 class MazeView: UIView {
     
-    var cells: [MazeViewCell] = []
+    var cells: [String: MazeViewCell] = [:]
+    
     private var dimension: Int = 30
+    private var cellWidth: CGFloat!
+    private var cellHeight: CGFloat!
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        
+        cellWidth = bounds.width / CGFloat(dimension)
+        cellHeight = bounds.height / CGFloat(dimension)
+
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -94,18 +100,111 @@ class MazeView: UIView {
     
     func addCellNorth(north: Bool, East east: Bool, South south: Bool, West west: Bool, AtX x: Int, Y y: Int) {
         
-        let widthPortion: CGFloat = bounds.width / CGFloat(dimension)
-        let heightPortion: CGFloat = bounds.height / CGFloat(dimension)
-        let xPos: CGFloat = bounds.minX + (CGFloat(x) * widthPortion)
-        let yPos: CGFloat = bounds.minY + (CGFloat(y) * heightPortion)
+        let xPos: CGFloat = bounds.minX + (CGFloat(x) * cellWidth)
+        let yPos: CGFloat = bounds.minY + (CGFloat(y) * cellHeight)
         
-        let newCell: MazeViewCell = MazeViewCell(frame: CGRect(x: xPos, y: yPos, width: widthPortion, height: heightPortion))
+        let newCell: MazeViewCell = MazeViewCell(frame: CGRect(x: xPos, y: yPos, width: cellWidth, height: cellHeight))
         
         newCell.north = north
         newCell.east = east
         newCell.south = south
         newCell.west = west
-        cells.append(newCell)
+        
+        cells["\(x),\(y)"] = newCell
+//        cells.append(newCell)
         addSubview(newCell)
+    }
+    
+    func detectCollisionWithRect(rect: CGRect) -> Bool
+    {
+        // get the cells that overlap with rect
+        
+        var x = 0;
+        var remainderX = rect.minX
+        while remainderX > cellWidth
+        {
+            remainderX -= cellWidth
+            x++
+        }
+        // now x should be the x-coordinate of the cell that rect.minX is touching
+        
+        let sizeDiffX = (rect.maxX - rect.minX) - (bounds.maxX - bounds.minX)
+        let touchingAnotherCellInX: Bool = remainderX > sizeDiffX
+
+        var y = 0;
+        var remainderY = rect.minY
+        while remainderY > cellHeight
+        {
+            remainderY -= cellHeight
+            y++
+        }
+        
+        let sizeDiffY = (rect.maxY - rect.minY) - (bounds.maxY - bounds.minY)
+        let touchingAnotherCellInY: Bool = remainderY > sizeDiffY
+        
+        var cellsTouching: [String] = []
+        
+        if touchingAnotherCellInX {
+            if touchingAnotherCellInY {
+                cellsTouching = ["\(x),\(y)", "\(x+1),\(y)", "\(x),\(y+1)", "\(x+1),\(y+1)"]
+            }
+            else {
+                cellsTouching = ["\(x),\(y)", "\(x+1),\(y)"]
+            }
+        }
+        else {
+            if touchingAnotherCellInY {
+                cellsTouching = ["\(x),\(y)", "\(x),\(y+1)"]
+            }
+            else {
+                cellsTouching = ["\(x),\(y)"]
+            }
+        }
+        
+        // look at the (up to) four cells to determine possible collisions
+        
+        for cellString in cellsTouching
+        {
+            let cell = cells[cellString]
+            
+            if cell != nil
+            {
+                if rect.minX <= cell!.frame.minX
+                {
+                    if cell!.west
+                    {
+                        return true
+                    }
+                }
+                
+                if rect.maxX >= cell!.frame.maxX
+                {
+                    if cell!.east
+                    {
+                        return true
+                    }
+                }
+                
+                if rect.minY <= cell!.frame.minY
+                {
+                    if cell!.north
+                    {
+                        return true
+                    }
+                    
+                }
+                
+                if rect.maxY >= cell!.frame.maxY
+                {
+                    if cell!.south
+                    {
+                        return true
+                    }
+                }
+            }
+        }
+        
+        
+        return false
     }
 }
