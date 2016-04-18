@@ -75,6 +75,7 @@ class MazeView: UIView {
     private var dimension: Int = 30
     private var cellWidth: CGFloat!
     private var cellHeight: CGFloat!
+    private var originCellCenter: CGPoint!
     
     
     override init(frame: CGRect) {
@@ -83,7 +84,8 @@ class MazeView: UIView {
         
         cellWidth = bounds.width / CGFloat(dimension)
         cellHeight = bounds.height / CGFloat(dimension)
-
+        
+        originCellCenter = CGPoint(x: (cellWidth / 2), y: (cellHeight / 2))
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -128,7 +130,7 @@ class MazeView: UIView {
         }
         // now x should be the x-coordinate of the cell that rect.minX is touching
         
-        let sizeDiffX = (rect.maxX - rect.minX) - (bounds.maxX - bounds.minX)
+        let sizeDiffX = cellWidth - (rect.maxX - rect.minX)
         let touchingAnotherCellInX: Bool = remainderX > sizeDiffX
 
         var y = 0;
@@ -139,7 +141,7 @@ class MazeView: UIView {
             y++
         }
         
-        let sizeDiffY = (rect.maxY - rect.minY) - (bounds.maxY - bounds.minY)
+        let sizeDiffY = cellHeight - (rect.maxY - rect.minY)
         let touchingAnotherCellInY: Bool = remainderY > sizeDiffY
         
         var cellsTouching: [String] = []
@@ -203,8 +205,28 @@ class MazeView: UIView {
                 }
             }
         }
-        
-        
         return false
+    }
+    
+    func detectCenteredInCell(rect: CGRect) -> Bool
+    {
+        // find center of rect
+        let center: CGPoint = CGPoint(x: (rect.maxX - rect.minX), y: (rect.maxY - rect.minY))
+        
+        let errorMargin: CGFloat = 0.3
+        
+        if (center.x % originCellCenter.x) <= errorMargin && (center.y % originCellCenter.y) <= errorMargin
+        {
+            return true
+        }
+                
+        return false
+    }
+    
+    func getCellCenterX(x: Int, Y y: Int) -> CGPoint
+    {
+        let cell: MazeViewCell! = cells["\(x),\(y)"]
+        
+        return CGPoint(x: (cell.bounds.maxX - cell.bounds.minX), y: (cell.bounds.maxY - cell.bounds.minY))
     }
 }

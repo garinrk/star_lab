@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDelegate, EnemyViewDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyViewDelegate {
 
     var window: UIWindow?
     
@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDe
     
     var mazeView: MazeView!
     
-    let tempEnemy: Enemy = Enemy()
     var tempEnemyView: EnemyView!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -46,8 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDe
         gameLoop.delegate = self
         gameLoop.start()
         
-        tempEnemy.delegate = self
         tempEnemyView.delegate = self
+        tempEnemyView.start()
         
         window?.makeKeyAndVisible()
         
@@ -56,38 +55,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyDe
     
     
     func update() {
-//        mazeView.setNeedsDisplay()
-        
-        tempEnemy.update()
-        mazeView.detectCollisionWithRect(tempEnemyView.frame)
-        
+        tempEnemyView.update()        
     }
     
 
     
     
-    
-    // MARK: EnemyDelegate functions
-    func getMazeDimension() -> Int {
-        return maze.dimension
-    }
-
-    func enemyXChanged(enemy: Enemy, x: Float) {
-        tempEnemyView.xPos = x
-    }
-    
-    func enemyYChanged(enemy: Enemy, y: Float) {
-        tempEnemyView.yPos = y
-    }
     
     // MARK: EnemyViewDelegate functions
-    func detectCollisionFromEnemy(square: CGRect)
+    func getMazeDimension() -> Int
     {
-        if mazeView.detectCollisionWithRect(square)
+        return maze.dimension
+    }
+    
+    func getMazeCellCenterX(x: Int, Y y: Int) -> CGPoint
+    {
+        return mazeView.getCellCenterX(x, Y: y)
+    }
+    
+    func detectCollisionFromEnemy(square: CGRect) -> Bool
+    {
+        return mazeView.detectCollisionWithRect(square)        
+    }
+    
+    func detectCenteredInCell(square: CGRect)
+    {
+        if mazeView.detectCenteredInCell(square)
         {
-            tempEnemy.collided = true
+            tempEnemyView.centered = true
         }
     }
+    
+    
+    
     
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

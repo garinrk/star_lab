@@ -15,7 +15,8 @@ protocol GameLoopDelegate: class {
 class GameLoop: NSObject {
     
     var displayLink: CADisplayLink!
-    var frameInterval: Int = 1 // equal to refresh rate of display
+    var frameInterval: Int = 4
+    // 1 is equal to refresh rate of display
     // see https://developer.apple.com/library/ios/documentation/QuartzCore/Reference/CADisplayLink_ClassRef/#//apple_ref/occ/instp/CADisplayLink/frameInterval
     
     weak var delegate: GameLoopDelegate? = nil
