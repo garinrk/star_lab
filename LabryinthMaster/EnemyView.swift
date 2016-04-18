@@ -12,7 +12,7 @@ protocol EnemyViewDelegate: class {
     func getMazeDimension() -> Int
     func getMazeCellCenterX(x: Int, Y y: Int) -> CGPoint
     func detectCollisionFromEnemy(square: CGRect) -> Bool
-    func detectCenteredInCell(square: CGRect)
+//    func detectCenteredInCell(square: CGRect)
 }
 
 class EnemyView: UIView {
@@ -29,6 +29,10 @@ class EnemyView: UIView {
     
     private var enemyWidth: CGFloat!
     private var enemyHeight: CGFloat!
+    
+//    private var dimension: Int!
+//    private var cellWidth: CGFloat!
+//    private var cellHeight: CGFloat!
     
     weak var delegate: EnemyViewDelegate? = nil
     
@@ -125,6 +129,14 @@ class EnemyView: UIView {
     
     func start()
     {
+        if delegate == nil {
+            return
+        }
+        
+//        dimension = delegate!.getMazeDimension()
+//        cellWidth = bounds.width / CGFloat(dimension)
+//        cellHeight = bounds.height / CGFloat(dimension)
+        
         randomizeLocation()
         moveInRandomDirection()
     }
@@ -132,10 +144,6 @@ class EnemyView: UIView {
     
     func randomizeLocation()
     {
-        if delegate == nil {
-            return
-        }
-        
         let dimension: Int = delegate!.getMazeDimension()
         
         let cellX = Int(arc4random_uniform(UInt32(dimension)))
@@ -143,11 +151,14 @@ class EnemyView: UIView {
         
         let center: CGPoint = delegate!.getMazeCellCenterX(cellX, Y: cellY)
         
+//        let xCenter: CGFloat = frame.minX + (CGFloat(cellX) * cellWidth) + cellWidth * 0.5
+//        let yCenter: CGFloat = frame.minY + (CGFloat(cellY) * cellHeight) + cellHeight * 0.5
+        
         let halfWidth: CGFloat = enemyWidth * 0.5
         let halfHeight: CGFloat = enemyHeight * 0.5
         
-        xPos = center.x - halfWidth
-        yPos = center.y - halfHeight
+        xPos = center.x + halfWidth
+        yPos = center.y + halfHeight
     }
     
     func moveInRandomDirection()
