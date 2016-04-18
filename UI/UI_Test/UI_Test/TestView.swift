@@ -13,10 +13,10 @@ class TestView : UIView{
     
 
     override func drawRect(rect: CGRect) {
-        mainTitle.text = "Check this out"
-        mainTitle.frame = CGRectMake(UIScreen.mainScreen().bounds.width * 0.25, UIScreen.mainScreen().bounds.height * 0.25,500, 20)
-        mainTitle.adjustsFontSizeToFitWidth = true
+//        mainTitle.text = "Check this out"
+//        mainTitle.frame = CGRectMake(UIScreen.mainScreen().bounds.width * 0.25, UIScreen.mainScreen().bounds.height * 0.25,500, 20)
+//        mainTitle.adjustsFontSizeToFitWidth = true
         
-        self.addSubview(mainTitle)
+//        self.addSubview(mainTitle)
     }
 }

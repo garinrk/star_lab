@@ -10,9 +10,30 @@ import UIKit
 
 /// New, load, high scores, options
 class MainMenuView : UIView{
+    var MainLabel = UILabel()
+    
+    var newGameButton = UIButton(type: UIButtonType.Custom)
     
     
     override func drawRect(rect: CGRect) {
+        
+        //better way to do this
+        MainLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
+        
+        
+        
+        
+        MainLabel.text = "main label"
+        MainLabel.adjustsFontSizeToFitWidth = true
+        MainLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
+        MainLabel.textAlignment = .Center
+        
+        
+        
+//        label.position = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.80)
+        
+        self.addSubview(MainLabel)
+        
         
     }
 }
