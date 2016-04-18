@@ -216,27 +216,16 @@ class MazeView: UIView {
 //        return false
 //    }
     
-    func getCellCenterX(x: Int, Y y: Int) -> CGPoint
+    func getCellPosX(x: Int, Y y: Int) -> CGPoint
     {
-//        let xCenter: CGFloat = bounds.minX + (CGFloat(x) * cellWidth) + cellWidth * 0.5
-//        let yCenter: CGFloat = bounds.minY + (CGFloat(y) * cellHeight) + cellHeight * 0.5
-//
-//        return CGPoint(x: xCenter, y: yCenter)
-        
         let cell: MazeViewCell! = cells["\(x),\(y)"]
-//        return cell.frame.origin
         let viewIndex: Int? = subviews.indexOf(cell)
-//        if viewIndex != nil
-//        {
-//            let view: UIView = subviews[viewIndex!]
-//            
-//            return view.frame.origin
-//            
-////            return CGPoint(x: view.frame, y: <#T##Double#>)
-//        }
+        if viewIndex != nil
+        {
+            let view: UIView = subviews[viewIndex!]
+            return view.frame.origin
+        }
         
-        
-//        let result: CGPoint = CGPoint(x: cell.frame., y: cell.frame)
         let result: CGPoint = CGPoint(x: (cell.bounds.maxX - cell.bounds.minX), y: (cell.bounds.maxY - cell.bounds.minY))
         return result
     }

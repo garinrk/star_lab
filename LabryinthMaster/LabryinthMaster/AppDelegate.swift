@@ -91,9 +91,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyVi
         return maze.dimension
     }
     
-    func getMazeCellCenterX(x: Int, Y y: Int) -> CGPoint
+    func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
     {
-        return mazeView.getCellCenterX(x, Y: y)
+        return mazeView.getCellPosX(x, Y: y)
     }
     
     func detectCollisionFromEnemy(square: CGRect) -> Bool
