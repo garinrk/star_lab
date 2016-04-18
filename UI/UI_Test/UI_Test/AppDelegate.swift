@@ -12,14 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var testNavController : UINavigationController?
+    var testController : TestViewController?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        let testController = TestViewController()
+        testController = TestViewController()
+        testController?.title = "haha"
+        testNavController = UINavigationController(rootViewController: testController!)
+        
+//        testNavController!.title = "Hahah"
         
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = testController
+        window?.rootViewController = testNavController
         window?.makeKeyAndVisible()
         // Override point for customization after application launch.
         return true
