@@ -14,7 +14,6 @@ class MazeViewCell: UIView {
     var south: Bool = true
     var west: Bool = true
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -59,12 +58,7 @@ class MazeViewCell: UIView {
             CGContextAddLineToPoint(context, bounds.minX, bounds.maxY)
             CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
-        
     }
-    
-//    func setClear(clear: Bool) {
-//        self.clear = clear
-//    }
     
 }
 
@@ -113,7 +107,6 @@ class MazeView: UIView {
         newCell.west = west
         
         cells["\(x),\(y)"] = newCell
-//        cells.append(newCell)
         addSubview(newCell)
     }
     
@@ -208,25 +201,43 @@ class MazeView: UIView {
         return false
     }
     
-    func detectCenteredInCell(rect: CGRect) -> Bool
-    {
-        // find center of rect
-        let center: CGPoint = CGPoint(x: (rect.maxX - rect.minX), y: (rect.maxY - rect.minY))
-        
-        let errorMargin: CGFloat = 0.3
-        
-        if (center.x % originCellCenter.x) <= errorMargin && (center.y % originCellCenter.y) <= errorMargin
-        {
-            return true
-        }
-                
-        return false
-    }
+//    func detectCenteredInCell(rect: CGRect) -> Bool
+//    {
+//        // find center of rect
+//        let center: CGPoint = CGPoint(x: (rect.maxX - rect.minX), y: (rect.maxY - rect.minY))
+//        
+//        let errorMargin: CGFloat = 0.1
+//        
+//        if (center.x % originCellCenter.x) <= errorMargin && (center.y % originCellCenter.y) <= errorMargin
+//        {
+//            return true
+//        }
+//                
+//        return false
+//    }
     
     func getCellCenterX(x: Int, Y y: Int) -> CGPoint
     {
-        let cell: MazeViewCell! = cells["\(x),\(y)"]
+//        let xCenter: CGFloat = bounds.minX + (CGFloat(x) * cellWidth) + cellWidth * 0.5
+//        let yCenter: CGFloat = bounds.minY + (CGFloat(y) * cellHeight) + cellHeight * 0.5
+//
+//        return CGPoint(x: xCenter, y: yCenter)
         
-        return CGPoint(x: (cell.bounds.maxX - cell.bounds.minX), y: (cell.bounds.maxY - cell.bounds.minY))
+        let cell: MazeViewCell! = cells["\(x),\(y)"]
+//        return cell.frame.origin
+        let viewIndex: Int? = subviews.indexOf(cell)
+//        if viewIndex != nil
+//        {
+//            let view: UIView = subviews[viewIndex!]
+//            
+//            return view.frame.origin
+//            
+////            return CGPoint(x: view.frame, y: <#T##Double#>)
+//        }
+        
+        
+//        let result: CGPoint = CGPoint(x: cell.frame., y: cell.frame)
+        let result: CGPoint = CGPoint(x: (cell.bounds.maxX - cell.bounds.minX), y: (cell.bounds.maxY - cell.bounds.minY))
+        return result
     }
 }
