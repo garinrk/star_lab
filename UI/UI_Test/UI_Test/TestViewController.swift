@@ -38,7 +38,7 @@ class TestViewController : UIViewController{
         button2.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         button2.backgroundColor = UIColor.blackColor()
         
-//        Button1Pressed()
+        Button2Pressed()
         self.view.addSubview(testView)
         self.view.addSubview(button1)
         self.view.addSubview(button2)
