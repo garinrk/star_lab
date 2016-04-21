@@ -64,7 +64,6 @@
 				453B5D0B1CB85BEF00FF61F8 /* Info.plist */,
 				4571D30B1CBAC3D600039FF2 /* Controllers */,
 				4571D30C1CBAC3DE00039FF2 /* Views */,
-				457F71FD1CBF3BE1008588B8 /* GameLoop.swift */,
 			);
 			path = Movement_Test;
 			sourceTree = "<group>";
@@ -82,6 +81,7 @@
 			children = (
 				4571D3081CBAC3C900039FF2 /* GyroView.swift */,
 				4584EAD61CBEF185009DA9B1 /* PlayerCell.swift */,
+				457F71FD1CBF3BE1008588B8 /* GameLoop.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
