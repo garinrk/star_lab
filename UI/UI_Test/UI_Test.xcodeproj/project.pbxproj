@@ -21,6 +21,8 @@
 		455FC2511CC592D200D7E501 /* HighScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FC2501CC592D200D7E501 /* HighScoresView.swift */; };
 		455FC2531CC5931400D7E501 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FC2521CC5931400D7E501 /* OptionsViewController.swift */; };
 		455FC2551CC5931C00D7E501 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FC2541CC5931C00D7E501 /* OptionsView.swift */; };
+		45ADE6601CC8766C002BD040 /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADE65F1CC8766C002BD040 /* NewGameView.swift */; };
+		45ADE6621CC87674002BD040 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADE6611CC87674002BD040 /* NewGameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		455FC2501CC592D200D7E501 /* HighScoresView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoresView.swift; sourceTree = "<group>"; };
 		455FC2521CC5931400D7E501 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		455FC2541CC5931C00D7E501 /* OptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		45ADE65F1CC8766C002BD040 /* NewGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
+		45ADE6611CC87674002BD040 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 				455FC24E1CC592C700D7E501 /* HighScoresViewController.swift */,
 				455FC2521CC5931400D7E501 /* OptionsViewController.swift */,
 				4537186D1CC855C400B1E9A7 /* PauseViewController.swift */,
+				45ADE6611CC87674002BD040 /* NewGameViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 				455FC2501CC592D200D7E501 /* HighScoresView.swift */,
 				455FC2541CC5931C00D7E501 /* OptionsView.swift */,
 				4537186F1CC855CA00B1E9A7 /* PauseView.swift */,
+				45ADE65F1CC8766C002BD040 /* NewGameView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -187,8 +193,10 @@
 				455FC2531CC5931400D7E501 /* OptionsViewController.swift in Sources */,
 				455FC24F1CC592C700D7E501 /* HighScoresViewController.swift in Sources */,
 				452353281CC43F0C00878B8F /* TestView.swift in Sources */,
+				45ADE6621CC87674002BD040 /* NewGameViewController.swift in Sources */,
 				452353241CC43DCF00878B8F /* TestViewController.swift in Sources */,
 				452353261CC43EA800878B8F /* MainMenuView.swift in Sources */,
+				45ADE6601CC8766C002BD040 /* NewGameView.swift in Sources */,
 				452353101CC43CD500878B8F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
