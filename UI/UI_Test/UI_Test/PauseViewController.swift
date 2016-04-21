@@ -22,7 +22,7 @@ class PauseViewController : UIViewController{
         
         pauseView.frame = UIScreen.mainScreen().bounds
         pauseView.backgroundColor = UIColor.brownColor()
-        self.navigationItem.hidesBackButton = true
+//        self.navigationItem.hidesBackButton = true
         
         //set up sliders with handler methods
         musicSlider = UISlider(frame: CGRectMake(CGRectGetMidX(screenRect), CGRectGetMidY(screenRect), 200, 50))

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewGameViewController : UIViewController{
+class NewGameViewController : UIViewController, UITextFieldDelegate{
     
     var screenRect = UIScreen.mainScreen().bounds
     var diff : GameDifficulty? = .NONE
@@ -25,7 +25,7 @@ class NewGameViewController : UIViewController{
         
         newGameView.frame = UIScreen.mainScreen().bounds
         newGameView.backgroundColor = UIColor.brownColor()
-        self.navigationItem.hidesBackButton = true
+//        self.navigationItem.hidesBackButton = true
         
         backButton.frame = CGRectMake(50,50, 200, 50)
         backButton.center = CGPointMake(CGRectGetMidX(screenRect) * 0.40,CGRectGetMaxY(screenRect) * 0.15)
@@ -58,7 +58,8 @@ class NewGameViewController : UIViewController{
         hardButton.backgroundColor = UIColor.darkGrayColor()
         hardButton.addTarget(self, action: #selector(NewGameViewController.HardButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         
-        gameNameTextEntry.frame = CGRectMake(0, UIScreen.mainScreen().bounds.height * 0.5 + 40, 150, 20)
+        
+        gameNameTextEntry.frame = CGRectMake(0, UIScreen.mainScreen().bounds.height * 0.5 + 40, 150, 40)
         gameNameTextEntry.textAlignment = NSTextAlignment.Center
         gameNameTextEntry.font = UIFont.systemFontOfSize(15)
         gameNameTextEntry.textColor = UIColor.blackColor()
@@ -70,6 +71,7 @@ class NewGameViewController : UIViewController{
         gameNameTextEntry.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
         gameNameTextEntry.center.x = screenRect.midX
         gameNameTextEntry.center.y = screenRect.midY + 40
+        gameNameTextEntry.delegate = self
         
         
         self.newGameView.addSubview(backButton)
@@ -102,6 +104,11 @@ class NewGameViewController : UIViewController{
         hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         print("Hard Difficulty is \(diff.debugDescription)")
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.gameNameTextEntry.endEditing(true)
+        return false
     }
 }
 

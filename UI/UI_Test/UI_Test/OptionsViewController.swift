@@ -33,7 +33,7 @@ class OptionsViewController : UIViewController{
         //set up options view and hide back button
         optionsView.frame = UIScreen.mainScreen().bounds
         optionsView.backgroundColor = UIColor.brownColor()
-        self.navigationItem.hidesBackButton = true
+//        self.navigationItem.hidesBackButton = true
         
         //TODO: Check prefs to make sure that the correct difficulty is selected at
         //first
