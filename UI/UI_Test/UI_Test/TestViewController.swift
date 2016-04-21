@@ -13,8 +13,10 @@ class TestViewController : UIViewController{
     var testView = TestView()
     let button1 : UIButton! = UIButton(type: UIButtonType.Custom)
     let button2 : UIButton! = UIButton(type: UIButtonType.Custom)
+    let button3 : UIButton! = UIButton(type: UIButtonType.Custom)
     var mmvc : MainMenuViewController?
     var ovc : OptionsViewController?
+    var pvc : PauseViewController?
     
     override func viewDidLoad() {
         testView.frame = UIScreen.mainScreen().bounds
@@ -38,10 +40,18 @@ class TestViewController : UIViewController{
         button2.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         button2.backgroundColor = UIColor.blackColor()
         
-        Button2Pressed()
+        //button2
+        button3.frame = CGRectMake(50, 300, 500, 50)
+        button3.addTarget(self, action: #selector(TestViewController.Button3Pressed), forControlEvents: UIControlEvents.TouchUpInside)
+        button3.setTitle("Pause", forState: UIControlState.Normal)
+        button3.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        button3.backgroundColor = UIColor.blackColor()
+        
+//        Button3Pressed()
         self.view.addSubview(testView)
         self.view.addSubview(button1)
         self.view.addSubview(button2)
+        self.view.addSubview(button3)
        
         
     }
@@ -56,9 +66,15 @@ class TestViewController : UIViewController{
     func Button2Pressed(){
         ovc = OptionsViewController()
         
+        
         print("Presenting Options")
         self.navigationController?.pushViewController(ovc!, animated: false)
+    }
+    
+    func Button3Pressed(){
+        pvc = PauseViewController()
         
-        
+        print("Presenting Pause")
+        self.navigationController?.pushViewController(pvc!, animated: false)
     }
 }

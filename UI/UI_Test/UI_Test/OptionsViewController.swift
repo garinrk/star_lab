@@ -23,6 +23,7 @@ class OptionsViewController : UIViewController{
     var optionsView = OptionsView()
     var screenRect = UIScreen.mainScreen().bounds
     var diff : GameDifficulty? = .NONE
+    var backButton = UIButton(type: UIButtonType.Custom)
     
     var hardDifficultySelected = false
     var easyDifficultySelected = false
@@ -61,18 +62,18 @@ class OptionsViewController : UIViewController{
         hardButton.backgroundColor = UIColor.darkGrayColor()
         hardButton.addTarget(self, action: #selector(OptionsViewController.HardButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         
-//        diffLabel.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.30,CGRectGetMaxY(self.frame) * 0.45)
+        backButton.frame = CGRectMake(50,50, 200, 50)
+        backButton.center = CGPointMake(CGRectGetMidX(screenRect) * 0.40,CGRectGetMaxY(screenRect) * 0.15)
+        backButton
+            .addTarget(self, action: #selector(OptionsViewController.BackButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+        backButton.setTitle("Back to Menu", forState: UIControlState.Normal)
+        backButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        backButton.backgroundColor = UIColor.grayColor()
         
-//        newGameButton.frame = CGRectMake(50,50, 200, 50)
-//        newGameButton.center = CGPointMake(CGRectGetMidX(screenRect) - 200,CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.75)
-//        newGameButton
-//            .addTarget(self, action: #selector(MainMenuViewController.NewGameButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-//        newGameButton.setTitle("New Game", forState: UIControlState.Normal)
-//        newGameButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-//        newGameButton.backgroundColor = UIColor.grayColor()
         
         
         //add to optionsview
+        self.optionsView.addSubview(backButton)
         self.optionsView.addSubview(easyButton)
         self.optionsView.addSubview(hardButton)
         self.optionsView.addSubview(musicSlider!)
@@ -118,8 +119,10 @@ class OptionsViewController : UIViewController{
         print("Hard Difficulty is \(diff.debugDescription)")
     }
     
-    func SetDifficultyButtons(){
-        
+    func BackButtonPressed(){
+        print("Back Button Pressed")
     }
+    
+    
    
 }

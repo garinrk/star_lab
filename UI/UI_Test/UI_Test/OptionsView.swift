@@ -13,7 +13,7 @@ class OptionsView : UIView{
     var diffLabel = UILabel()
     var musicLabel = UILabel()
     var fxLabel = UILabel()
-    var backButton = UIButton(type: UIButtonType.Custom)
+
     
     var screenRect = UIScreen.mainScreen().bounds
     
@@ -45,14 +45,7 @@ class OptionsView : UIView{
         fxLabel.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.30,CGRectGetMaxY(self.frame) * 0.60)
         fxLabel.textAlignment = .Center
         
-        backButton.frame = CGRectMake(50,50, 200, 50)
-        backButton.center = CGPointMake(CGRectGetMidX(screenRect) * 0.40,CGRectGetMaxY(screenRect) * 0.15)
-        backButton
-            .addTarget(self, action: #selector(OptionsView.BackButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-        backButton.setTitle("Back to Menu", forState: UIControlState.Normal)
-        backButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        backButton.backgroundColor = UIColor.grayColor()
-        self.addSubview(backButton)
+        
         self.addSubview(musicLabel)
         self.addSubview(fxLabel)
         self.addSubview(diffLabel)
