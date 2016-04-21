@@ -20,8 +20,6 @@ class OptionsView : UIView{
     override func drawRect(rect: CGRect) {
         
         optionsTitleLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
-//        optionsTitleLabel.frame.width = 200.0
-        
         optionsTitleLabel.text = "Options Menu"
         optionsTitleLabel.adjustsFontSizeToFitWidth = true
         optionsTitleLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)

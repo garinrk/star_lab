@@ -16,8 +16,15 @@ class PauseView : UIView{
     var lifetimeScore = UILabel()
     var currentScoreLabel = UILabel()
     var lifetimeScoreLabel = UILabel()
+    var pauseTitleLabel = UILabel()
     
     override func drawRect(rect: CGRect) {
+        
+        pauseTitleLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
+        pauseTitleLabel.text = "Pause Menu"
+        pauseTitleLabel.adjustsFontSizeToFitWidth = true
+        pauseTitleLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
+        pauseTitleLabel.textAlignment = .Center
         
         musicLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
         musicLabel.text = "Music Level"
@@ -37,16 +44,31 @@ class PauseView : UIView{
         currentScoreLabel.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.30,CGRectGetMaxY(self.frame) * 0.70)
         currentScoreLabel.textAlignment = .Center
         
+        currentScore.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
+        currentScore.text = "Score"
+        currentScore.adjustsFontSizeToFitWidth = true
+        currentScore.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.30,CGRectGetMaxY(self.frame) * 0.75)
+        currentScore.textAlignment = .Center
+        
         lifetimeScoreLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
         lifetimeScoreLabel.text = "Lifetime Score"
         lifetimeScoreLabel.adjustsFontSizeToFitWidth = true
         lifetimeScoreLabel.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.75,CGRectGetMaxY(self.frame) * 0.70)
         lifetimeScoreLabel.textAlignment = .Center
         
+        lifetimeScore.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
+        lifetimeScore.text = "LScore"
+        lifetimeScore.adjustsFontSizeToFitWidth = true
+        lifetimeScore.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.75,CGRectGetMaxY(self.frame) * 0.75)
+        lifetimeScore.textAlignment = .Center
+        
         self.addSubview(musicLabel)
         self.addSubview(fxLabel)
         self.addSubview(lifetimeScoreLabel)
         self.addSubview(currentScoreLabel)
+        self.addSubview(currentScore)
+        self.addSubview(lifetimeScore)
+        self.addSubview(pauseTitleLabel)
         
     }
 }
