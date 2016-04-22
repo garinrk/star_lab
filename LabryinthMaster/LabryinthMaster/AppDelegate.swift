@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyVi
     
     let gameLoop: GameLoop = GameLoop()
     let maze: Maze = Maze()
-    let tempViewController: UIViewController = UIViewController()
+    var tempViewController: GameViewController?
     
     var mazeView: MazeView!
     
@@ -26,10 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyVi
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        tempViewController = GameViewController()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = tempViewController
 
-        tempViewController.view.backgroundColor = UIColor.yellowColor()
+        tempViewController!.view.backgroundColor = UIColor(white: 1, alpha: 0)
         
         
         mazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: window!.frame.width, height: window!.frame.width))
@@ -38,19 +39,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyVi
             mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
         }
         
-        tempViewController.view.addSubview(mazeView)
+        tempViewController!.view.addSubview(mazeView)
         
         tempEnemyView = EnemyView(frame: mazeView.frame)
-        tempViewController.view.addSubview(tempEnemyView)
+        tempViewController!.view.addSubview(tempEnemyView)
 
         tempEnemyView2 = EnemyView(frame: mazeView.frame)
-        tempViewController.view.addSubview(tempEnemyView2)
+        tempViewController!.view.addSubview(tempEnemyView2)
 
         tempEnemyView3 = EnemyView(frame: mazeView.frame)
-        tempViewController.view.addSubview(tempEnemyView3)
+        tempViewController!.view.addSubview(tempEnemyView3)
 
         tempEnemyView4 = EnemyView(frame: mazeView.frame)
-        tempViewController.view.addSubview(tempEnemyView4)
+        tempViewController!.view.addSubview(tempEnemyView4)
         
         gameLoop.delegate = self
         gameLoop.start()

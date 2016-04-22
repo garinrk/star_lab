@@ -41,6 +41,8 @@ class Gyro{
     }
     
     func HandleAccData(acc : CMAcceleration){
+        delegate?.UpdatePlayerPosition(CGFloat(acc.x), magY: CGFloat(acc.y))
+        
         //        self.MovePlayer(CGFloat(acc.x), magY: CGFloat(acc.y))
     }
     
