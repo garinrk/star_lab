@@ -15,6 +15,7 @@ class MazeCell {
     var east: Bool = true
     var south: Bool = true
     var west: Bool = true
+    var goal: Bool = false
     
     init(x: Int, y: Int)
     {
