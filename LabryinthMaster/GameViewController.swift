@@ -9,15 +9,61 @@
 import UIKit
 import CoreMotion
 
-class GameViewController : UIViewController, GyroDelegate{
+class GameViewController : UIViewController, GyroDelegate, GameLoopDelegate, EnemyViewDelegate{
     var screenRect = UIScreen.mainScreen().bounds
     var gyroManager : Gyro?
     var gyroView : GyroView?
     var globalPlayerX : CGFloat = 50.0
     var globalPlayerY : CGFloat = 50.0
     
+    var mazeView: MazeView!
+    
+    var tempEnemyView: EnemyView!
+    var tempEnemyView2: EnemyView!
+    var tempEnemyView3: EnemyView!
+    var tempEnemyView4: EnemyView!
+    
+    let gameManager: GameManager = GameManager()
+    
     override func loadView() {
         super.loadView()
+        
+        mazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
+        
+        for cell in gameManager.maze.cells {
+            mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
+        }
+        
+        view.addSubview(mazeView)
+        
+        tempEnemyView = EnemyView(frame: mazeView.frame)
+        view.addSubview(tempEnemyView)
+        
+        tempEnemyView2 = EnemyView(frame: mazeView.frame)
+        view.addSubview(tempEnemyView2)
+        
+        tempEnemyView3 = EnemyView(frame: mazeView.frame)
+        view.addSubview(tempEnemyView3)
+        
+        tempEnemyView4 = EnemyView(frame: mazeView.frame)
+        view.addSubview(tempEnemyView4)
+        
+        gameManager.gameLoop.delegate = self
+        gameManager.gameLoop.start()
+        
+        tempEnemyView.delegate = self
+        tempEnemyView.start()
+        
+        tempEnemyView2.delegate = self
+        tempEnemyView2.start()
+        
+        tempEnemyView3.delegate = self
+        tempEnemyView3.start()
+        
+        tempEnemyView4.delegate = self
+        tempEnemyView4.start()
+
+        
     }
     
     override func viewDidLoad() {
@@ -33,6 +79,8 @@ class GameViewController : UIViewController, GyroDelegate{
         self.view.addSubview(gyroView!)
         
     }
+    
+    // MARK: GyroDelegate functions
     
     /**
      Updates the player's position on the view, from the
@@ -74,5 +122,31 @@ class GameViewController : UIViewController, GyroDelegate{
         //save the new player's position
         globalPlayerX = newX
         globalPlayerY = newY
+    }
+    
+    // MARK: GameLoopDelegate functions
+    
+    func update() {
+        tempEnemyView.update()
+        tempEnemyView2.update()
+        tempEnemyView3.update()
+        tempEnemyView4.update()
+        
+    }
+    
+    // MARK: EnemyViewDelegate functions
+    func getMazeDimension() -> Int
+    {
+        return gameManager.maze.dimension
+    }
+    
+    func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
+    {
+        return mazeView.getCellPosX(x, Y: y)
+    }
+    
+    func detectCollisionFromEnemy(square: CGRect) -> Bool
+    {
+        return mazeView.detectCollisionWithRect(square)
     }
 }

@@ -25,4 +25,7 @@ class GameManager {
 //    let timer: NSTimer // ? maybe something else, I did no research
     
     
+    let gameLoop: GameLoop = GameLoop()
+
+    
 }

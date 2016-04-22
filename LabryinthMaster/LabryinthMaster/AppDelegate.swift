@@ -9,20 +9,10 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyViewDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    let gameLoop: GameLoop = GameLoop()
-    let maze: Maze = Maze()
     var tempViewController: GameViewController?
-    
-    var mazeView: MazeView!
-    
-    var tempEnemyView: EnemyView!
-    var tempEnemyView2: EnemyView!
-    var tempEnemyView3: EnemyView!
-    var tempEnemyView4: EnemyView!
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -32,85 +22,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyVi
 
         tempViewController!.view.backgroundColor = UIColor(white: 1, alpha: 0)
         
-        
-        mazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: window!.frame.width, height: window!.frame.width))
-        
-        for cell in maze.cells {
-            mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
-        }
-        
-        tempViewController!.view.addSubview(mazeView)
-        
-        tempEnemyView = EnemyView(frame: mazeView.frame)
-        tempViewController!.view.addSubview(tempEnemyView)
-
-        tempEnemyView2 = EnemyView(frame: mazeView.frame)
-        tempViewController!.view.addSubview(tempEnemyView2)
-
-        tempEnemyView3 = EnemyView(frame: mazeView.frame)
-        tempViewController!.view.addSubview(tempEnemyView3)
-
-        tempEnemyView4 = EnemyView(frame: mazeView.frame)
-        tempViewController!.view.addSubview(tempEnemyView4)
-        
-        gameLoop.delegate = self
-        gameLoop.start()
-        
-        tempEnemyView.delegate = self
-        tempEnemyView.start()
-        
-        tempEnemyView2.delegate = self
-        tempEnemyView2.start()
-        
-        tempEnemyView3.delegate = self
-        tempEnemyView3.start()
-        
-        tempEnemyView4.delegate = self
-        tempEnemyView4.start()
-        
         window?.makeKeyAndVisible()
         
         return true
     }
-    
-    
-    func update() {
-        tempEnemyView.update()
-        tempEnemyView2.update()
-        tempEnemyView3.update()
-        tempEnemyView4.update()
-
-    }
-    
-
-    
-    
-    
-    // MARK: EnemyViewDelegate functions
-    func getMazeDimension() -> Int
-    {
-        return maze.dimension
-    }
-    
-    func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
-    {
-        return mazeView.getCellPosX(x, Y: y)
-    }
-    
-    func detectCollisionFromEnemy(square: CGRect) -> Bool
-    {
-        return mazeView.detectCollisionWithRect(square)        
-    }
-    
-//    func detectCenteredInCell(square: CGRect)
-//    {
-//        if mazeView.detectCenteredInCell(square)
-//        {
-//            tempEnemyView.centered = true
-//        }
-//    }
-    
-    
     
     
     func applicationWillResignActive(application: UIApplication) {
@@ -134,7 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GameLoopDelegate, EnemyVi
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         
-        gameLoop.stop()
     }
 
 
