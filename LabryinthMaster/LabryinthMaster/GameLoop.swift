@@ -26,7 +26,7 @@ class GameLoop: NSObject {
     }
     
     func start() {
-        displayLink = CADisplayLink(target: self, selector: Selector("callUpdate"))
+        displayLink = CADisplayLink(target: self, selector: #selector(GameLoop.callUpdate))
         displayLink.frameInterval = frameInterval
         displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
     }

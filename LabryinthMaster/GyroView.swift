@@ -1,15 +1,14 @@
 //
-//  PlayerView.swift
+//  GyroView.swift
 //  LabryinthMaster
 //
-//  Created by Garin Richards on 4/15/16.
+//  Created by Garin Richards on 4/22/16.
 //  Copyright © 2016 Garin Richards. All rights reserved.
 //
 
 import UIKit
 
-class PlayerView : UIView{
-    
+class GyroView : UIView{
     override func drawRect(rect: CGRect) {
         
     }
