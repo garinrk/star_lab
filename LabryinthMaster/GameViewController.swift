@@ -106,7 +106,7 @@ class GameViewController : UIViewController, GyroDelegate, GameLoopDelegate, Ene
         let newY = currentY - magY * 40
         
         //Set's the player's position in the view
-        newPlayer.frame = CGRectMake(newX, newY, 25, 25)
+        newPlayer.frame = CGRectMake(newX, newY, 10, 10)
         newPlayer.backgroundColor = UIColor.blueColor()
         
         //remove the old player
