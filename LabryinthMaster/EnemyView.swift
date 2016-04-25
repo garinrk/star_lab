@@ -11,7 +11,7 @@ import UIKit
 protocol EnemyViewDelegate: class {
     func getMazeDimension() -> Int
     func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
-    func detectCollisionFromEnemy(square: CGRect) -> Bool
+    func detectCollisionFromEnemy(square: CGRect) -> Collision?
 //    func detectCenteredInCell(square: CGRect)
 }
 
@@ -80,7 +80,7 @@ class EnemyView: UIView {
         // update stuff
         if collided
         {
-            if delegate!.detectCollisionFromEnemy(square) == false
+            if delegate!.detectCollisionFromEnemy(square) == nil
             {
                 collided = false
                 moveInRandomDirection()
@@ -91,7 +91,7 @@ class EnemyView: UIView {
         {
             if delegate != nil
             {
-                if delegate!.detectCollisionFromEnemy(square)
+                if delegate!.detectCollisionFromEnemy(square) != nil
                 {
                     setCollision()
                 }

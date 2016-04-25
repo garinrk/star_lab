@@ -9,7 +9,7 @@
 import UIKit
 import CoreMotion
 
-class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate{
+class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate {
     let screenRect = UIScreen.mainScreen().bounds
     var gyroManager : Gyro?
     
@@ -79,7 +79,13 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate{
         return mazeView.getCellPosX(x, Y: y)
     }
     
-    func detectCollisionFromEnemy(square: CGRect) -> Bool
+    func detectCollisionFromEnemy(square: CGRect) -> Collision?
+    {
+        return mazeView.detectCollisionWithRect(square)
+    }
+    
+    // MARK: PlayerDelegate functions
+    func detectCollisionFromPlayer(square: CGRect) -> Collision?
     {
         return mazeView.detectCollisionWithRect(square)
     }

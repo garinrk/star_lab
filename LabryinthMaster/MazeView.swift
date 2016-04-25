@@ -112,7 +112,7 @@ class MazeView: UIView {
         addSubview(newCell)
     }
     
-    func detectCollisionWithRect(rect: CGRect) -> Bool
+    func detectCollisionWithRect(rect: CGRect) -> Collision?
     {
         // get the cells that overlap with rect
         
@@ -170,7 +170,7 @@ class MazeView: UIView {
                 {
                     if cell!.west
                     {
-                        return true
+                        return Collision(north: false, east: false, south: false, west: true)
                     }
                 }
                 
@@ -178,7 +178,7 @@ class MazeView: UIView {
                 {
                     if cell!.east
                     {
-                        return true
+                        return Collision(north: false, east: true, south: false, west: false)
                     }
                 }
                 
@@ -186,7 +186,7 @@ class MazeView: UIView {
                 {
                     if cell!.north
                     {
-                        return true
+                        return Collision(north: true, east: false, south: false, west: false)
                     }
                     
                 }
@@ -195,12 +195,12 @@ class MazeView: UIView {
                 {
                     if cell!.south
                     {
-                        return true
+                        return Collision(north: false, east: false, south: true, west: false)
                     }
                 }
             }
         }
-        return false
+        return nil
     }
     
 //    func detectCenteredInCell(rect: CGRect) -> Bool
