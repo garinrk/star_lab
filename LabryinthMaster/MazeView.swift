@@ -132,71 +132,34 @@ class MazeView: UIView {
     
     func detectCollisionWithRect(rect: CGRect) -> Collision?
     {
-        // get the cells that overlap with rect
+        // get the cell that rect's center is in
         
         var x = 0;
-        var remainderX = rect.minX
+        var remainderX = rect.midX
         while remainderX > cellWidth
         {
             remainderX -= cellWidth
             x += 1
         }
-        // now x should be the x-coordinate of the cell that rect.minX is touching
+        // now x should be the x-coordinate of the cell that rect.midX is touching
         
-        let sizeDiffX = cellWidth - (rect.maxX - rect.minX)
-        let touchingAnotherCellInX: Bool = remainderX > sizeDiffX
+//        let sizeDiffX = cellWidth - (rect.maxX - rect.minX)
+//        let touchingAnotherCellInX: Bool = remainderX > sizeDiffX
 
         var y = 0;
-        var remainderY = rect.minY
+        var remainderY = rect.midY
         while remainderY > cellHeight
         {
             remainderY -= cellHeight
             y += 1
         }
         
-        let sizeDiffY = cellHeight - (rect.maxY - rect.minY)
-        let touchingAnotherCellInY: Bool = remainderY > sizeDiffY
+//        let sizeDiffY = cellHeight - (rect.maxY - rect.minY)
+//        let touchingAnotherCellInY: Bool = remainderY > sizeDiffY
         
-        let bottomCellsTouching: [MazeViewCell?]!
-        let topCellsTouching: [MazeViewCell?]!
-        let leftCellsTouching: [MazeViewCell?]!
-        let rightCellsTouching: [MazeViewCell?]!
+        let occupyingCell: MazeViewCell = cells["\(x),\(y)"]!
         
-        if touchingAnotherCellInX {
-            if touchingAnotherCellInY {
-                bottomCellsTouching = [cells["\(x),\(y+1)"], cells["\(x+1),\(y+1)"]]
-                topCellsTouching = [cells["\(x),\(y)"], cells["\(x+1),\(y)"]]
-                leftCellsTouching = [cells["\(x),\(y)"], cells["\(x),\(y+1)"]]
-                rightCellsTouching = [cells["\(x+1),\(y)"], cells["\(x+1),\(y+1)"]]
-//                cellsTouching = [cells["\(x),\(y)"]!, cells["\(x+1),\(y)"]!, cells["\(x),\(y+1)"]!, cells["\(x+1),\(y+1)"]!]
-            }
-            else {
-                bottomCellsTouching = [cells["\(x),\(y)"],cells["\(x+1),\(y)"]]
-                topCellsTouching = [cells["\(x),\(y)"],cells["\(x+1),\(y)"]]
-                leftCellsTouching = [cells["\(x),\(y)"]]
-                rightCellsTouching = [cells["\(x+1),\(y)"]]
-//                cellsTouching = [cells["\(x),\(y)"]!,cells["\(x+1),\(y)"]!]
-            }
-        }
-        else {
-            if touchingAnotherCellInY {
-                bottomCellsTouching = [cells["\(x),\(y+1)"]]
-                topCellsTouching = [cells["\(x),\(y)"]]
-                leftCellsTouching = [cells["\(x),\(y)"], cells["\(x),\(y+1)"]]
-                rightCellsTouching = [cells["\(x),\(y)"], cells["\(x),\(y+1)"]]
-//                cellsTouching = [cells["\(x),\(y)"]!, cells["\(x),\(y+1)"]!]
-            }
-            else {
-                
-                bottomCellsTouching = [cells["\(x),\(y)"]]
-                topCellsTouching = [cells["\(x),\(y)"]]
-                leftCellsTouching = [cells["\(x),\(y)"]]
-                rightCellsTouching = [cells["\(x),\(y)"]]
-//                cellsTouching = [cells["\(x),\(y)"]!]
-            }
-        }
-        
-        // look at the (up to) four cells to determine possible collisions
+        // look at the cell to determine possible collisions
         
         var north: Bool = false
         var east: Bool = false
@@ -204,53 +167,45 @@ class MazeView: UIView {
         var west: Bool = false
 
         // check for north collision
-        for cell in bottomCellsTouching
+        if rect.minY <= occupyingCell.frame.minY
         {
-            if cell != nil && rect.minY <= cell!.frame.minY
+            if occupyingCell.north
             {
-                if cell!.north
-                {
-                    north = true
-                }
-                
+                north = true
             }
+            
         }
 
         // check for east collision
-        for cell in leftCellsTouching
+        
+        if rect.maxX >= occupyingCell.frame.maxX
         {
-            if cell != nil && rect.maxX >= cell!.frame.maxX
+            if occupyingCell.east
             {
-                if cell!.east
-                {
-                    east = true
-                }
+                east = true
             }
         }
+        
         
         // check for south collision
-        for cell in topCellsTouching
+        if rect.maxY >= occupyingCell.frame.maxY
         {
-            if cell != nil && rect.maxY >= cell!.frame.maxY
+            if occupyingCell.south
             {
-                if cell!.south
-                {
-                    south = true
-                }
+                south = true
             }
         }
-        
+      
         // check for west collision
-        for cell in rightCellsTouching
+       
+        if rect.minX <= occupyingCell.frame.minX
         {
-            if cell != nil && rect.minX <= cell!.frame.minX
+            if occupyingCell.west
             {
-                if cell!.west
-                {
-                    west = true
-                }
+                west = true
             }
         }
+      
         
         if north || south || east || west {
             return Collision(north: north, east: east, south: south, west: west)
