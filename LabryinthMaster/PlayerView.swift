@@ -9,6 +9,8 @@
 import UIKit
 
 protocol PlayerDelegate: class {
+    func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
+    func getMazeCellSize() -> CGSize
     func detectCollisionFromPlayer(square: CGRect) -> Collision?
 }
 
@@ -16,12 +18,12 @@ class PlayerView : UIView{
     
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
-    private let moveSpeed: CGFloat = 40.0
+    private let moveSpeed: CGFloat = 10.0
     
     ////////////////////////////////////////
     
-    private var xPos: CGFloat
-    private var yPos: CGFloat
+    private var xPos: CGFloat = 0
+    private var yPos: CGFloat = 0
     private var playerDiameter: CGFloat!
     
     // whether player is allowed to move in the directions indicated by pos in array:
@@ -32,12 +34,11 @@ class PlayerView : UIView{
 
     override init(frame: CGRect) {
         
-        xPos = 0
-        yPos = 0
-        
         super.init(frame: frame)
         
-        playerDiameter = frame.width * 0.025
+        // set size of player
+        
+        playerDiameter = frame.width * 0.02
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,7 +64,7 @@ class PlayerView : UIView{
         // detect collisions
         let coll: Collision? = delegate?.detectCollisionFromPlayer(square)
         if coll != nil {
-            canMove = [coll!.north, coll!.east, coll!.south, coll!.west]
+            canMove = [!coll!.north, !coll!.east, !coll!.south, !coll!.west]
         }
         else {
             canMove = [true, true, true, true]
@@ -74,29 +75,29 @@ class PlayerView : UIView{
     func moveX(xMagnitude: CGFloat, Y yMagnitude: CGFloat) {
         
         var xMove = xMagnitude
-        var yMove = yMagnitude
+        var yMove = -yMagnitude
         
         // first check to see if moves are allowed
         
-        if yMagnitude < 0 { // up
+        if yMove < 0 { // up
             if canMove[0] == false {
                 yMove = 0
             }
         }
         
-        if xMagnitude > 0 { // right
+        if xMove > 0 { // right
             if canMove[1] == false {
                 xMove = 0
             }
         }
         
-        if yMagnitude > 0 { // down
+        if yMove > 0 { // down
             if canMove[2] == false {
                 yMove = 0
             }
         }
         
-        if xMagnitude < 0 { // left
+        if xMove < 0 { // left
             if canMove[3] == false {
                 xMove = 0
             }
@@ -104,6 +105,20 @@ class PlayerView : UIView{
         
         xPos += xMove * moveSpeed
         yPos += yMove * moveSpeed
+    }
+    
+    func start()
+    {
+        // put player in the center of cell 0,0
+        
+        let cellOrigin: CGPoint = delegate!.getMazeCellPosX(0, Y: 0)
+        let cellSize: CGSize = delegate!.getMazeCellSize()
+        
+        let halfDifferenceWidth: CGFloat = (cellSize.width - playerDiameter) * 0.5
+        let halfDifferenceHeight: CGFloat = (cellSize.height - playerDiameter) * 0.5
+        
+        xPos = cellOrigin.x + halfDifferenceWidth
+        yPos = cellOrigin.y + halfDifferenceHeight
     }
     
     func update()

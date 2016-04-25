@@ -11,6 +11,7 @@ import UIKit
 protocol EnemyViewDelegate: class {
     func getMazeDimension() -> Int
     func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
+    func getMazeCellSize() -> CGSize
     func detectCollisionFromEnemy(square: CGRect) -> Collision?
 //    func detectCenteredInCell(square: CGRect)
 }
@@ -127,17 +128,18 @@ class EnemyView: UIView {
     func randomizeLocation()
     {
         let dimension: Int = delegate!.getMazeDimension()
+        let cellSize: CGSize = delegate!.getMazeCellSize()
         
         let cellX = Int(arc4random_uniform(UInt32(dimension)))
         let cellY = Int(arc4random_uniform(UInt32(dimension)))
         
         let cellOrigin: CGPoint = delegate!.getMazeCellPosX(cellX, Y: cellY)
         
-        let halfWidth: CGFloat = enemyWidth * 0.5
-        let halfHeight: CGFloat = enemyHeight * 0.5
+        let halfDifferenceWidth: CGFloat = (cellSize.width - enemyWidth) * 0.5
+        let halfDifferenceHeight: CGFloat = (cellSize.height - enemyHeight) * 0.5
         
-        xPos = cellOrigin.x + halfWidth
-        yPos = cellOrigin.y + halfHeight
+        xPos = cellOrigin.x + halfDifferenceWidth
+        yPos = cellOrigin.y + halfDifferenceHeight
     }
     
     func moveInRandomDirection()

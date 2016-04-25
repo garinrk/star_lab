@@ -28,15 +28,15 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
             mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
         }
 
-        // add subviews
+        // add subviews and assign delegates
 
         view.addSubview(mazeView)
-        view.addSubview(gameManager.player)
-
         for enemy in gameManager.enemies {
             view.addSubview(enemy)
             enemy.delegate = self
         }
+        view.addSubview(gameManager.player)
+        gameManager.player.delegate = self
 
         // start the game
         
@@ -64,7 +64,8 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
      */
     func UpdatePlayerPosition(magX: CGFloat, magY: CGFloat)
     {
-        gameManager.player.moveX(magX, Y: magY)
+        gameManager.currentGyroMagX = magX
+        gameManager.currentGyroMagY = magY
     }
 
     
@@ -77,6 +78,11 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
     {
         return mazeView.getCellPosX(x, Y: y)
+    }
+    
+    func getMazeCellSize() -> CGSize
+    {
+        return mazeView.getCellSize()
     }
     
     func detectCollisionFromEnemy(square: CGRect) -> Collision?

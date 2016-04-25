@@ -17,7 +17,7 @@ class GameManager: GameLoopDelegate {
     
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
-    private let enemyAmt: Int = 4
+    private let enemyAmt: Int = 5
     
     ////////////////////////////////////////
     
@@ -33,6 +33,9 @@ class GameManager: GameLoopDelegate {
 //    var coins: [Coin]
 //    let timer: NSTimer // ? maybe something else, I did no research
     
+    
+    var currentGyroMagX: CGFloat = 0
+    var currentGyroMagY: CGFloat = 0
     
     let gameLoop: GameLoop = GameLoop()
 
@@ -54,6 +57,8 @@ class GameManager: GameLoopDelegate {
         for enemy in enemies {
             enemy.start()
         }
+        
+        player.start()
 
     }
     
@@ -62,6 +67,7 @@ class GameManager: GameLoopDelegate {
     
     func update() {
         
+        player.moveX(currentGyroMagX, Y: currentGyroMagY)
         player.update()
         
         for enemy in enemies {

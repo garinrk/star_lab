@@ -33,31 +33,49 @@ class MazeViewCell: UIView {
         CGContextFillRect(context, background)
     
         // draw walls
-        CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
+
+        CGContextSetLineWidth(context, bounds.width * 0.05)
         if north
         {
-            CGContextMoveToPoint(context, bounds.minX, bounds.minY)
-            CGContextAddLineToPoint(context, bounds.maxX, bounds.minY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
         }
+        else {
+            CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+        }
+        CGContextMoveToPoint(context, bounds.minX, bounds.minY)
+        CGContextAddLineToPoint(context, bounds.maxX, bounds.minY)
+        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         if east
         {
-            CGContextMoveToPoint(context, bounds.maxX, bounds.minY)
-            CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
         }
+        else {
+            CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+        }
+        CGContextMoveToPoint(context, bounds.maxX, bounds.minY)
+        CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
+        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         if south
         {
-            CGContextMoveToPoint(context, bounds.minX, bounds.maxY)
-            CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
         }
+        else {
+            CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+        }
+        CGContextMoveToPoint(context, bounds.minX, bounds.maxY)
+        CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
+        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         if west
         {
-            CGContextMoveToPoint(context, bounds.minX, bounds.minY)
-            CGContextAddLineToPoint(context, bounds.minX, bounds.maxY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
         }
+        else {
+            CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+        }
+        CGContextMoveToPoint(context, bounds.minX, bounds.minY)
+        CGContextAddLineToPoint(context, bounds.minX, bounds.maxY)
+        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+
     }
     
 }
@@ -81,7 +99,7 @@ class MazeView: UIView {
         
         originCellCenter = CGPoint(x: (cellWidth / 2), y: (cellHeight / 2))
         
-        self.backgroundColor = UIColor.whiteColor()
+        self.backgroundColor = UIColor.greenColor()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -139,84 +157,107 @@ class MazeView: UIView {
         let sizeDiffY = cellHeight - (rect.maxY - rect.minY)
         let touchingAnotherCellInY: Bool = remainderY > sizeDiffY
         
-        var cellsTouching: [String] = []
+        let bottomCellsTouching: [MazeViewCell]!
+        let topCellsTouching: [MazeViewCell]!
+        let leftCellsTouching: [MazeViewCell]!
+        let rightCellsTouching: [MazeViewCell]!
         
         if touchingAnotherCellInX {
             if touchingAnotherCellInY {
-                cellsTouching = ["\(x),\(y)", "\(x+1),\(y)", "\(x),\(y+1)", "\(x+1),\(y+1)"]
+                bottomCellsTouching = [cells["\(x),\(y+1)"]!, cells["\(x+1),\(y+1)"]!]
+                topCellsTouching = [cells["\(x),\(y)"]!, cells["\(x+1),\(y)"]!]
+                leftCellsTouching = [cells["\(x),\(y)"]!, cells["\(x),\(y+1)"]!]
+                rightCellsTouching = [cells["\(x+1),\(y)"]!, cells["\(x+1),\(y+1)"]!]
+//                cellsTouching = [cells["\(x),\(y)"]!, cells["\(x+1),\(y)"]!, cells["\(x),\(y+1)"]!, cells["\(x+1),\(y+1)"]!]
             }
             else {
-                cellsTouching = ["\(x),\(y)", "\(x+1),\(y)"]
+                bottomCellsTouching = [cells["\(x),\(y)"]!,cells["\(x+1),\(y)"]!]
+                topCellsTouching = [cells["\(x),\(y)"]!,cells["\(x+1),\(y)"]!]
+                leftCellsTouching = [cells["\(x),\(y)"]!]
+                rightCellsTouching = [cells["\(x+1),\(y)"]!]
+//                cellsTouching = [cells["\(x),\(y)"]!,cells["\(x+1),\(y)"]!]
             }
         }
         else {
             if touchingAnotherCellInY {
-                cellsTouching = ["\(x),\(y)", "\(x),\(y+1)"]
+                bottomCellsTouching = [cells["\(x),\(y+1)"]!]
+                topCellsTouching = [cells["\(x),\(y)"]!]
+                leftCellsTouching = [cells["\(x),\(y)"]!, cells["\(x),\(y+1)"]!]
+                rightCellsTouching = [cells["\(x),\(y)"]!, cells["\(x),\(y+1)"]!]
+//                cellsTouching = [cells["\(x),\(y)"]!, cells["\(x),\(y+1)"]!]
             }
             else {
-                cellsTouching = ["\(x),\(y)"]
+                
+                bottomCellsTouching = [cells["\(x),\(y)"]!]
+                topCellsTouching = [cells["\(x),\(y)"]!]
+                leftCellsTouching = [cells["\(x),\(y)"]!]
+                rightCellsTouching = [cells["\(x),\(y)"]!]
+//                cellsTouching = [cells["\(x),\(y)"]!]
             }
         }
         
         // look at the (up to) four cells to determine possible collisions
         
-        for cellString in cellsTouching
+        var north: Bool = false
+        var east: Bool = false
+        var south: Bool = false
+        var west: Bool = false
+
+        // check for north collision
+        for cell in bottomCellsTouching
         {
-            let cell = cells[cellString]
-            
-            if cell != nil
+            if rect.minY <= cell.frame.minY
             {
-                if rect.minX <= cell!.frame.minX
+                if cell.north
                 {
-                    if cell!.west
-                    {
-                        return Collision(north: false, east: false, south: false, west: true)
-                    }
+                    north = true
                 }
                 
-                if rect.maxX >= cell!.frame.maxX
+            }
+        }
+
+        // check for east collision
+        for cell in leftCellsTouching
+        {
+            if rect.maxX >= cell.frame.maxX
+            {
+                if cell.east
                 {
-                    if cell!.east
-                    {
-                        return Collision(north: false, east: true, south: false, west: false)
-                    }
-                }
-                
-                if rect.minY <= cell!.frame.minY
-                {
-                    if cell!.north
-                    {
-                        return Collision(north: true, east: false, south: false, west: false)
-                    }
-                    
-                }
-                
-                if rect.maxY >= cell!.frame.maxY
-                {
-                    if cell!.south
-                    {
-                        return Collision(north: false, east: false, south: true, west: false)
-                    }
+                    east = true
                 }
             }
         }
+        
+        // check for south collision
+        for cell in topCellsTouching
+        {
+            if rect.maxY >= cell.frame.maxY
+            {
+                if cell.south
+                {
+                    south = true
+                }
+            }
+        }
+        
+        // check for west collision
+        for cell in rightCellsTouching
+        {
+            if rect.minX <= cell.frame.minX
+            {
+                if cell.west
+                {
+                    west = true
+                }
+            }
+        }
+        
+        if north || south || east || west {
+            return Collision(north: north, east: east, south: south, west: west)
+        }
+
         return nil
     }
-    
-//    func detectCenteredInCell(rect: CGRect) -> Bool
-//    {
-//        // find center of rect
-//        let center: CGPoint = CGPoint(x: (rect.maxX - rect.minX), y: (rect.maxY - rect.minY))
-//        
-//        let errorMargin: CGFloat = 0.1
-//        
-//        if (center.x % originCellCenter.x) <= errorMargin && (center.y % originCellCenter.y) <= errorMargin
-//        {
-//            return true
-//        }
-//                
-//        return false
-//    }
     
     func getCellPosX(x: Int, Y y: Int) -> CGPoint
     {
@@ -230,5 +271,10 @@ class MazeView: UIView {
         
         let result: CGPoint = CGPoint(x: (cell.bounds.maxX - cell.bounds.minX), y: (cell.bounds.maxY - cell.bounds.minY))
         return result
+    }
+    
+    func getCellSize() -> CGSize
+    {
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }
