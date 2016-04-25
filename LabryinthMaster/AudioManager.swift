@@ -7,11 +7,16 @@
 //
 
 import Foundation
+import AVFoundation
 
 class AudioManager {
     
     var musicLevel: Float?
     var sfxLevel: Float?
+    
+    var backgroundAudioPlayer : AVAudioPlayer?
+    var fx1AudioPlayer : AVAudioPlayer?
+    
 //    var sounds: [AudioClip] // or whatever it is, we'll have to figure that out
     
     // functions to play sounds, etc
