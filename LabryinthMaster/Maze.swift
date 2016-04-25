@@ -32,8 +32,8 @@ class Maze {
     
     init ()
     {
-        for var i = 0; i < dimension; i++ {
-            for var j = 0; j < dimension; j++ {
+        for i in 0 ..< dimension {
+            for j in 0 ..< dimension {
                 cells.append(MazeCell(x: i, y: j))
             }
         }
@@ -45,7 +45,7 @@ class Maze {
     {
         visited = []
 
-        for var i = 0; i < cells.count; i++
+        for _ in 0 ..< cells.count
         {
             visited!.append(false)
         }

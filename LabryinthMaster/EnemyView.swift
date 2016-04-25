@@ -17,6 +17,12 @@ protocol EnemyViewDelegate: class {
 
 class EnemyView: UIView {
     
+    //// GAMEPLAY ADJUSTMENT VARIABLES /////
+    
+    private let moveSpeed: CGFloat = 24.0
+    
+    ////////////////////////////////////////
+    
     private var xPos: CGFloat
     private var yPos: CGFloat
     
@@ -24,8 +30,6 @@ class EnemyView: UIView {
     private var vertVelocity: CGFloat
     
     private var lastTime: NSDate
-    
-    private let moveSpeed: CGFloat = 24.0
     
     private var enemyWidth: CGFloat!
     private var enemyHeight: CGFloat!

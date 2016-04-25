@@ -19,8 +19,7 @@
 		453B5D251CB85C0600FF61F8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 453B5D241CB85C0600FF61F8 /* Assets.xcassets */; };
 		4553B6E91CCAD3710010C746 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4553B6E61CCAD3710010C746 /* GameViewController.swift */; };
 		4553B6EA1CCAD3710010C746 /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4553B6E71CCAD3710010C746 /* Gyro.swift */; };
-		4553B6EB1CCAD3710010C746 /* GyroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4553B6E81CCAD3710010C746 /* GyroView.swift */; };
-		459B98C51CC936B4002906F7 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B98C41CC936B4002906F7 /* PlayerCell.swift */; };
+		4553B6EB1CCAD3710010C746 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4553B6E81CCAD3710010C746 /* PlayerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,7 +29,7 @@
 		185EFBFD1CCACE0300C3F3BB /* ScoreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreManager.swift; sourceTree = "<group>"; };
 		185EFBFF1CCACECE00C3F3BB /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		185EFC011CCACFA800C3F3BB /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
-		187AFA681CBEF2DB00750D79 /* GameLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLoop.swift; sourceTree = "<group>"; };
+		187AFA681CBEF2DB00750D79 /* GameLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameLoop.swift; path = LabryinthMaster/GameLoop.swift; sourceTree = "<group>"; };
 		187AFA6A1CBEF5EF00750D79 /* EnemyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyView.swift; sourceTree = "<group>"; };
 		453B5D1A1CB85C0600FF61F8 /* LabryinthMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LabryinthMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,8 +37,7 @@
 		453B5D291CB85C0600FF61F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4553B6E61CCAD3710010C746 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4553B6E71CCAD3710010C746 /* Gyro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
-		4553B6E81CCAD3710010C746 /* GyroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroView.swift; sourceTree = "<group>"; };
-		459B98C41CC936B4002906F7 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
+		4553B6E81CCAD3710010C746 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +56,9 @@
 			children = (
 				0C5EF7FA1CB9DC9B00707CFF /* Default-568h@2x.png */,
 				453B5D1C1CB85C0600FF61F8 /* LabryinthMaster */,
-				453B5D311CB85C3800FF61F8 /* Controllers */,
-				453B5D301CB85C3200FF61F8 /* Views */,
-				453B5D2F1CB85C2E00FF61F8 /* Model */,
+				453B5D311CB85C3800FF61F8 /* Game */,
 				453B5D1B1CB85C0600FF61F8 /* Products */,
 				185EFBFD1CCACE0300C3F3BB /* ScoreManager.swift */,
-				185EFBFF1CCACECE00C3F3BB /* AudioManager.swift */,
-				185EFC011CCACFA800C3F3BB /* GameManager.swift */,
-				0C5EF7F61CB9CA8200707CFF /* Maze.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,7 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */,
-				187AFA681CBEF2DB00750D79 /* GameLoop.swift */,
 				453B5D241CB85C0600FF61F8 /* Assets.xcassets */,
 				453B5D291CB85C0600FF61F8 /* Info.plist */,
 			);
@@ -91,8 +83,10 @@
 		453B5D2F1CB85C2E00FF61F8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				185EFC011CCACFA800C3F3BB /* GameManager.swift */,
+				187AFA681CBEF2DB00750D79 /* GameLoop.swift */,
+				0C5EF7F61CB9CA8200707CFF /* Maze.swift */,
 				4553B6E71CCAD3710010C746 /* Gyro.swift */,
-				4553B6E81CCAD3710010C746 /* GyroView.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -102,17 +96,20 @@
 			children = (
 				0C5EF7F81CB9D0A700707CFF /* MazeView.swift */,
 				187AFA6A1CBEF5EF00750D79 /* EnemyView.swift */,
-				459B98C41CC936B4002906F7 /* PlayerCell.swift */,
+				4553B6E81CCAD3710010C746 /* PlayerView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
 		};
-		453B5D311CB85C3800FF61F8 /* Controllers */ = {
+		453B5D311CB85C3800FF61F8 /* Game */ = {
 			isa = PBXGroup;
 			children = (
 				4553B6E61CCAD3710010C746 /* GameViewController.swift */,
+				185EFBFF1CCACECE00C3F3BB /* AudioManager.swift */,
+				453B5D2F1CB85C2E00FF61F8 /* Model */,
+				453B5D301CB85C3200FF61F8 /* Views */,
 			);
-			name = Controllers;
+			name = Game;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +144,7 @@
 				TargetAttributes = {
 					453B5D191CB85C0600FF61F8 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = PVTS86U6DQ;
+						DevelopmentTeam = HXH9MZBPRJ;
 					};
 				};
 			};
@@ -186,7 +183,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				459B98C51CC936B4002906F7 /* PlayerCell.swift in Sources */,
 				0C5EF7F91CB9D0A700707CFF /* MazeView.swift in Sources */,
 				187AFA6B1CBEF5EF00750D79 /* EnemyView.swift in Sources */,
 				185EFC021CCACFA800C3F3BB /* GameManager.swift in Sources */,
@@ -197,7 +193,7 @@
 				4553B6E91CCAD3710010C746 /* GameViewController.swift in Sources */,
 				4553B6EA1CCAD3710010C746 /* Gyro.swift in Sources */,
 				187AFA691CBEF2DB00750D79 /* GameLoop.swift in Sources */,
-				4553B6EB1CCAD3710010C746 /* GyroView.swift in Sources */,
+				4553B6EB1CCAD3710010C746 /* PlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,9 +292,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LabryinthMaster/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -311,9 +307,9 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = LabryinthMaster/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

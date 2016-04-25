@@ -80,6 +80,8 @@ class MazeView: UIView {
         cellHeight = bounds.height / CGFloat(dimension)
         
         originCellCenter = CGPoint(x: (cellWidth / 2), y: (cellHeight / 2))
+        
+        self.backgroundColor = UIColor.whiteColor()
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -119,7 +121,7 @@ class MazeView: UIView {
         while remainderX > cellWidth
         {
             remainderX -= cellWidth
-            x++
+            x += 1
         }
         // now x should be the x-coordinate of the cell that rect.minX is touching
         
@@ -131,7 +133,7 @@ class MazeView: UIView {
         while remainderY > cellHeight
         {
             remainderY -= cellHeight
-            y++
+            y += 1
         }
         
         let sizeDiffY = cellHeight - (rect.maxY - rect.minY)
