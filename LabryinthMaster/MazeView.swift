@@ -157,41 +157,41 @@ class MazeView: UIView {
         let sizeDiffY = cellHeight - (rect.maxY - rect.minY)
         let touchingAnotherCellInY: Bool = remainderY > sizeDiffY
         
-        let bottomCellsTouching: [MazeViewCell]!
-        let topCellsTouching: [MazeViewCell]!
-        let leftCellsTouching: [MazeViewCell]!
-        let rightCellsTouching: [MazeViewCell]!
+        let bottomCellsTouching: [MazeViewCell?]!
+        let topCellsTouching: [MazeViewCell?]!
+        let leftCellsTouching: [MazeViewCell?]!
+        let rightCellsTouching: [MazeViewCell?]!
         
         if touchingAnotherCellInX {
             if touchingAnotherCellInY {
-                bottomCellsTouching = [cells["\(x),\(y+1)"]!, cells["\(x+1),\(y+1)"]!]
-                topCellsTouching = [cells["\(x),\(y)"]!, cells["\(x+1),\(y)"]!]
-                leftCellsTouching = [cells["\(x),\(y)"]!, cells["\(x),\(y+1)"]!]
-                rightCellsTouching = [cells["\(x+1),\(y)"]!, cells["\(x+1),\(y+1)"]!]
+                bottomCellsTouching = [cells["\(x),\(y+1)"], cells["\(x+1),\(y+1)"]]
+                topCellsTouching = [cells["\(x),\(y)"], cells["\(x+1),\(y)"]]
+                leftCellsTouching = [cells["\(x),\(y)"], cells["\(x),\(y+1)"]]
+                rightCellsTouching = [cells["\(x+1),\(y)"], cells["\(x+1),\(y+1)"]]
 //                cellsTouching = [cells["\(x),\(y)"]!, cells["\(x+1),\(y)"]!, cells["\(x),\(y+1)"]!, cells["\(x+1),\(y+1)"]!]
             }
             else {
-                bottomCellsTouching = [cells["\(x),\(y)"]!,cells["\(x+1),\(y)"]!]
-                topCellsTouching = [cells["\(x),\(y)"]!,cells["\(x+1),\(y)"]!]
-                leftCellsTouching = [cells["\(x),\(y)"]!]
-                rightCellsTouching = [cells["\(x+1),\(y)"]!]
+                bottomCellsTouching = [cells["\(x),\(y)"],cells["\(x+1),\(y)"]]
+                topCellsTouching = [cells["\(x),\(y)"],cells["\(x+1),\(y)"]]
+                leftCellsTouching = [cells["\(x),\(y)"]]
+                rightCellsTouching = [cells["\(x+1),\(y)"]]
 //                cellsTouching = [cells["\(x),\(y)"]!,cells["\(x+1),\(y)"]!]
             }
         }
         else {
             if touchingAnotherCellInY {
-                bottomCellsTouching = [cells["\(x),\(y+1)"]!]
-                topCellsTouching = [cells["\(x),\(y)"]!]
-                leftCellsTouching = [cells["\(x),\(y)"]!, cells["\(x),\(y+1)"]!]
-                rightCellsTouching = [cells["\(x),\(y)"]!, cells["\(x),\(y+1)"]!]
+                bottomCellsTouching = [cells["\(x),\(y+1)"]]
+                topCellsTouching = [cells["\(x),\(y)"]]
+                leftCellsTouching = [cells["\(x),\(y)"], cells["\(x),\(y+1)"]]
+                rightCellsTouching = [cells["\(x),\(y)"], cells["\(x),\(y+1)"]]
 //                cellsTouching = [cells["\(x),\(y)"]!, cells["\(x),\(y+1)"]!]
             }
             else {
                 
-                bottomCellsTouching = [cells["\(x),\(y)"]!]
-                topCellsTouching = [cells["\(x),\(y)"]!]
-                leftCellsTouching = [cells["\(x),\(y)"]!]
-                rightCellsTouching = [cells["\(x),\(y)"]!]
+                bottomCellsTouching = [cells["\(x),\(y)"]]
+                topCellsTouching = [cells["\(x),\(y)"]]
+                leftCellsTouching = [cells["\(x),\(y)"]]
+                rightCellsTouching = [cells["\(x),\(y)"]]
 //                cellsTouching = [cells["\(x),\(y)"]!]
             }
         }
@@ -206,9 +206,9 @@ class MazeView: UIView {
         // check for north collision
         for cell in bottomCellsTouching
         {
-            if rect.minY <= cell.frame.minY
+            if cell != nil && rect.minY <= cell!.frame.minY
             {
-                if cell.north
+                if cell!.north
                 {
                     north = true
                 }
@@ -219,9 +219,9 @@ class MazeView: UIView {
         // check for east collision
         for cell in leftCellsTouching
         {
-            if rect.maxX >= cell.frame.maxX
+            if cell != nil && rect.maxX >= cell!.frame.maxX
             {
-                if cell.east
+                if cell!.east
                 {
                     east = true
                 }
@@ -231,9 +231,9 @@ class MazeView: UIView {
         // check for south collision
         for cell in topCellsTouching
         {
-            if rect.maxY >= cell.frame.maxY
+            if cell != nil && rect.maxY >= cell!.frame.maxY
             {
-                if cell.south
+                if cell!.south
                 {
                     south = true
                 }
@@ -243,9 +243,9 @@ class MazeView: UIView {
         // check for west collision
         for cell in rightCellsTouching
         {
-            if rect.minX <= cell.frame.minX
+            if cell != nil && rect.minX <= cell!.frame.minX
             {
-                if cell.west
+                if cell!.west
                 {
                     west = true
                 }
