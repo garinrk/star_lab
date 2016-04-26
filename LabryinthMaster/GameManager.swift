@@ -24,6 +24,7 @@ class GameManager: GameLoopDelegate {
     private let enemyAmt: Int = 5
     let coinAmt: Int = 30
     private let coinScoreAmt: Int = 1
+    private let wallsToClear: Int = 350
     
     ////////////////////////////////////////
     
@@ -34,7 +35,7 @@ class GameManager: GameLoopDelegate {
     var mode: DifficultyMode = DifficultyMode.Easy
     var playerName: String = ""
     var score: Int = 0
-    let maze: Maze = Maze()
+    let maze: Maze
     let player: PlayerView!
     var enemies: [EnemyView] = []
 //    let timer: NSTimer // ? maybe something else, I did no research
@@ -49,6 +50,9 @@ class GameManager: GameLoopDelegate {
 
     init()
     {
+        maze = Maze()
+        maze.clearRandomWalls(wallsToClear)
+        
         player = PlayerView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
         
         for _ in 0 ..< enemyAmt {

@@ -53,6 +53,57 @@ class Maze {
         carvePassagesFromX(0, Y: 0)
     }
     
+    func clearRandomWalls(amt: Int)
+    {
+        for _ in 0 ..< amt {
+            
+            var keepGoing = true
+            
+            while keepGoing { // we want to make sure we clear out all 'amt' walls
+            
+                let randCellIndex: Int = Int(arc4random_uniform(UInt32(cells.count)))
+                let randDir: Int = Int(arc4random_uniform(4))
+                
+                let cell: MazeCell = cells[randCellIndex]
+                
+                switch randDir {
+                case 0:
+                    if cell.north
+                    {
+                        keepGoing = false
+                        clearWallInCell(cell, InDir: 0)
+                    }
+                    break
+                case 1:
+                    if cell.east
+                    {
+                        keepGoing = false
+                        clearWallInCell(cell, InDir: 1)
+                    }
+                    break
+                case 2:
+                    if cell.south
+                    {
+                        keepGoing = false
+                        clearWallInCell(cell, InDir: 2)
+                    }
+                    break
+                case 3:
+                    if cell.west
+                    {
+                        keepGoing = false
+                        clearWallInCell(cell, InDir: 3)
+                    }
+                    break
+                default:
+                    break
+                }
+            }
+        }
+    }
+    
+    
+    
     private func carvePassagesFromX(x:Int, Y y:Int)
     {
         markVisitedX(x, Y: y)
