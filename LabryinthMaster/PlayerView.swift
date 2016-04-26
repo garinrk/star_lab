@@ -67,7 +67,7 @@ class PlayerView : UIView{
         if coll != nil {
             canMove = [!coll!.north, !coll!.east, !coll!.south, !coll!.west]
             if coll!.coin {
-                delegate?.coinCollected()
+                delegate?.coinCollected() 
             }
         }
         else {
