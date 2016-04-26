@@ -12,6 +12,7 @@ protocol PlayerDelegate: class {
     func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
     func getMazeCellSize() -> CGSize
     func detectCollisionFromPlayer(square: CGRect) -> Collision?
+    func coinCollected()
 }
 
 class PlayerView : UIView{
@@ -65,6 +66,9 @@ class PlayerView : UIView{
         let coll: Collision? = delegate?.detectCollisionFromPlayer(square)
         if coll != nil {
             canMove = [!coll!.north, !coll!.east, !coll!.south, !coll!.west]
+            if coll!.coin {
+                delegate?.coinCollected()
+            }
         }
         else {
             canMove = [true, true, true, true]

@@ -13,15 +13,21 @@ enum DifficultyMode {
     case Hard
 }
 
+protocol GameManagerDelegate: class {
+    func redrawMaze()
+}
+
 class GameManager: GameLoopDelegate {
     
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
     private let enemyAmt: Int = 5
-    private let coinAmt: Int = 30
+    let coinAmt: Int = 30
+    private let coinScoreAmt: Int = 1
     
     ////////////////////////////////////////
     
+    weak var delegate: GameManagerDelegate? = nil
     
     let screenRect = UIScreen.mainScreen().bounds
     
@@ -31,12 +37,13 @@ class GameManager: GameLoopDelegate {
     let maze: Maze = Maze()
     let player: PlayerView!
     var enemies: [EnemyView] = []
-    var coins: [CoinView] = []
 //    let timer: NSTimer // ? maybe something else, I did no research
     
     
     var currentGyroMagX: CGFloat = 0
     var currentGyroMagY: CGFloat = 0
+    
+    private var mazeNeedsRedraw: Bool = false
     
     let gameLoop: GameLoop = GameLoop()
 
@@ -48,10 +55,6 @@ class GameManager: GameLoopDelegate {
             enemies.append(EnemyView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width)))
         }
         
-        for _ in 0 ..< coinAmt {
-            coins.append(CoinView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width)))
-        }
-        
         gameLoop.delegate = self
     }
     
@@ -59,32 +62,33 @@ class GameManager: GameLoopDelegate {
     {
         gameLoop.start()
         
-        for coin in coins {
-            coin.start()
-        }
-        
         for enemy in enemies {
             enemy.start()
         }
         
         player.start()
-
+    }
+    
+    func coinCollected()
+    {
+        score += coinScoreAmt
+        mazeNeedsRedraw = true
     }
     
     
     // MARK: GameLoopDelegate functions
     
     func update() {
+        if mazeNeedsRedraw {
+            delegate?.redrawMaze()
+            mazeNeedsRedraw = false
+        }
         
         player.moveX(currentGyroMagX, Y: currentGyroMagY)
         player.update()
         
         for enemy in enemies {
             enemy.update()
-        }
-        
-        for coin in coins {
-            coin.update()
         }
     }
 }

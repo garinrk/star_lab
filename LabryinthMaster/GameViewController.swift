@@ -9,10 +9,11 @@
 import UIKit
 import CoreMotion
 
-class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, CoinViewDelegate {
+class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, GameManagerDelegate {
     let screenRect = UIScreen.mainScreen().bounds
     var gyroManager : Gyro?
     
+    var scoreLabel: UILabel!
     var mazeView: MazeView!
     var gameManager: GameManager!
     
@@ -20,6 +21,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         super.loadView()
         
         gameManager = GameManager()
+        gameManager.delegate = self
         
         // initialize maze view
         
@@ -27,14 +29,18 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         for cell in gameManager.maze.cells {
             mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
         }
+        for _ in 0 ..< gameManager.coinAmt {
+            mazeView.placeRandomCoin()
+        }
 
         // add subviews and assign delegates
 
         view.addSubview(mazeView)
-        for coin in gameManager.coins {
-            view.addSubview(coin)
-            coin.delegate = self
-        }
+//        mazeView.delegate = self
+//        for coin in gameManager.coins {
+//            view.addSubview(coin)
+//            coin.delegate = self
+//        }
         for enemy in gameManager.enemies {
             view.addSubview(enemy)
             enemy.delegate = self
@@ -45,6 +51,11 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         // start the game
         
         gameManager.startGame()
+        
+        scoreLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 75.0, width: screenRect.width, height: 80.0))
+        scoreLabel.textColor = UIColor.whiteColor()
+        scoreLabel.text = "SCORE: \(gameManager.score)"
+        view.addSubview(scoreLabel)
     }
     
     override func viewDidLoad() {
@@ -98,5 +109,16 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func detectCollisionFromPlayer(square: CGRect) -> Collision?
     {
         return mazeView.detectCollisionWithRect(square)
+    }
+    func coinCollected()
+    {
+        gameManager.coinCollected()
+        scoreLabel.text = "SCORE: \(gameManager.score)"
+    }
+    
+    // MARK: MazeManagerDelegate functions
+    func redrawMaze()
+    {
+        mazeView.setNeedsDisplay()
     }
 }
