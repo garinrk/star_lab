@@ -23,13 +23,41 @@ class EnemyView: UIView {
     
     private let moveSpeed: CGFloat = 24.0
     
+    // 0 = totally random, 1 = avoids walls, 2 = AStar
+    let AIType: Int = 0
+    
     ////////////////////////////////////////
     
     private var xPos: CGFloat
     private var yPos: CGFloat
     
-    private var cellX: Int
-    private var cellY: Int
+    private var _cellX: Int = 0
+    private var _cellY: Int = 0
+    private var cellX: Int {
+        get {
+            return _cellX
+        }
+        set {
+            if newValue != _cellX
+            {
+                _cellX = newValue
+                enteredNewCell = true
+            }
+        }
+    }
+    private var cellY: Int {
+        get {
+            return _cellY
+        }
+        set {
+            if newValue != _cellY
+            {
+                _cellY = newValue
+                enteredNewCell = true
+            }
+
+        }
+    }
     
     private var horizVelocity: CGFloat
     private var vertVelocity: CGFloat
@@ -41,6 +69,7 @@ class EnemyView: UIView {
     
     weak var delegate: EnemyViewDelegate? = nil
     
+    private var enteredNewCell: Bool = false
     private var collided: Bool = false
 //    var centered: Bool = false
 //    private var centering: Bool = false
@@ -53,9 +82,6 @@ class EnemyView: UIView {
         
         xPos = 0
         yPos = 0
-        
-        cellX = 1
-        cellY = 1
         
         super.init(frame: frame)
         
@@ -92,6 +118,18 @@ class EnemyView: UIView {
             let coll: Collision = delegate!.detectCollisionFromEnemy(square)
             self.cellX = coll.cellX
             self.cellY = coll.cellY
+            
+            // for type 1 AI
+            if AIType == 1
+            {
+                if enteredNewCell
+                {
+                    enteredNewCell = false
+                    moveInRandomDirectionAvoidingWalls()
+                }
+            }
+            
+            // for type 0 AI
             
             if collided {
                 if coll.east || coll.north || coll.south || coll.west
@@ -132,7 +170,20 @@ class EnemyView: UIView {
         }
         
         randomizeLocation()
-        moveInRandomDirection()
+        
+        switch AIType {
+        case 0:
+            moveInRandomDirection()
+            break
+        case 1:
+            moveInRandomDirectionAvoidingWalls()
+            break
+        case 2:
+            break
+        default:
+            break
+        }
+        
     }
     
     
