@@ -9,7 +9,7 @@
 import UIKit
 import CoreMotion
 
-class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate {
+class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, CoinViewDelegate {
     let screenRect = UIScreen.mainScreen().bounds
     var gyroManager : Gyro?
     
@@ -31,6 +31,10 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         // add subviews and assign delegates
 
         view.addSubview(mazeView)
+        for coin in gameManager.coins {
+            view.addSubview(coin)
+            coin.delegate = self
+        }
         for enemy in gameManager.enemies {
             view.addSubview(enemy)
             enemy.delegate = self

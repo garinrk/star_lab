@@ -18,6 +18,7 @@ class GameManager: GameLoopDelegate {
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
     private let enemyAmt: Int = 5
+    private let coinAmt: Int = 30
     
     ////////////////////////////////////////
     
@@ -30,7 +31,7 @@ class GameManager: GameLoopDelegate {
     let maze: Maze = Maze()
     let player: PlayerView!
     var enemies: [EnemyView] = []
-//    var coins: [Coin]
+    var coins: [CoinView] = []
 //    let timer: NSTimer // ? maybe something else, I did no research
     
     
@@ -47,12 +48,20 @@ class GameManager: GameLoopDelegate {
             enemies.append(EnemyView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width)))
         }
         
+        for _ in 0 ..< coinAmt {
+            coins.append(CoinView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width)))
+        }
+        
         gameLoop.delegate = self
     }
     
     func startGame()
     {
         gameLoop.start()
+        
+        for coin in coins {
+            coin.start()
+        }
         
         for enemy in enemies {
             enemy.start()
@@ -74,6 +83,8 @@ class GameManager: GameLoopDelegate {
             enemy.update()
         }
         
-        
+        for coin in coins {
+            coin.update()
+        }
     }
 }

@@ -157,7 +157,7 @@ class MazeView: UIView {
 //        let sizeDiffY = cellHeight - (rect.maxY - rect.minY)
 //        let touchingAnotherCellInY: Bool = remainderY > sizeDiffY
         
-        let occupyingCell: MazeViewCell = cells["\(x),\(y)"]!
+        let occupyingCell: MazeViewCell? = cells["\(x),\(y)"]
         
         // look at the cell to determine possible collisions
         
@@ -167,9 +167,9 @@ class MazeView: UIView {
         var west: Bool = false
 
         // check for north collision
-        if rect.minY <= occupyingCell.frame.minY
+        if occupyingCell != nil && rect.minY <= occupyingCell!.frame.minY
         {
-            if occupyingCell.north
+            if occupyingCell!.north
             {
                 north = true
             }
@@ -178,9 +178,9 @@ class MazeView: UIView {
 
         // check for east collision
         
-        if rect.maxX >= occupyingCell.frame.maxX
+        if occupyingCell != nil && rect.maxX >= occupyingCell!.frame.maxX
         {
-            if occupyingCell.east
+            if occupyingCell!.east
             {
                 east = true
             }
@@ -188,9 +188,9 @@ class MazeView: UIView {
         
         
         // check for south collision
-        if rect.maxY >= occupyingCell.frame.maxY
+        if occupyingCell != nil && rect.maxY >= occupyingCell!.frame.maxY
         {
-            if occupyingCell.south
+            if occupyingCell!.south
             {
                 south = true
             }
@@ -198,9 +198,9 @@ class MazeView: UIView {
       
         // check for west collision
        
-        if rect.minX <= occupyingCell.frame.minX
+        if occupyingCell != nil && rect.minX <= occupyingCell!.frame.minX
         {
-            if occupyingCell.west
+            if occupyingCell!.west
             {
                 west = true
             }
