@@ -153,7 +153,7 @@ class MazeView: UIView {
         addSubview(newCell)
     }
     
-    func detectCollisionWithRect(rect: CGRect) -> Collision?
+    func detectCollisionWithRect(rect: CGRect) -> Collision
     {
         // get the cell that rect's center is in
         
@@ -240,12 +240,7 @@ class MazeView: UIView {
             }
         }
       
-        
-        if north || south || east || west || coin{
-            return Collision(north: north, east: east, south: south, west: west, coin: coin)
-        }
-
-        return nil
+        return Collision(north: north, east: east, south: south, west: west, coin: coin, cellX: x, cellY: y)
     }
     
     func placeRandomCoin() {

@@ -11,8 +11,9 @@ import UIKit
 protocol EnemyViewDelegate: class {
     func getMazeDimension() -> Int
     func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
+    func getMazeCellAtX(x: Int, Y y: Int) -> MazeViewCell?
     func getMazeCellSize() -> CGSize
-    func detectCollisionFromEnemy(square: CGRect) -> Collision?
+    func detectCollisionFromEnemy(square: CGRect) -> Collision
 //    func detectCenteredInCell(square: CGRect)
 }
 
@@ -27,6 +28,9 @@ class EnemyView: UIView {
     private var xPos: CGFloat
     private var yPos: CGFloat
     
+    private var cellX: Int
+    private var cellY: Int
+    
     private var horizVelocity: CGFloat
     private var vertVelocity: CGFloat
     
@@ -38,8 +42,8 @@ class EnemyView: UIView {
     weak var delegate: EnemyViewDelegate? = nil
     
     private var collided: Bool = false
-    var centered: Bool = false
-    private var centering: Bool = false
+//    var centered: Bool = false
+//    private var centering: Bool = false
     
     override init(frame: CGRect) {
         horizVelocity = 0.0
@@ -49,6 +53,9 @@ class EnemyView: UIView {
         
         xPos = 0
         yPos = 0
+        
+        cellX = 1
+        cellY = 1
         
         super.init(frame: frame)
         
@@ -78,24 +85,28 @@ class EnemyView: UIView {
         self.backgroundColor = UIColor(white: 1, alpha: 0)
 
 
-        // update stuff
-        if collided
+        // check for collisions
+        
+        if delegate != nil
         {
-            if delegate!.detectCollisionFromEnemy(square) == nil
-            {
-                collided = false
-                moveInRandomDirection()
-            }
-        }
+            let coll: Collision = delegate!.detectCollisionFromEnemy(square)
+            self.cellX = coll.cellX
+            self.cellY = coll.cellY
             
-        else
-        {
-            if delegate != nil
-            {
-                if delegate!.detectCollisionFromEnemy(square) != nil
+            if collided {
+                if coll.east || coll.north || coll.south || coll.west
                 {
-                    setCollision()
+                    return
                 }
+                else
+                {
+                    collided = false
+                    moveInRandomDirection()
+                }
+            }
+            else if coll.east || coll.north || coll.south || coll.west
+            {
+                setCollision()
             }
         }
     }
@@ -133,6 +144,9 @@ class EnemyView: UIView {
         let cellX = Int(arc4random_uniform(UInt32(dimension)))
         let cellY = Int(arc4random_uniform(UInt32(dimension)))
         
+        self.cellX = cellX
+        self.cellY = cellY
+        
         let cellOrigin: CGPoint = delegate!.getMazeCellPosX(cellX, Y: cellY)
         
         let halfDifferenceWidth: CGFloat = (cellSize.width - enemyWidth) * 0.5
@@ -145,7 +159,49 @@ class EnemyView: UIView {
     func moveInRandomDirection()
     {
         let dir: Int = Int(arc4random_uniform(4))
-        switch dir {
+        moveInDirection(dir)
+    }
+    
+    func moveInRandomDirectionAvoidingWalls()
+    {
+        // first get possible directions
+        if delegate == nil{
+            return
+        }
+        
+        let cell: MazeViewCell? = delegate!.getMazeCellAtX(self.cellX, Y: self.cellY)
+        if cell == nil {
+            return
+        }
+        
+        var possibleDirections: [Int] = []
+        
+        if !cell!.north
+        {
+            possibleDirections.append(0)
+        }
+        if !cell!.east
+        {
+            possibleDirections.append(1)
+        }
+        if !cell!.south
+        {
+            possibleDirections.append(2)
+        }
+        if !cell!.west
+        {
+            possibleDirections.append(3)
+        }
+        
+        // choose a random direction from the possibilities
+        let dirIndex: Int = Int(arc4random_uniform(UInt32(possibleDirections.count)))
+        
+        moveInDirection(possibleDirections[dirIndex])
+    }
+    
+    private func moveInDirection(direction: Int)
+    {
+        switch direction {
         case 0:
             horizVelocity = 0.0
             vertVelocity = -moveSpeed
@@ -165,7 +221,6 @@ class EnemyView: UIView {
         default:
             break
         }
-        
     }
     
     func update()
