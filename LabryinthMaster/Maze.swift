@@ -68,28 +68,28 @@ class Maze {
                 
                 switch randDir {
                 case 0:
-                    if cell.north
+                    if cell.north && cell.y != 0
                     {
                         keepGoing = false
                         clearWallInCell(cell, InDir: 0)
                     }
                     break
                 case 1:
-                    if cell.east
+                    if cell.east && cell.x != (dimension - 1)
                     {
                         keepGoing = false
                         clearWallInCell(cell, InDir: 1)
                     }
                     break
                 case 2:
-                    if cell.south
+                    if cell.south && cell.y != (dimension - 1)
                     {
                         keepGoing = false
                         clearWallInCell(cell, InDir: 2)
                     }
                     break
                 case 3:
-                    if cell.west
+                    if cell.west && cell.x != 0
                     {
                         keepGoing = false
                         clearWallInCell(cell, InDir: 3)
