@@ -8,6 +8,21 @@
 
 import UIKit
 
+// TODO: move this to its own file:::
+struct MazeViewCellPriorityQueueNode
+{
+	let object: MazeViewCell
+	let priority: Int
+}
+
+class MazeViewCellPriorityQueue 
+{
+	var queue: [MazeViewCellPriorityQueueNode]
+	
+	
+}
+
+
 protocol EnemyViewDelegate: class {
     func getMazeDimension() -> Int
     func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
@@ -15,6 +30,7 @@ protocol EnemyViewDelegate: class {
     func getMazeCellSize() -> CGSize
     func detectCollisionFromEnemy(square: CGRect) -> Collision
 //    func detectCenteredInCell(square: CGRect)
+	func getPlayerCell() -> MazeViewCell
 }
 
 class EnemyView: UIView {
@@ -199,6 +215,80 @@ class EnemyView: UIView {
         moveInDirection(possibleDirections[dirIndex])
     }
     
+	private func manhattanDistance(a: MazeViewCell, ToB b: MazeViewCell) -> CGFloat
+	{
+		return abs(a.x - b.x) + abs(a.y - b.y)	
+	}
+	
+	private func neighborDirections(cell: MazeViewCell) -> [Int]
+	{
+		var result: [Int] = []
+		
+		if !cell.north
+		{
+			result.append(0)
+		}
+		if !cell.east
+		{
+			result.append(1)
+		}
+		if !cell.south
+		{
+			result.append(2)
+		}
+		if !cell.west
+		{
+			result.append(3)
+		}
+		
+		return result
+	}
+	
+	func moveTowardPlayer()
+	{
+		if delegate == nil
+		{
+			return
+		}
+		
+		let playerCell: MazeViewCell = delegate!.getPlayerCell()
+	
+		// this actually needs to be a priority queue
+		var frontier: [MazeViewCell] = []
+
+		// add current cell
+		frontier.append(delegate!.getMazeCellAtX(self.cellX, Y: self.cellY))
+		
+		var cameFrom: [String, MazeViewCell?] = ["\(self.cellX),\(self.cellY)",nil]
+		var costSoFar: [String, Int] = ["\(self.cellX),\(self.cellY)",0]
+		
+		while !frontier.empty
+		{
+			let current: MazeViewCell = frontier.next()
+			
+			if current == playerCell
+			{
+				break
+			}
+			
+			for cell in neighborDirections(current)
+			{
+				var newCost: Int = costSoFar["\(current.x),\(current.y)"] + 1
+				
+				let costToCell: Int? = costSoFar["\(cell.x),\(cell.y)"]
+				if costToCell == nil || newCost < costToCell
+				{
+					costSoFar["\(cell.x),\(cell.y)"] = newCost
+					// var priority: Int = newCost + manhattanDistance(cell)
+					frontier.append(cell) // , priority
+					cameFrom["\(cell.x),\(cell.y)"] = current
+				}			
+			}			
+		}
+		
+	
+	}
+	
     private func moveInDirection(direction: Int)
     {
         switch direction {
