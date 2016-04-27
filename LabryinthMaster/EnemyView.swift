@@ -17,9 +17,43 @@ struct MazeViewCellPriorityQueueNode
 
 class MazeViewCellPriorityQueue 
 {
-	var queue: [MazeViewCellPriorityQueueNode]
+	private var queue: [MazeViewCellPriorityQueueNode] = []
+	var empty: Bool 
+	{
+		return queue.isEmpty
+	}
 	
+	func next() -> MazeViewCell?
+	{
+		var result: MazeViewCell? = queue.removeAtIndex(0)?.object
+		return result
+	}
 	
+	func addCell(cell: MazeViewCell, WithPriority priority: Int)
+	{
+		let newNode: MazeViewCellPriorityQueueNode = MazeViewCellPriorityQueueNode(object: cell, priority: priority)
+		
+		queue.append(newNode)
+		
+		// bubble new item up by priority
+		var keepGoing: Bool = true
+		var i: Int = queue.count - 1
+		while keepGoing && i > 0{
+			if queue[i].priority > queue[i-1].priority
+			{
+				let tmp: MazeViewCellPriorityQueueNode = queue[i-1]
+				
+				queue[i-1] = queue[i]
+				queue[i] = tmp
+				
+				i-=1
+			}
+			else
+			{
+				keepGoing = false
+			}			
+		}
+	}
 }
 
 
@@ -251,13 +285,14 @@ class EnemyView: UIView {
 			return
 		}
 		
+		// DO A Star pathfinding
+		
 		let playerCell: MazeViewCell = delegate!.getPlayerCell()
 	
-		// this actually needs to be a priority queue
-		var frontier: [MazeViewCell] = []
+		var frontier: MazeViewCellPriorityQueue = MazeViewCellPriorityQueue()
 
 		// add current cell
-		frontier.append(delegate!.getMazeCellAtX(self.cellX, Y: self.cellY))
+		frontier.addCell(delegate!.getMazeCellAtX(self.cellX, Y: self.cellY), priority: 1)
 		
 		var cameFrom: [String, MazeViewCell?] = ["\(self.cellX),\(self.cellY)",nil]
 		var costSoFar: [String, Int] = ["\(self.cellX),\(self.cellY)",0]
@@ -280,13 +315,45 @@ class EnemyView: UIView {
 				{
 					costSoFar["\(cell.x),\(cell.y)"] = newCost
 					// var priority: Int = newCost + manhattanDistance(cell)
-					frontier.append(cell) // , priority
+					frontier.addCell(cell, priority: priority)
 					cameFrom["\(cell.x),\(cell.y)"] = current
 				}			
 			}			
+		}		
+		
+		// now trace our way back to find the step to take
+		let myCell: MazeViewCell = delegate!.getMazeCellAtX(cellX, y: cellY)
+		
+		var nextStep: MazeViewCell = playerCell
+		
+		while cameFrom["\(nextStep.x),\(nextStep.y)"] != myCell
+		{
+			let tempCell: MazeViewCell = cameFrom["\(nextStep.x),\(nextStep.y)"]
+		
+			nextStep = delegate!.getMazeCellAtX(tempCell.x, y: tempCell.y)
 		}
 		
+		moveTowardCell(nextStep)
+	}
 	
+	private func moveTowardCell(cell: MazeViewCell)
+	{
+		if cellX < cell.x
+		{
+			moveInDirection(4)
+		}
+		else if cellX > cell.x
+		{
+			moveInDirection(1)
+		}
+		else if cellY > cell.y
+		{
+			moveInDirection(3)
+		}
+		else if cellY < cell.y
+		{
+			moveInDirection(0)
+		}		
 	}
 	
     private func moveInDirection(direction: Int)
