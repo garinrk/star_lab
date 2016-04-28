@@ -192,7 +192,13 @@ class MazeView: UIView {
 //            setNeedsDisplay()
         }
         
-        
+        var centered: Bool = false
+		if occupyingCell.midX == rect.midX && occupyingCell.midY == rect.midY
+		{
+			centered = true
+		}
+		
+		
         // look at the cell to determine possible collisions
         
         var north: Bool = false
@@ -240,7 +246,7 @@ class MazeView: UIView {
             }
         }
       
-        return Collision(north: north, east: east, south: south, west: west, coin: coin, cellX: x, cellY: y)
+        return Collision(north: north, east: east, south: south, west: west, coin: coin, cellX: x, cellY: y, centered: centered)
     }
     
     func placeRandomCoin() {

@@ -72,6 +72,11 @@ class EnemyView: UIView {
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
     private let moveSpeed: CGFloat = 24.0
+	
+	// 0 = totally dumb
+	// 1 = avoid walls
+	// 2 = move toward player (A star)
+	private let AIMode: Int = 1
     
     ////////////////////////////////////////
     
@@ -143,21 +148,30 @@ class EnemyView: UIView {
             self.cellX = coll.cellX
             self.cellY = coll.cellY
             
-            if collided {
-                if coll.east || coll.north || coll.south || coll.west
-                {
-                    return
-                }
-                else
-                {
-                    collided = false
-                    moveInRandomDirection()
-                }
-            }
-            else if coll.east || coll.north || coll.south || coll.west
-            {
-                setCollision()
-            }
+			if AIMode == 0 {
+				if collided {
+					if coll.east || coll.north || coll.south || coll.west
+					{
+						return
+					}
+					else
+					{
+						collided = false
+						moveInRandomDirection()
+					}
+				}
+				else if coll.east || coll.north || coll.south || coll.west
+				{
+					setCollision()
+				}
+			}
+			
+			if AIMode == 1 {
+				if coll.centered
+				{
+					moveInRandomDirectionAvoidingWalls()
+				}			
+			}
         }
     }
     
@@ -182,7 +196,21 @@ class EnemyView: UIView {
         }
         
         randomizeLocation()
-        moveInRandomDirection()
+		
+		switch AIMode
+		{
+			case 0:
+				moveInRandomDirection()
+				break
+			case 1:
+				moveInRandomDirectionAvoidingWalls()
+				break
+			case 2:
+				moveTowardPlayer()
+				break
+			default:
+				break
+		}
     }
     
     
