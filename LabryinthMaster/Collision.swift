@@ -16,8 +16,9 @@ struct Collision {
     let west: Bool
     
     let coin: Bool
-    
+	
     let cellX: Int
     let cellY: Int
-    
+ 
+	let centered: Bool
 }

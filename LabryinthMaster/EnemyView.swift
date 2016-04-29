@@ -8,6 +8,55 @@
 
 import UIKit
 
+// TODO: move this to its own file:::
+struct MazeViewCellPriorityQueueNode
+{
+	let object: MazeViewCell
+	let priority: Int
+}
+
+class MazeViewCellPriorityQueue 
+{
+	private var queue: [MazeViewCellPriorityQueueNode] = []
+	var empty: Bool 
+	{
+		return queue.isEmpty
+	}
+	
+	func next() -> MazeViewCell?
+	{
+		var result: MazeViewCell? = queue.removeAtIndex(0)?.object
+		return result
+	}
+	
+	func addCell(cell: MazeViewCell, WithPriority priority: Int)
+	{
+		let newNode: MazeViewCellPriorityQueueNode = MazeViewCellPriorityQueueNode(object: cell, priority: priority)
+		
+		queue.append(newNode)
+		
+		// bubble new item up by priority
+		var keepGoing: Bool = true
+		var i: Int = queue.count - 1
+		while keepGoing && i > 0{
+			if queue[i].priority > queue[i-1].priority
+			{
+				let tmp: MazeViewCellPriorityQueueNode = queue[i-1]
+				
+				queue[i-1] = queue[i]
+				queue[i] = tmp
+				
+				i-=1
+			}
+			else
+			{
+				keepGoing = false
+			}			
+		}
+	}
+}
+
+
 protocol EnemyViewDelegate: class {
     func getMazeDimension() -> Int
     func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
@@ -15,6 +64,7 @@ protocol EnemyViewDelegate: class {
     func getMazeCellSize() -> CGSize
     func detectCollisionFromEnemy(square: CGRect) -> Collision
 //    func detectCenteredInCell(square: CGRect)
+	func getPlayerCell() -> MazeViewCell
 }
 
 class EnemyView: UIView {
@@ -22,6 +72,11 @@ class EnemyView: UIView {
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
     private let moveSpeed: CGFloat = 24.0
+	
+	// 0 = totally dumb
+	// 1 = avoid walls
+	// 2 = move toward player (A star)
+	private let AIMode: Int = 1
     
     // 0 = totally random, 1 = avoids walls, 2 = AStar
     let AIType: Int = 0
@@ -250,6 +305,113 @@ class EnemyView: UIView {
         moveInDirection(possibleDirections[dirIndex])
     }
     
+	private func manhattanDistance(a: MazeViewCell, ToB b: MazeViewCell) -> CGFloat
+	{
+		return abs(a.x - b.x) + abs(a.y - b.y)	
+	}
+	
+	private func neighborDirections(cell: MazeViewCell) -> [Int]
+	{
+		var result: [Int] = []
+		
+		if !cell.north
+		{
+			result.append(0)
+		}
+		if !cell.east
+		{
+			result.append(1)
+		}
+		if !cell.south
+		{
+			result.append(2)
+		}
+		if !cell.west
+		{
+			result.append(3)
+		}
+		
+		return result
+	}
+	
+	func moveTowardPlayer()
+	{
+		if delegate == nil
+		{
+			return
+		}
+		
+		// DO A Star pathfinding
+		
+		let playerCell: MazeViewCell = delegate!.getPlayerCell()
+	
+		var frontier: MazeViewCellPriorityQueue = MazeViewCellPriorityQueue()
+
+		// add current cell
+		frontier.addCell(delegate!.getMazeCellAtX(self.cellX, Y: self.cellY), priority: 1)
+		
+		var cameFrom: [String, MazeViewCell?] = ["\(self.cellX),\(self.cellY)",nil]
+		var costSoFar: [String, Int] = ["\(self.cellX),\(self.cellY)",0]
+		
+		while !frontier.empty
+		{
+			let current: MazeViewCell = frontier.next()
+			
+			if current == playerCell
+			{
+				break
+			}
+			
+			for cell in neighborDirections(current)
+			{
+				var newCost: Int = costSoFar["\(current.x),\(current.y)"] + 1
+				
+				let costToCell: Int? = costSoFar["\(cell.x),\(cell.y)"]
+				if costToCell == nil || newCost < costToCell
+				{
+					costSoFar["\(cell.x),\(cell.y)"] = newCost
+					// var priority: Int = newCost + manhattanDistance(cell)
+					frontier.addCell(cell, priority: priority)
+					cameFrom["\(cell.x),\(cell.y)"] = current
+				}			
+			}			
+		}		
+		
+		// now trace our way back to find the step to take
+		let myCell: MazeViewCell = delegate!.getMazeCellAtX(cellX, y: cellY)
+		
+		var nextStep: MazeViewCell = playerCell
+		
+		while cameFrom["\(nextStep.x),\(nextStep.y)"] != myCell
+		{
+			let tempCell: MazeViewCell = cameFrom["\(nextStep.x),\(nextStep.y)"]
+		
+			nextStep = delegate!.getMazeCellAtX(tempCell.x, y: tempCell.y)
+		}
+		
+		moveTowardCell(nextStep)
+	}
+	
+	private func moveTowardCell(cell: MazeViewCell)
+	{
+		if cellX < cell.x
+		{
+			moveInDirection(4)
+		}
+		else if cellX > cell.x
+		{
+			moveInDirection(1)
+		}
+		else if cellY > cell.y
+		{
+			moveInDirection(3)
+		}
+		else if cellY < cell.y
+		{
+			moveInDirection(0)
+		}		
+	}
+	
     private func moveInDirection(direction: Int)
     {
         switch direction {
