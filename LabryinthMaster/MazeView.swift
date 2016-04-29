@@ -15,6 +15,9 @@ class MazeViewCell: UIView {
     var west: Bool = true
     var hasCoin: Bool = false
     
+    var x: Int = 0
+    var y: Int = 0
+    
     private var coinDiameter: CGFloat = 0
     
     override init(frame: CGRect) {
@@ -148,6 +151,8 @@ class MazeView: UIView {
         newCell.east = east
         newCell.south = south
         newCell.west = west
+        newCell.x = x
+        newCell.y = y
         
         cells["\(x),\(y)"] = newCell
         addSubview(newCell)
@@ -192,10 +197,17 @@ class MazeView: UIView {
 //            setNeedsDisplay()
         }
         
+        // check to see if object is centered in cell
         var centered: Bool = false
-		if occupyingCell.midX == rect.midX && occupyingCell.midY == rect.midY
+        let leewayAmt: CGFloat = 0.001
+        
+		if occupyingCell != nil
 		{
-			centered = true
+            let xDiff: CGFloat = abs(occupyingCell!.frame.midX - rect.midX)
+            let yDiff: CGFloat = abs(occupyingCell!.frame.midY - rect.midY)
+            if xDiff < leewayAmt && yDiff < leewayAmt {
+                centered = true
+            }
 		}
 		
 		

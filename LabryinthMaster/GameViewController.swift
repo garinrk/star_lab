@@ -110,6 +110,11 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         return mazeView.detectCollisionWithRect(square)
     }
     
+    func getPlayerCell() -> MazeViewCell
+    {
+        return getMazeCellAtX(gameManager.player.cellX, Y: gameManager.player.cellY)!
+    }
+    
     // MARK: PlayerDelegate functions
     func detectCollisionFromPlayer(square: CGRect) -> Collision
     {
