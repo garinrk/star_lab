@@ -9,6 +9,17 @@
 import Foundation
 import AVFoundation
 
+enum SoundType{
+    case MainMusic
+    case ConfirmSound
+    case RejectSound
+    case FX1
+    case FX2
+    case FX3
+    case FX4
+    case FX5
+}
+
 class AudioManager : NSObject{
     
     var mainMusicPlayer : AVAudioPlayer!
@@ -22,16 +33,19 @@ class AudioManager : NSObject{
     var fx5Player : AVAudioPlayer!
     
     var mainMusicVolume : Float = 1.0
-    var fx1Volume : Float = .5
-    var fx2Volume : Float = .5
-    var fx3Volume : Float = .5
-    var fx4Volume : Float = .5
-    var fx5Volume : Float = .5
+    var confirmVolume : Float = 0.75
+    var rejectVolume : Float = 0.75
+    var fx1Volume : Float = 0.5
+    var fx2Volume : Float = 0.5
+    var fx3Volume : Float = 0.5
+    var fx4Volume : Float = 0.5
+    var fx5Volume : Float = 0.5
     
     
     override init(){
         super.init()
         LoadFilesIntoPlayers()
+        SetupAudioSession()
     }
     
     /**
@@ -42,6 +56,15 @@ class AudioManager : NSObject{
         //Step 1: Get files
         guard let mainMusicURL = NSBundle.mainBundle().URLForResource("Audio/mainMusic", withExtension: "mp3") else {
             print("could not read main Music file")
+            return
+        }
+        guard let confirmURL = NSBundle.mainBundle().URLForResource("Audio/confirm", withExtension: "mp3") else {
+            print("could not read confirm file")
+            return
+        }
+        
+        guard let rejectURL = NSBundle.mainBundle().URLForResource("Audio/confirm", withExtension: "mp3") else {
+            print("could not read reject file")
             return
         }
         
@@ -74,6 +97,20 @@ class AudioManager : NSObject{
             try self.mainMusicPlayer = AVAudioPlayer(contentsOfURL: mainMusicURL)
         } catch {
             print("could not create mainMusicPlayer \(error)")
+            return
+        }
+        
+        do {
+            try self.confirmPlayer = AVAudioPlayer(contentsOfURL: confirmURL)
+        } catch {
+            print("could not create confirmplayer \(error)")
+            return
+        }
+        
+        do {
+            try self.rejectPlayer = AVAudioPlayer(contentsOfURL: rejectURL)
+        } catch {
+            print("could not create rejectplayer \(error)")
             return
         }
         
@@ -112,6 +149,8 @@ class AudioManager : NSObject{
         //Step 3: Set delegates, volumes, prepare to play, and callback method
         
         mainMusicPlayer.delegate = self
+        confirmPlayer.delegate = self
+        rejectPlayer.delegate = self
         fx1Player.delegate = self
         fx2Player.delegate = self
         fx3Player.delegate = self
@@ -119,6 +158,8 @@ class AudioManager : NSObject{
         fx5Player.delegate = self
         
         mainMusicPlayer.prepareToPlay()
+        confirmPlayer.prepareToPlay()
+        rejectPlayer.prepareToPlay()
         fx1Player.prepareToPlay()
         fx2Player.prepareToPlay()
         fx3Player.prepareToPlay()
@@ -126,21 +167,138 @@ class AudioManager : NSObject{
         fx5Player.prepareToPlay()
         
         mainMusicPlayer.volume = mainMusicVolume
+        confirmPlayer.volume = confirmVolume
+        rejectPlayer.volume = rejectVolume
         fx1Player.volume = fx1Volume
         fx2Player.volume = fx2Volume
         fx3Player.volume = fx3Volume
         fx4Player.volume = fx4Volume
         fx5Player.volume = fx5Volume
         
-//        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector:Selector("sessionInterrupted:"),
-                                                         name:AVAudioSessionInterruptionNotification,
-                                                         object:mainMusicPlayer)
     }
     
-//    func AudioInterrupted(){
-//        
-//    }
+    
+    /**
+     Pauses all audio players
+     */
+    func PauseAllAudio(){
+        if mainMusicPlayer.playing{
+            mainMusicPlayer.pause()
+        }
+        
+        if confirmPlayer.playing{
+            confirmPlayer.pause()
+        }
+        
+        if rejectPlayer.playing{
+            rejectPlayer.pause()
+        }
+        
+        if fx1Player.playing{
+            fx1Player.pause()
+        }
+        
+        if fx2Player.playing{
+            fx2Player.pause()
+        }
+        
+        if fx3Player.playing{
+            fx3Player.pause()
+        }
+        
+        if fx4Player.playing{
+            fx4Player.pause()
+        }
+        
+        if fx5Player.playing{
+            fx5Player.pause()
+        }
+    }
+    
+    func StopAllAudio(){
+        if mainMusicPlayer.playing{
+            mainMusicPlayer.stop()
+        }
+        
+        if confirmPlayer.playing{
+            confirmPlayer.stop()
+        }
+        
+        if rejectPlayer.playing{
+            rejectPlayer.stop()
+        }
+        
+        if fx1Player.playing{
+            fx1Player.stop()
+        }
+        
+        if fx2Player.playing{
+            fx2Player.stop()
+        }
+        
+        if fx3Player.playing{
+            fx3Player.stop()
+        }
+        
+        if fx4Player.playing{
+            fx4Player.stop()
+        }
+        
+        if fx5Player.playing{
+            fx5Player.stop()
+        }
+
+    }
+    
+    /**
+     Sets up audio session for players to be able to play 
+     audio
+     */
+    func SetupAudioSession(){
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: AVAudioSessionCategoryOptions.MixWithOthers)
+            try audioSession.setActive(true)
+        } catch {
+            print("couldn't set category \(error)")
+        }
+    }
+    
+    /**
+     Plays a specified audio type
+     
+     - parameter audioType: The type of audio to play
+     */
+    func PlayAudio(audioType : SoundType)
+    {
+        switch audioType{
+            
+        case .MainMusic:
+            mainMusicPlayer.play()
+            break
+        case .ConfirmSound:
+            confirmPlayer.play()
+            break
+        case .RejectSound:
+            rejectPlayer.play()
+            break
+        case .FX1:
+            fx1Player.play()
+            break
+        case .FX2:
+            fx2Player.play()
+            break
+        case .FX3:
+            fx3Player.play()
+            break
+        case .FX4:
+            fx4Player.play()
+            break
+        case .FX5:
+            fx5Player.play()
+            break
+        }
+    }
 }
 
 
