@@ -27,6 +27,9 @@ class PlayerView : UIView{
     private var yPos: CGFloat = 0
     private var playerDiameter: CGFloat!
     
+    var cellX: Int = 0
+    var cellY: Int = 0
+    
     // whether player is allowed to move in the directions indicated by pos in array:
     // canMove[0] refers to up, [1] = right, [2] = down, [3] = left
     var canMove: [Bool] = [true, true, true, true]
@@ -70,6 +73,9 @@ class PlayerView : UIView{
             if coll.coin {
                 delegate!.coinCollected()
             }
+            
+            cellX = coll.cellX
+            cellY = coll.cellY
         }
         else {
             canMove = [true, true, true, true]

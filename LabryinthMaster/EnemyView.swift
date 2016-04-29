@@ -8,62 +8,12 @@
 
 import UIKit
 
-// TODO: move this to its own file:::
-struct MazeViewCellPriorityQueueNode
-{
-	let object: MazeViewCell
-	let priority: Int
-}
-
-class MazeViewCellPriorityQueue 
-{
-	private var queue: [MazeViewCellPriorityQueueNode] = []
-	var empty: Bool 
-	{
-		return queue.isEmpty
-	}
-	
-	func next() -> MazeViewCell?
-	{
-		var result: MazeViewCell? = queue.removeAtIndex(0)?.object
-		return result
-	}
-	
-	func addCell(cell: MazeViewCell, WithPriority priority: Int)
-	{
-		let newNode: MazeViewCellPriorityQueueNode = MazeViewCellPriorityQueueNode(object: cell, priority: priority)
-		
-		queue.append(newNode)
-		
-		// bubble new item up by priority
-		var keepGoing: Bool = true
-		var i: Int = queue.count - 1
-		while keepGoing && i > 0{
-			if queue[i].priority > queue[i-1].priority
-			{
-				let tmp: MazeViewCellPriorityQueueNode = queue[i-1]
-				
-				queue[i-1] = queue[i]
-				queue[i] = tmp
-				
-				i-=1
-			}
-			else
-			{
-				keepGoing = false
-			}			
-		}
-	}
-}
-
-
 protocol EnemyViewDelegate: class {
     func getMazeDimension() -> Int
     func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
     func getMazeCellAtX(x: Int, Y y: Int) -> MazeViewCell?
     func getMazeCellSize() -> CGSize
     func detectCollisionFromEnemy(square: CGRect) -> Collision
-//    func detectCenteredInCell(square: CGRect)
 	func getPlayerCell() -> MazeViewCell
 }
 
@@ -83,8 +33,33 @@ class EnemyView: UIView {
     private var xPos: CGFloat
     private var yPos: CGFloat
     
-    private var cellX: Int
-    private var cellY: Int
+    private var _cellX: Int = 0
+    private var _cellY: Int = 0
+    private var cellX: Int {
+        get {
+            return _cellX
+        }
+        set {
+            if newValue != _cellX
+            {
+                _cellX = newValue
+                enteredNewCell = true
+            }
+        }
+    }
+    private var cellY: Int {
+        get {
+            return _cellY
+        }
+        set {
+            if newValue != _cellY
+            {
+                _cellY = newValue
+                enteredNewCell = true
+            }
+
+        }
+    }
     
     private var horizVelocity: CGFloat
     private var vertVelocity: CGFloat
@@ -96,6 +71,7 @@ class EnemyView: UIView {
     
     weak var delegate: EnemyViewDelegate? = nil
     
+    private var enteredNewCell: Bool = false
     private var collided: Bool = false
 //    var centered: Bool = false
 //    private var centering: Bool = false
@@ -108,9 +84,6 @@ class EnemyView: UIView {
         
         xPos = 0
         yPos = 0
-        
-        cellX = 1
-        cellY = 1
         
         super.init(frame: frame)
         
@@ -148,30 +121,39 @@ class EnemyView: UIView {
             self.cellX = coll.cellX
             self.cellY = coll.cellY
             
-			if AIMode == 0 {
-				if collided {
-					if coll.east || coll.north || coll.south || coll.west
-					{
-						return
-					}
-					else
-					{
-						collided = false
-						moveInRandomDirection()
-					}
-				}
-				else if coll.east || coll.north || coll.south || coll.west
-				{
-					setCollision()
-				}
-			}
-			
-			if AIMode == 1 {
-				if coll.centered
-				{
-					moveInRandomDirectionAvoidingWalls()
-				}			
-			}
+            // for type 1 AI
+            if AIMode == 1
+            {
+                if enteredNewCell
+                {
+                    enteredNewCell = false
+                    moveInRandomDirectionAvoidingWalls()
+                }
+            }
+            
+            // for type 0 AI
+            
+            if collided {
+                if coll.east || coll.north || coll.south || coll.west
+                {
+                    return
+                }
+                else
+                {
+                    collided = false
+                    
+                    if AIMode == 0 {
+                        moveInRandomDirection()
+                    }
+                    else if AIMode == 1 {
+                        moveInRandomDirectionAvoidingWalls()
+                    }
+                }
+            }
+            else if coll.east || coll.north || coll.south || coll.west
+            {
+                setCollision()
+            }
         }
     }
     
@@ -196,21 +178,20 @@ class EnemyView: UIView {
         }
         
         randomizeLocation()
-		
-		switch AIMode
-		{
-			case 0:
-				moveInRandomDirection()
-				break
-			case 1:
-				moveInRandomDirectionAvoidingWalls()
-				break
-			case 2:
-				moveTowardPlayer()
-				break
-			default:
-				break
-		}
+        
+        switch AIMode {
+        case 0:
+            moveInRandomDirection()
+            break
+        case 1:
+            moveInRandomDirectionAvoidingWalls()
+            break
+        case 2:
+            break
+        default:
+            break
+        }
+        
     }
     
     
@@ -277,9 +258,9 @@ class EnemyView: UIView {
         moveInDirection(possibleDirections[dirIndex])
     }
     
-	private func manhattanDistance(a: MazeViewCell, ToB b: MazeViewCell) -> CGFloat
+	private func manhattanDistance(a: MazeViewCell, ToB b: MazeViewCell) -> Int
 	{
-		return abs(a.x - b.x) + abs(a.y - b.y)	
+		return abs(a.x - b.x) + abs(a.y - b.y)
 	}
 	
 	private func neighborDirections(cell: MazeViewCell) -> [Int]
@@ -317,48 +298,87 @@ class EnemyView: UIView {
 		
 		let playerCell: MazeViewCell = delegate!.getPlayerCell()
 	
-		var frontier: MazeViewCellPriorityQueue = MazeViewCellPriorityQueue()
+		let frontier: MazeViewCellPriorityQueue = MazeViewCellPriorityQueue()
 
 		// add current cell
-		frontier.addCell(delegate!.getMazeCellAtX(self.cellX, Y: self.cellY), priority: 1)
+        let currentCell: MazeViewCell? = delegate!.getMazeCellAtX(self.cellX, Y: self.cellY)
+        if currentCell == nil {
+            return
+        }
+        
+		frontier.addCell(currentCell!, WithPriority: 1)
 		
-		var cameFrom: [String, MazeViewCell?] = ["\(self.cellX),\(self.cellY)",nil]
-		var costSoFar: [String, Int] = ["\(self.cellX),\(self.cellY)",0]
+        var cameFrom: [String : MazeViewCell?] = ["\(self.cellX),\(self.cellY)" : nil]
+        var costSoFar: [String : Int] = ["\(self.cellX),\(self.cellY)" : 0]
 		
 		while !frontier.empty
 		{
-			let current: MazeViewCell = frontier.next()
+			let current: MazeViewCell? = frontier.next()
 			
-			if current == playerCell
+			if current == nil || current == playerCell
 			{
 				break
 			}
 			
-			for cell in neighborDirections(current)
+			for cell in neighborDirections(current!)
 			{
-				var newCost: Int = costSoFar["\(current.x),\(current.y)"] + 1
+				let newCost: Int = costSoFar["\(current!.x),\(current!.y)"]! + 1
 				
-				let costToCell: Int? = costSoFar["\(cell.x),\(cell.y)"]
+                var cellLocString: String = ""
+                var nextCell: MazeViewCell? = nil
+                switch cell
+                {
+                case 0:
+                    cellLocString = "\(current!.x),\(current!.y - 1)"
+                    nextCell = delegate!.getMazeCellAtX(current!.x, Y: current!.y - 1)
+                    break
+                case 1:
+                    cellLocString = "\(current!.x + 1),\(current!.y)"
+                    nextCell = delegate!.getMazeCellAtX(current!.x + 1, Y: current!.y)
+                    break
+                case 2:
+                    cellLocString = "\(current!.x),\(current!.y + 1)"
+                    nextCell = delegate!.getMazeCellAtX(current!.x, Y: current!.y + 1)
+                    break
+                case 3:
+                    cellLocString = "\(current!.x - 1),\(current!.y)"
+                    nextCell = delegate!.getMazeCellAtX(current!.x - 1, Y: current!.y)
+                    break
+                default:
+                    break
+                }
+                
+                if nextCell == nil
+                {
+                    return
+                }
+                
+                let costToCell: Int? = costSoFar[cellLocString]
+
 				if costToCell == nil || newCost < costToCell
 				{
-					costSoFar["\(cell.x),\(cell.y)"] = newCost
-					// var priority: Int = newCost + manhattanDistance(cell)
-					frontier.addCell(cell, priority: priority)
-					cameFrom["\(cell.x),\(cell.y)"] = current
-				}			
+					costSoFar[cellLocString] = newCost
+                    let priority: Int = newCost + manhattanDistance(currentCell!, ToB: nextCell!)
+					frontier.addCell(nextCell!, WithPriority: priority)
+					cameFrom[cellLocString] = current
+				}
 			}			
 		}		
 		
 		// now trace our way back to find the step to take
-		let myCell: MazeViewCell = delegate!.getMazeCellAtX(cellX, y: cellY)
+		let myCell: MazeViewCell? = delegate!.getMazeCellAtX(cellX, Y: cellY)
+        if myCell == nil
+        {
+            return
+        }
 		
 		var nextStep: MazeViewCell = playerCell
 		
-		while cameFrom["\(nextStep.x),\(nextStep.y)"] != myCell
+		while cameFrom["\(nextStep.x),\(nextStep.y)"]! != myCell!
 		{
-			let tempCell: MazeViewCell = cameFrom["\(nextStep.x),\(nextStep.y)"]
+			let tempCell: MazeViewCell! = cameFrom["\(nextStep.x),\(nextStep.y)"]!
 		
-			nextStep = delegate!.getMazeCellAtX(tempCell.x, y: tempCell.y)
+			nextStep = delegate!.getMazeCellAtX(tempCell.x, Y: tempCell.y)!
 		}
 		
 		moveTowardCell(nextStep)
