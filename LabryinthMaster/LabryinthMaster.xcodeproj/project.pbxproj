@@ -29,6 +29,7 @@
 		457B67291CD426C800EE127D /* fx5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67221CD426C800EE127D /* fx5.mp3 */; };
 		457B672A1CD426C800EE127D /* reject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67231CD426C800EE127D /* reject.mp3 */; };
 		457B672F1CD426FE00EE127D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B672E1CD426FE00EE127D /* AudioManager.swift */; };
+		457B67311CD4292000EE127D /* mainMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67301CD4292000EE127D /* mainMusic.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		457B67221CD426C800EE127D /* fx5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fx5.mp3; path = Audio/fx5.mp3; sourceTree = "<group>"; };
 		457B67231CD426C800EE127D /* reject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = reject.mp3; path = Audio/reject.mp3; sourceTree = "<group>"; };
 		457B672E1CD426FE00EE127D /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		457B67301CD4292000EE127D /* mainMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mainMusic.mp3; path = Audio/mainMusic.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,14 @@
 		453B5D1C1CB85C0600FF61F8 /* LabryinthMaster */ = {
 			isa = PBXGroup;
 			children = (
+				457B67301CD4292000EE127D /* mainMusic.mp3 */,
+				457B671D1CD426C800EE127D /* confirm.mp3 */,
+				457B671E1CD426C800EE127D /* fx1.mp3 */,
+				457B671F1CD426C800EE127D /* fx2.mp3 */,
+				457B67201CD426C800EE127D /* fx3.mp3 */,
+				457B67211CD426C800EE127D /* fx4.mp3 */,
+				457B67221CD426C800EE127D /* fx5.mp3 */,
+				457B67231CD426C800EE127D /* reject.mp3 */,
 				457B671C1CD426C000EE127D /* Audio */,
 				453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */,
 				453B5D241CB85C0600FF61F8 /* Assets.xcassets */,
@@ -144,13 +154,6 @@
 		457B671C1CD426C000EE127D /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				457B671D1CD426C800EE127D /* confirm.mp3 */,
-				457B671E1CD426C800EE127D /* fx1.mp3 */,
-				457B671F1CD426C800EE127D /* fx2.mp3 */,
-				457B67201CD426C800EE127D /* fx3.mp3 */,
-				457B67211CD426C800EE127D /* fx4.mp3 */,
-				457B67221CD426C800EE127D /* fx5.mp3 */,
-				457B67231CD426C800EE127D /* reject.mp3 */,
 			);
 			name = Audio;
 			sourceTree = "<group>";
@@ -195,7 +198,7 @@
 				TargetAttributes = {
 					453B5D191CB85C0600FF61F8 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = HXH9MZBPRJ;
+						DevelopmentTeam = PVTS86U6DQ;
 					};
 				};
 			};
@@ -231,6 +234,7 @@
 				457B67281CD426C800EE127D /* fx4.mp3 in Resources */,
 				457B67261CD426C800EE127D /* fx2.mp3 in Resources */,
 				457B67241CD426C800EE127D /* confirm.mp3 in Resources */,
+				457B67311CD4292000EE127D /* mainMusic.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,7 +358,7 @@
 				INFOPLIST_FILE = LabryinthMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster3;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -369,7 +373,7 @@
 				INFOPLIST_FILE = LabryinthMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster3;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
