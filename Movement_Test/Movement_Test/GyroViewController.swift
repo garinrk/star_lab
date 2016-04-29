@@ -26,6 +26,8 @@ class GyroViewController : UIViewController{
     var globalPlayerX : CGFloat = 50.0
     var globalPlayerY : CGFloat = 50.0
     
+    var sound:Sound!
+    
     override func loadView() {
         super.loadView()
         
@@ -52,6 +54,11 @@ class GyroViewController : UIViewController{
        
         
         self.view.addSubview(gyroView)
+        
+        sound = Sound()
+        sound.toggleAVPlayer()
+//        a.toggleAVPlayer()
+        print("play")
         
             
     }

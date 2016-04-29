@@ -14,6 +14,12 @@
 		4571D3091CBAC3C900039FF2 /* GyroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571D3081CBAC3C900039FF2 /* GyroView.swift */; };
 		457F71FE1CBF3BE1008588B8 /* GameLoop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457F71FD1CBF3BE1008588B8 /* GameLoop.swift */; };
 		4584EAD71CBEF185009DA9B1 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4584EAD61CBEF185009DA9B1 /* PlayerCell.swift */; };
+		45FD94741CD4046C00D291E6 /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FD94731CD4046C00D291E6 /* Sound.swift */; };
+		45FD94761CD404FB00D291E6 /* dialup.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45FD94751CD404FB00D291E6 /* dialup.mp3 */; };
+		45FD94781CD4089F00D291E6 /* car.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45FD94771CD4089F00D291E6 /* car.mp3 */; };
+		45FD947A1CD40D1F00D291E6 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FD94791CD40D1F00D291E6 /* AudioManager.swift */; };
+		45FD947C1CD40F9A00D291E6 /* mainMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45FD947B1CD40F9A00D291E6 /* mainMusic.mp3 */; };
+		45FD947F1CD4104600D291E6 /* fx1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45FD947E1CD4104600D291E6 /* fx1.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +32,12 @@
 		4571D3081CBAC3C900039FF2 /* GyroView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GyroView.swift; sourceTree = "<group>"; };
 		457F71FD1CBF3BE1008588B8 /* GameLoop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLoop.swift; sourceTree = "<group>"; };
 		4584EAD61CBEF185009DA9B1 /* PlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
+		45FD94731CD4046C00D291E6 /* Sound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
+		45FD94751CD404FB00D291E6 /* dialup.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = dialup.mp3; path = ../../../../Downloads/dialup.mp3; sourceTree = "<group>"; };
+		45FD94771CD4089F00D291E6 /* car.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = car.mp3; path = Movement_Test/car.mp3; sourceTree = "<group>"; };
+		45FD94791CD40D1F00D291E6 /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		45FD947B1CD40F9A00D291E6 /* mainMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mainMusic.mp3; path = Audio/mainMusic.mp3; sourceTree = "<group>"; };
+		45FD947E1CD4104600D291E6 /* fx1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fx1.mp3; path = Audio/fx1.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +54,7 @@
 		453B5CF31CB85BEF00FF61F8 = {
 			isa = PBXGroup;
 			children = (
+				45FD94771CD4089F00D291E6 /* car.mp3 */,
 				452678D51CBB2AF30093F853 /* Default-568h@2x.png */,
 				453B5CFE1CB85BEF00FF61F8 /* Movement_Test */,
 				453B5CFD1CB85BEF00FF61F8 /* Products */,
@@ -59,11 +72,14 @@
 		453B5CFE1CB85BEF00FF61F8 /* Movement_Test */ = {
 			isa = PBXGroup;
 			children = (
+				45FD947D1CD40F9E00D291E6 /* Audio */,
 				453B5CFF1CB85BEF00FF61F8 /* AppDelegate.swift */,
 				453B5D061CB85BEF00FF61F8 /* Assets.xcassets */,
 				453B5D0B1CB85BEF00FF61F8 /* Info.plist */,
 				4571D30B1CBAC3D600039FF2 /* Controllers */,
 				4571D30C1CBAC3DE00039FF2 /* Views */,
+				45FD94731CD4046C00D291E6 /* Sound.swift */,
+				45FD94791CD40D1F00D291E6 /* AudioManager.swift */,
 			);
 			path = Movement_Test;
 			sourceTree = "<group>";
@@ -84,6 +100,16 @@
 				457F71FD1CBF3BE1008588B8 /* GameLoop.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		45FD947D1CD40F9E00D291E6 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				45FD947E1CD4104600D291E6 /* fx1.mp3 */,
+				45FD947B1CD40F9A00D291E6 /* mainMusic.mp3 */,
+				45FD94751CD404FB00D291E6 /* dialup.mp3 */,
+			);
+			name = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +144,7 @@
 				TargetAttributes = {
 					453B5CFB1CB85BEF00FF61F8 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = HXH9MZBPRJ;
+						DevelopmentTeam = PVTS86U6DQ;
 					};
 				};
 			};
@@ -145,8 +171,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45FD947F1CD4104600D291E6 /* fx1.mp3 in Resources */,
+				45FD94761CD404FB00D291E6 /* dialup.mp3 in Resources */,
 				453B5D071CB85BEF00FF61F8 /* Assets.xcassets in Resources */,
 				452678D61CBB2AF30093F853 /* Default-568h@2x.png in Resources */,
+				45FD94781CD4089F00D291E6 /* car.mp3 in Resources */,
+				45FD947C1CD40F9A00D291E6 /* mainMusic.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +187,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45FD94741CD4046C00D291E6 /* Sound.swift in Sources */,
+				45FD947A1CD40D1F00D291E6 /* AudioManager.swift in Sources */,
 				457F71FE1CBF3BE1008588B8 /* GameLoop.swift in Sources */,
 				4584EAD71CBEF185009DA9B1 /* PlayerCell.swift in Sources */,
 				4571D3091CBAC3C900039FF2 /* GyroView.swift in Sources */,
@@ -262,7 +294,7 @@
 				INFOPLIST_FILE = Movement_Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.utah.cs4962.Movement-Test2";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.utah.cs4962.Movement-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -277,7 +309,7 @@
 				INFOPLIST_FILE = Movement_Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.utah.cs4962.Movement-Test2";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.utah.cs4962.Movement-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
