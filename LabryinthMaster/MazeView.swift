@@ -198,15 +198,19 @@ class MazeView: UIView {
         }
         
         // check to see if object is centered in cell
-        var centered: Bool = false
-        let leewayAmt: CGFloat = 0.001
+        var centeredX: Bool = false
+        var centeredY: Bool = false
+        let leewayAmt: CGFloat = 0.1
         
 		if occupyingCell != nil
 		{
             let xDiff: CGFloat = abs(occupyingCell!.frame.midX - rect.midX)
             let yDiff: CGFloat = abs(occupyingCell!.frame.midY - rect.midY)
-            if xDiff < leewayAmt && yDiff < leewayAmt {
-                centered = true
+            if xDiff < leewayAmt {
+                centeredX = true
+            }
+            if yDiff < leewayAmt {
+                centeredY = true
             }
 		}
 		
@@ -258,7 +262,7 @@ class MazeView: UIView {
             }
         }
       
-        return Collision(north: north, east: east, south: south, west: west, coin: coin, cellX: x, cellY: y, centered: centered)
+        return Collision(north: north, east: east, south: south, west: west, coin: coin, cellX: x, cellY: y, centeredX: centeredX, centeredY: centeredY)
     }
     
     func placeRandomCoin() {

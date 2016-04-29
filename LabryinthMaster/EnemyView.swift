@@ -43,7 +43,7 @@ class EnemyView: UIView {
             if newValue != _cellX
             {
                 _cellX = newValue
-                enteredNewCell = true
+//                enteredNewCell = true
             }
         }
     }
@@ -55,7 +55,7 @@ class EnemyView: UIView {
             if newValue != _cellY
             {
                 _cellY = newValue
-                enteredNewCell = true
+//                enteredNewCell = true
             }
 
         }
@@ -71,7 +71,7 @@ class EnemyView: UIView {
     
     weak var delegate: EnemyViewDelegate? = nil
     
-    private var enteredNewCell: Bool = false
+//    private var enteredNewCell: Bool = false
     private var collided: Bool = false
 //    var centered: Bool = false
 //    private var centering: Bool = false
@@ -124,10 +124,17 @@ class EnemyView: UIView {
             // for type 1 AI
             if AIMode == 1
             {
-                if enteredNewCell
+                if coll.centeredX || coll.centeredY
                 {
-                    enteredNewCell = false
                     moveInRandomDirectionAvoidingWalls()
+                }
+            }
+            
+            if AIMode == 2
+            {
+                if coll.centeredX || coll.centeredY
+                {
+                    moveTowardPlayer()
                 }
             }
             
@@ -142,12 +149,7 @@ class EnemyView: UIView {
                 {
                     collided = false
                     
-                    if AIMode == 0 {
-                        moveInRandomDirection()
-                    }
-                    else if AIMode == 1 {
-                        moveInRandomDirectionAvoidingWalls()
-                    }
+                    moveInRandomDirection()
                 }
             }
             else if coll.east || coll.north || coll.south || coll.west
@@ -187,6 +189,7 @@ class EnemyView: UIView {
             moveInRandomDirectionAvoidingWalls()
             break
         case 2:
+            moveTowardPlayer()
             break
         default:
             break

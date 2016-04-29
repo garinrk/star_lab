@@ -20,5 +20,6 @@ struct Collision {
     let cellX: Int
     let cellY: Int
  
-	let centered: Bool
+	let centeredX: Bool
+    let centeredY: Bool
 }
