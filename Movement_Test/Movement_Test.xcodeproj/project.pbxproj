@@ -24,6 +24,7 @@
 		45FD948A1CD41F0600D291E6 /* fx4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45FD94841CD41F0600D291E6 /* fx4.mp3 */; };
 		45FD948B1CD41F0600D291E6 /* fx5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45FD94851CD41F0600D291E6 /* fx5.mp3 */; };
 		45FD948D1CD41F1700D291E6 /* fx1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45FD948C1CD41F1700D291E6 /* fx1.mp3 */; };
+		45FD948F1CD4206200D291E6 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FD948E1CD4206200D291E6 /* Timer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		45FD94841CD41F0600D291E6 /* fx4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fx4.mp3; path = Audio/fx4.mp3; sourceTree = "<group>"; };
 		45FD94851CD41F0600D291E6 /* fx5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fx5.mp3; path = Audio/fx5.mp3; sourceTree = "<group>"; };
 		45FD948C1CD41F1700D291E6 /* fx1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fx1.mp3; path = Audio/fx1.mp3; sourceTree = "<group>"; };
+		45FD948E1CD4206200D291E6 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				4571D30C1CBAC3DE00039FF2 /* Views */,
 				45FD94731CD4046C00D291E6 /* Sound.swift */,
 				45FD94791CD40D1F00D291E6 /* AudioManager.swift */,
+				45FD948E1CD4206200D291E6 /* Timer.swift */,
 			);
 			path = Movement_Test;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				4571D3091CBAC3C900039FF2 /* GyroView.swift in Sources */,
 				453B5D001CB85BEF00FF61F8 /* AppDelegate.swift in Sources */,
 				4571D3071CBAC3C300039FF2 /* GyroViewController.swift in Sources */,
+				45FD948F1CD4206200D291E6 /* Timer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

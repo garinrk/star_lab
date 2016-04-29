@@ -58,6 +58,7 @@ class GyroViewController : UIViewController{
         sound = Sound()
         sound.toggleAVPlayer()
 //        a.toggleAVPlayer()
+        var t = Timer()
         print("play")
         
             
