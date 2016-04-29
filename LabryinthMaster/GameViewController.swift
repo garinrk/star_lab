@@ -16,9 +16,13 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     var scoreLabel: UILabel!
     var mazeView: MazeView!
     var gameManager: GameManager!
+    var audioManager: AudioManager!
+    
     
     override func loadView() {
         super.loadView()
+        
+        audioManager = AudioManager()
         
         gameManager = GameManager()
         gameManager.delegate = self
@@ -123,6 +127,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func coinCollected()
     {
         gameManager.coinCollected()
+        audioManager.PlayAudio(SoundType.FX1)
         scoreLabel.text = "SCORE: \(gameManager.score)"
     }
     
