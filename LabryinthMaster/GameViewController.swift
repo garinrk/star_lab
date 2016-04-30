@@ -15,6 +15,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     var scoreLabel: UILabel!
     var timerLabel: UILabel!
+    var levelLabel: UILabel!
     var mazeView: MazeView!
     var gameManager: GameManager!
     var audioManager: AudioManager!
@@ -86,6 +87,11 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         timerLabel.textColor = UIColor.whiteColor()
         timerLabel.text = "TIME LEFT: \(gameManager.timeLeft)"
         view.addSubview(timerLabel)
+        
+        levelLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 155.0, width: screenRect.width, height: 80.0))
+        levelLabel.textColor = UIColor.whiteColor()
+        levelLabel.text = "LEVEL: \(gameManager.currentLevel)"
+        view.addSubview(levelLabel)
         
         // start the game
         
@@ -179,6 +185,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         audioManager.PlayAudio(SoundType.Win)
         gameManager.win()
         makeNewLevel()
+        levelLabel.text = "LEVEL: \(gameManager.currentLevel)"
     }
     
     // MARK: GameManagerDelegate functions
