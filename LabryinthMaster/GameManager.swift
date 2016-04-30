@@ -27,6 +27,9 @@ class GameManager: GameLoopDelegate {
     private let coinScoreAmt: Int = 1
     private let wallsToClear: Int = 350
     private let levelProgressionAmt: Int = 50
+    private let gameTimeAmt: Int = 90
+    private let timeProgressionAmt: Int = 5
+    private let minGameTime: Int = 45
     
     ////////////////////////////////////////
     
@@ -37,11 +40,11 @@ class GameManager: GameLoopDelegate {
     var mode: DifficultyMode = DifficultyMode.Easy
     var playerName: String = ""
     var score: Int = 0
+    var timeLeft: Int = 0
     var maze: Maze!
     var player: PlayerView!
     var enemies: [EnemyView] = []
-//    let timer: NSTimer // ? maybe something else, I did no research
-    
+    var timer: GameTimer!
     
     var currentGyroMagX: CGFloat = 0
     var currentGyroMagY: CGFloat = 0
@@ -54,6 +57,8 @@ class GameManager: GameLoopDelegate {
     {
         maze = Maze()
         
+        // set up variables based on level progression
+        
         var actualWallsToClear: Int = wallsToClear - (levelProgressionAmt * (currentLevel-1))
         if actualWallsToClear < 0 {
             actualWallsToClear = 0
@@ -64,7 +69,14 @@ class GameManager: GameLoopDelegate {
             enemiesToMake = maxEnemyAmt
         }
         
+        var gameTime: Int = gameTimeAmt - (timeProgressionAmt * (currentLevel-1))
+        if gameTime < minGameTime {
+            gameTime = minGameTime
+        }
+        
         maze.clearRandomWalls(actualWallsToClear)
+        
+        // initialize player and enemies, etc.
         
         player = PlayerView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
         
@@ -74,6 +86,8 @@ class GameManager: GameLoopDelegate {
         }
         
         gameLoop.delegate = self
+        
+        timer = GameTimer(timeLimit: gameTime)
     }
 
     func startGame()
