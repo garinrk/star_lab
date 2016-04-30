@@ -12,15 +12,19 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var tempViewController: GameViewController?
+//    var tempViewController: GameViewController?
+    var mainViewController : MainMenuViewController?
+    var mainNavController : UINavigationController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        tempViewController = GameViewController()
+        mainViewController = MainMenuViewController()
+        mainNavController = UINavigationController(rootViewController: mainViewController!)
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        window?.rootViewController = tempViewController
+        window?.rootViewController = mainNavController
 
-        tempViewController!.view.backgroundColor = UIColor(white: 1, alpha: 0)
+//        mainViewController!.view.backgroundColor = UIColor(white: 1, alpha: 0)
         
         window?.makeKeyAndVisible()
         
