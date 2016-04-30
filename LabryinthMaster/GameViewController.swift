@@ -118,6 +118,12 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     {
         return getMazeCellAtX(gameManager.player.cellX, Y: gameManager.player.cellY)!
     }
+
+    func reportPlayerCollision()
+    {
+        gameManager.kill()
+    }
+
     
     // MARK: PlayerDelegate functions
     func detectCollisionFromPlayer(square: CGRect) -> Collision
@@ -129,6 +135,13 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gameManager.coinCollected()
         audioManager.PlayAudio(SoundType.FX1)
         scoreLabel.text = "SCORE: \(gameManager.score)"
+    }
+    func reportNewColliderPosition(position: CGRect)
+    {
+        for enemy in gameManager.enemies
+        {
+            enemy.updatePlayerCollisionLoc(position)
+        }
     }
     
     // MARK: MazeManagerDelegate functions

@@ -73,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				0CCC74AA1CD405CD00FF9895 /* MazeViewCellPriorityQueue.swift */,
+				0C97F9841CCDC74000C7C2CD /* Collision.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -107,36 +108,25 @@
 			path = LabryinthMaster;
 			sourceTree = "<group>";
 		};
-		453B5D2F1CB85C2E00FF61F8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				185EFC011CCACFA800C3F3BB /* GameManager.swift */,
-				187AFA681CBEF2DB00750D79 /* GameLoop.swift */,
-				0C97F9841CCDC74000C7C2CD /* Collision.swift */,
-				0C5EF7F61CB9CA8200707CFF /* Maze.swift */,
-				4553B6E71CCAD3710010C746 /* Gyro.swift */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		453B5D301CB85C3200FF61F8 /* Views */ = {
+		453B5D301CB85C3200FF61F8 /* Game Objects */ = {
 			isa = PBXGroup;
 			children = (
 				0C5EF7F81CB9D0A700707CFF /* MazeView.swift */,
+				0C5EF7F61CB9CA8200707CFF /* Maze.swift */,
 				187AFA6A1CBEF5EF00750D79 /* EnemyView.swift */,
 				4553B6E81CCAD3710010C746 /* PlayerView.swift */,
 			);
-			name = Views;
+			name = "Game Objects";
 			sourceTree = "<group>";
 		};
 		453B5D311CB85C3800FF61F8 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				185EFC011CCACFA800C3F3BB /* GameManager.swift */,
 				4553B6E61CCAD3710010C746 /* GameViewController.swift */,
-				457B672B1CD426D600EE127D /* Managers */,
+				453B5D301CB85C3200FF61F8 /* Game Objects */,
+				457B672B1CD426D600EE127D /* Device Managers */,
 				0CCC74AC1CD405F200FF9895 /* Helpers */,
-				453B5D2F1CB85C2E00FF61F8 /* Model */,
-				453B5D301CB85C3200FF61F8 /* Views */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -155,12 +145,14 @@
 			name = Audio;
 			sourceTree = "<group>";
 		};
-		457B672B1CD426D600EE127D /* Managers */ = {
+		457B672B1CD426D600EE127D /* Device Managers */ = {
 			isa = PBXGroup;
 			children = (
 				457B672E1CD426FE00EE127D /* AudioManager.swift */,
+				187AFA681CBEF2DB00750D79 /* GameLoop.swift */,
+				4553B6E71CCAD3710010C746 /* Gyro.swift */,
 			);
-			name = Managers;
+			name = "Device Managers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

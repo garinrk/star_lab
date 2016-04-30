@@ -15,6 +15,7 @@ protocol EnemyViewDelegate: class {
     func getMazeCellSize() -> CGSize
     func detectCollisionFromEnemy(square: CGRect) -> Collision
 	func getPlayerCell() -> MazeViewCell
+    func reportPlayerCollision()
 }
 
 class EnemyView: UIView {
@@ -68,6 +69,8 @@ class EnemyView: UIView {
     
     private var enemyWidth: CGFloat!
     private var enemyHeight: CGFloat!
+    
+    private var playerCollisionBox: CGRect!
     
     weak var delegate: EnemyViewDelegate? = nil
     
@@ -155,6 +158,19 @@ class EnemyView: UIView {
             else if coll.east || coll.north || coll.south || coll.west
             {
                 setCollision()
+            }
+            
+            
+            // check for player collision
+            if playerCollisionBox != nil {
+                
+                if playerCollisionBox.midX >= rect.minX && playerCollisionBox.midX <= rect.maxX
+                {
+                    if playerCollisionBox.midY >= rect.minY && playerCollisionBox.midY <= rect.maxY
+                    {
+                        delegate!.reportPlayerCollision()
+                    }
+                }
             }
         }
     }
@@ -430,7 +446,12 @@ class EnemyView: UIView {
             break
         }
     }
-    
+
+    func updatePlayerCollisionLoc(location: CGRect)
+    {
+        playerCollisionBox = location
+    }
+
     func update()
     {
         let currentTime: NSDate = NSDate()
@@ -442,4 +463,5 @@ class EnemyView: UIView {
         
         setNeedsDisplay()
     }
+    
 }

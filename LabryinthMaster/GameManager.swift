@@ -79,6 +79,9 @@ class GameManager: GameLoopDelegate {
         mazeNeedsRedraw = true
     }
     
+    func kill()
+    {
+    }
     
     // MARK: GameLoopDelegate functions
     
