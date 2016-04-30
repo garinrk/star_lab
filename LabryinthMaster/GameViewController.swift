@@ -9,15 +9,15 @@
 import UIKit
 import CoreMotion
 
-class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, GameManagerDelegate {
+class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, GameManagerDelegate, GameTimerDelegate {
     let screenRect = UIScreen.mainScreen().bounds
     var gyroManager : Gyro?
     
     var scoreLabel: UILabel!
+    var timerLabel: UILabel!
     var mazeView: MazeView!
     var gameManager: GameManager!
     var audioManager: AudioManager!
-    
     
     override func loadView() {
         super.loadView()
@@ -32,6 +32,16 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gameManager.delegate = self
         
         makeNewLevel()
+        
+        scoreLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 75.0, width: screenRect.width, height: 80.0))
+        scoreLabel.textColor = UIColor.whiteColor()
+        scoreLabel.text = "SCORE: \(gameManager.score)"
+        view.addSubview(scoreLabel)
+        
+        timerLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 115.0, width: screenRect.width, height: 80.0))
+        timerLabel.textColor = UIColor.whiteColor()
+        timerLabel.text = "TIME: \(gameManager.timeLeft)"
+        view.addSubview(timerLabel)
     }
     
     override func viewDidLoad() {
@@ -72,14 +82,11 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         view.addSubview(gameManager.player)
         gameManager.player.delegate = self
         
+        gameManager.timer.delegate = self
+        
         // start the game
         
         gameManager.startGame()
-        
-        scoreLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 75.0, width: screenRect.width, height: 80.0))
-        scoreLabel.textColor = UIColor.whiteColor()
-        scoreLabel.text = "SCORE: \(gameManager.score)"
-        view.addSubview(scoreLabel)
     }
     
     
@@ -176,4 +183,17 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     {
         mazeView.setNeedsDisplay()
     }
+    
+    // MARK: GameTimerDelegate functions
+    func updateTime(time: Int)
+    {
+        gameManager.timeLeft = time
+        if time <= 0
+        {
+            audioManager.PlayAudio(SoundType.OutOfTime)
+            gameManager.kill()
+            makeNewLevel()
+        }
+    }
+
 }

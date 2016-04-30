@@ -1,6 +1,6 @@
 //
-//  Timer.swift
-//  Movement_Test
+//  GameTimer.swift
+//  LabyrinthMaster
 //
 //  Created by Garin Richards on 4/29/16.
 //  Copyright © 2016 Garin Richards. All rights reserved.
@@ -8,29 +8,35 @@
 
 import Foundation
 
-class GameTime{
+protocol GameTimerDelegate: class {
+    func updateTime(time: Int)
+}
+
+class GameTimer{
     
     //get the timelimit from the game manager
-    var timeLimit = 10
+    let timeLimit: Int
+    var currentTime: Int
     var gameTimer : NSTimer!
     
-    init(){
-        gameTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameTime.TimerUpdate), userInfo: nil, repeats: true)
+    weak var delegate: GameTimerDelegate? = nil
+    
+    init(timeLimit: Int){
+        self.timeLimit = timeLimit
+        currentTime = timeLimit
+        gameTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameTimer.TimerUpdate), userInfo: nil, repeats: true)
     }
     
     @objc func TimerUpdate(){
-        timeLimit -= 1
-        print("time: \(timeLimit)")
-        if timeLimit <= 5{
+        currentTime -= 1
+        if timeLimit <= 0{
             StopTimer()
         }
-        print("Update")
-        
+        delegate?.updateTime(currentTime)
     }
     
     func StopTimer(){
         gameTimer.invalidate()
-        
     }
     
 }
