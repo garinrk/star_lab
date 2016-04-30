@@ -99,6 +99,8 @@ class GameManager: GameLoopDelegate {
         }
         
         player.start()
+        
+        timer.StartTimer()
     }
     
     func coinCollected()
@@ -113,6 +115,7 @@ class GameManager: GameLoopDelegate {
     
     func kill()
     {
+        timer.StopTimer()
         score = 0
     }
     

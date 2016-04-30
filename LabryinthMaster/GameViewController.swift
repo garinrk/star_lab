@@ -40,7 +40,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         
         timerLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 115.0, width: screenRect.width, height: 80.0))
         timerLabel.textColor = UIColor.whiteColor()
-        timerLabel.text = "TIME: \(gameManager.timeLeft)"
+        timerLabel.text = "TIME LEFT: \(gameManager.timeLeft)"
         view.addSubview(timerLabel)
     }
     
@@ -57,7 +57,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func makeNewLevel()
     {
         gameManager.makeNewLevel()
-        
         
         // initialize maze view
         
@@ -188,6 +187,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func updateTime(time: Int)
     {
         gameManager.timeLeft = time
+        timerLabel.text = "TIME LEFT: \(gameManager.timeLeft)"
         if time <= 0
         {
             audioManager.PlayAudio(SoundType.OutOfTime)

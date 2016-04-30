@@ -118,7 +118,7 @@ class ScoreManager {
            returnArray = NSMutableArray(contentsOfFile: filePath!)!
         }
         
-        var data = returnArray as AnyObject as! [String]
+//        var data = returnArray as AnyObject as! [String]
         
         
         return loadedData!

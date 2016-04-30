@@ -24,6 +24,9 @@ class GameTimer{
     init(timeLimit: Int){
         self.timeLimit = timeLimit
         currentTime = timeLimit
+    }
+    
+    func StartTimer() {
         gameTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameTimer.TimerUpdate), userInfo: nil, repeats: true)
     }
     
