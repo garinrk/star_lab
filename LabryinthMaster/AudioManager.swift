@@ -11,35 +11,31 @@ import AVFoundation
 
 enum SoundType{
     case MainMusic
-    case ConfirmSound
-    case RejectSound
-    case FX1
-    case FX2
-    case FX3
-    case FX4
-    case FX5
+    case Confirm
+    case EnemyKill
+    case Coin
+    case Win
+    case OutOfTime
+    case StartLevel
 }
 
 class AudioManager : NSObject{
     
     var mainMusicPlayer : AVAudioPlayer!
     var confirmPlayer : AVAudioPlayer!
-    var rejectPlayer : AVAudioPlayer!
-    
-    var fx1Player : AVAudioPlayer!
-    var fx2Player : AVAudioPlayer!
-    var fx3Player : AVAudioPlayer!
-    var fx4Player : AVAudioPlayer!
-    var fx5Player : AVAudioPlayer!
+    var enemyKillPlayer : AVAudioPlayer!
+    var coinPlayer : AVAudioPlayer!
+    var winPlayer : AVAudioPlayer!
+    var outOfTimePlayer : AVAudioPlayer!
+    var startLevel : AVAudioPlayer!
     
     var mainMusicVolume : Float = 1.0
     var confirmVolume : Float = 0.75
-    var rejectVolume : Float = 0.75
-    var fx1Volume : Float = 0.5
-    var fx2Volume : Float = 0.5
-    var fx3Volume : Float = 0.5
-    var fx4Volume : Float = 0.5
-    var fx5Volume : Float = 0.5
+    var enemyKillVolume : Float = 0.75
+    var coinVolume : Float = 0.5
+    var winVolume : Float = 0.5
+    var outOfTimeVolume : Float = 0.5
+    var startLevelVolume : Float = 0.5
     
     
     override init(){
@@ -58,35 +54,35 @@ class AudioManager : NSObject{
             print("could not read main Music file")
             return
         }
-        guard let confirmURL = NSBundle.mainBundle().URLForResource("confirm", withExtension: "mp3") else {
+        guard let confirmURL = NSBundle.mainBundle().URLForResource("menu", withExtension: "wav") else {
             print("could not read confirm file")
             return
         }
         
-        guard let rejectURL = NSBundle.mainBundle().URLForResource("reject", withExtension: "mp3") else {
+        guard let rejectURL = NSBundle.mainBundle().URLForResource("reject", withExtension: "wav") else {
             print("could not read reject file")
             return
         }
         
-        guard let fx1URL = NSBundle.mainBundle().URLForResource("fx1", withExtension: "mp3") else {
+        guard let fx1URL = NSBundle.mainBundle().URLForResource("fx1", withExtension: "wav") else {
             print("could not read fx1 file")
             return
         }
         
-        guard let fx2URL = NSBundle.mainBundle().URLForResource("fx2", withExtension: "mp3") else {
+        guard let fx2URL = NSBundle.mainBundle().URLForResource("fx2", withExtension: "wav") else {
             print("could not read fx2 file")
             return
         }
-        guard let fx3URL = NSBundle.mainBundle().URLForResource("fx3", withExtension: "mp3") else {
+        guard let fx3URL = NSBundle.mainBundle().URLForResource("fx3", withExtension: "wav") else {
             print("could not read fx3 file")
             return
         }
-        guard let fx4URL = NSBundle.mainBundle().URLForResource("fx4", withExtension: "mp3") else {
+        guard let fx4URL = NSBundle.mainBundle().URLForResource("fx4", withExtension: "wav") else {
             print("could not read fx4 file")
             return
         }
         
-        guard let fx5URL = NSBundle.mainBundle().URLForResource("fx5", withExtension: "mp3") else {
+        guard let fx5URL = NSBundle.mainBundle().URLForResource("fx5", withExtension: "wav") else {
             print("could not read fx5 file")
             return
         }

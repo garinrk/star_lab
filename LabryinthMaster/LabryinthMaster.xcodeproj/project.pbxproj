@@ -30,13 +30,6 @@
 		4553B6E91CCAD3710010C746 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4553B6E61CCAD3710010C746 /* GameViewController.swift */; };
 		4553B6EA1CCAD3710010C746 /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4553B6E71CCAD3710010C746 /* Gyro.swift */; };
 		4553B6EB1CCAD3710010C746 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4553B6E81CCAD3710010C746 /* PlayerView.swift */; };
-		457B67241CD426C800EE127D /* confirm.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B671D1CD426C800EE127D /* confirm.mp3 */; };
-		457B67251CD426C800EE127D /* fx1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B671E1CD426C800EE127D /* fx1.mp3 */; };
-		457B67261CD426C800EE127D /* fx2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B671F1CD426C800EE127D /* fx2.mp3 */; };
-		457B67271CD426C800EE127D /* fx3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67201CD426C800EE127D /* fx3.mp3 */; };
-		457B67281CD426C800EE127D /* fx4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67211CD426C800EE127D /* fx4.mp3 */; };
-		457B67291CD426C800EE127D /* fx5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67221CD426C800EE127D /* fx5.mp3 */; };
-		457B672A1CD426C800EE127D /* reject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67231CD426C800EE127D /* reject.mp3 */; };
 		457B672F1CD426FE00EE127D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B672E1CD426FE00EE127D /* AudioManager.swift */; };
 		457B67311CD4292000EE127D /* mainMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67301CD4292000EE127D /* mainMusic.mp3 */; };
 /* End PBXBuildFile section */
@@ -67,13 +60,6 @@
 		4553B6E61CCAD3710010C746 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4553B6E71CCAD3710010C746 /* Gyro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
 		4553B6E81CCAD3710010C746 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
-		457B671D1CD426C800EE127D /* confirm.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = confirm.mp3; path = Audio/confirm.mp3; sourceTree = "<group>"; };
-		457B671E1CD426C800EE127D /* fx1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fx1.mp3; path = Audio/fx1.mp3; sourceTree = "<group>"; };
-		457B671F1CD426C800EE127D /* fx2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fx2.mp3; path = Audio/fx2.mp3; sourceTree = "<group>"; };
-		457B67201CD426C800EE127D /* fx3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fx3.mp3; path = Audio/fx3.mp3; sourceTree = "<group>"; };
-		457B67211CD426C800EE127D /* fx4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fx4.mp3; path = Audio/fx4.mp3; sourceTree = "<group>"; };
-		457B67221CD426C800EE127D /* fx5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = fx5.mp3; path = Audio/fx5.mp3; sourceTree = "<group>"; };
-		457B67231CD426C800EE127D /* reject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = reject.mp3; path = Audio/reject.mp3; sourceTree = "<group>"; };
 		457B672E1CD426FE00EE127D /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		457B67301CD4292000EE127D /* mainMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mainMusic.mp3; path = Audio/mainMusic.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,13 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				457B67301CD4292000EE127D /* mainMusic.mp3 */,
-				457B671D1CD426C800EE127D /* confirm.mp3 */,
-				457B671E1CD426C800EE127D /* fx1.mp3 */,
-				457B671F1CD426C800EE127D /* fx2.mp3 */,
-				457B67201CD426C800EE127D /* fx3.mp3 */,
-				457B67211CD426C800EE127D /* fx4.mp3 */,
-				457B67221CD426C800EE127D /* fx5.mp3 */,
-				457B67231CD426C800EE127D /* reject.mp3 */,
 				457B671C1CD426C000EE127D /* Audio */,
 				453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */,
 				453B5D241CB85C0600FF61F8 /* Assets.xcassets */,
@@ -259,15 +238,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				457B67291CD426C800EE127D /* fx5.mp3 in Resources */,
-				457B67271CD426C800EE127D /* fx3.mp3 in Resources */,
-				457B67251CD426C800EE127D /* fx1.mp3 in Resources */,
 				453B5D251CB85C0600FF61F8 /* Assets.xcassets in Resources */,
 				0C5EF7FB1CB9DC9B00707CFF /* Default-568h@2x.png in Resources */,
-				457B672A1CD426C800EE127D /* reject.mp3 in Resources */,
-				457B67281CD426C800EE127D /* fx4.mp3 in Resources */,
-				457B67261CD426C800EE127D /* fx2.mp3 in Resources */,
-				457B67241CD426C800EE127D /* confirm.mp3 in Resources */,
 				457B67311CD4292000EE127D /* mainMusic.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

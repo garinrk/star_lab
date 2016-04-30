@@ -125,6 +125,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
 
     func reportPlayerCollision()
     {
+        
         gameManager.kill()
     }
 
