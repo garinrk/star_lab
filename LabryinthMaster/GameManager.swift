@@ -22,6 +22,7 @@ class GameManager: GameLoopDelegate {
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
     private let enemyAmt: Int = 4
+    private let maxEnemyAmt: Int = 10
     let coinAmt: Int = 30
     private let coinScoreAmt: Int = 1
     private let wallsToClear: Int = 350
@@ -60,12 +61,16 @@ class GameManager: GameLoopDelegate {
         maze = Maze()
         
         let actualWallsToClear: Int = wallsToClear - (levelProgressionAmt * (currentLevel-1))
-        let enemiesToMake: Int = enemyAmt + currentLevel
+        var enemiesToMake: Int = enemyAmt + currentLevel
+        if enemiesToMake > maxEnemyAmt {
+            enemiesToMake = maxEnemyAmt
+        }
         
         maze.clearRandomWalls(actualWallsToClear)
         
         player = PlayerView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
         
+        enemies = []
         for _ in 0 ..< enemiesToMake {
             enemies.append(EnemyView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width)))
         }
