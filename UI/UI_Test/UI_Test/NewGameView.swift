@@ -32,7 +32,6 @@ class NewGameView : UIView{
         playerNameLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 100)
         playerNameLabel.text = "Player Name"
         playerNameLabel.adjustsFontSizeToFitWidth = true
-//        playerNameLabel.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.30,CGRectGetMaxY(self.frame) * 0.70)
         playerNameLabel.textAlignment = .Center
         playerNameLabel.center.x = screenRect.midX
         playerNameLabel.center.y = screenRect.midY

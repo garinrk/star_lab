@@ -23,6 +23,8 @@
 		455FC2551CC5931C00D7E501 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FC2541CC5931C00D7E501 /* OptionsView.swift */; };
 		45ADE6601CC8766C002BD040 /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADE65F1CC8766C002BD040 /* NewGameView.swift */; };
 		45ADE6621CC87674002BD040 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADE6611CC87674002BD040 /* NewGameViewController.swift */; };
+		45E342A91CD559E4009692B7 /* LevelCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E342A81CD559E4009692B7 /* LevelCompleteView.swift */; };
+		45E342AB1CD559EB009692B7 /* LevelCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E342AA1CD559EB009692B7 /* LevelCompleteViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		455FC2541CC5931C00D7E501 /* OptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		45ADE65F1CC8766C002BD040 /* NewGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
 		45ADE6611CC87674002BD040 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
+		45E342A81CD559E4009692B7 /* LevelCompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompleteView.swift; sourceTree = "<group>"; };
+		45E342AA1CD559EB009692B7 /* LevelCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompleteViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 				455FC2521CC5931400D7E501 /* OptionsViewController.swift */,
 				4537186D1CC855C400B1E9A7 /* PauseViewController.swift */,
 				45ADE6611CC87674002BD040 /* NewGameViewController.swift */,
+				45E342AA1CD559EB009692B7 /* LevelCompleteViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 				455FC2541CC5931C00D7E501 /* OptionsView.swift */,
 				4537186F1CC855CA00B1E9A7 /* PauseView.swift */,
 				45ADE65F1CC8766C002BD040 /* NewGameView.swift */,
+				45E342A81CD559E4009692B7 /* LevelCompleteView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -188,11 +194,13 @@
 				455FC24B1CC58A8900D7E501 /* MainMenuViewController.swift in Sources */,
 				455FC2511CC592D200D7E501 /* HighScoresView.swift in Sources */,
 				453718701CC855CA00B1E9A7 /* PauseView.swift in Sources */,
+				45E342AB1CD559EB009692B7 /* LevelCompleteViewController.swift in Sources */,
 				452353121CC43CD500878B8F /* ViewController.swift in Sources */,
 				455FC2551CC5931C00D7E501 /* OptionsView.swift in Sources */,
 				455FC2531CC5931400D7E501 /* OptionsViewController.swift in Sources */,
 				455FC24F1CC592C700D7E501 /* HighScoresViewController.swift in Sources */,
 				452353281CC43F0C00878B8F /* TestView.swift in Sources */,
+				45E342A91CD559E4009692B7 /* LevelCompleteView.swift in Sources */,
 				45ADE6621CC87674002BD040 /* NewGameViewController.swift in Sources */,
 				452353241CC43DCF00878B8F /* TestViewController.swift in Sources */,
 				452353261CC43EA800878B8F /* MainMenuView.swift in Sources */,
