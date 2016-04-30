@@ -133,16 +133,16 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     {
         return mazeView.detectCollisionWithRect(square)
     }
-    func coinCollected(coinTag: Int)
+    func coinCollected(coll: Collision)
     {
         for coinView in mazeView.subviews{
-            if coinView.tag == coinTag
+            if coinView.tag == coll.collisionTag
             {
                 coinView.setNeedsDisplay()
             }
         }
+        mazeView.cells["\(coll.cellX),\(coll.cellY)"]?.hasCoin = false        
         gameManager.coinCollected()
-//        occupyingCell!.hasCoin = false
         audioManager.PlayAudio(SoundType.Coin)
         scoreLabel.text = "SCORE: \(gameManager.score)"
     }
