@@ -14,8 +14,32 @@ struct ScoreInfo {
     var timestamp: NSDate
 }
 
+enum Difficulty{
+    case Hard
+    case Easy
+}
+
 
 class ScoreManager {
+    
+    private var _effectsSoundLevel : Float?
+    private var _musicSoundLevel : Float?
+    
+    
+    
+    class var sharedInstance : ScoreManager{
+        
+        struct Static{
+            static var instance : ScoreManager?
+        }
+        
+        if(Static.instance == nil)
+        {
+            Static.instance = ScoreManager()
+        }
+        
+        return Static.instance!
+    }
     
     var scores: [ScoreInfo]?
     
