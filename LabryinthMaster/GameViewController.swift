@@ -30,38 +30,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         audioManager = AudioManager()
         gameManager = GameManager()
         gameManager.delegate = self
-        
-        // initialize maze view
-        
-        mazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
-        for cell in gameManager.maze.cells {
-            mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
-        }
-        for _ in 0 ..< gameManager.coinAmt {
-            mazeView.placeRandomCoin()
-        }
-
-        mazeView.placeGoalX(29, Y: 29)
-        
-        // add subviews and assign delegates
-
-        view.addSubview(mazeView)
-
-        for enemy in gameManager.enemies {
-            view.addSubview(enemy)
-            enemy.delegate = self
-        }
-        view.addSubview(gameManager.player)
-        gameManager.player.delegate = self
-
-        // start the game
-        
-        gameManager.startGame()
-        
-        scoreLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 75.0, width: screenRect.width, height: 80.0))
-        scoreLabel.textColor = UIColor.whiteColor()
-        scoreLabel.text = "SCORE: \(gameManager.score)"
-        view.addSubview(scoreLabel)
     }
     
     override func viewDidLoad() {
@@ -73,6 +41,46 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gyroManager?.delegate = self
         gyroManager?.Start()
     }
+    
+    func makeNewLevel()
+    {
+        gameManager.makeNewLevel()
+        
+        
+        // initialize maze view
+        
+        mazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
+        for cell in gameManager.maze.cells {
+            mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
+        }
+        for _ in 0 ..< gameManager.coinAmt {
+            mazeView.placeRandomCoin()
+        }
+        
+        mazeView.placeGoalX(29, Y: 29)
+        
+        // add subviews and assign delegates
+        
+        view.addSubview(mazeView)
+        
+        for enemy in gameManager.enemies {
+            view.addSubview(enemy)
+            enemy.delegate = self
+        }
+        view.addSubview(gameManager.player)
+        gameManager.player.delegate = self
+        
+        // start the game
+        
+        gameManager.startGame()
+        
+        scoreLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 75.0, width: screenRect.width, height: 80.0))
+        scoreLabel.textColor = UIColor.whiteColor()
+        scoreLabel.text = "SCORE: \(gameManager.score)"
+        view.addSubview(scoreLabel)
+    }
+    
+    
     
     // MARK: GyroDelegate functions
     
@@ -125,6 +133,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     {
         audioManager.PlayAudio(SoundType.EnemyKill)
         gameManager.kill()
+        makeNewLevel()
     }
 
     
@@ -156,6 +165,8 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func goalReached()
     {
         audioManager.PlayAudio(SoundType.Win)
+        gameManager.win()
+        makeNewLevel()
     }
     
     // MARK: GameManagerDelegate functions
