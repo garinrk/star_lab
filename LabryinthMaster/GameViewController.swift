@@ -30,6 +30,8 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         audioManager = AudioManager()
         gameManager = GameManager()
         gameManager.delegate = self
+        
+        makeNewLevel()
     }
     
     override func viewDidLoad() {
