@@ -36,6 +36,11 @@ class ScoreManager {
     private var _effectsSoundLevel : Float?
     private var _musicSoundLevel : Float?
     private var _gameDifficulty : Difficulty = .Temp
+    private var _lifetimeScore : Int?
+    private var _levelsComplete : Int?
+    private var _playerName : String?
+    
+    
     
     class var sharedInstance : ScoreManager{
         
@@ -101,17 +106,22 @@ class ScoreManager {
      
      - returns: <#return value description#>
      */
-    func LoadSessionData(sessionID: String) -> NSMutableArray?{
+    func LoadSessionData(sessionID: String) -> SessionData{
         let documentsDirectory: String? = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String?
         let filePath: String? = documentsDirectory?.stringByAppendingString("/LabData.plist")
         
+        var returnArray : NSMutableArray
+        
+        var loadedData : SessionData?
+        
         if filePath != nil {
-            return NSMutableArray(contentsOfFile: filePath!)
+           returnArray = NSMutableArray(contentsOfFile: filePath!)!
         }
-        else
-        {
-            return nil
-        }
+        
+        var data = returnArray as AnyObject as! [String]
+        
+        
+        return loadedData!
     }
     
 
