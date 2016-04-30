@@ -15,7 +15,11 @@ enum DifficultyMode {
 
 protocol GameManagerDelegate: class {
 //    func redrawMaze()
+    func GameOverCall()
+    func WinGameCall()
 }
+
+
 
 class GameManager: GameLoopDelegate {
     
@@ -52,6 +56,10 @@ class GameManager: GameLoopDelegate {
     var currentGyroMagY: CGFloat = 0
     
     let gameLoop: GameLoop = GameLoop()
+    
+    private var dead: Bool = false
+    
+    private var gameOverController : GameOverViewController?
     
     func makeNewLevel()
     {
@@ -92,6 +100,8 @@ class GameManager: GameLoopDelegate {
 
     func startGame()
     {
+        dead = false
+        
         gameLoop.start()
         
         for enemy in enemies {
@@ -112,18 +122,29 @@ class GameManager: GameLoopDelegate {
     {
         timer.StopTimer()
         currentLevel += 1
+        gameLoop.stop()
+        delegate?.WinGameCall()
     }
     
     func kill()
     {
+        dead = true
+        
         timer.StopTimer()
         score = 0
         currentLevel = 1
+        gameLoop.stop()
+        delegate?.GameOverCall()
     }
+    
+    
     
     // MARK: GameLoopDelegate functions
     
     func update() {
+        if dead{
+            return
+        }
         
         player.moveX(currentGyroMagX, Y: currentGyroMagY)
         player.update()

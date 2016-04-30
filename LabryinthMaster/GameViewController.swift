@@ -20,6 +20,9 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     var gameManager: GameManager!
     var audioManager: AudioManager!
     
+    var gameOverController : GameOverViewController?
+    var levelCompleteController : LevelCompleteViewController?
+    
     override func loadView() {
         super.loadView()
         
@@ -194,6 +197,21 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
 //        mazeView.setNeedsDisplay()
 //    }
     
+    
+    func GameOverCall(){
+    
+        gameOverController = GameOverViewController()
+        audioManager.StopAllAudio()
+        self.navigationController?.pushViewController(gameOverController!, animated: true)
+        
+    }
+    
+    func WinGameCall(){
+        levelCompleteController = LevelCompleteViewController()
+        audioManager.StopAllAudio()
+        self.navigationController?.pushViewController(levelCompleteController!, animated: true)
+    }
+    
     // MARK: GameTimerDelegate functions
     func updateTime(time: Int)
     {
@@ -206,5 +224,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
             makeNewLevel()
         }
     }
+    
+    
 
 }

@@ -18,7 +18,7 @@ class GameOverViewController : UIViewController{
     override func viewDidLoad() {
         
         gameOverView.frame = UIScreen.mainScreen().bounds
-        gameOverView.backgroundColor = UIColor.brownColor()
+        gameOverView.backgroundColor = UIColor(white: 1, alpha: 0.5)
         
         quitButton.frame = CGRectMake(50,50, 200, 50)
         quitButton.center = CGPointMake(CGRectGetMidX(screenRect) + 200, CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.90)

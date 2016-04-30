@@ -18,7 +18,7 @@ class LevelCompleteViewController : UIViewController{
     override func viewDidLoad() {
         
         completeView.frame = UIScreen.mainScreen().bounds
-        completeView.backgroundColor = UIColor.brownColor()
+        completeView.backgroundColor = UIColor(white: 0, alpha: 0.5)
         
         quitButton.frame = CGRectMake(50,50, 200, 50)
         quitButton.center = CGPointMake(CGRectGetMidX(screenRect) + 200, CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.90)
