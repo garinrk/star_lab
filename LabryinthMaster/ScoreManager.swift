@@ -17,6 +17,7 @@ struct ScoreInfo {
 enum Difficulty{
     case Hard
     case Easy
+    case Temp
 }
 
 
@@ -24,8 +25,7 @@ class ScoreManager {
     
     private var _effectsSoundLevel : Float?
     private var _musicSoundLevel : Float?
-    
-    
+    private var _gameDifficulty : Difficulty = .Temp
     
     class var sharedInstance : ScoreManager{
         
@@ -47,5 +47,9 @@ class ScoreManager {
     
     // needs a function to save/ load scores from plist
     
+//    override init(){
+//        //get the difficulty from the plist
+//    }
+//    
     
 }
