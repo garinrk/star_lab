@@ -78,7 +78,7 @@ class PlayerView : UIView{
             cellX = coll.cellX
             cellY = coll.cellY
             
-            delegate!.reportNewColliderPosition(rect)
+            delegate!.reportNewColliderPosition(square)
         }
         else {
             canMove = [true, true, true, true]

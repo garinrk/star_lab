@@ -74,10 +74,7 @@ class EnemyView: UIView {
     
     weak var delegate: EnemyViewDelegate? = nil
     
-//    private var enteredNewCell: Bool = false
     private var collided: Bool = false
-//    var centered: Bool = false
-//    private var centering: Bool = false
     
     override init(frame: CGRect) {
         horizVelocity = 0.0
@@ -164,10 +161,12 @@ class EnemyView: UIView {
             // check for player collision
             if playerCollisionBox != nil {
                 
-                if playerCollisionBox.midX >= rect.minX && playerCollisionBox.midX <= rect.maxX
+                if playerCollisionBox.midX >= square.minX && playerCollisionBox.midX <= square.maxX
                 {
-                    if playerCollisionBox.midY >= rect.minY && playerCollisionBox.midY <= rect.maxY
+                    if playerCollisionBox.midY >= square.minY && playerCollisionBox.midY <= square.maxY
                     {
+                        print("DEAD: enemy minX:\(square.minX) maxX:\(square.maxX)")
+                        print("player midX: \(playerCollisionBox.midX)")
                         delegate!.reportPlayerCollision()
                     }
                 }

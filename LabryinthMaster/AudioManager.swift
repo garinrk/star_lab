@@ -279,7 +279,7 @@ class AudioManager : NSObject{
 // MARK: AVAudioPlayerDelegate
 extension AudioManager : AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        print("finished playing \(flag)")
+//        print("finished playing \(flag)")
     }
     
     
