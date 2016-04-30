@@ -304,7 +304,6 @@ class MazeView: UIView {
             
             if cell.hasCoin == false {
                 cell.hasCoin = true
-//                cell.tag = 99
                 tryAgain = false
             }
         }

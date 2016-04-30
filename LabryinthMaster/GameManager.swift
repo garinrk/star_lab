@@ -47,20 +47,18 @@ class GameManager: GameLoopDelegate {
     var currentGyroMagY: CGFloat = 0
     
     private var currentLevel: Int = 1
-//    private var mazeNeedsRedraw: Bool = false
     
     let gameLoop: GameLoop = GameLoop()
-
-//    init()
-//    {
-//
-//    }
     
     func makeNewLevel()
     {
         maze = Maze()
         
-        let actualWallsToClear: Int = wallsToClear - (levelProgressionAmt * (currentLevel-1))
+        var actualWallsToClear: Int = wallsToClear - (levelProgressionAmt * (currentLevel-1))
+        if actualWallsToClear < 0 {
+            actualWallsToClear = 0
+        }
+        
         var enemiesToMake: Int = enemyAmt + currentLevel
         if enemiesToMake > maxEnemyAmt {
             enemiesToMake = maxEnemyAmt
@@ -92,7 +90,6 @@ class GameManager: GameLoopDelegate {
     func coinCollected()
     {
         score += coinScoreAmt
-//        mazeNeedsRedraw = true
     }
     
     func win()
@@ -108,12 +105,6 @@ class GameManager: GameLoopDelegate {
     // MARK: GameLoopDelegate functions
     
     func update() {
-//        if mazeNeedsRedraw {
-//            delegate?.redrawMaze()
-//            mazeNeedsRedraw = false
-//        }
-//        delegate?.redrawMaze()
-
         
         player.moveX(currentGyroMagX, Y: currentGyroMagY)
         player.update()
