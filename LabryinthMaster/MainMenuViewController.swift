@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainMenuViewController : UIViewController{
+class MainMenuViewController : UIViewController, AudioDelegate{
     
     var mmview = MainMenuView()
     
@@ -83,6 +83,7 @@ class MainMenuViewController : UIViewController{
     
     func OptionsButtonPressed(){
         ovc = OptionsViewController()
+        ovc?.delegate = self
         
         print("Presenting Options")
         self.navigationController?.pushViewController(ovc!, animated: true)
@@ -90,6 +91,14 @@ class MainMenuViewController : UIViewController{
     
     func ScoresButtonPressed(){
         print("High Scores")
+        
+    }
+    
+    func SetFXLevel(newLevel: Float) {
+        
+    }
+    
+    func SetMusicLevel(newLevel: Float) {
         
     }
 }
