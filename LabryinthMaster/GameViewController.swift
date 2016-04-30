@@ -153,6 +153,10 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
             enemy.updatePlayerCollisionLoc(position)
         }
     }
+    func goalReached()
+    {
+        audioManager.PlayAudio(SoundType.Win)
+    }
     
     // MARK: GameManagerDelegate functions
     func redrawMaze()
