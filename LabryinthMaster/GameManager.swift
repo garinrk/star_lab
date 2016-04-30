@@ -21,10 +21,11 @@ class GameManager: GameLoopDelegate {
     
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
-    private let enemyAmt: Int = 5
+    private let enemyAmt: Int = 4
     let coinAmt: Int = 30
     private let coinScoreAmt: Int = 1
     private let wallsToClear: Int = 350
+    private let levelProgressionAmt: Int = 50
     
     ////////////////////////////////////////
     
@@ -35,8 +36,8 @@ class GameManager: GameLoopDelegate {
     var mode: DifficultyMode = DifficultyMode.Easy
     var playerName: String = ""
     var score: Int = 0
-    let maze: Maze
-    let player: PlayerView!
+    var maze: Maze!
+    var player: PlayerView!
     var enemies: [EnemyView] = []
 //    let timer: NSTimer // ? maybe something else, I did no research
     
@@ -44,24 +45,34 @@ class GameManager: GameLoopDelegate {
     var currentGyroMagX: CGFloat = 0
     var currentGyroMagY: CGFloat = 0
     
-    private var mazeNeedsRedraw: Bool = false
+    private var currentLevel: Int = 1
+//    private var mazeNeedsRedraw: Bool = false
     
     let gameLoop: GameLoop = GameLoop()
 
-    init()
+//    init()
+//    {
+//
+//    }
+    
+    func makeNewLevel()
     {
         maze = Maze()
-        maze.clearRandomWalls(wallsToClear)
+        
+        let actualWallsToClear: Int = wallsToClear - (levelProgressionAmt * (currentLevel-1))
+        let enemiesToMake: Int = enemyAmt + currentLevel
+        
+        maze.clearRandomWalls(actualWallsToClear)
         
         player = PlayerView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
         
-        for _ in 0 ..< enemyAmt {
+        for _ in 0 ..< enemiesToMake {
             enemies.append(EnemyView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width)))
         }
         
         gameLoop.delegate = self
     }
-    
+
     func startGame()
     {
         gameLoop.start()
@@ -76,11 +87,17 @@ class GameManager: GameLoopDelegate {
     func coinCollected()
     {
         score += coinScoreAmt
-        mazeNeedsRedraw = true
+//        mazeNeedsRedraw = true
+    }
+    
+    func win()
+    {
+        currentLevel += 1
     }
     
     func kill()
     {
+        score = 0
     }
     
     // MARK: GameLoopDelegate functions
@@ -90,7 +107,7 @@ class GameManager: GameLoopDelegate {
 //            delegate?.redrawMaze()
 //            mazeNeedsRedraw = false
 //        }
-        delegate?.redrawMaze()
+//        delegate?.redrawMaze()
 
         
         player.moveX(currentGyroMagX, Y: currentGyroMagY)

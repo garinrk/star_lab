@@ -179,8 +179,8 @@
 		453B5D311CB85C3800FF61F8 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				185EFC011CCACFA800C3F3BB /* GameManager.swift */,
 				4553B6E61CCAD3710010C746 /* GameViewController.swift */,
+				185EFC011CCACFA800C3F3BB /* GameManager.swift */,
 				453B5D301CB85C3200FF61F8 /* Game Objects */,
 				457B672B1CD426D600EE127D /* Device Managers */,
 				0CCC74AC1CD405F200FF9895 /* Helpers */,
