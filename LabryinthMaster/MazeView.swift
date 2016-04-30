@@ -14,6 +14,7 @@ class MazeViewCell: UIView {
     var south: Bool = true
     var west: Bool = true
     var hasCoin: Bool = false
+    var goal: Bool = false
     
     var label: Int = 0
     
@@ -21,10 +22,12 @@ class MazeViewCell: UIView {
     var y: Int = 0
     
     private var coinDiameter: CGFloat = 0
+    private var goalWidth: CGFloat = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         coinDiameter = bounds.width * 0.5
+        goalWidth = bounds.width * 0.85
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -99,6 +102,20 @@ class MazeViewCell: UIView {
             CGContextFillEllipseInRect(context, square)
         }
         
+        // draw exit
+        if goal {
+            let halfDifferenceWidth: CGFloat = (bounds.width - goalWidth) * 0.5
+            let halfDifferenceHeight: CGFloat = (bounds.height - goalWidth) * 0.5
+            
+            let x: CGFloat = bounds.minX + halfDifferenceWidth
+            let y: CGFloat = bounds.minY + halfDifferenceHeight
+            
+            let square: CGRect = CGRect(x: x, y: y, width: goalWidth, height: goalWidth)
+            CGContextSetFillColorWithColor(context, UIColor.blueColor().CGColor)
+            CGContextFillRect(context, square)
+
+        }
+        
         self.backgroundColor = UIColor(white: 1, alpha: 0)
     }
     
@@ -118,8 +135,6 @@ class MazeView: UIView {
     private var originCellCenter: CGPoint!
     
     private var cellLabeller: Int = 1
-    
-//    weak var delegate: MazeViewDelegate? = nil
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -179,9 +194,6 @@ class MazeView: UIView {
         }
         // now x should be the x-coordinate of the cell that rect.midX is touching
         
-//        let sizeDiffX = cellWidth - (rect.maxX - rect.minX)
-//        let touchingAnotherCellInX: Bool = remainderX > sizeDiffX
-
         var y = 0;
         var remainderY = rect.midY
         while remainderY > cellHeight
@@ -190,9 +202,6 @@ class MazeView: UIView {
             y += 1
         }
         
-//        let sizeDiffY = cellHeight - (rect.maxY - rect.minY)
-//        let touchingAnotherCellInY: Bool = remainderY > sizeDiffY
-        
         let occupyingCell: MazeViewCell? = cells["\(x),\(y)"]
         
         // coin collision
@@ -200,10 +209,13 @@ class MazeView: UIView {
         if occupyingCell != nil && occupyingCell!.hasCoin
         {
             coin = true
-            
-            occupyingCell!.hasCoin = false
-//            delegate?.coinCollected()
-//            setNeedsDisplay()
+        }
+        
+        // goal collision
+        var goal: Bool = false
+        if occupyingCell != nil && occupyingCell!.goal
+        {
+            goal = true
         }
         
         // check to see if object is centered in cell
@@ -276,7 +288,8 @@ class MazeView: UIView {
             collisionTag = occupyingCell!.label
         }
       
-        return Collision(north: north, east: east, south: south, west: west, coin: coin, cellX: x, cellY: y, centeredX: centeredX, centeredY: centeredY, collisionTag: collisionTag)
+      
+        return Collision(north: north, east: east, south: south, west: west, coin: coin, cellX: x, cellY: y, centeredX: centeredX, centeredY: centeredY, collisionTag: collisionTag, goal: goal)
     }
     
     func placeRandomCoin() {
@@ -295,7 +308,10 @@ class MazeView: UIView {
                 tryAgain = false
             }
         }
-        
+    }
+    
+    func placeGoalX(x: Int, Y y: Int) {
+        cells["\(x),\(y)"]?.goal = true
     }
     
     func getCellPosX(x: Int, Y y: Int) -> CGPoint

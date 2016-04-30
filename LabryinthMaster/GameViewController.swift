@@ -41,14 +41,12 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
             mazeView.placeRandomCoin()
         }
 
+        mazeView.placeGoalX(29, Y: 29)
+        
         // add subviews and assign delegates
 
         view.addSubview(mazeView)
-//        mazeView.delegate = self
-//        for coin in gameManager.coins {
-//            view.addSubview(coin)
-//            coin.delegate = self
-//        }
+
         for enemy in gameManager.enemies {
             view.addSubview(enemy)
             enemy.delegate = self
@@ -144,6 +142,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
             }
         }
         gameManager.coinCollected()
+//        occupyingCell!.hasCoin = false
         audioManager.PlayAudio(SoundType.Coin)
         scoreLabel.text = "SCORE: \(gameManager.score)"
     }
@@ -155,7 +154,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         }
     }
     
-    // MARK: MazeManagerDelegate functions
+    // MARK: GameManagerDelegate functions
     func redrawMaze()
     {
         mazeView.setNeedsDisplay()

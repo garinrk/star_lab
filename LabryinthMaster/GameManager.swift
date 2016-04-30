@@ -86,10 +86,12 @@ class GameManager: GameLoopDelegate {
     // MARK: GameLoopDelegate functions
     
     func update() {
-        if mazeNeedsRedraw {
-            delegate?.redrawMaze()
-            mazeNeedsRedraw = false
-        }
+//        if mazeNeedsRedraw {
+//            delegate?.redrawMaze()
+//            mazeNeedsRedraw = false
+//        }
+        delegate?.redrawMaze()
+
         
         player.moveX(currentGyroMagX, Y: currentGyroMagY)
         player.update()

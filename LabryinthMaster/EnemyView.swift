@@ -34,33 +34,8 @@ class EnemyView: UIView {
     private var xPos: CGFloat
     private var yPos: CGFloat
     
-    private var _cellX: Int = 0
-    private var _cellY: Int = 0
-    private var cellX: Int {
-        get {
-            return _cellX
-        }
-        set {
-            if newValue != _cellX
-            {
-                _cellX = newValue
-//                enteredNewCell = true
-            }
-        }
-    }
-    private var cellY: Int {
-        get {
-            return _cellY
-        }
-        set {
-            if newValue != _cellY
-            {
-                _cellY = newValue
-//                enteredNewCell = true
-            }
-
-        }
-    }
+    private var cellX: Int = 0
+    private var cellY: Int = 0
     
     private var horizVelocity: CGFloat
     private var vertVelocity: CGFloat
@@ -165,8 +140,6 @@ class EnemyView: UIView {
                 {
                     if playerCollisionBox.midY >= square.minY && playerCollisionBox.midY <= square.maxY
                     {
-                        print("DEAD: enemy minX:\(square.minX) maxX:\(square.maxX)")
-                        print("player midX: \(playerCollisionBox.midX)")
                         delegate!.reportPlayerCollision()
                     }
                 }

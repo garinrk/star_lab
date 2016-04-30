@@ -24,4 +24,6 @@ struct Collision {
     let centeredY: Bool
     
     let collisionTag : Int
+
+    let goal: Bool
 }
