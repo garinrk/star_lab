@@ -54,39 +54,39 @@ class AudioManager : NSObject{
     func LoadFilesIntoPlayers(){
         
         //Step 1: Get files
-        guard let mainMusicURL = NSBundle.mainBundle().URLForResource("Audio/mainMusic", withExtension: "mp3") else {
+        guard let mainMusicURL = NSBundle.mainBundle().URLForResource("mainMusic", withExtension: "mp3") else {
             print("could not read main Music file")
             return
         }
-        guard let confirmURL = NSBundle.mainBundle().URLForResource("Audio/confirm", withExtension: "mp3") else {
+        guard let confirmURL = NSBundle.mainBundle().URLForResource("confirm", withExtension: "mp3") else {
             print("could not read confirm file")
             return
         }
         
-        guard let rejectURL = NSBundle.mainBundle().URLForResource("Audio/confirm", withExtension: "mp3") else {
+        guard let rejectURL = NSBundle.mainBundle().URLForResource("reject", withExtension: "mp3") else {
             print("could not read reject file")
             return
         }
         
-        guard let fx1URL = NSBundle.mainBundle().URLForResource("Audio/fx1", withExtension: "mp3") else {
+        guard let fx1URL = NSBundle.mainBundle().URLForResource("fx1", withExtension: "mp3") else {
             print("could not read fx1 file")
             return
         }
         
-        guard let fx2URL = NSBundle.mainBundle().URLForResource("Audio/fx2", withExtension: "mp3") else {
+        guard let fx2URL = NSBundle.mainBundle().URLForResource("fx2", withExtension: "mp3") else {
             print("could not read fx2 file")
             return
         }
-        guard let fx3URL = NSBundle.mainBundle().URLForResource("Audio/fx3", withExtension: "mp3") else {
+        guard let fx3URL = NSBundle.mainBundle().URLForResource("fx3", withExtension: "mp3") else {
             print("could not read fx3 file")
             return
         }
-        guard let fx4URL = NSBundle.mainBundle().URLForResource("Audio/fx4", withExtension: "mp3") else {
+        guard let fx4URL = NSBundle.mainBundle().URLForResource("fx4", withExtension: "mp3") else {
             print("could not read fx4 file")
             return
         }
         
-        guard let fx5URL = NSBundle.mainBundle().URLForResource("Audio/fx5", withExtension: "mp3") else {
+        guard let fx5URL = NSBundle.mainBundle().URLForResource("fx5", withExtension: "mp3") else {
             print("could not read fx5 file")
             return
         }

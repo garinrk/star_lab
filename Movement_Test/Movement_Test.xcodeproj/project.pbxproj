@@ -82,6 +82,13 @@
 		453B5CFE1CB85BEF00FF61F8 /* Movement_Test */ = {
 			isa = PBXGroup;
 			children = (
+				45FD948C1CD41F1700D291E6 /* fx1.mp3 */,
+				45FD94801CD41F0600D291E6 /* confirm.mp3 */,
+				45FD94811CD41F0600D291E6 /* reject.mp3 */,
+				45FD94821CD41F0600D291E6 /* fx2.mp3 */,
+				45FD94831CD41F0600D291E6 /* fx3.mp3 */,
+				45FD94841CD41F0600D291E6 /* fx4.mp3 */,
+				45FD94851CD41F0600D291E6 /* fx5.mp3 */,
 				45FD947D1CD40F9E00D291E6 /* Audio */,
 				453B5CFF1CB85BEF00FF61F8 /* AppDelegate.swift */,
 				453B5D061CB85BEF00FF61F8 /* Assets.xcassets */,
@@ -116,13 +123,6 @@
 		45FD947D1CD40F9E00D291E6 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				45FD948C1CD41F1700D291E6 /* fx1.mp3 */,
-				45FD94801CD41F0600D291E6 /* confirm.mp3 */,
-				45FD94811CD41F0600D291E6 /* reject.mp3 */,
-				45FD94821CD41F0600D291E6 /* fx2.mp3 */,
-				45FD94831CD41F0600D291E6 /* fx3.mp3 */,
-				45FD94841CD41F0600D291E6 /* fx4.mp3 */,
-				45FD94851CD41F0600D291E6 /* fx5.mp3 */,
 			);
 			name = Audio;
 			sourceTree = "<group>";

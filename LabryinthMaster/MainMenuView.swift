@@ -23,7 +23,7 @@ class MainMenuView : UIView{
         MainLabel.adjustsFontSizeToFitWidth = true
         MainLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
         MainLabel.textAlignment = .Center
-
+        
         self.addSubview(MainLabel)
         
         

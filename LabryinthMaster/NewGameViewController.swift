@@ -18,14 +18,18 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     var newGameView = NewGameView()
     var startButton = UIButton(type: UIButtonType.Custom)
     var gameNameTextEntry = UITextField(frame: CGRectZero)
- 
-//    var screenRect = UIScreen.mainScreen().bounds
+    
+    var gvc : GameViewController?
+    
+    //    var screenRect = UIScreen.mainScreen().bounds
     
     override func viewDidLoad() {
         
         newGameView.frame = UIScreen.mainScreen().bounds
         newGameView.backgroundColor = UIColor.brownColor()
-//        self.navigationItem.hidesBackButton = true
+        //hide back button and top bar
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBar.hidden = true
         
         backButton.frame = CGRectMake(50,50, 200, 50)
         backButton.center = CGPointMake(CGRectGetMidX(screenRect) * 0.40,CGRectGetMaxY(screenRect) * 0.15)
@@ -91,6 +95,8 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     
     func StartButtonPressed(){
         print("Start Button Pressed")
+        gvc = GameViewController()
+        self.navigationController?.pushViewController(gvc!, animated: true)
     }
     
     func EasyButtonPressed(){

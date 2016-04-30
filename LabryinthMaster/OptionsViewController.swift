@@ -33,7 +33,9 @@ class OptionsViewController : UIViewController{
         //set up options view and hide back button
         optionsView.frame = UIScreen.mainScreen().bounds
         optionsView.backgroundColor = UIColor.brownColor()
+        //hide back button and top bar
         self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBar.hidden = true
         
         //TODO: Check prefs to make sure that the correct difficulty is selected at
         //first
@@ -80,13 +82,13 @@ class OptionsViewController : UIViewController{
         self.optionsView.addSubview(fxSlider!)
         self.view.addSubview(optionsView)
         
-//        let ac = UIAlertController(title: "Hello!", message: "This is a test.", preferredStyle: .ActionSheet)
-//        
-//        let popover = ac.popoverPresentationController
-//        popover?.sourceView = view
-//        popover?.sourceRect = CGRect(x: 32, y: 32, width: 64, height: 64)
-//        
-//        presentViewController(ac, animated: true, completion: nil)
+        //        let ac = UIAlertController(title: "Hello!", message: "This is a test.", preferredStyle: .ActionSheet)
+        //
+        //        let popover = ac.popoverPresentationController
+        //        popover?.sourceView = view
+        //        popover?.sourceRect = CGRect(x: 32, y: 32, width: 64, height: 64)
+        //
+        //        presentViewController(ac, animated: true, completion: nil)
     }
     
     /**
@@ -96,7 +98,7 @@ class OptionsViewController : UIViewController{
         print("Music: \(musicSlider!.value)")
         
     }
-
+    
     /**
      The FX volume has been modified
      */
@@ -125,5 +127,5 @@ class OptionsViewController : UIViewController{
     }
     
     
-   
+    
 }

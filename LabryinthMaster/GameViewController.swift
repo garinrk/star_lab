@@ -22,8 +22,12 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     override func loadView() {
         super.loadView()
         
-        audioManager = AudioManager()
+        //hide back button and top bar
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.navigationBar.hidden = true
         
+        //MANAGERS
+        audioManager = AudioManager()
         gameManager = GameManager()
         gameManager.delegate = self
         
