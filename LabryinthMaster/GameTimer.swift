@@ -8,14 +8,14 @@
 
 import Foundation
 
-class Timer{
+class GameTime{
     
     //get the timelimit from the game manager
     var timeLimit = 10
     var gameTimer : NSTimer!
     
     init(){
-        gameTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(Timer.TimerUpdate), userInfo: nil, repeats: true)
+        gameTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameTime.TimerUpdate), userInfo: nil, repeats: true)
     }
     
     @objc func TimerUpdate(){

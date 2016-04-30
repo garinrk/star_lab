@@ -14,12 +14,22 @@ struct ScoreInfo {
     var timestamp: NSDate
 }
 
+struct SessionData{
+    var ID : String
+    var playerName : String
+    var lifetimeScore : Int
+    var levelsComplete : Int
+    var difficulty : Difficulty
+}
+
 enum Difficulty{
     case Hard
     case Easy
     case Temp
 }
 
+//session id, player name, lifetime score, number oflevels
+//difficulty mode
 
 class ScoreManager {
     
@@ -51,5 +61,59 @@ class ScoreManager {
 //        //get the difficulty from the plist
 //    }
 //    
+    
+    /**
+     Saves a given sessionData object to the plist
+     
+     - parameter sessionID: <#sessionID description#>
+     */
+    func SaveSessionData(data : SessionData){
+        
+        let documentsDirectory: String? = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String?
+        let filePath: String? = documentsDirectory?.stringByAppendingString("/LabData.plist")
+        
+        var tmpArray: [[String:AnyObject]] = []
+        
+        //create dictionary of session data
+        
+        let sessionDictionary : [String : String] = [
+            "ID" : data.ID,
+            "playerName" : data.playerName,
+            "levelsComplete" : String(data.levelsComplete),
+            "lifetimeScore" : String(data.lifetimeScore),
+            "difficulty" : String(data.difficulty)
+            
+        ]
+        tmpArray.append(sessionDictionary)
+        
+        let array: NSArray = tmpArray
+        
+        if filePath != nil {
+            array.writeToFile(filePath!, atomically: true)
+        }
+    
+    }
+    
+    /**
+     ???????????????????
+     
+     - parameter sessionID: <#sessionID description#>
+     
+     - returns: <#return value description#>
+     */
+    func LoadSessionData(sessionID: String) -> NSMutableArray?{
+        let documentsDirectory: String? = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String?
+        let filePath: String? = documentsDirectory?.stringByAppendingString("/LabData.plist")
+        
+        if filePath != nil {
+            return NSMutableArray(contentsOfFile: filePath!)
+        }
+        else
+        {
+            return nil
+        }
+    }
+    
+
     
 }
