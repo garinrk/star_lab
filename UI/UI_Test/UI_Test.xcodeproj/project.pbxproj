@@ -21,6 +21,8 @@
 		455FC2511CC592D200D7E501 /* HighScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FC2501CC592D200D7E501 /* HighScoresView.swift */; };
 		455FC2531CC5931400D7E501 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FC2521CC5931400D7E501 /* OptionsViewController.swift */; };
 		455FC2551CC5931C00D7E501 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455FC2541CC5931C00D7E501 /* OptionsView.swift */; };
+		456647281CD560AC0061B5A4 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456647271CD560AC0061B5A4 /* GameOverView.swift */; };
+		4566472A1CD560B40061B5A4 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456647291CD560B40061B5A4 /* GameOverViewController.swift */; };
 		45ADE6601CC8766C002BD040 /* NewGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADE65F1CC8766C002BD040 /* NewGameView.swift */; };
 		45ADE6621CC87674002BD040 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45ADE6611CC87674002BD040 /* NewGameViewController.swift */; };
 		45E342A91CD559E4009692B7 /* LevelCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E342A81CD559E4009692B7 /* LevelCompleteView.swift */; };
@@ -44,6 +46,8 @@
 		455FC2501CC592D200D7E501 /* HighScoresView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoresView.swift; sourceTree = "<group>"; };
 		455FC2521CC5931400D7E501 /* OptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		455FC2541CC5931C00D7E501 /* OptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
+		456647271CD560AC0061B5A4 /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		456647291CD560B40061B5A4 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		45ADE65F1CC8766C002BD040 /* NewGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameView.swift; sourceTree = "<group>"; };
 		45ADE6611CC87674002BD040 /* NewGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
 		45E342A81CD559E4009692B7 /* LevelCompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompleteView.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 				4537186D1CC855C400B1E9A7 /* PauseViewController.swift */,
 				45ADE6611CC87674002BD040 /* NewGameViewController.swift */,
 				45E342AA1CD559EB009692B7 /* LevelCompleteViewController.swift */,
+				456647291CD560B40061B5A4 /* GameOverViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 				4537186F1CC855CA00B1E9A7 /* PauseView.swift */,
 				45ADE65F1CC8766C002BD040 /* NewGameView.swift */,
 				45E342A81CD559E4009692B7 /* LevelCompleteView.swift */,
+				456647271CD560AC0061B5A4 /* GameOverView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -195,8 +201,10 @@
 				455FC2511CC592D200D7E501 /* HighScoresView.swift in Sources */,
 				453718701CC855CA00B1E9A7 /* PauseView.swift in Sources */,
 				45E342AB1CD559EB009692B7 /* LevelCompleteViewController.swift in Sources */,
+				456647281CD560AC0061B5A4 /* GameOverView.swift in Sources */,
 				452353121CC43CD500878B8F /* ViewController.swift in Sources */,
 				455FC2551CC5931C00D7E501 /* OptionsView.swift in Sources */,
+				4566472A1CD560B40061B5A4 /* GameOverViewController.swift in Sources */,
 				455FC2531CC5931400D7E501 /* OptionsViewController.swift in Sources */,
 				455FC24F1CC592C700D7E501 /* HighScoresViewController.swift in Sources */,
 				452353281CC43F0C00878B8F /* TestView.swift in Sources */,

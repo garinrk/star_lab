@@ -39,6 +39,10 @@
 		4553B6E91CCAD3710010C746 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4553B6E61CCAD3710010C746 /* GameViewController.swift */; };
 		4553B6EA1CCAD3710010C746 /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4553B6E71CCAD3710010C746 /* Gyro.swift */; };
 		4553B6EB1CCAD3710010C746 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4553B6E81CCAD3710010C746 /* PlayerView.swift */; };
+		4566472C1CD561D50061B5A4 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566472B1CD561D50061B5A4 /* GameOverView.swift */; };
+		4566472E1CD561E40061B5A4 /* LevelCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566472D1CD561E40061B5A4 /* LevelCompleteView.swift */; };
+		456647301CD561F10061B5A4 /* LevelCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566472F1CD561F10061B5A4 /* LevelCompleteViewController.swift */; };
+		456647321CD561FC0061B5A4 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456647311CD561FC0061B5A4 /* GameOverViewController.swift */; };
 		457B672F1CD426FE00EE127D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B672E1CD426FE00EE127D /* AudioManager.swift */; };
 		457B67311CD4292000EE127D /* mainMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67301CD4292000EE127D /* mainMusic.mp3 */; };
 /* End PBXBuildFile section */
@@ -78,6 +82,10 @@
 		4553B6E61CCAD3710010C746 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4553B6E71CCAD3710010C746 /* Gyro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gyro.swift; sourceTree = "<group>"; };
 		4553B6E81CCAD3710010C746 /* PlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		4566472B1CD561D50061B5A4 /* GameOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		4566472D1CD561E40061B5A4 /* LevelCompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompleteView.swift; sourceTree = "<group>"; };
+		4566472F1CD561F10061B5A4 /* LevelCompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelCompleteViewController.swift; sourceTree = "<group>"; };
+		456647311CD561FC0061B5A4 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		457B672E1CD426FE00EE127D /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		457B67301CD4292000EE127D /* mainMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mainMusic.mp3; path = Audio/mainMusic.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +117,8 @@
 				450CA16F1CD455F300D78B63 /* OptionsView.swift */,
 				450CA1711CD4560700D78B63 /* PauseView.swift */,
 				450CA1731CD4561500D78B63 /* NewGameView.swift */,
+				4566472B1CD561D50061B5A4 /* GameOverView.swift */,
+				4566472D1CD561E40061B5A4 /* LevelCompleteView.swift */,
 			);
 			name = MenuViews;
 			sourceTree = "<group>";
@@ -120,6 +130,8 @@
 				450CA1771CD4563900D78B63 /* OptionsViewController.swift */,
 				450CA1791CD4565400D78B63 /* PauseViewController.swift */,
 				450CA17B1CD4583F00D78B63 /* NewGameViewController.swift */,
+				4566472F1CD561F10061B5A4 /* LevelCompleteViewController.swift */,
+				456647311CD561FC0061B5A4 /* GameOverViewController.swift */,
 			);
 			name = MenuViewControllers;
 			sourceTree = "<group>";
@@ -281,18 +293,22 @@
 			files = (
 				450CA1761CD4562600D78B63 /* MainMenuViewController.swift in Sources */,
 				0C5EF7F91CB9D0A700707CFF /* MazeView.swift in Sources */,
+				4566472C1CD561D50061B5A4 /* GameOverView.swift in Sources */,
 				450CA17C1CD4583F00D78B63 /* NewGameViewController.swift in Sources */,
 				187AFA6B1CBEF5EF00750D79 /* EnemyView.swift in Sources */,
 				185EFC021CCACFA800C3F3BB /* GameManager.swift in Sources */,
+				4566472E1CD561E40061B5A4 /* LevelCompleteView.swift in Sources */,
 				450CA1721CD4560700D78B63 /* PauseView.swift in Sources */,
 				450CA1701CD455F300D78B63 /* OptionsView.swift in Sources */,
 				185EFBFE1CCACE0300C3F3BB /* ScoreManager.swift in Sources */,
 				0C5EF7F71CB9CA8200707CFF /* Maze.swift in Sources */,
 				4522909A1CD4608900741677 /* Timer.swift in Sources */,
+				456647321CD561FC0061B5A4 /* GameOverViewController.swift in Sources */,
 				453B5D1E1CB85C0600FF61F8 /* AppDelegate.swift in Sources */,
 				4553B6E91CCAD3710010C746 /* GameViewController.swift in Sources */,
 				4553B6EA1CCAD3710010C746 /* Gyro.swift in Sources */,
 				450CA16E1CD455DD00D78B63 /* MainMenuView.swift in Sources */,
+				456647301CD561F10061B5A4 /* LevelCompleteViewController.swift in Sources */,
 				450CA1781CD4563900D78B63 /* OptionsViewController.swift in Sources */,
 				187AFA691CBEF2DB00750D79 /* GameLoop.swift in Sources */,
 				0C97F9851CCDC74000C7C2CD /* Collision.swift in Sources */,

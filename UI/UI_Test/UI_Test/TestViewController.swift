@@ -16,11 +16,13 @@ class TestViewController : UIViewController{
     let button3 : UIButton! = UIButton(type: UIButtonType.Custom)
     let button4 : UIButton! = UIButton(type: UIButtonType.Custom)
     let button5 : UIButton! = UIButton(type: UIButtonType.Custom)
+    let button6 : UIButton! = UIButton(type: UIButtonType.Custom)
     var mmvc : MainMenuViewController?
     var ovc : OptionsViewController?
     var pvc : PauseViewController?
     var ngvc : NewGameViewController?
     var lcvc : LevelCompleteViewController?
+    var govc : GameOverViewController?
     override func viewDidLoad() {
         testView.frame = UIScreen.mainScreen().bounds
         testView.backgroundColor = UIColor.brownColor()
@@ -64,6 +66,13 @@ class TestViewController : UIViewController{
         button5.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         button5.backgroundColor = UIColor.blackColor()
         
+        //button6
+        button6.frame = CGRectMake(50, 500, 500, 50)
+        button6.addTarget(self, action: #selector(TestViewController.Button6Pressed), forControlEvents: UIControlEvents.TouchUpInside)
+        button6.setTitle("Game Over", forState: UIControlState.Normal)
+        button6.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        button6.backgroundColor = UIColor.blackColor()
+        
 //        Button4Pressed()
         self.view.addSubview(testView)
         self.view.addSubview(button1)
@@ -71,6 +80,7 @@ class TestViewController : UIViewController{
         self.view.addSubview(button3)
         self.view.addSubview(button4)
         self.view.addSubview(button5)
+        self.view.addSubview(button6)
        
         
     }
@@ -109,5 +119,12 @@ class TestViewController : UIViewController{
         
         print("Presenting level complete")
         self.navigationController?.pushViewController(lcvc!, animated: false)
+    }
+    
+    func Button6Pressed(){
+        govc = GameOverViewController()
+        
+        print("Presenting Game Over")
+        self.navigationController?.pushViewController(govc!, animated: false)
     }
 }
