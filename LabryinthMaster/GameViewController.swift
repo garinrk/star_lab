@@ -32,16 +32,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gameManager.delegate = self
         
         makeNewLevel()
-        
-        scoreLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 75.0, width: screenRect.width, height: 80.0))
-        scoreLabel.textColor = UIColor.whiteColor()
-        scoreLabel.text = "SCORE: \(gameManager.score)"
-        view.addSubview(scoreLabel)
-        
-        timerLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 115.0, width: screenRect.width, height: 80.0))
-        timerLabel.textColor = UIColor.whiteColor()
-        timerLabel.text = "TIME LEFT: \(gameManager.timeLeft)"
-        view.addSubview(timerLabel)
     }
     
     override func viewDidLoad() {
@@ -56,6 +46,11 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     func makeNewLevel()
     {
+        // get rid of old views
+        for sview in view.subviews {
+            sview.removeFromSuperview()
+        }
+        
         gameManager.makeNewLevel()
         
         // initialize maze view
@@ -71,7 +66,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         mazeView.placeGoalX(29, Y: 29)
         
         // add subviews and assign delegates
-        
         view.addSubview(mazeView)
         
         for enemy in gameManager.enemies {
@@ -82,6 +76,16 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gameManager.player.delegate = self
         
         gameManager.timer.delegate = self
+        
+        scoreLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 75.0, width: screenRect.width, height: 80.0))
+        scoreLabel.textColor = UIColor.whiteColor()
+        scoreLabel.text = "SCORE: \(gameManager.score)"
+        view.addSubview(scoreLabel)
+        
+        timerLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 115.0, width: screenRect.width, height: 80.0))
+        timerLabel.textColor = UIColor.whiteColor()
+        timerLabel.text = "TIME LEFT: \(gameManager.timeLeft)"
+        view.addSubview(timerLabel)
         
         // start the game
         
@@ -178,10 +182,10 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     }
     
     // MARK: GameManagerDelegate functions
-    func redrawMaze()
-    {
-        mazeView.setNeedsDisplay()
-    }
+//    func redrawMaze()
+//    {
+//        mazeView.setNeedsDisplay()
+//    }
     
     // MARK: GameTimerDelegate functions
     func updateTime(time: Int)

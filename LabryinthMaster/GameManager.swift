@@ -14,7 +14,7 @@ enum DifficultyMode {
 }
 
 protocol GameManagerDelegate: class {
-    func redrawMaze()
+//    func redrawMaze()
 }
 
 class GameManager: GameLoopDelegate {
@@ -110,6 +110,7 @@ class GameManager: GameLoopDelegate {
     
     func win()
     {
+        timer.StopTimer()
         currentLevel += 1
     }
     
