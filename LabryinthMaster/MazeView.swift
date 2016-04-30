@@ -15,6 +15,8 @@ class MazeViewCell: UIView {
     var west: Bool = true
     var hasCoin: Bool = false
     
+    var label: Int = 0
+    
     var x: Int = 0
     var y: Int = 0
     
@@ -115,6 +117,8 @@ class MazeView: UIView {
     private var cellHeight: CGFloat!
     private var originCellCenter: CGPoint!
     
+    private var cellLabeller: Int = 1
+    
 //    weak var delegate: MazeViewDelegate? = nil
     
     override init(frame: CGRect) {
@@ -153,8 +157,11 @@ class MazeView: UIView {
         newCell.west = west
         newCell.x = x
         newCell.y = y
+        newCell.label = cellLabeller
+        cellLabeller += 1
         
         cells["\(x),\(y)"] = newCell
+        newCell.tag = newCell.label
         addSubview(newCell)
     }
     
@@ -164,6 +171,7 @@ class MazeView: UIView {
         
         var x = 0;
         var remainderX = rect.midX
+        
         while remainderX > cellWidth
         {
             remainderX -= cellWidth
@@ -192,6 +200,7 @@ class MazeView: UIView {
         if occupyingCell != nil && occupyingCell!.hasCoin
         {
             coin = true
+            
             occupyingCell!.hasCoin = false
 //            delegate?.coinCollected()
 //            setNeedsDisplay()
@@ -261,8 +270,13 @@ class MazeView: UIView {
                 west = true
             }
         }
+        
+        var collisionTag: Int = 0
+        if occupyingCell != nil {
+            collisionTag = occupyingCell!.label
+        }
       
-        return Collision(north: north, east: east, south: south, west: west, coin: coin, cellX: x, cellY: y, centeredX: centeredX, centeredY: centeredY)
+        return Collision(north: north, east: east, south: south, west: west, coin: coin, cellX: x, cellY: y, centeredX: centeredX, centeredY: centeredY, collisionTag: collisionTag)
     }
     
     func placeRandomCoin() {
@@ -277,6 +291,7 @@ class MazeView: UIView {
             
             if cell.hasCoin == false {
                 cell.hasCoin = true
+//                cell.tag = 99
                 tryAgain = false
             }
         }
