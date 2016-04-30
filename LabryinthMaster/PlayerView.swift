@@ -14,6 +14,7 @@ protocol PlayerDelegate: class {
     func detectCollisionFromPlayer(square: CGRect) -> Collision
     func coinCollected(coll: Collision)
     func reportNewColliderPosition(position: CGRect)
+    func goalReached()
 }
 
 class PlayerView : UIView{
@@ -74,6 +75,10 @@ class PlayerView : UIView{
             if coll.coin {
                 
                 delegate!.coinCollected(coll)
+            }
+            
+            if coll.goal {
+                delegate!.goalReached()
             }
             
             cellX = coll.cellX
