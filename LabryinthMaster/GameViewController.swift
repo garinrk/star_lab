@@ -125,7 +125,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
 
     func reportPlayerCollision()
     {
-        
+        audioManager.PlayAudio(SoundType.EnemyKill)
         gameManager.kill()
     }
 
@@ -138,7 +138,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func coinCollected()
     {
         gameManager.coinCollected()
-        audioManager.PlayAudio(SoundType.FX1)
+        audioManager.PlayAudio(SoundType.Coin)
         scoreLabel.text = "SCORE: \(gameManager.score)"
     }
     func reportNewColliderPosition(position: CGRect)

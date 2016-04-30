@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C1AFCE11CD5437000D1E20F /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0C1AFCD81CD5437000D1E20F /* coin.wav */; };
+		0C1AFCE21CD5437000D1E20F /* enemy.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0C1AFCD91CD5437000D1E20F /* enemy.wav */; };
+		0C1AFCE31CD5437000D1E20F /* enemy2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0C1AFCDA1CD5437000D1E20F /* enemy2.wav */; };
+		0C1AFCE41CD5437000D1E20F /* highscore.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0C1AFCDB1CD5437000D1E20F /* highscore.wav */; };
+		0C1AFCE51CD5437000D1E20F /* menu.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0C1AFCDC1CD5437000D1E20F /* menu.wav */; };
+		0C1AFCE61CD5437000D1E20F /* outoftime.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0C1AFCDD1CD5437000D1E20F /* outoftime.wav */; };
+		0C1AFCE71CD5437000D1E20F /* start.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0C1AFCDE1CD5437000D1E20F /* start.wav */; };
+		0C1AFCE81CD5437000D1E20F /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0C1AFCDF1CD5437000D1E20F /* win.wav */; };
+		0C1AFCE91CD5437000D1E20F /* win2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0C1AFCE01CD5437000D1E20F /* win2.wav */; };
 		0C5EF7F71CB9CA8200707CFF /* Maze.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5EF7F61CB9CA8200707CFF /* Maze.swift */; };
 		0C5EF7F91CB9D0A700707CFF /* MazeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5EF7F81CB9D0A700707CFF /* MazeView.swift */; };
 		0C5EF7FB1CB9DC9B00707CFF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C5EF7FA1CB9DC9B00707CFF /* Default-568h@2x.png */; };
@@ -35,6 +44,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C1AFCD81CD5437000D1E20F /* coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = coin.wav; sourceTree = "<group>"; };
+		0C1AFCD91CD5437000D1E20F /* enemy.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = enemy.wav; sourceTree = "<group>"; };
+		0C1AFCDA1CD5437000D1E20F /* enemy2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = enemy2.wav; sourceTree = "<group>"; };
+		0C1AFCDB1CD5437000D1E20F /* highscore.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = highscore.wav; sourceTree = "<group>"; };
+		0C1AFCDC1CD5437000D1E20F /* menu.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = menu.wav; sourceTree = "<group>"; };
+		0C1AFCDD1CD5437000D1E20F /* outoftime.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = outoftime.wav; sourceTree = "<group>"; };
+		0C1AFCDE1CD5437000D1E20F /* start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = start.wav; sourceTree = "<group>"; };
+		0C1AFCDF1CD5437000D1E20F /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
+		0C1AFCE01CD5437000D1E20F /* win2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win2.wav; sourceTree = "<group>"; };
 		0C5EF7F61CB9CA8200707CFF /* Maze.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Maze.swift; sourceTree = "<group>"; };
 		0C5EF7F81CB9D0A700707CFF /* MazeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeView.swift; sourceTree = "<group>"; };
 		0C5EF7FA1CB9DC9B00707CFF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -130,8 +148,16 @@
 		453B5D1C1CB85C0600FF61F8 /* LabryinthMaster */ = {
 			isa = PBXGroup;
 			children = (
+				0C1AFCD81CD5437000D1E20F /* coin.wav */,
+				0C1AFCD91CD5437000D1E20F /* enemy.wav */,
+				0C1AFCDA1CD5437000D1E20F /* enemy2.wav */,
+				0C1AFCDB1CD5437000D1E20F /* highscore.wav */,
+				0C1AFCDC1CD5437000D1E20F /* menu.wav */,
+				0C1AFCDD1CD5437000D1E20F /* outoftime.wav */,
+				0C1AFCDE1CD5437000D1E20F /* start.wav */,
+				0C1AFCDF1CD5437000D1E20F /* win.wav */,
+				0C1AFCE01CD5437000D1E20F /* win2.wav */,
 				457B67301CD4292000EE127D /* mainMusic.mp3 */,
-				457B671C1CD426C000EE127D /* Audio */,
 				453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */,
 				453B5D241CB85C0600FF61F8 /* Assets.xcassets */,
 				453B5D291CB85C0600FF61F8 /* Info.plist */,
@@ -160,13 +186,6 @@
 				0CCC74AC1CD405F200FF9895 /* Helpers */,
 			);
 			name = Game;
-			sourceTree = "<group>";
-		};
-		457B671C1CD426C000EE127D /* Audio */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Audio;
 			sourceTree = "<group>";
 		};
 		457B672B1CD426D600EE127D /* Device Managers */ = {
@@ -238,8 +257,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C1AFCE91CD5437000D1E20F /* win2.wav in Resources */,
 				453B5D251CB85C0600FF61F8 /* Assets.xcassets in Resources */,
+				0C1AFCE51CD5437000D1E20F /* menu.wav in Resources */,
+				0C1AFCE41CD5437000D1E20F /* highscore.wav in Resources */,
+				0C1AFCE71CD5437000D1E20F /* start.wav in Resources */,
+				0C1AFCE61CD5437000D1E20F /* outoftime.wav in Resources */,
+				0C1AFCE11CD5437000D1E20F /* coin.wav in Resources */,
+				0C1AFCE81CD5437000D1E20F /* win.wav in Resources */,
 				0C5EF7FB1CB9DC9B00707CFF /* Default-568h@2x.png in Resources */,
+				0C1AFCE21CD5437000D1E20F /* enemy.wav in Resources */,
+				0C1AFCE31CD5437000D1E20F /* enemy2.wav in Resources */,
 				457B67311CD4292000EE127D /* mainMusic.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

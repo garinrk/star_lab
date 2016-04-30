@@ -27,7 +27,7 @@ class AudioManager : NSObject{
     var coinPlayer : AVAudioPlayer!
     var winPlayer : AVAudioPlayer!
     var outOfTimePlayer : AVAudioPlayer!
-    var startLevel : AVAudioPlayer!
+    var startLevelPlayer : AVAudioPlayer!
     
     var mainMusicVolume : Float = 1.0
     var confirmVolume : Float = 0.75
@@ -59,31 +59,26 @@ class AudioManager : NSObject{
             return
         }
         
-        guard let rejectURL = NSBundle.mainBundle().URLForResource("reject", withExtension: "wav") else {
+        guard let enemyKillURL = NSBundle.mainBundle().URLForResource("enemy", withExtension: "wav") else {
             print("could not read reject file")
             return
         }
         
-        guard let fx1URL = NSBundle.mainBundle().URLForResource("fx1", withExtension: "wav") else {
+        guard let coinURL = NSBundle.mainBundle().URLForResource("coin", withExtension: "wav") else {
             print("could not read fx1 file")
             return
         }
         
-        guard let fx2URL = NSBundle.mainBundle().URLForResource("fx2", withExtension: "wav") else {
+        guard let winURL = NSBundle.mainBundle().URLForResource("win2", withExtension: "wav") else {
             print("could not read fx2 file")
             return
         }
-        guard let fx3URL = NSBundle.mainBundle().URLForResource("fx3", withExtension: "wav") else {
+        guard let outOfTimeURL = NSBundle.mainBundle().URLForResource("outoftime", withExtension: "wav") else {
             print("could not read fx3 file")
             return
         }
-        guard let fx4URL = NSBundle.mainBundle().URLForResource("fx4", withExtension: "wav") else {
+        guard let startLevelURL = NSBundle.mainBundle().URLForResource("start", withExtension: "wav") else {
             print("could not read fx4 file")
-            return
-        }
-        
-        guard let fx5URL = NSBundle.mainBundle().URLForResource("fx5", withExtension: "wav") else {
-            print("could not read fx5 file")
             return
         }
         
@@ -104,41 +99,35 @@ class AudioManager : NSObject{
         }
         
         do {
-            try self.rejectPlayer = AVAudioPlayer(contentsOfURL: rejectURL)
+            try self.enemyKillPlayer = AVAudioPlayer(contentsOfURL: enemyKillURL)
         } catch {
             print("could not create rejectplayer \(error)")
             return
         }
         
         do {
-            try self.fx1Player = AVAudioPlayer(contentsOfURL: fx1URL)
+            try self.coinPlayer = AVAudioPlayer(contentsOfURL: coinURL)
         } catch {
             print("could not create fx1Player \(error)")
             return
         }
         
         do {
-            try self.fx2Player = AVAudioPlayer(contentsOfURL: fx2URL)
+            try self.winPlayer = AVAudioPlayer(contentsOfURL: winURL)
         } catch {
             print("could not create fx2Player \(error)")
             return
         }
         do {
-            try self.fx3Player = AVAudioPlayer(contentsOfURL: fx3URL)
+            try self.outOfTimePlayer = AVAudioPlayer(contentsOfURL: outOfTimeURL)
         } catch {
             print("could not create fx3Player \(error)")
             return
         }
         do {
-            try self.fx4Player = AVAudioPlayer(contentsOfURL: fx4URL)
+            try self.startLevelPlayer = AVAudioPlayer(contentsOfURL: startLevelURL)
         } catch {
             print("could not create fx4Player \(error)")
-            return
-        }
-        do {
-            try self.fx5Player = AVAudioPlayer(contentsOfURL: fx5URL)
-        } catch {
-            print("could not create fx5Player \(error)")
             return
         }
         
@@ -146,30 +135,28 @@ class AudioManager : NSObject{
         
         mainMusicPlayer.delegate = self
         confirmPlayer.delegate = self
-        rejectPlayer.delegate = self
-        fx1Player.delegate = self
-        fx2Player.delegate = self
-        fx3Player.delegate = self
-        fx4Player.delegate = self
-        fx5Player.delegate = self
+        enemyKillPlayer.delegate = self
+        coinPlayer.delegate = self
+        winPlayer.delegate = self
+        outOfTimePlayer.delegate = self
+        startLevelPlayer.delegate = self
+        
         
         mainMusicPlayer.prepareToPlay()
         confirmPlayer.prepareToPlay()
-        rejectPlayer.prepareToPlay()
-        fx1Player.prepareToPlay()
-        fx2Player.prepareToPlay()
-        fx3Player.prepareToPlay()
-        fx4Player.prepareToPlay()
-        fx5Player.prepareToPlay()
+        enemyKillPlayer.prepareToPlay()
+        coinPlayer.prepareToPlay()
+        winPlayer.prepareToPlay()
+        outOfTimePlayer.prepareToPlay()
+        startLevelPlayer.prepareToPlay()
         
         mainMusicPlayer.volume = mainMusicVolume
         confirmPlayer.volume = confirmVolume
-        rejectPlayer.volume = rejectVolume
-        fx1Player.volume = fx1Volume
-        fx2Player.volume = fx2Volume
-        fx3Player.volume = fx3Volume
-        fx4Player.volume = fx4Volume
-        fx5Player.volume = fx5Volume
+        enemyKillPlayer.volume = enemyKillVolume
+        coinPlayer.volume = coinVolume
+        winPlayer.volume = winVolume
+        outOfTimePlayer.volume = outOfTimeVolume
+        startLevelPlayer.volume = startLevelVolume
         
     }
     
@@ -186,29 +173,26 @@ class AudioManager : NSObject{
             confirmPlayer.pause()
         }
         
-        if rejectPlayer.playing{
-            rejectPlayer.pause()
+        if enemyKillPlayer.playing{
+            enemyKillPlayer.pause()
         }
         
-        if fx1Player.playing{
-            fx1Player.pause()
+        if coinPlayer.playing{
+            coinPlayer.pause()
         }
         
-        if fx2Player.playing{
-            fx2Player.pause()
+        if winPlayer.playing{
+            winPlayer.pause()
         }
         
-        if fx3Player.playing{
-            fx3Player.pause()
+        if outOfTimePlayer.playing{
+            outOfTimePlayer.pause()
         }
         
-        if fx4Player.playing{
-            fx4Player.pause()
+        if startLevelPlayer.playing{
+            startLevelPlayer.pause()
         }
-        
-        if fx5Player.playing{
-            fx5Player.pause()
-        }
+
     }
     
     func StopAllAudio(){
@@ -220,28 +204,24 @@ class AudioManager : NSObject{
             confirmPlayer.stop()
         }
         
-        if rejectPlayer.playing{
-            rejectPlayer.stop()
+        if enemyKillPlayer.playing{
+            enemyKillPlayer.stop()
         }
         
-        if fx1Player.playing{
-            fx1Player.stop()
+        if coinPlayer.playing{
+            coinPlayer.stop()
         }
         
-        if fx2Player.playing{
-            fx2Player.stop()
+        if winPlayer.playing{
+            winPlayer.stop()
         }
         
-        if fx3Player.playing{
-            fx3Player.stop()
+        if outOfTimePlayer.playing{
+            outOfTimePlayer.stop()
         }
         
-        if fx4Player.playing{
-            fx4Player.stop()
-        }
-        
-        if fx5Player.playing{
-            fx5Player.stop()
+        if startLevelPlayer.playing{
+            startLevelPlayer.stop()
         }
         
     }
@@ -272,27 +252,25 @@ class AudioManager : NSObject{
         case .MainMusic:
             mainMusicPlayer.play()
             break
-        case .ConfirmSound:
+        case .Confirm:
             confirmPlayer.play()
             break
-        case .RejectSound:
-            rejectPlayer.play()
+        case .EnemyKill:
+            enemyKillPlayer.play()
             break
-        case .FX1:
-            fx1Player.play()
+        case .Coin:
+            coinPlayer.play()
             break
-        case .FX2:
-            fx2Player.play()
+        case .Win:
+            winPlayer.play()
             break
-        case .FX3:
-            fx3Player.play()
+        case .OutOfTime:
+            outOfTimePlayer.play()
             break
-        case .FX4:
-            fx4Player.play()
+        case .StartLevel:
+            startLevelPlayer.play()
             break
-        case .FX5:
-            fx5Player.play()
-            break
+
         }
     }
 }
