@@ -41,6 +41,8 @@ class GameManager: GameLoopDelegate {
     var playerName: String = ""
     var score: Int = 0
     var timeLeft: Int = 0
+    var currentLevel: Int = 1
+
     var maze: Maze!
     var player: PlayerView!
     var enemies: [EnemyView] = []
@@ -48,8 +50,6 @@ class GameManager: GameLoopDelegate {
     
     var currentGyroMagX: CGFloat = 0
     var currentGyroMagY: CGFloat = 0
-    
-    private var currentLevel: Int = 1
     
     let gameLoop: GameLoop = GameLoop()
     
@@ -118,6 +118,7 @@ class GameManager: GameLoopDelegate {
     {
         timer.StopTimer()
         score = 0
+        currentLevel = 1
     }
     
     // MARK: GameLoopDelegate functions
