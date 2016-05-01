@@ -11,39 +11,48 @@ import Foundation
 struct ScoreInfo {
     var name: String
     var score: Int
+    var difficulty: DifficultyMode
     var timestamp: NSDate
+    
+    func toDict() -> [String:AnyObject]
+    {
+        return ["Name":name, "Score": score, "Difficulty": difficulty.rawValue, "Time": timestamp]
+    }
+    
+    init(FromDict dict: [String:AnyObject])
+    {
+        let _name: String? = dict["Name"] as? String
+        let _score: Int? = dict["Score"] as? Int
+        let _difficulty: Int? = dict["Difficulty"] as? Int
+        let _timestamp: NSDate? = dict["Time"] as? NSDate
+        
+        if _name != nil && _score != nil && _difficulty != nil && _timestamp != nil{
+            name = _name!
+            score = _score!
+            difficulty = DifficultyMode(rawValue: _difficulty!)!
+            timestamp = _timestamp!
+        }
+        else {
+            print("FAILED TO INITIALIZE FROM SAVED FILE")
+            name = ""
+            score = 0
+            difficulty = DifficultyMode.Easy
+            timestamp = NSDate()
+        }
+    }
+    
 }
-
-struct SessionData{
-    var ID : String
-    var playerName : String
-    var lifetimeScore : Int
-    var levelsComplete : Int
-    var difficulty : Difficulty
-}
-
-enum Difficulty{
-    case Hard
-    case Easy
-    case Temp
-}
-
-//session id, player name, lifetime score, number oflevels
-//difficulty mode
 
 class ScoreManager {
     
     private var _effectsSoundLevel : Float?
     private var _musicSoundLevel : Float?
-    private var _gameDifficulty : Difficulty = .Temp
+    private var _gameDifficulty : DifficultyMode = .Easy
     private var _lifetimeScore : Int?
     private var _levelsComplete : Int?
     private var _playerName : String?
     
-    
-    
     class var sharedInstance : ScoreManager{
-        
         struct Static{
             static var instance : ScoreManager?
         }
@@ -56,40 +65,58 @@ class ScoreManager {
         return Static.instance!
     }
     
-    var scores: [ScoreInfo]?
+    var scores: [ScoreInfo] = [] // sorted based on score
     
-    // needs a function to sort scoreinfos based on score
+    init(){
+        
+        let savedScores: NSMutableArray? = loadScores()
+        if savedScores != nil {
+            for score in savedScores!
+            {
+                let scoreInfo: ScoreInfo = ScoreInfo(FromDict: score as! [String : AnyObject])
+                addScore(scoreInfo)
+            }
+        }
+        
+    }
     
-    // needs a function to save/ load scores from plist
     
-//    override init(){
-//        //get the difficulty from the plist
-//    }
-//    
+    func addScore(newScore: ScoreInfo)
+    {
+        scores.append(newScore)
+        
+        // bubble new item up by score
+        var keepGoing: Bool = true
+        var i: Int = scores.count - 1
+        while keepGoing && i > 0{
+            if scores[i].score > scores[i-1].score
+            {
+                let tmp: ScoreInfo = scores[i-1]
+                scores[i-1] = scores[i]
+                scores[i] = tmp
+                i-=1
+            }
+            else
+            {
+                keepGoing = false
+            }
+        }
+    }
+    
     
     /**
-     Saves a given sessionData object to the plist
-     
-     - parameter sessionID: <#sessionID description#>
+     Saves scoreinfos to the plist
      */
-    func SaveSessionData(data : SessionData){
+    func saveScores(){
         
         let documentsDirectory: String? = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String?
-        let filePath: String? = documentsDirectory?.stringByAppendingString("/LabData.plist")
+        let filePath: String? = documentsDirectory?.stringByAppendingString("/LabScores.plist")
         
         var tmpArray: [[String:AnyObject]] = []
         
-        //create dictionary of session data
-        
-        let sessionDictionary : [String : String] = [
-            "ID" : data.ID,
-            "playerName" : data.playerName,
-            "levelsComplete" : String(data.levelsComplete),
-            "lifetimeScore" : String(data.lifetimeScore),
-            "difficulty" : String(data.difficulty)
-            
-        ]
-        tmpArray.append(sessionDictionary)
+        for score in scores {
+            tmpArray.append(score.toDict())
+        }
         
         let array: NSArray = tmpArray
         
@@ -99,29 +126,16 @@ class ScoreManager {
     
     }
     
-    /**
-     ???????????????????
-     
-     - parameter sessionID: <#sessionID description#>
-     
-     - returns: <#return value description#>
-     */
-    func LoadSessionData(sessionID: String) -> SessionData{
+    func loadScores() -> NSMutableArray? {
         let documentsDirectory: String? = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String?
-        let filePath: String? = documentsDirectory?.stringByAppendingString("/LabData.plist")
-        
-        var returnArray : NSMutableArray
-        
-        var loadedData : SessionData?
+        let filePath: String? = documentsDirectory?.stringByAppendingString("/LabScores")
         
         if filePath != nil {
-           returnArray = NSMutableArray(contentsOfFile: filePath!)!
+           return NSMutableArray(contentsOfFile: filePath!)!
         }
-        
-//        var data = returnArray as AnyObject as! [String]
-        
-        
-        return loadedData!
+        else {
+            return nil
+        }
     }
     
 

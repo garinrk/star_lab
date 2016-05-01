@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum DifficultyMode {
+enum DifficultyMode: Int {
     case Easy
     case Hard
 }
@@ -43,7 +43,8 @@ class GameManager: GameLoopDelegate {
     
     var mode: DifficultyMode = DifficultyMode.Easy
     var playerName: String = ""
-    var score: Int = 0
+    var lifetimeScore: Int = 0
+    var currentScore: Int = 0
     var timeLeft: Int = 0
     var currentLevel: Int = 1
 
@@ -129,7 +130,8 @@ class GameManager: GameLoopDelegate {
     
     func coinCollected()
     {
-        score += coinScoreAmt
+        currentScore += coinScoreAmt
+        lifetimeScore += coinScoreAmt
     }
     
     func win()
@@ -145,9 +147,12 @@ class GameManager: GameLoopDelegate {
         dead = true
         
         timer.StopTimer()
-        score = 0
+        currentScore = 0
         currentLevel = 1
         gameLoop.stop()
+        
+        // update scoremanager with lifetime score
+        
         delegate?.GameOverCall()
     }
     

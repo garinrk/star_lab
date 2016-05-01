@@ -103,6 +103,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CC9EE9A1CD57F5E0031028A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				185EFBFD1CCACE0300C3F3BB /* ScoreManager.swift */,
+				457B672E1CD426FE00EE127D /* AudioManager.swift */,
+			);
+			name = Managers;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		0CCC74AC1CD405F200FF9895 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 				4566472D1CD561E40061B5A4 /* LevelCompleteView.swift */,
 			);
 			name = MenuViews;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		450CA16C1CD4559400D78B63 /* MenuViewControllers */ = {
@@ -136,18 +147,15 @@
 				456647311CD561FC0061B5A4 /* GameOverViewController.swift */,
 			);
 			name = MenuViewControllers;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		453B5D111CB85C0600FF61F8 = {
 			isa = PBXGroup;
 			children = (
-				450CA16C1CD4559400D78B63 /* MenuViewControllers */,
-				450CA16B1CD4558D00D78B63 /* MenuViews */,
 				0C5EF7FA1CB9DC9B00707CFF /* Default-568h@2x.png */,
 				453B5D1C1CB85C0600FF61F8 /* LabryinthMaster */,
-				453B5D311CB85C3800FF61F8 /* Game */,
 				453B5D1B1CB85C0600FF61F8 /* Products */,
-				185EFBFD1CCACE0300C3F3BB /* ScoreManager.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,6 +170,10 @@
 		453B5D1C1CB85C0600FF61F8 /* LabryinthMaster */ = {
 			isa = PBXGroup;
 			children = (
+				450CA16C1CD4559400D78B63 /* MenuViewControllers */,
+				450CA16B1CD4558D00D78B63 /* MenuViews */,
+				0CC9EE9A1CD57F5E0031028A /* Managers */,
+				453B5D311CB85C3800FF61F8 /* Game */,
 				0C1AFCD81CD5437000D1E20F /* coin.wav */,
 				0C1AFCD91CD5437000D1E20F /* enemy.wav */,
 				0C1AFCDA1CD5437000D1E20F /* enemy2.wav */,
@@ -201,12 +213,12 @@
 				0CCC74AC1CD405F200FF9895 /* Helpers */,
 			);
 			name = Game;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		457B672B1CD426D600EE127D /* Device Managers */ = {
 			isa = PBXGroup;
 			children = (
-				457B672E1CD426FE00EE127D /* AudioManager.swift */,
 				187AFA681CBEF2DB00750D79 /* GameLoop.swift */,
 				4553B6E71CCAD3710010C746 /* Gyro.swift */,
 				456647371CD567C10061B5A4 /* GameTimer.swift */,

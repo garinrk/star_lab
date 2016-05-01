@@ -86,7 +86,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         
         scoreLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 75.0, width: screenRect.width, height: 80.0))
         scoreLabel.textColor = UIColor.whiteColor()
-        scoreLabel.text = "SCORE: \(gameManager.score)"
+        scoreLabel.text = "SCORE: \(gameManager.currentScore)"
         view.addSubview(scoreLabel)
         
         timerLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 115.0, width: screenRect.width, height: 80.0))
@@ -183,7 +183,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         mazeView.cells["\(coll.cellX),\(coll.cellY)"]?.hasCoin = false        
         gameManager.coinCollected()
         audioManager.PlayAudio(SoundType.Coin)
-        scoreLabel.text = "SCORE: \(gameManager.score)"
+        scoreLabel.text = "SCORE: \(gameManager.currentScore)"
     }
     func reportNewColliderPosition(position: CGRect)
     {
