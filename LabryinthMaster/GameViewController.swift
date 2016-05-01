@@ -118,6 +118,8 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         
         _gameManager.startGame()
         gyroManager.Unpause()
+        
+        _audioManager.PlayAudio(SoundType.StartLevel)
     }
     
     
