@@ -136,6 +136,16 @@ class GameManager: GameLoopDelegate {
         lifetimeScore += coinScoreAmt
     }
     
+    func pause()
+    {
+        gameLoop.stop()
+    }
+    
+    func unpause()
+    {
+        gameLoop.start()
+    }
+    
     func win()
     {
         timer.StopTimer()

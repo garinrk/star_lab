@@ -43,6 +43,7 @@ class GameOverViewController : UIViewController{
     }
     
     func TryAgainPressed(){
+        self.navigationController?.popViewControllerAnimated(false)
         print("Try Again Pressed")
         
     }

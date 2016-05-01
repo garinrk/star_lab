@@ -19,8 +19,11 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     var pauseButton = UIButton(type: UIButtonType.Custom)
     
     var mazeView: MazeView!
-    var gameManager: GameManager!
-    var audioManager: AudioManager!
+    
+    var _audioManager : AudioManager = AudioManager.sharedInstance
+    var _gameManager : GameManager = GameManager.sharedInstance
+//    var gameManager: GameManager!
+//    var audioManager: AudioManager!
     
     var gameOverController : GameOverViewController?
     var levelCompleteController : LevelCompleteViewController?
@@ -34,9 +37,9 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         self.navigationController?.navigationBar.hidden = true
         
         //MANAGERS
-        audioManager = AudioManager()
-        gameManager = GameManager()
-        gameManager.delegate = self
+//        audioManager = AudioManager()
+//        gameManager = GameManager()
+        _gameManager.delegate = self
         
         makeNewLevel()
     }
@@ -58,15 +61,15 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
             sview.removeFromSuperview()
         }
         
-        gameManager.makeNewLevel()
+        _gameManager.makeNewLevel()
         
         // initialize maze view
         
         mazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
-        for cell in gameManager.maze.cells {
+        for cell in _gameManager.maze.cells {
             mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
         }
-        for _ in 0 ..< gameManager.coinAmt {
+        for _ in 0 ..< _gameManager.coinAmt {
             mazeView.placeRandomCoin()
         }
         
@@ -75,28 +78,28 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         // add subviews and assign delegates
         view.addSubview(mazeView)
         
-        for enemy in gameManager.enemies {
+        for enemy in _gameManager.enemies {
             view.addSubview(enemy)
             enemy.delegate = self
         }
-        view.addSubview(gameManager.player)
-        gameManager.player.delegate = self
+        view.addSubview(_gameManager.player)
+        _gameManager.player.delegate = self
         
-        gameManager.timer.delegate = self
+        _gameManager.timer.delegate = self
         
         scoreLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 75.0, width: screenRect.width, height: 80.0))
         scoreLabel.textColor = UIColor.whiteColor()
-        scoreLabel.text = "SCORE: \(gameManager.currentScore)"
+        scoreLabel.text = "SCORE: \(_gameManager.currentScore)"
         view.addSubview(scoreLabel)
         
         timerLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 115.0, width: screenRect.width, height: 80.0))
         timerLabel.textColor = UIColor.whiteColor()
-        timerLabel.text = "TIME LEFT: \(gameManager.timeLeft)"
+        timerLabel.text = "TIME LEFT: \(_gameManager.timeLeft)"
         view.addSubview(timerLabel)
         
         levelLabel = UILabel(frame: CGRect(x: 50.0, y: screenRect.width + 155.0, width: screenRect.width, height: 80.0))
         levelLabel.textColor = UIColor.whiteColor()
-        levelLabel.text = "LEVEL: \(gameManager.currentLevel)"
+        levelLabel.text = "LEVEL: \(_gameManager.currentLevel)"
         view.addSubview(levelLabel)
         
         pauseButton.frame = CGRectMake(screenRect.width * 0.9, screenRect.width + 205.0, 75, 40.0)
@@ -107,7 +110,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         view.addSubview(pauseButton)
         // start the game
         
-        gameManager.startGame()
+        _gameManager.startGame()
     }
     
     
@@ -123,15 +126,28 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
      */
     func UpdatePlayerPosition(magX: CGFloat, magY: CGFloat)
     {
-        gameManager.currentGyroMagX = magX
-        gameManager.currentGyroMagY = magY
+        _gameManager.currentGyroMagX = magX
+        _gameManager.currentGyroMagY = magY
+    }
+    
+    func PauseGame(){
+//        print("PAUSE")
+        _gameManager.pause()
+        pauseController = PauseViewController()
+        self.navigationController?.pushViewController(pauseController!, animated: false)
+        
+    }
+
+    func UnpauseGame() {
+        self.navigationController?.popViewControllerAnimated(false)
+        _gameManager.unpause()
     }
 
     
     // MARK: EnemyViewDelegate functions
     func getMazeDimension() -> Int
     {
-        return gameManager.maze.dimension
+        return _gameManager.maze.dimension
     }
     
     func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
@@ -156,13 +172,13 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     func getPlayerCell() -> MazeViewCell
     {
-        return getMazeCellAtX(gameManager.player.cellX, Y: gameManager.player.cellY)!
+        return getMazeCellAtX(_gameManager.player.cellX, Y: _gameManager.player.cellY)!
     }
 
     func reportPlayerCollision()
     {
-        audioManager.PlayAudio(SoundType.EnemyKill)
-        gameManager.kill()
+        _audioManager.PlayAudio(SoundType.EnemyKill)
+        _gameManager.kill()
         makeNewLevel()
     }
 
@@ -181,67 +197,49 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
             }
         }
         mazeView.cells["\(coll.cellX),\(coll.cellY)"]?.hasCoin = false        
-        gameManager.coinCollected()
-        audioManager.PlayAudio(SoundType.Coin)
-        scoreLabel.text = "SCORE: \(gameManager.currentScore)"
+        _gameManager.coinCollected()
+        _audioManager.PlayAudio(SoundType.Coin)
+        scoreLabel.text = "SCORE: \(_gameManager.currentScore)"
     }
     func reportNewColliderPosition(position: CGRect)
     {
-        for enemy in gameManager.enemies
+        for enemy in _gameManager.enemies
         {
             enemy.updatePlayerCollisionLoc(position)
         }
     }
     func goalReached()
     {
-        audioManager.PlayAudio(SoundType.Win)
-        gameManager.win()
+        _audioManager.PlayAudio(SoundType.Win)
+        _gameManager.win()
         makeNewLevel()
-        levelLabel.text = "LEVEL: \(gameManager.currentLevel)"
+        levelLabel.text = "LEVEL: \(_gameManager.currentLevel)"
     }
     
     // MARK: GameManagerDelegate functions
-//    func redrawMaze()
-//    {
-//        mazeView.setNeedsDisplay()
-//    }
-    
-    
     func GameOverCall(){
-    
         gameOverController = GameOverViewController()
-        audioManager.StopAllAudio()
+        _audioManager.StopAllAudio()
         self.navigationController?.pushViewController(gameOverController!, animated: true)
-        
     }
     
     func WinGameCall(){
         levelCompleteController = LevelCompleteViewController()
-        audioManager.StopAllAudio()
+        _audioManager.StopAllAudio()
         self.navigationController?.pushViewController(levelCompleteController!, animated: true)
     }
     
     // MARK: GameTimerDelegate functions
     func updateTime(time: Int)
     {
-        gameManager.timeLeft = time
-        timerLabel.text = "TIME LEFT: \(gameManager.timeLeft)"
+        _gameManager.timeLeft = time
+        timerLabel.text = "TIME LEFT: \(_gameManager.timeLeft)"
         if time <= 0
         {
-            audioManager.PlayAudio(SoundType.OutOfTime)
-            gameManager.kill()
+            _audioManager.PlayAudio(SoundType.OutOfTime)
+            _gameManager.kill()
             makeNewLevel()
         }
     }
-    
-    func PauseGame(){
-        
-        print("PAUSE")
-        pauseController = PauseViewController()
-        self.navigationController?.pushViewController(pauseController!, animated: false)
-        
-    }
-    
-    
 
 }
