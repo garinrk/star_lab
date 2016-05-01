@@ -23,6 +23,8 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     var newGameView = NewGameView()
     var startButton = UIButton(type: UIButtonType.Custom)
     var gameNameTextEntry = UITextField(frame: CGRectZero)
+    var _audioManager : AudioManager = AudioManager.sharedInstance
+
     
     var gvc : GameViewController?
     
@@ -106,6 +108,7 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
         easyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         CheckForLegal()
+        _audioManager.PlayAudio(SoundType.Confirm)
     }
     
     func HardButtonPressed(){
@@ -113,6 +116,8 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
         hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         CheckForLegal()
+        _audioManager.PlayAudio(SoundType.Confirm)
+
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {

@@ -23,6 +23,7 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     var optionsButton = UIButton(type: UIButtonType.Custom)
     var scoresButton = UIButton(type: UIButtonType.Custom)
     var screenRect : CGRect = UIScreen.mainScreen().bounds
+    var _audioManager : AudioManager = AudioManager.sharedInstance
     
     weak var delegate: MainMenuViewControllerDelegate? = nil
     
@@ -64,23 +65,27 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     func NewGameButtonPressed(){
         ngvc = NewGameViewController()
         ngvc!.delegate = self
+        _audioManager.PlayAudio(SoundType.Confirm)
         self.presentViewController(ngvc!, animated: false, completion: nil)
     }
     
     func OptionsButtonPressed(){
         ovc = OptionsViewController()
         ovc!.delegate = self
+        _audioManager.PlayAudio(SoundType.Confirm)
         self.presentViewController(ovc!, animated: false, completion: nil)
     }
     
     func ScoresButtonPressed(){
         hsvc = HighScoreViewController()
         hsvc!.delegate = self
+        _audioManager.PlayAudio(SoundType.Confirm)
         self.presentViewController(hsvc!, animated: false, completion: nil)
     }
     
     // MARK: NewGameViewControllerDelegate functions
     func newGamePressedBack() {
+        _audioManager.PlayAudio(SoundType.Confirm)
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     
@@ -91,11 +96,13 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     
     // MARK: OptionsViewControllerDelegate functions 
     func optionsPressedBack() {
+        _audioManager.PlayAudio(SoundType.Confirm)
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     
     // MARK: HighScoreViewControllerDelegate functions
     func highScorePressedBack() {
+        _audioManager.PlayAudio(SoundType.Confirm)
         self.dismissViewControllerAnimated(false, completion: nil)
     }
     

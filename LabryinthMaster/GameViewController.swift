@@ -142,6 +142,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gyroManager.Pause()
         pauseController = PauseViewController()
         pauseController!.delegate = self
+        _audioManager.PlayAudio(SoundType.Confirm)
         self.presentViewController(pauseController!, animated: false, completion: nil)
     }
 
@@ -262,6 +263,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     func gameOverPressedExit()
     {
+        _audioManager.PlayAudio(SoundType.Confirm)
         _gameManager.quit()
         self.dismissViewControllerAnimated(false, completion: nil)
         delegate?.backToMainPressed()
@@ -276,6 +278,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     func levelCompletePressedExit()
     {
+        _audioManager.PlayAudio(SoundType.Confirm)
         _gameManager.quit()
         self.dismissViewControllerAnimated(false, completion: nil)
         delegate?.backToMainPressed()
@@ -283,6 +286,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     // MARK: PauseViewDelegate functions
     func pausePressedQuit() {
+        _audioManager.PlayAudio(SoundType.Confirm)
         _gameManager.quit()
         self.dismissViewControllerAnimated(false, completion: nil)
         delegate?.backToMainPressed()
