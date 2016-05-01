@@ -19,8 +19,9 @@ class Gyro{
     var screenRect = UIScreen.mainScreen().bounds
     
     weak var delegate : GyroDelegate? = nil
-    
+    var acceptedUpdatesFlag : Bool = false
     func Start(){
+        acceptedUpdatesFlag = true
         gyroManger.accelerometerUpdateInterval = 1/60.0
         
         //start recording data
@@ -34,10 +35,14 @@ class Gyro{
     }
     
     func HandleAccData(acc : CMAcceleration){
+        if acceptedUpdatesFlag{
         delegate?.UpdatePlayerPosition(CGFloat(acc.x), magY: CGFloat(acc.y))
+        }
     }
     
     func Stop(){
-        gyroManger.stopGyroUpdates()
+        acceptedUpdatesFlag = false
+        self.gyroManger.stopAccelerometerUpdates()
+        self.gyroManger.stopDeviceMotionUpdates()
     }
 }
