@@ -37,4 +37,7 @@ class Gyro{
         delegate?.UpdatePlayerPosition(CGFloat(acc.x), magY: CGFloat(acc.y))
     }
     
+    func Stop(){
+        gyroManger.stopGyroUpdates()
+    }
 }

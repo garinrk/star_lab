@@ -8,6 +8,15 @@
 
 import UIKit
 
+extension UINavigationController {
+    public override func shouldAutorotate() -> Bool {
+        return false
+    }
+    public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return [UIInterfaceOrientationMask.Portrait] //,UIInterfaceOrientationMask.PortraitUpsideDown]
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
