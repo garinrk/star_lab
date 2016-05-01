@@ -44,6 +44,8 @@
 		456647321CD561FC0061B5A4 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456647311CD561FC0061B5A4 /* GameOverViewController.swift */; };
 		456647341CD562DF0061B5A4 /* LabData.plist in Resources */ = {isa = PBXBuildFile; fileRef = 456647331CD562DF0061B5A4 /* LabData.plist */; };
 		456647381CD567C10061B5A4 /* GameTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456647371CD567C10061B5A4 /* GameTimer.swift */; };
+		4566473A1CD589F60061B5A4 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456647391CD589F60061B5A4 /* HighScoreViewController.swift */; };
+		4566473C1CD589FF0061B5A4 /* HighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566473B1CD589FF0061B5A4 /* HighScoreView.swift */; };
 		457B672F1CD426FE00EE127D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B672E1CD426FE00EE127D /* AudioManager.swift */; };
 		457B67311CD4292000EE127D /* mainMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67301CD4292000EE127D /* mainMusic.mp3 */; };
 /* End PBXBuildFile section */
@@ -88,6 +90,8 @@
 		456647311CD561FC0061B5A4 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		456647331CD562DF0061B5A4 /* LabData.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = LabData.plist; sourceTree = "<group>"; };
 		456647371CD567C10061B5A4 /* GameTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTimer.swift; sourceTree = "<group>"; };
+		456647391CD589F60061B5A4 /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
+		4566473B1CD589FF0061B5A4 /* HighScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreView.swift; sourceTree = "<group>"; };
 		457B672E1CD426FE00EE127D /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		457B67301CD4292000EE127D /* mainMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mainMusic.mp3; path = Audio/mainMusic.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +135,7 @@
 				450CA1731CD4561500D78B63 /* NewGameView.swift */,
 				4566472B1CD561D50061B5A4 /* GameOverView.swift */,
 				4566472D1CD561E40061B5A4 /* LevelCompleteView.swift */,
+				4566473B1CD589FF0061B5A4 /* HighScoreView.swift */,
 			);
 			name = MenuViews;
 			path = ..;
@@ -145,6 +150,7 @@
 				450CA17B1CD4583F00D78B63 /* NewGameViewController.swift */,
 				4566472F1CD561F10061B5A4 /* LevelCompleteViewController.swift */,
 				456647311CD561FC0061B5A4 /* GameOverViewController.swift */,
+				456647391CD589F60061B5A4 /* HighScoreViewController.swift */,
 			);
 			name = MenuViewControllers;
 			path = ..;
@@ -258,7 +264,7 @@
 				TargetAttributes = {
 					453B5D191CB85C0600FF61F8 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = HXH9MZBPRJ;
+						DevelopmentTeam = PVTS86U6DQ;
 					};
 				};
 			};
@@ -325,6 +331,8 @@
 				4553B6EA1CCAD3710010C746 /* Gyro.swift in Sources */,
 				456647381CD567C10061B5A4 /* GameTimer.swift in Sources */,
 				450CA16E1CD455DD00D78B63 /* MainMenuView.swift in Sources */,
+				4566473C1CD589FF0061B5A4 /* HighScoreView.swift in Sources */,
+				4566473A1CD589F60061B5A4 /* HighScoreViewController.swift in Sources */,
 				456647301CD561F10061B5A4 /* LevelCompleteViewController.swift in Sources */,
 				450CA1781CD4563900D78B63 /* OptionsViewController.swift in Sources */,
 				187AFA691CBEF2DB00750D79 /* GameLoop.swift in Sources */,
@@ -434,7 +442,7 @@
 				INFOPLIST_FILE = LabryinthMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster3;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -449,7 +457,7 @@
 				INFOPLIST_FILE = LabryinthMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster3;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

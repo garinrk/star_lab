@@ -14,6 +14,7 @@ class MainMenuViewController : UIViewController{
     
     var ngvc : NewGameViewController?
     var ovc : OptionsViewController?
+    var hsvc : HighScoreViewController?
     var newGameButton = UIButton(type: UIButtonType.Custom)
     var loadGameButton = UIButton(type: UIButtonType.Custom)
     var optionsButton = UIButton(type: UIButtonType.Custom)
@@ -89,7 +90,11 @@ class MainMenuViewController : UIViewController{
     }
     
     func ScoresButtonPressed(){
-        print("High Scores")
+        hsvc = HighScoreViewController()
+        
+        print("Presenting Scores")
+        self.navigationController?.pushViewController(hsvc!, animated: true)
+        
         
     }
 }

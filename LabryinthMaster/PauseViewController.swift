@@ -87,6 +87,5 @@ class PauseViewController : UIViewController{
     func QuitButtonPressed(){
         print("Quit Button Pressed")
         _gameManager.quit()
-        
     }
 }
