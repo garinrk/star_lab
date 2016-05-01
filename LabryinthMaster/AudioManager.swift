@@ -29,7 +29,7 @@ class AudioManager : NSObject{
     var outOfTimePlayer : AVAudioPlayer!
     var startLevelPlayer : AVAudioPlayer!
     
-    var mainMusicVolume : Float = 1.0
+    var mainMusicVolume : Float = 0.25
     var effectsVolume : Float = 0.5
     
     

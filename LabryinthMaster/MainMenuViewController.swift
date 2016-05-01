@@ -30,7 +30,7 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     override func viewDidLoad() {
         mmview.frame = UIScreen.mainScreen().bounds
         mmview.backgroundColor = UIColor.brownColor()
-        
+        _audioManager.PlayAudio(SoundType.MainMusic)
         newGameButton.frame = CGRectMake(50,50, 200, 50)
         newGameButton.center = CGPointMake(CGRectGetMidX(screenRect) - 200,CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.75)
         newGameButton
