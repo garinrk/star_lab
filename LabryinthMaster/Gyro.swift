@@ -23,9 +23,10 @@ class Gyro{
     func Start(){
         acceptedUpdatesFlag = true
         gyroManger.accelerometerUpdateInterval = 1/60.0
+        let queue = NSOperationQueue()
         
         //start recording data
-        gyroManger.startAccelerometerUpdatesToQueue(NSOperationQueue.currentQueue()!) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
+        gyroManger.startAccelerometerUpdatesToQueue(queue) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
             
             self.HandleAccData(accelerometerData!.acceleration)
             if(NSError != nil) {
@@ -42,7 +43,7 @@ class Gyro{
     
     func Stop(){
         acceptedUpdatesFlag = false
-        self.gyroManger.stopAccelerometerUpdates()
-        self.gyroManger.stopDeviceMotionUpdates()
+//        self.gyroManger.stopAccelerometerUpdates()
+//        self.gyroManger.stopDeviceMotionUpdates()
     }
 }
