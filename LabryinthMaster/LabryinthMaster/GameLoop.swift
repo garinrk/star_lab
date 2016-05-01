@@ -23,7 +23,7 @@ class GameLoop: NSObject {
     
     func callUpdate() {
         delegate?.update()
-        print ("frameInterval: \(frameInterval)")
+//        print ("frameInterval: \(frameInterval)")
     }
     
     func start() {
@@ -37,7 +37,7 @@ class GameLoop: NSObject {
             displayLink.removeFromRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
         }
         displayLink = nil
-        print("stopped")
+//        print("stopped")
     }
     
 }

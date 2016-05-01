@@ -227,7 +227,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gameOverController = GameOverViewController()
         gameOverController?.lifetimeScore = score
         gameOverController?.delegate = self
-        _audioManager.StopAllAudio()
+//        _audioManager.StopAllAudio()
         gyroManager.Pause()
         self.presentViewController(gameOverController!, animated: false, completion: nil)
     }
@@ -235,7 +235,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func WinGameCall(){
         levelCompleteController = LevelCompleteViewController()
         levelCompleteController?.delegate = self
-        _audioManager.StopAllAudio()
+//        _audioManager.StopAllAudio()
         //silence sound effects maybe?
         gyroManager.Pause()
         self.presentViewController(levelCompleteController!, animated: false, completion: nil)
