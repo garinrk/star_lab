@@ -62,6 +62,8 @@ class GameManager: GameLoopDelegate {
     
     private var gameOverController : GameOverViewController?
     
+    var _scoreManager : ScoreManager = ScoreManager.sharedInstance
+    
     class var sharedInstance : GameManager{
         
         struct Static{
@@ -152,7 +154,8 @@ class GameManager: GameLoopDelegate {
         gameLoop.stop()
         
         // update scoremanager with lifetime score
-        
+        _scoreManager.addScore(ScoreInfo(name: playerName, score: lifetimeScore, difficulty: mode, timestamp: NSDate()))
+        lifetimeScore = 0
         delegate?.GameOverCall()
     }
     
@@ -161,8 +164,10 @@ class GameManager: GameLoopDelegate {
         dead = true
         
         timer.StopTimer()
-        score = 0
+        currentScore = 0
         currentLevel = 1
+        _scoreManager.addScore(ScoreInfo(name: playerName, score: lifetimeScore, difficulty: mode, timestamp: NSDate()))
+        lifetimeScore = 0
         gameLoop.stop()
     }
     

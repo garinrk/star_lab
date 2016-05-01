@@ -19,6 +19,14 @@ struct ScoreInfo {
         return ["Name":name, "Score": score, "Difficulty": difficulty.rawValue, "Time": timestamp]
     }
     
+    init(name: String, score: Int, difficulty: DifficultyMode, timestamp: NSDate)
+    {
+        self.name = name
+        self.score = score
+        self.difficulty = difficulty
+        self.timestamp = timestamp
+    }
+    
     init(FromDict dict: [String:AnyObject])
     {
         let _name: String? = dict["Name"] as? String
