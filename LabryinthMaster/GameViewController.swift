@@ -10,7 +10,7 @@ import UIKit
 import CoreMotion
 
 protocol GameViewControllerDelegate: class {
-    
+    func backToMainPressed()
 }
 
 class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, GameManagerDelegate, GameTimerDelegate, PauseViewDelegate, GameOverViewControllerDelegate, LevelCompleteViewControllerDelegate {
@@ -142,11 +142,11 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gyroManager.Pause()
         pauseController = PauseViewController()
         pauseController?.pauseDelegate = self
-        self.navigationController?.pushViewController(pauseController!, animated: false)
+        self.presentViewController(pauseController!, animated: false, completion: nil)
     }
 
     func UnpauseGame() {
-        self.navigationController?.popViewControllerAnimated(false)
+        self.dismissViewControllerAnimated(false, completion: nil)
         _gameManager.unpause()
         gyroManager.Unpause()
     }
@@ -228,7 +228,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gameOverController?.delegate = self
         _audioManager.StopAllAudio()
         gyroManager.Pause()
-        self.navigationController?.pushViewController(gameOverController!, animated: false)
+        self.presentViewController(gameOverController!, animated: false, completion: nil)
     }
     
     func WinGameCall(){
@@ -237,7 +237,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         _audioManager.StopAllAudio()
         //silence sound effects maybe?
         gyroManager.Pause()
-        self.navigationController?.pushViewController(levelCompleteController!, animated: false)
+        self.presentViewController(levelCompleteController!, animated: false, completion: nil)
     }
     
     // MARK: GameTimerDelegate functions
@@ -255,31 +255,29 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     // MARK: GameOverViewControllerDelegate functions
     func gameOverPressedRetry()
     {
-        self.navigationController?.popViewControllerAnimated(false)
+        self.dismissViewControllerAnimated(false, completion: nil)
         makeNewLevel()
     }
     
     func gameOverPressedExit()
     {
         _gameManager.quit()
-        self.navigationController?.popViewControllerAnimated(false)
-        self.navigationController?.popViewControllerAnimated(false)
-        self.navigationController?.popViewControllerAnimated(false)
+        self.dismissViewControllerAnimated(false, completion: nil)
+        delegate?.backToMainPressed()
     }
     
     // MARK: LevelCompleteViewControllerDelegate functions
     func levelCompletePressedRetry()
     {
-        self.navigationController?.popViewControllerAnimated(false)
+        self.dismissViewControllerAnimated(false, completion: nil)
         makeNewLevel()
     }
     
     func levelCompletePressedExit()
     {
         _gameManager.quit()
-        self.navigationController?.popViewControllerAnimated(false)
-        self.navigationController?.popViewControllerAnimated(false)
-        self.navigationController?.popViewControllerAnimated(false)
+        self.dismissViewControllerAnimated(false, completion: nil)
+        delegate?.backToMainPressed()
     }
     
 }

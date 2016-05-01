@@ -83,6 +83,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
     }
     
     // MARK: GameViewControllerDelegate functions
-    
+    func backToMainPressed() {
+        mainNavController.popViewControllerAnimated(false)
+    }
 }
 
