@@ -176,6 +176,7 @@
 		453B5D1C1CB85C0600FF61F8 /* LabryinthMaster */ = {
 			isa = PBXGroup;
 			children = (
+				453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */,
 				450CA16C1CD4559400D78B63 /* MenuViewControllers */,
 				450CA16B1CD4558D00D78B63 /* MenuViews */,
 				0CC9EE9A1CD57F5E0031028A /* Managers */,
@@ -190,7 +191,6 @@
 				0C1AFCDF1CD5437000D1E20F /* win.wav */,
 				0C1AFCE01CD5437000D1E20F /* win2.wav */,
 				457B67301CD4292000EE127D /* mainMusic.mp3 */,
-				453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */,
 				453B5D241CB85C0600FF61F8 /* Assets.xcassets */,
 				453B5D291CB85C0600FF61F8 /* Info.plist */,
 				456647331CD562DF0061B5A4 /* LabData.plist */,

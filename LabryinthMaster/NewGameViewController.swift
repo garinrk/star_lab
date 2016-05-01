@@ -89,12 +89,12 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     
     
     func BackButtonPressed(){
-        print("Back button pressed")
+//        print("Back button pressed")
         self.navigationController?.popViewControllerAnimated(true)
     }
     
     func StartButtonPressed(){
-        print("Start Button Pressed")
+//        print("Start Button Pressed")
         gvc = GameViewController()
         self.navigationController?.pushViewController(gvc!, animated: false)
     }

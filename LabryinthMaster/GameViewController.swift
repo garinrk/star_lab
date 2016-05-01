@@ -31,14 +31,16 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         super.loadView()
         
         //hide back button and top bar
-        self.navigationItem.hidesBackButton = true
-        self.navigationController?.navigationBar.hidden = true
+//        self.navigationItem.hidesBackButton = true
+//        self.navigationController?.navigationBar.hidden = true
         
         //MANAGERS
         _gameManager.delegate = self
         
         gyroManager = Gyro()
         gyroManager.delegate = self
+        gyroManager.Start()
+        gyroManager.Pause()
         
         makeNewLevel()
     }
@@ -104,7 +106,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         // start the game
         
         _gameManager.startGame()
-        gyroManager.Start()
+        gyroManager.Unpause()
     }
     
     
@@ -126,7 +128,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     func PauseGame(){
         _gameManager.pause()
-        gyroManager.Stop()
+        gyroManager.Pause()
         pauseController = PauseViewController()
         pauseController?.pauseDelegate = self
         self.navigationController?.pushViewController(pauseController!, animated: false)
@@ -135,7 +137,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func UnpauseGame() {
         self.navigationController?.popViewControllerAnimated(false)
         _gameManager.unpause()
-        gyroManager.Start()
+        gyroManager.Unpause()
     }
 
     
@@ -214,7 +216,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gameOverController = GameOverViewController()
         gameOverController?.delegate = self
         _audioManager.StopAllAudio()
-        gyroManager.Stop()
+        gyroManager.Pause()
         self.navigationController?.pushViewController(gameOverController!, animated: false)
     }
     
@@ -223,7 +225,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         levelCompleteController?.delegate = self
         _audioManager.StopAllAudio()
         //silence sound effects maybe?
-        gyroManager.Stop()
+        gyroManager.Pause()
         self.navigationController?.pushViewController(levelCompleteController!, animated: false)
     }
     

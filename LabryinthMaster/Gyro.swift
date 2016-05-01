@@ -18,10 +18,11 @@ class Gyro{
     var gyroManger = CMMotionManager()
     var screenRect = UIScreen.mainScreen().bounds
     
+    private var paused: Bool = false
+    
     weak var delegate : GyroDelegate? = nil
-    var acceptedUpdatesFlag : Bool = false
+    
     func Start(){
-        acceptedUpdatesFlag = true
         gyroManger.accelerometerUpdateInterval = 1/60.0
         let queue = NSOperationQueue()
         
@@ -36,14 +37,18 @@ class Gyro{
     }
     
     func HandleAccData(acc : CMAcceleration){
-        if acceptedUpdatesFlag{
-        delegate?.UpdatePlayerPosition(CGFloat(acc.x), magY: CGFloat(acc.y))
+        if paused {
+            return
         }
+        
+        delegate?.UpdatePlayerPosition(CGFloat(acc.x), magY: CGFloat(acc.y))
     }
-    
-    func Stop(){
-        acceptedUpdatesFlag = false
-//        self.gyroManger.stopAccelerometerUpdates()
-//        self.gyroManger.stopDeviceMotionUpdates()
+
+    func Pause(){
+        paused = true
+    }
+
+    func Unpause(){
+        paused = false
     }
 }
