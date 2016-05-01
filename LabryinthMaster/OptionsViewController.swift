@@ -77,7 +77,8 @@ class OptionsViewController : UIViewController{
         backButton.backgroundColor = UIColor.grayColor()
         
         
-        
+        fxSlider?.value = _audio.effectsVolume
+        musicSlider?.value = _audio.mainMusicVolume
         //add to optionsview
         self.optionsView.addSubview(backButton)
         self.optionsView.addSubview(easyButton)

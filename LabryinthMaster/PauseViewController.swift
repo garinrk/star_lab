@@ -66,6 +66,9 @@ class PauseViewController : UIViewController{
         quitButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         quitButton.backgroundColor = UIColor.grayColor()
         
+        
+        fxSlider?.value = _audio.effectsVolume
+        musicSlider?.value = _audio.mainMusicVolume
         self.pauseView.addSubview(quitButton)
         self.pauseView.addSubview(musicSlider!)
         self.pauseView.addSubview(fxSlider!)
@@ -93,12 +96,10 @@ class PauseViewController : UIViewController{
     
     
     func ResumeButtonPressed(){
-        print("Resuming game")
         pauseDelegate?.UnpauseGame()
     }
     
     func QuitButtonPressed(){
-        print("Quit Button Pressed")
         _gameManager.quit()
     }
 }
