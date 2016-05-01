@@ -9,9 +9,9 @@
 import UIKit
 import CoreMotion
 
-class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, GameManagerDelegate, GameTimerDelegate, PauseViewDelegate {
+class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, GameManagerDelegate, GameTimerDelegate, PauseViewDelegate, GameOverViewControllerDelegate, LevelCompleteViewControllerDelegate {
     let screenRect = UIScreen.mainScreen().bounds
-    var gyroManager : Gyro?
+    var gyroManager : Gyro!
     
     var scoreLabel: UILabel!
     var timerLabel: UILabel!
@@ -41,17 +41,14 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
 //        gameManager = GameManager()
         _gameManager.delegate = self
         
+        gyroManager = Gyro()
+        gyroManager.delegate = self
+        
         makeNewLevel()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // initialize and start gyro control
-        
-        gyroManager = Gyro()
-        gyroManager?.delegate = self
-        gyroManager?.Start()
     }
     
     func makeNewLevel()
@@ -111,6 +108,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         // start the game
         
         _gameManager.startGame()
+        gyroManager.Start()
     }
     
     
@@ -133,15 +131,16 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func PauseGame(){
 //        print("PAUSE")
         _gameManager.pause()
+        gyroManager.Stop()
         pauseController = PauseViewController()
         pauseController?.pauseDelegate = self
         self.navigationController?.pushViewController(pauseController!, animated: false)
-        
     }
 
     func UnpauseGame() {
         self.navigationController?.popViewControllerAnimated(false)
         _gameManager.unpause()
+        gyroManager.Start()
     }
 
     
@@ -180,7 +179,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     {
         _audioManager.PlayAudio(SoundType.EnemyKill)
         _gameManager.kill()
-        makeNewLevel()
     }
 
     
@@ -213,19 +211,20 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     {
         _audioManager.PlayAudio(SoundType.Win)
         _gameManager.win()
-        makeNewLevel()
         levelLabel.text = "LEVEL: \(_gameManager.currentLevel)"
     }
     
     // MARK: GameManagerDelegate functions
     func GameOverCall(){
         gameOverController = GameOverViewController()
+        gameOverController?.delegate = self
         _audioManager.StopAllAudio()
         self.navigationController?.pushViewController(gameOverController!, animated: false)
     }
     
     func WinGameCall(){
         levelCompleteController = LevelCompleteViewController()
+        levelCompleteController?.delegate = self
         _audioManager.StopAllAudio()
         //silence sound effects maybe?
         self.navigationController?.pushViewController(levelCompleteController!, animated: false)
@@ -240,8 +239,37 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         {
             _audioManager.PlayAudio(SoundType.OutOfTime)
             _gameManager.kill()
-            makeNewLevel()
         }
     }
 
+    // MARK: GameOverViewControllerDelegate functions
+    func gameOverPressedRetry()
+    {
+        self.navigationController?.popViewControllerAnimated(false)
+        makeNewLevel()
+    }
+    
+    func gameOverPressedExit()
+    {
+        _gameManager.quit()
+        self.navigationController?.popViewControllerAnimated(false)
+        self.navigationController?.popViewControllerAnimated(false)
+        self.navigationController?.popViewControllerAnimated(false)
+    }
+    
+    // MARK: LevelCompleteViewControllerDelegate functions
+    func levelCompletePressedRetry()
+    {
+        self.navigationController?.popViewControllerAnimated(false)
+        makeNewLevel()
+    }
+    
+    func levelCompletePressedExit()
+    {
+        _gameManager.quit()
+        self.navigationController?.popViewControllerAnimated(false)
+        self.navigationController?.popViewControllerAnimated(false)
+        self.navigationController?.popViewControllerAnimated(false)
+    }
+    
 }

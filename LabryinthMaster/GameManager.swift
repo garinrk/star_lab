@@ -139,11 +139,13 @@ class GameManager: GameLoopDelegate {
     func pause()
     {
         gameLoop.stop()
+        timer.PauseTimer()
     }
     
     func unpause()
     {
         gameLoop.start()
+        timer.UnpauseTimer()
     }
     
     func win()

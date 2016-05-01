@@ -19,6 +19,8 @@ class GameTimer{
     var currentTime: Int
     var gameTimer : NSTimer!
     
+    private var paused: Bool = false
+    
     weak var delegate: GameTimerDelegate? = nil
     
     init(timeLimit: Int){
@@ -31,6 +33,10 @@ class GameTimer{
     }
     
     @objc func TimerUpdate(){
+        if paused {
+            return
+        }
+        
         currentTime -= 1
         if timeLimit <= 0{
             StopTimer()
@@ -40,6 +46,14 @@ class GameTimer{
     
     func StopTimer(){
         gameTimer.invalidate()
+    }
+    
+    func PauseTimer() {
+        paused = true
+    }
+    
+    func UnpauseTimer() {
+        paused = false
     }
     
 }

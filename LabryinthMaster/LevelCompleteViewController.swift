@@ -8,12 +8,19 @@
 
 import UIKit
 
+protocol LevelCompleteViewControllerDelegate: class {
+    func levelCompletePressedRetry()
+    func levelCompletePressedExit()
+}
+
 class LevelCompleteViewController : UIViewController{
     
     var completeView = LevelCompleteView()
     var continueButton = UIButton(type: UIButtonType.Custom)
     var quitButton = UIButton(type: UIButtonType.Custom)
     var screenRect = UIScreen.mainScreen().bounds
+    
+    weak var delegate: LevelCompleteViewControllerDelegate? = nil
     
     override func viewDidLoad() {
         
@@ -43,12 +50,11 @@ class LevelCompleteViewController : UIViewController{
     }
     
     func ContinueButtonPressed(){
-        print("Continue Pressed")
-        
+        delegate?.levelCompletePressedRetry()
     }
     
     func QuitButtonPressed(){
-        print("Quit Pressed")
+        delegate?.levelCompletePressedExit()
     }
     
 }

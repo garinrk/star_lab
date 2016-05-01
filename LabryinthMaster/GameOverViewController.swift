@@ -8,12 +8,19 @@
 
 import UIKit
 
+protocol GameOverViewControllerDelegate: class {
+    func gameOverPressedRetry()
+    func gameOverPressedExit()
+}
+
 class GameOverViewController : UIViewController{
     
     var gameOverView = GameOverView()
     var tryAgainButton = UIButton(type: UIButtonType.Custom)
     var quitButton = UIButton(type: UIButtonType.Custom)
     var screenRect = UIScreen.mainScreen().bounds
+    
+    weak var delegate: GameOverViewControllerDelegate? = nil
     
     override func viewDidLoad() {
         
@@ -43,13 +50,11 @@ class GameOverViewController : UIViewController{
     }
     
     func TryAgainPressed(){
-        self.navigationController?.popViewControllerAnimated(false)
-        print("Try Again Pressed")
-        
+        delegate?.gameOverPressedRetry()
     }
     
     func QuitButtonPressed(){
-        print("Quit Pressed")
+        delegate?.gameOverPressedExit()
     }
     
 }
