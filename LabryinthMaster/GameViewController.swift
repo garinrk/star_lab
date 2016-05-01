@@ -141,7 +141,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         _gameManager.pause()
         gyroManager.Pause()
         pauseController = PauseViewController()
-        pauseController?.pauseDelegate = self
+        pauseController!.delegate = self
         self.presentViewController(pauseController!, animated: false, completion: nil)
     }
 
@@ -276,6 +276,13 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     func levelCompletePressedExit()
     {
+        _gameManager.quit()
+        self.dismissViewControllerAnimated(false, completion: nil)
+        delegate?.backToMainPressed()
+    }
+    
+    // MARK: PauseViewDelegate functions
+    func pausePressedQuit() {
         _gameManager.quit()
         self.dismissViewControllerAnimated(false, completion: nil)
         delegate?.backToMainPressed()

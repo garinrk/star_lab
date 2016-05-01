@@ -41,9 +41,11 @@ class Gyro{
     
     func HandleAccData(acc : CMAcceleration){
         if paused {
-            motionQueue = NSOperationQueue()
+//            motionQueue = NSOperationQueue()
             return
         }
+        
+//        print("UPDATE interval: \(gyroManger.accelerometerUpdateInterval)")
         
         delegate?.UpdatePlayerPosition(CGFloat(acc.x), magY: CGFloat(acc.y))
     }

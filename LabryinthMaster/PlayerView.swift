@@ -97,6 +97,8 @@ class PlayerView : UIView{
         var xMove = xMagnitude
         var yMove = -yMagnitude
         
+//        print("X: \(xMove) - Y: \(yMove)")
+        
         // first check to see if moves are allowed
         
         if yMove < 0 { // up

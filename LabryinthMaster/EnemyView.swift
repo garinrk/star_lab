@@ -430,6 +430,8 @@ class EnemyView: UIView {
         let deltaTime: CGFloat = CGFloat(currentTime.timeIntervalSinceDate(lastTime))
         lastTime = currentTime
         
+//        print ("deltaTime: \(deltaTime)")
+        
         yPos += horizVelocity * deltaTime
         xPos += vertVelocity * deltaTime
         

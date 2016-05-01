@@ -10,6 +10,7 @@ import UIKit
 
 protocol PauseViewDelegate : class {
     func UnpauseGame()
+    func pausePressedQuit()
 }
 
 //protocol GameManagerDelegate: class {
@@ -30,7 +31,7 @@ class PauseViewController : UIViewController{
     var _audio : AudioManager = AudioManager.sharedInstance
     var _gameManager : GameManager = GameManager.sharedInstance
     
-    weak var pauseDelegate: PauseViewDelegate? = nil
+    weak var delegate: PauseViewDelegate? = nil
     
     override func viewDidLoad() {
         
@@ -96,10 +97,10 @@ class PauseViewController : UIViewController{
     
     
     func ResumeButtonPressed(){
-        pauseDelegate?.UnpauseGame()
+        delegate?.UnpauseGame()
     }
     
     func QuitButtonPressed(){
-        _gameManager.quit()
+        delegate?.pausePressedQuit()
     }
 }
