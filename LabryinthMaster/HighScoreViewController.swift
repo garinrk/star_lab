@@ -8,10 +8,17 @@
 
 import UIKit
 
+protocol HighScoreViewControllerDelegate: class {
+    func highScorePressedBack()
+}
+
 class HighScoreViewController : UIViewController{
     var backButton = UIButton(type: UIButtonType.Custom)
     var screenRect = UIScreen.mainScreen().bounds
     var highScore = HighScoreView()
+    
+    weak var delegate: HighScoreViewControllerDelegate? = nil
+    
     override func viewDidLoad() {
         
         highScore.frame = UIScreen.mainScreen().bounds
@@ -32,7 +39,7 @@ class HighScoreViewController : UIViewController{
     }
     
     func BackButtonPressed(){
-     self.navigationController?.popViewControllerAnimated(true)   
+        delegate?.highScorePressedBack()
     }
     
 }

@@ -9,6 +9,10 @@
 import UIKit
 import CoreMotion
 
+protocol GameViewControllerDelegate: class {
+    
+}
+
 class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, GameManagerDelegate, GameTimerDelegate, PauseViewDelegate, GameOverViewControllerDelegate, LevelCompleteViewControllerDelegate {
     let screenRect = UIScreen.mainScreen().bounds
     var gyroManager : Gyro!
@@ -27,6 +31,8 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     var levelCompleteController : LevelCompleteViewController?
     var pauseController : PauseViewController?
     
+    weak var delegate: GameViewControllerDelegate? = nil
+    
     override func loadView() {
         super.loadView()
         
@@ -41,12 +47,17 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gyroManager.delegate = self
         gyroManager.Start()
         gyroManager.Pause()
-        
-        makeNewLevel()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    func startNewGame(name: String, difficulty: DifficultyMode)
+    {
+        _gameManager.playerName = name
+        _gameManager.mode = difficulty
+        makeNewLevel()
     }
     
     func makeNewLevel()

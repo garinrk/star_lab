@@ -8,11 +8,8 @@
 
 import UIKit
 
-
-enum GameDifficulty{
-    case HARD
-    case EASY
-    case NONE
+protocol OptionsViewControllerDelegate: class {
+    func optionsPressedBack()
 }
 
 class OptionsViewController : UIViewController{
@@ -23,15 +20,16 @@ class OptionsViewController : UIViewController{
     var hardButton = UIButton(type: UIButtonType.Custom)
     var optionsView = OptionsView()
     var screenRect = UIScreen.mainScreen().bounds
-    var diff : GameDifficulty? = .NONE
+    var diff : DifficultyMode? = .Easy
     var backButton = UIButton(type: UIButtonType.Custom)
     
     var hardDifficultySelected = false
     var easyDifficultySelected = false
     
-    
     var _audio : AudioManager = AudioManager.sharedInstance
     var _scoreManager : ScoreManager = ScoreManager.sharedInstance
+    
+    weak var delegate: OptionsViewControllerDelegate? = nil
     
     override func viewDidLoad() {
         //set up options view and hide back button
@@ -115,22 +113,23 @@ class OptionsViewController : UIViewController{
     }
     
     func EasyButtonPressed(){
-        diff = .EASY
+        diff = .Easy
         easyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         print("Difficulty is \(diff.debugDescription)")
     }
     
     func HardButtonPressed(){
-        diff = .HARD
+        diff = .Hard
         hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         print("Difficulty is \(diff.debugDescription)")
     }
     
     func BackButtonPressed(){
-        print("Back Button Pressed")
-        self.navigationController?.popViewControllerAnimated(true)
+//        print("Back Button Pressed")
+//        self.navigationController?.popViewControllerAnimated(true)
+        delegate?.optionsPressedBack()
     }
     
     

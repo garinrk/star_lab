@@ -107,6 +107,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CA0130A1CD6AC3A00C218CB /* In-Game View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4566472F1CD561F10061B5A4 /* LevelCompleteViewController.swift */,
+				456647311CD561FC0061B5A4 /* GameOverViewController.swift */,
+				450CA1791CD4565400D78B63 /* PauseViewController.swift */,
+			);
+			name = "In-Game View Controllers";
+			sourceTree = "<group>";
+		};
 		0CC9EE9A1CD57F5E0031028A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,11 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				450CA1751CD4562600D78B63 /* MainMenuViewController.swift */,
-				450CA1771CD4563900D78B63 /* OptionsViewController.swift */,
-				450CA1791CD4565400D78B63 /* PauseViewController.swift */,
 				450CA17B1CD4583F00D78B63 /* NewGameViewController.swift */,
-				4566472F1CD561F10061B5A4 /* LevelCompleteViewController.swift */,
-				456647311CD561FC0061B5A4 /* GameOverViewController.swift */,
+				450CA1771CD4563900D78B63 /* OptionsViewController.swift */,
 				456647391CD589F60061B5A4 /* HighScoreViewController.swift */,
 			);
 			name = MenuViewControllers;
@@ -217,6 +224,7 @@
 				453B5D301CB85C3200FF61F8 /* Game Objects */,
 				457B672B1CD426D600EE127D /* Device Managers */,
 				0CCC74AC1CD405F200FF9895 /* Helpers */,
+				0CA0130A1CD6AC3A00C218CB /* In-Game View Controllers */,
 			);
 			name = Game;
 			path = ..;

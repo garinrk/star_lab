@@ -8,7 +8,11 @@
 
 import UIKit
 
-class MainMenuViewController : UIViewController{
+protocol MainMenuViewControllerDelegate: class {
+    func startNewGame(name: String, difficulty: DifficultyMode)
+}
+
+class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, OptionsViewControllerDelegate, HighScoreViewControllerDelegate {
     
     var mmview = MainMenuView()
     
@@ -16,17 +20,15 @@ class MainMenuViewController : UIViewController{
     var ovc : OptionsViewController?
     var hsvc : HighScoreViewController?
     var newGameButton = UIButton(type: UIButtonType.Custom)
-//    var loadGameButton = UIButton(type: UIButtonType.Custom)
     var optionsButton = UIButton(type: UIButtonType.Custom)
     var scoresButton = UIButton(type: UIButtonType.Custom)
     var screenRect : CGRect = UIScreen.mainScreen().bounds
     
+    weak var delegate: MainMenuViewControllerDelegate? = nil
+    
     override func viewDidLoad() {
         mmview.frame = UIScreen.mainScreen().bounds
         mmview.backgroundColor = UIColor.brownColor()
-        //hide back button and top bar
-        self.navigationItem.hidesBackButton = true
-        self.navigationController?.navigationBar.hidden = true
         
         newGameButton.frame = CGRectMake(50,50, 200, 50)
         newGameButton.center = CGPointMake(CGRectGetMidX(screenRect) - 200,CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.75)
@@ -35,15 +37,6 @@ class MainMenuViewController : UIViewController{
         newGameButton.setTitle("New Game", forState: UIControlState.Normal)
         newGameButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         newGameButton.backgroundColor = UIColor.grayColor()
-        
-        
-//        loadGameButton.frame = CGRectMake(50,50, 200, 50)
-//        loadGameButton.center = CGPointMake(CGRectGetMidX(screenRect) + 200, CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.75)
-//        loadGameButton
-//            .addTarget(self, action: #selector(MainMenuViewController.LoadGameButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-//        loadGameButton.setTitle("Load Game",forState: UIControlState.Normal)
-//        loadGameButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-//        loadGameButton.backgroundColor = UIColor.grayColor()
         
         optionsButton.frame = CGRectMake(50,50, 200, 50)
         optionsButton.center = CGPointMake(CGRectGetMidX(screenRect) + 200, CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.90)
@@ -62,7 +55,6 @@ class MainMenuViewController : UIViewController{
         scoresButton.backgroundColor = UIColor.grayColor()
         
         self.mmview.addSubview(newGameButton)
-//        self.mmview.addSubview(loadGameButton)
         self.mmview.addSubview(optionsButton)
         self.mmview.addSubview(scoresButton)
         
@@ -71,30 +63,41 @@ class MainMenuViewController : UIViewController{
     
     func NewGameButtonPressed(){
         ngvc = NewGameViewController()
-        
-        print("Presenting New Game")
-        navigationController?.pushViewController(ngvc!, animated: true)
-//        self.navigationController?.pushViewController(ngvc!, animated: true)
-        
+        ngvc!.delegate = self
+        self.presentViewController(ngvc!, animated: false, completion: nil)
     }
-    
-//    func LoadGameButtonPressed(){
-//        print("Load game")
-//    }
     
     func OptionsButtonPressed(){
         ovc = OptionsViewController()
-        
-        print("Presenting Options")
-        self.navigationController?.pushViewController(ovc!, animated: true)
+        ovc!.delegate = self
+        self.presentViewController(ovc!, animated: false, completion: nil)
     }
     
     func ScoresButtonPressed(){
         hsvc = HighScoreViewController()
-        
-        print("Presenting Scores")
-        self.navigationController?.pushViewController(hsvc!, animated: true)
-        
-        
+        hsvc!.delegate = self
+        self.presentViewController(hsvc!, animated: false, completion: nil)
     }
+    
+    // MARK: NewGameViewControllerDelegate functions
+    func newGamePressedBack() {
+        self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    func newGamePressedStart(name: String, difficulty: DifficultyMode) {
+        self.dismissViewControllerAnimated(false, completion: nil)
+        delegate?.startNewGame(name, difficulty: difficulty)
+    }
+    
+    // MARK: OptionsViewControllerDelegate functions 
+    func optionsPressedBack() {
+        self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    // MARK: HighScoreViewControllerDelegate functions
+    func highScorePressedBack() {
+        self.dismissViewControllerAnimated(false, completion: nil)
+    }
+    
+    
 }

@@ -18,7 +18,7 @@ extension UINavigationController {
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDelegate, GameViewControllerDelegate {
 
     var window: UIWindow?
     let mainNavController = UINavigationController()
@@ -33,7 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainNavController.setNavigationBarHidden(true, animated: false)
         mainNavController.pushViewController(mainMenuViewController, animated: false)
         
-        // set delegates here as necessary
+        mainMenuViewController.delegate = self
+        gameViewController.delegate = self
         
         window?.makeKeyAndVisible()
         
@@ -75,6 +76,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
 
-
+    // MARK: MainMenuViewControllerDelegate functions
+    func startNewGame(name: String, difficulty: DifficultyMode) {
+        mainNavController.pushViewController(gameViewController, animated: false)
+        gameViewController.startNewGame(name, difficulty: difficulty)
+    }
+    
+    // MARK: GameViewControllerDelegate functions
+    
 }
 

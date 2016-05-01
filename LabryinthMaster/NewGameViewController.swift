@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol NewGameViewControllerDelegate: class {
+    func newGamePressedBack()
+    func newGamePressedStart(name: String, difficulty: DifficultyMode)
+}
+
 class NewGameViewController : UIViewController, UITextFieldDelegate{
     
     var screenRect = UIScreen.mainScreen().bounds
-    var diff : GameDifficulty? = .NONE
+    var diff : DifficultyMode? = nil
     var backButton = UIButton(type: UIButtonType.Custom)
     var easyButton = UIButton(type: UIButtonType.Custom)
     var hardButton = UIButton(type: UIButtonType.Custom)
@@ -21,7 +26,7 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     
     var gvc : GameViewController?
     
-    //    var screenRect = UIScreen.mainScreen().bounds
+    weak var delegate: NewGameViewControllerDelegate? = nil
     
     override func viewDidLoad() {
         
@@ -89,25 +94,22 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     
     
     func BackButtonPressed(){
-//        print("Back button pressed")
-        self.navigationController?.popViewControllerAnimated(true)
+        delegate?.newGamePressedBack()
     }
     
     func StartButtonPressed(){
-//        print("Start Button Pressed")
-        gvc = GameViewController()
-        self.navigationController?.pushViewController(gvc!, animated: false)
+        delegate?.newGamePressedStart(gameNameTextEntry.text!, difficulty: diff!)
     }
     
     func EasyButtonPressed(){
-        diff = .EASY
+        diff = .Easy
         easyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         CheckForLegal()
     }
     
     func HardButtonPressed(){
-        diff = .HARD
+        diff = .Hard
         hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         CheckForLegal()
@@ -126,7 +128,7 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
      */
     func CheckForLegal(){
         //did they set a difficulty?
-        if diff == GameDifficulty.HARD || diff == GameDifficulty.EASY{
+        if diff == .Hard || diff == .Easy {
             if self.gameNameTextEntry.text != ""{
                 startButton.backgroundColor = UIColor.greenColor()
                 startButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
