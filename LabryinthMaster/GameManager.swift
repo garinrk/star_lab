@@ -79,6 +79,11 @@ class GameManager: GameLoopDelegate {
         return Static.instance!
     }
     
+    init()
+    {
+        gameLoop.delegate = self
+    }
+    
     func makeNewLevel()
     {
         maze = Maze()
@@ -108,10 +113,16 @@ class GameManager: GameLoopDelegate {
         
         enemies = []
         for _ in 0 ..< enemiesToMake {
-            enemies.append(EnemyView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width)))
+            let newEnemy: EnemyView = EnemyView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
+            
+            if mode == .Easy {
+                newEnemy.AIMode = 1
+            }
+            else {
+                newEnemy.AIMode = 2
+            }
+            enemies.append(newEnemy)
         }
-        
-        gameLoop.delegate = self
         
         timer = GameTimer(timeLimit: gameTime)
     }
@@ -181,6 +192,7 @@ class GameManager: GameLoopDelegate {
         dead = true
         
         timer.StopTimer()
+        gameLoop.stop()
         currentScore = 0
         currentLevel = 1
         _scoreManager.addScore(ScoreInfo(name: playerName, score: lifetimeScore, difficulty: mode, timestamp: NSDate()))
