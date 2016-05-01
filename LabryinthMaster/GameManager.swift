@@ -15,7 +15,7 @@ enum DifficultyMode: Int {
 
 protocol GameManagerDelegate: class {
 //    func redrawMaze()
-    func GameOverCall()
+    func GameOverCall(score: Int)
     func WinGameCall()
 }
 
@@ -171,8 +171,9 @@ class GameManager: GameLoopDelegate {
         
         // update scoremanager with lifetime score
         _scoreManager.addScore(ScoreInfo(name: playerName, score: lifetimeScore, difficulty: mode, timestamp: NSDate()))
+        
+        delegate?.GameOverCall(lifetimeScore)
         lifetimeScore = 0
-        delegate?.GameOverCall()
     }
     
     func quit()

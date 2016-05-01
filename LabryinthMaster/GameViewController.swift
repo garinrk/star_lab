@@ -223,8 +223,9 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     }
     
     // MARK: GameManagerDelegate functions
-    func GameOverCall(){
+    func GameOverCall(score: Int){
         gameOverController = GameOverViewController()
+        gameOverController?.lifetimeScore = score
         gameOverController?.delegate = self
         _audioManager.StopAllAudio()
         gyroManager.Pause()

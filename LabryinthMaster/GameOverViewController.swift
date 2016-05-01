@@ -19,10 +19,13 @@ class GameOverViewController : UIViewController{
     var tryAgainButton = UIButton(type: UIButtonType.Custom)
     var quitButton = UIButton(type: UIButtonType.Custom)
     var screenRect = UIScreen.mainScreen().bounds
+    var lifetimeScore: Int = 0
     
     weak var delegate: GameOverViewControllerDelegate? = nil
     
     override func viewDidLoad() {
+        
+        gameOverView.lifetimeScoreAmt = lifetimeScore
         
         gameOverView.frame = UIScreen.mainScreen().bounds
         gameOverView.backgroundColor = UIColor(white: 1, alpha: 0.5)

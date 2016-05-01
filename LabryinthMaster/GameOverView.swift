@@ -13,6 +13,9 @@ class GameOverView : UIView{
     var scoreLabel = UILabel()
     var lifetimeScore = UILabel()
     var screenRect = UIScreen.mainScreen().bounds
+    var _gameManager : GameManager = GameManager.sharedInstance
+    
+    var lifetimeScoreAmt: Int = 0
     
     override func drawRect(rect: CGRect) {
         
@@ -31,7 +34,7 @@ class GameOverView : UIView{
         scoreLabel.center.y = screenRect.midY
         
         lifetimeScore.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect) + 30, 200, 100)
-        lifetimeScore.text = "SCORE HERE"
+        lifetimeScore.text = lifetimeScoreAmt.description
         lifetimeScore.adjustsFontSizeToFitWidth = true
         lifetimeScore.textAlignment = .Center
         lifetimeScore.center.x = screenRect.midX
