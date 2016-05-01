@@ -46,10 +46,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
         
-        if mainNavController.topViewController == gameViewController
-        {
-            gameViewController.PauseGame()
-        }
+//        if mainNavController.topViewController == gameViewController
+//        {
+//            gameViewController.PauseGame()
+//        }
         
     }
 
@@ -65,10 +65,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         
-        if mainNavController.topViewController == gameViewController
-        {
-            gameViewController.UnpauseGame()
-        }
+//        if mainNavController.topViewController == gameViewController
+//        {
+//            gameViewController.UnpauseGame()
+//        }
     }
 
     func applicationWillTerminate(application: UIApplication) {
@@ -78,13 +78,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
 
     // MARK: MainMenuViewControllerDelegate functions
     func startNewGame(name: String, difficulty: DifficultyMode) {
-        mainNavController.pushViewController(gameViewController, animated: false)
-        gameViewController.startNewGame(name, difficulty: difficulty)
+        mainNavController.presentViewController(gameViewController, animated: false, completion: {
+            () -> Void in
+        self.gameViewController.startNewGame(name, difficulty: difficulty)
+        })
     }
     
     // MARK: GameViewControllerDelegate functions
     func backToMainPressed() {
-        mainNavController.popViewControllerAnimated(false)
+        mainNavController.dismissViewControllerAnimated(false, completion: nil)
+//        mainNavController.popViewControllerAnimated(false)
     }
 }
 

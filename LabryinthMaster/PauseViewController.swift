@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PauseViewDelegate : class {
-    func UnpauseGame()
+    func pausePressedUnpause()
     func pausePressedQuit()
 }
 
@@ -97,7 +97,7 @@ class PauseViewController : UIViewController{
     
     
     func ResumeButtonPressed(){
-        delegate?.UnpauseGame()
+        delegate?.pausePressedUnpause()
     }
     
     func QuitButtonPressed(){

@@ -35,11 +35,11 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     override func loadView() {
         super.loadView()
-        
-        //hide back button and top bar
-//        self.navigationItem.hidesBackButton = true
-//        self.navigationController?.navigationBar.hidden = true
-        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         //MANAGERS
         _gameManager.delegate = self
         
@@ -47,10 +47,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gyroManager.delegate = self
         gyroManager.Start()
         gyroManager.Pause()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
     }
     
     func startNewGame(name: String, difficulty: DifficultyMode)
@@ -295,4 +291,8 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         delegate?.backToMainPressed()
     }
     
+    func pausePressedUnpause() {
+        self.dismissViewControllerAnimated(false, completion: nil)
+        UnpauseGame()
+    }
 }
