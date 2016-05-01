@@ -117,14 +117,14 @@ class OptionsViewController : UIViewController{
         diff = .EASY
         easyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        print("Easy Difficulty is \(diff.debugDescription)")
+        print("Difficulty is \(diff.debugDescription)")
     }
     
     func HardButtonPressed(){
         diff = .HARD
         hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        print("Hard Difficulty is \(diff.debugDescription)")
+        print("Difficulty is \(diff.debugDescription)")
     }
     
     func BackButtonPressed(){

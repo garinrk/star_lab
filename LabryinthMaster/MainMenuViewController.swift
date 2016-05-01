@@ -16,7 +16,7 @@ class MainMenuViewController : UIViewController{
     var ovc : OptionsViewController?
     var hsvc : HighScoreViewController?
     var newGameButton = UIButton(type: UIButtonType.Custom)
-    var loadGameButton = UIButton(type: UIButtonType.Custom)
+//    var loadGameButton = UIButton(type: UIButtonType.Custom)
     var optionsButton = UIButton(type: UIButtonType.Custom)
     var scoresButton = UIButton(type: UIButtonType.Custom)
     var screenRect : CGRect = UIScreen.mainScreen().bounds
@@ -37,13 +37,13 @@ class MainMenuViewController : UIViewController{
         newGameButton.backgroundColor = UIColor.grayColor()
         
         
-        loadGameButton.frame = CGRectMake(50,50, 200, 50)
-        loadGameButton.center = CGPointMake(CGRectGetMidX(screenRect) + 200, CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.75)
-        loadGameButton
-            .addTarget(self, action: #selector(MainMenuViewController.LoadGameButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-        loadGameButton.setTitle("Load Game",forState: UIControlState.Normal)
-        loadGameButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        loadGameButton.backgroundColor = UIColor.grayColor()
+//        loadGameButton.frame = CGRectMake(50,50, 200, 50)
+//        loadGameButton.center = CGPointMake(CGRectGetMidX(screenRect) + 200, CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.75)
+//        loadGameButton
+//            .addTarget(self, action: #selector(MainMenuViewController.LoadGameButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+//        loadGameButton.setTitle("Load Game",forState: UIControlState.Normal)
+//        loadGameButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+//        loadGameButton.backgroundColor = UIColor.grayColor()
         
         optionsButton.frame = CGRectMake(50,50, 200, 50)
         optionsButton.center = CGPointMake(CGRectGetMidX(screenRect) + 200, CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.90)
@@ -62,7 +62,7 @@ class MainMenuViewController : UIViewController{
         scoresButton.backgroundColor = UIColor.grayColor()
         
         self.mmview.addSubview(newGameButton)
-        self.mmview.addSubview(loadGameButton)
+//        self.mmview.addSubview(loadGameButton)
         self.mmview.addSubview(optionsButton)
         self.mmview.addSubview(scoresButton)
         
@@ -78,9 +78,9 @@ class MainMenuViewController : UIViewController{
         
     }
     
-    func LoadGameButtonPressed(){
-        print("Load game")
-    }
+//    func LoadGameButtonPressed(){
+//        print("Load game")
+//    }
     
     func OptionsButtonPressed(){
         ovc = OptionsViewController()

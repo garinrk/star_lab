@@ -8,6 +8,16 @@
 
 import UIKit
 
+protocol PauseViewDelegate : class {
+    func UnpauseGame()
+}
+
+//protocol GameManagerDelegate: class {
+//    //    func redrawMaze()
+//    func GameOverCall()
+//    func WinGameCall()
+//}
+
 class PauseViewController : UIViewController{
     
     var pauseView  = PauseView()
@@ -19,6 +29,8 @@ class PauseViewController : UIViewController{
     
     var _audio : AudioManager = AudioManager.sharedInstance
     var _gameManager : GameManager = GameManager.sharedInstance
+    
+    weak var pauseDelegate: PauseViewDelegate? = nil
     
     override func viewDidLoad() {
         
@@ -82,6 +94,7 @@ class PauseViewController : UIViewController{
     
     func ResumeButtonPressed(){
         print("Resuming game")
+        pauseDelegate?.UnpauseGame()
     }
     
     func QuitButtonPressed(){

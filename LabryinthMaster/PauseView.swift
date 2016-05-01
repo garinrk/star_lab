@@ -18,6 +18,8 @@ class PauseView : UIView{
     var lifetimeScoreLabel = UILabel()
     var pauseTitleLabel = UILabel()
     
+     var _gameManager : GameManager = GameManager.sharedInstance
+    
     override func drawRect(rect: CGRect) {
         
         pauseTitleLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
@@ -45,7 +47,7 @@ class PauseView : UIView{
         currentScoreLabel.textAlignment = .Center
         
         currentScore.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
-        currentScore.text = "Score"
+        currentScore.text = _gameManager.currentScore.description
         currentScore.adjustsFontSizeToFitWidth = true
         currentScore.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.30,CGRectGetMaxY(self.frame) * 0.75)
         currentScore.textAlignment = .Center
@@ -57,7 +59,7 @@ class PauseView : UIView{
         lifetimeScoreLabel.textAlignment = .Center
         
         lifetimeScore.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
-        lifetimeScore.text = "LScore"
+        lifetimeScore.text = _gameManager.lifetimeScore.description
         lifetimeScore.adjustsFontSizeToFitWidth = true
         lifetimeScore.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.75,CGRectGetMaxY(self.frame) * 0.75)
         lifetimeScore.textAlignment = .Center

@@ -44,8 +44,8 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
         startButton
             .addTarget(self, action: #selector(NewGameViewController.StartButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         startButton.setTitle("Start Game",forState: UIControlState.Normal)
-        startButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        startButton.backgroundColor = UIColor.grayColor()
+        startButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Disabled)
+        startButton.backgroundColor = UIColor.redColor()
         
         
         easyButton.frame = CGRectMake(50,50, 50, 50)
@@ -77,7 +77,7 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
         gameNameTextEntry.center.y = screenRect.midY + 40
         gameNameTextEntry.delegate = self
         
-        
+        self.startButton.enabled = false
         self.newGameView.addSubview(backButton)
         self.newGameView.addSubview(easyButton)
         self.newGameView.addSubview(hardButton)
@@ -96,26 +96,43 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     func StartButtonPressed(){
         print("Start Button Pressed")
         gvc = GameViewController()
-        self.navigationController?.pushViewController(gvc!, animated: true)
+        self.navigationController?.pushViewController(gvc!, animated: false)
     }
     
     func EasyButtonPressed(){
         diff = .EASY
         easyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        print("Easy Difficulty is \(diff.debugDescription)")
+        CheckForLegal()
     }
     
     func HardButtonPressed(){
         diff = .HARD
         hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        print("Hard Difficulty is \(diff.debugDescription)")
+        CheckForLegal()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.gameNameTextEntry.endEditing(true)
+        CheckForLegal()
+        
         return false
+    }
+    
+    /**
+     Checks to make sure that a difficulty has been set, and that a player's name has
+     been input into the text field. Enables the start game button if so.
+     */
+    func CheckForLegal(){
+        //did they set a difficulty?
+        if diff == GameDifficulty.HARD || diff == GameDifficulty.EASY{
+            if self.gameNameTextEntry.text != ""{
+                startButton.backgroundColor = UIColor.greenColor()
+                startButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+                self.startButton.enabled = true
+            }
+        }
     }
 }
 

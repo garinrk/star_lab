@@ -9,7 +9,7 @@
 import UIKit
 import CoreMotion
 
-class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, GameManagerDelegate, GameTimerDelegate {
+class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, PlayerDelegate, GameManagerDelegate, GameTimerDelegate, PauseViewDelegate {
     let screenRect = UIScreen.mainScreen().bounds
     var gyroManager : Gyro?
     
@@ -134,6 +134,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
 //        print("PAUSE")
         _gameManager.pause()
         pauseController = PauseViewController()
+        pauseController?.pauseDelegate = self
         self.navigationController?.pushViewController(pauseController!, animated: false)
         
     }
@@ -220,13 +221,14 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     func GameOverCall(){
         gameOverController = GameOverViewController()
         _audioManager.StopAllAudio()
-        self.navigationController?.pushViewController(gameOverController!, animated: true)
+        self.navigationController?.pushViewController(gameOverController!, animated: false)
     }
     
     func WinGameCall(){
         levelCompleteController = LevelCompleteViewController()
         _audioManager.StopAllAudio()
-        self.navigationController?.pushViewController(levelCompleteController!, animated: true)
+        //silence sound effects maybe?
+        self.navigationController?.pushViewController(levelCompleteController!, animated: false)
     }
     
     // MARK: GameTimerDelegate functions
