@@ -83,7 +83,6 @@ class MainMenuViewController : UIViewController{
     
     func OptionsButtonPressed(){
         ovc = OptionsViewController()
-        ovc?.delegate = self
         
         print("Presenting Options")
         self.navigationController?.pushViewController(ovc!, animated: true)

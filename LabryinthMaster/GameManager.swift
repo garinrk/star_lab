@@ -61,6 +61,20 @@ class GameManager: GameLoopDelegate {
     
     private var gameOverController : GameOverViewController?
     
+    class var sharedInstance : GameManager{
+        
+        struct Static{
+            static var instance : GameManager?
+        }
+        
+        if(Static.instance == nil)
+        {
+            Static.instance = GameManager()
+        }
+        
+        return Static.instance!
+    }
+    
     func makeNewLevel()
     {
         maze = Maze()
@@ -135,6 +149,16 @@ class GameManager: GameLoopDelegate {
         currentLevel = 1
         gameLoop.stop()
         delegate?.GameOverCall()
+    }
+    
+    func quit()
+    {
+        dead = true
+        
+        timer.StopTimer()
+        score = 0
+        currentLevel = 1
+        gameLoop.stop()
     }
     
     

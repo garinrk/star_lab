@@ -16,12 +16,15 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     var scoreLabel: UILabel!
     var timerLabel: UILabel!
     var levelLabel: UILabel!
+    var pauseButton = UIButton(type: UIButtonType.Custom)
+    
     var mazeView: MazeView!
     var gameManager: GameManager!
     var audioManager: AudioManager!
     
     var gameOverController : GameOverViewController?
     var levelCompleteController : LevelCompleteViewController?
+    var pauseController : PauseViewController?
     
     override func loadView() {
         super.loadView()
@@ -96,6 +99,12 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         levelLabel.text = "LEVEL: \(gameManager.currentLevel)"
         view.addSubview(levelLabel)
         
+        pauseButton.frame = CGRectMake(screenRect.width * 0.9, screenRect.width + 205.0, 75, 40.0)
+        pauseButton.setTitle("PAUSE", forState: UIControlState.Normal)
+        pauseButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        pauseButton.backgroundColor = UIColor.darkGrayColor()
+        pauseButton.addTarget(self, action: #selector(GameViewController.PauseGame), forControlEvents: UIControlEvents.TouchUpInside)
+        view.addSubview(pauseButton)
         // start the game
         
         gameManager.startGame()
@@ -223,6 +232,14 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
             gameManager.kill()
             makeNewLevel()
         }
+    }
+    
+    func PauseGame(){
+        
+        print("PAUSE")
+        pauseController = PauseViewController()
+        self.navigationController?.pushViewController(pauseController!, animated: false)
+        
     }
     
     

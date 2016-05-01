@@ -17,6 +17,8 @@ class PauseViewController : UIViewController{
     var fxSlider : UISlider?
     var screenRect = UIScreen.mainScreen().bounds
     
+    var _audio : AudioManager = AudioManager.sharedInstance
+    var _gameManager : GameManager = GameManager.sharedInstance
     
     override func viewDidLoad() {
         
@@ -59,13 +61,24 @@ class PauseViewController : UIViewController{
         self.view.addSubview(pauseView)
     }
     
+    /**
+     The music's volume has been modified
+     */
     func MusicSliderChanged(){
-        print("Music: \(musicSlider!.value)")
+//        print("Music: \(musicSlider!.value)")
+        _audio.mainMusicVolume = musicSlider!.value
+        _audio.SetVolumes()
     }
     
+    /**
+     The FX volume has been modified
+     */
     func FxSliderChanged(){
-        print("FX: \(fxSlider!.value)")
+//        print("FX: \(fxSlider!.value)")
+        _audio.effectsVolume = fxSlider!.value
+        _audio.SetVolumes()
     }
+    
     
     func ResumeButtonPressed(){
         print("Resuming game")
@@ -73,5 +86,7 @@ class PauseViewController : UIViewController{
     
     func QuitButtonPressed(){
         print("Quit Button Pressed")
+        _gameManager.quit()
+        
     }
 }
