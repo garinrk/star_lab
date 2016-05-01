@@ -117,6 +117,16 @@
 			name = "In-Game View Controllers";
 			sourceTree = "<group>";
 		};
+		0CA0130B1CD6B2FB00C218CB /* In-Game Views */ = {
+			isa = PBXGroup;
+			children = (
+				450CA1711CD4560700D78B63 /* PauseView.swift */,
+				4566472B1CD561D50061B5A4 /* GameOverView.swift */,
+				4566472D1CD561E40061B5A4 /* LevelCompleteView.swift */,
+			);
+			name = "In-Game Views";
+			sourceTree = "<group>";
+		};
 		0CC9EE9A1CD57F5E0031028A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,10 +151,7 @@
 			children = (
 				450CA16D1CD455DD00D78B63 /* MainMenuView.swift */,
 				450CA16F1CD455F300D78B63 /* OptionsView.swift */,
-				450CA1711CD4560700D78B63 /* PauseView.swift */,
 				450CA1731CD4561500D78B63 /* NewGameView.swift */,
-				4566472B1CD561D50061B5A4 /* GameOverView.swift */,
-				4566472D1CD561E40061B5A4 /* LevelCompleteView.swift */,
 				4566473B1CD589FF0061B5A4 /* HighScoreView.swift */,
 			);
 			name = MenuViews;
@@ -225,6 +232,7 @@
 				457B672B1CD426D600EE127D /* Device Managers */,
 				0CCC74AC1CD405F200FF9895 /* Helpers */,
 				0CA0130A1CD6AC3A00C218CB /* In-Game View Controllers */,
+				0CA0130B1CD6B2FB00C218CB /* In-Game Views */,
 			);
 			name = Game;
 			path = ..;
