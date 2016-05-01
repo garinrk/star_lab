@@ -30,12 +30,22 @@ class AudioManager : NSObject{
     var startLevelPlayer : AVAudioPlayer!
     
     var mainMusicVolume : Float = 1.0
-    var confirmVolume : Float = 0.75
-    var enemyKillVolume : Float = 0.75
-    var coinVolume : Float = 0.5
-    var winVolume : Float = 0.5
-    var outOfTimeVolume : Float = 0.5
-    var startLevelVolume : Float = 0.5
+    var effectsVolume : Float = 0.5
+    
+    
+    class var sharedInstance : AudioManager{
+        
+        struct Static{
+            static var instance : AudioManager?
+        }
+        
+        if(Static.instance == nil)
+        {
+            Static.instance = AudioManager()
+        }
+        
+        return Static.instance!
+    }
     
     
     override init(){
@@ -151,12 +161,12 @@ class AudioManager : NSObject{
         startLevelPlayer.prepareToPlay()
         
         mainMusicPlayer.volume = mainMusicVolume
-        confirmPlayer.volume = confirmVolume
-        enemyKillPlayer.volume = enemyKillVolume
-        coinPlayer.volume = coinVolume
-        winPlayer.volume = winVolume
-        outOfTimePlayer.volume = outOfTimeVolume
-        startLevelPlayer.volume = startLevelVolume
+        confirmPlayer.volume = effectsVolume
+        enemyKillPlayer.volume = effectsVolume
+        coinPlayer.volume = effectsVolume
+        winPlayer.volume = effectsVolume
+        outOfTimePlayer.volume = effectsVolume
+        startLevelPlayer.volume = effectsVolume
         
     }
     
@@ -223,6 +233,22 @@ class AudioManager : NSObject{
         if startLevelPlayer.playing{
             startLevelPlayer.stop()
         }
+        
+    }
+    
+    
+    /**
+     Sets the volumes of the audio players to whatever is in the current
+     global properties
+     */
+    func SetVolumes(){
+        mainMusicPlayer.volume = mainMusicVolume
+        confirmPlayer.volume = effectsVolume
+        enemyKillPlayer.volume = effectsVolume
+        coinPlayer.volume = effectsVolume
+        winPlayer.volume = effectsVolume
+        outOfTimePlayer.volume = effectsVolume
+        startLevelPlayer.volume = effectsVolume
         
     }
     

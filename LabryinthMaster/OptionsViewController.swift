@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol AudioDelegate : class{
-    func SetMusicLevel(newLevel : Float)
-    func SetFXLevel(newLevel : Float)
-}
-
 
 enum GameDifficulty{
     case HARD
@@ -34,7 +29,9 @@ class OptionsViewController : UIViewController{
     var hardDifficultySelected = false
     var easyDifficultySelected = false
     
-    weak var delegate: AudioDelegate? = nil
+    
+    var _audio : AudioManager = AudioManager.sharedInstance
+    var _scoreManager : ScoreManager = ScoreManager.sharedInstance
     
     override func viewDidLoad() {
         //set up options view and hide back button
@@ -103,7 +100,8 @@ class OptionsViewController : UIViewController{
      */
     func MusicSliderChanged(){
         print("Music: \(musicSlider!.value)")
-        delegate?.SetMusicLevel(musicSlider!.value)
+        _audio.mainMusicVolume = musicSlider!.value
+        _audio.SetVolumes()
     }
     
     /**
@@ -111,7 +109,8 @@ class OptionsViewController : UIViewController{
      */
     func FxSliderChanged(){
         print("FX: \(fxSlider!.value)")
-        delegate?.SetFXLevel(fxSlider!.value)
+        _audio.effectsVolume = fxSlider!.value
+        _audio.SetVolumes()
     }
     
     func EasyButtonPressed(){
