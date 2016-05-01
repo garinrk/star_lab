@@ -33,7 +33,9 @@ class GameLoop: NSObject {
     }
     
     func stop() {
-        displayLink.removeFromRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        if displayLink != nil {
+            displayLink.removeFromRunLoop(NSRunLoop.mainRunLoop(), forMode: NSDefaultRunLoopMode)
+        }
         displayLink = nil
     }
     
