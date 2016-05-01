@@ -181,7 +181,6 @@ class GameManager: GameLoopDelegate {
         currentLevel = 1
         _scoreManager.addScore(ScoreInfo(name: playerName, score: lifetimeScore, difficulty: mode, timestamp: NSDate()))
         lifetimeScore = 0
-        gameLoop.stop()
     }
     
     
