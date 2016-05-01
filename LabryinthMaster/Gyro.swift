@@ -19,17 +19,20 @@ class Gyro{
     var screenRect = UIScreen.mainScreen().bounds
     
     private var paused: Bool = false
+    private var motionQueue = NSOperationQueue()
     
     weak var delegate : GyroDelegate? = nil
     
     func Start(){
         gyroManger.accelerometerUpdateInterval = 1/60.0
-        let queue = NSOperationQueue()
         
         //start recording data
-        gyroManger.startAccelerometerUpdatesToQueue(queue) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
+        gyroManger.startAccelerometerUpdatesToQueue(motionQueue) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
+            if !self.paused{
+                
             
             self.HandleAccData(accelerometerData!.acceleration)
+            }
             if(NSError != nil) {
                 print("\(NSError)")
             }
@@ -38,6 +41,7 @@ class Gyro{
     
     func HandleAccData(acc : CMAcceleration){
         if paused {
+            motionQueue = NSOperationQueue()
             return
         }
         
@@ -49,6 +53,7 @@ class Gyro{
     }
 
     func Unpause(){
+        motionQueue = NSOperationQueue()
         paused = false
     }
 }

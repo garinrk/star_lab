@@ -59,6 +59,7 @@ class GameManager: GameLoopDelegate {
     let gameLoop: GameLoop = GameLoop()
     
     private var dead: Bool = false
+    private var isPaused : Bool = false
     
     private var gameOverController : GameOverViewController?
     
@@ -138,12 +139,14 @@ class GameManager: GameLoopDelegate {
     
     func pause()
     {
+        isPaused = true
         gameLoop.stop()
         timer.PauseTimer()
     }
     
     func unpause()
     {
+        isPaused = false
         gameLoop.start()
         timer.UnpauseTimer()
     }
@@ -188,7 +191,7 @@ class GameManager: GameLoopDelegate {
     // MARK: GameLoopDelegate functions
     
     func update() {
-        if dead{
+        if dead || isPaused{
             return
         }
         
