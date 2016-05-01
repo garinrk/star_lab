@@ -138,7 +138,7 @@ class ScoreManager {
     
     func loadScores() -> NSMutableArray? {
         let documentsDirectory: String? = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String?
-        let filePath: String? = documentsDirectory?.stringByAppendingString("/LabScores")
+        let filePath: String? = documentsDirectory?.stringByAppendingString("/LabScores.plist")
         
         if filePath != nil {
            return NSMutableArray(contentsOfFile: filePath!)

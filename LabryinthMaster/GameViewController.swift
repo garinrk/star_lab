@@ -150,6 +150,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
 
     func UnpauseGame() {
         self.dismissViewControllerAnimated(false, completion: nil)
+        _audioManager.PlayAudio(SoundType.Confirm)
         _gameManager.unpause()
         gyroManager.Unpause()
     }
