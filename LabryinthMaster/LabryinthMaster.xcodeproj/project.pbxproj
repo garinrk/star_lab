@@ -47,7 +47,7 @@
 		4566473A1CD589F60061B5A4 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456647391CD589F60061B5A4 /* HighScoreViewController.swift */; };
 		4566473C1CD589FF0061B5A4 /* HighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566473B1CD589FF0061B5A4 /* HighScoreView.swift */; };
 		457B672F1CD426FE00EE127D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B672E1CD426FE00EE127D /* AudioManager.swift */; };
-		457B67311CD4292000EE127D /* mainMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 457B67301CD4292000EE127D /* mainMusic.mp3 */; };
+		45C7A4991CD6BFAC00594D16 /* mainMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45C7A4981CD6BFAC00594D16 /* mainMusic.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +93,7 @@
 		456647391CD589F60061B5A4 /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		4566473B1CD589FF0061B5A4 /* HighScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreView.swift; sourceTree = "<group>"; };
 		457B672E1CD426FE00EE127D /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
-		457B67301CD4292000EE127D /* mainMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = mainMusic.mp3; path = Audio/mainMusic.mp3; sourceTree = "<group>"; };
+		45C7A4981CD6BFAC00594D16 /* mainMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mainMusic.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +190,7 @@
 		453B5D1C1CB85C0600FF61F8 /* LabryinthMaster */ = {
 			isa = PBXGroup;
 			children = (
+				45C7A4981CD6BFAC00594D16 /* mainMusic.mp3 */,
 				453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */,
 				450CA16C1CD4559400D78B63 /* MenuViewControllers */,
 				450CA16B1CD4558D00D78B63 /* MenuViews */,
@@ -204,7 +205,6 @@
 				0C1AFCDE1CD5437000D1E20F /* start.wav */,
 				0C1AFCDF1CD5437000D1E20F /* win.wav */,
 				0C1AFCE01CD5437000D1E20F /* win2.wav */,
-				457B67301CD4292000EE127D /* mainMusic.mp3 */,
 				453B5D241CB85C0600FF61F8 /* Assets.xcassets */,
 				453B5D291CB85C0600FF61F8 /* Info.plist */,
 				456647331CD562DF0061B5A4 /* LabData.plist */,
@@ -309,6 +309,7 @@
 			files = (
 				0C1AFCE91CD5437000D1E20F /* win2.wav in Resources */,
 				453B5D251CB85C0600FF61F8 /* Assets.xcassets in Resources */,
+				45C7A4991CD6BFAC00594D16 /* mainMusic.mp3 in Resources */,
 				0C1AFCE51CD5437000D1E20F /* menu.wav in Resources */,
 				0C1AFCE41CD5437000D1E20F /* highscore.wav in Resources */,
 				0C1AFCE71CD5437000D1E20F /* start.wav in Resources */,
@@ -318,7 +319,6 @@
 				0C5EF7FB1CB9DC9B00707CFF /* Default-568h@2x.png in Resources */,
 				0C1AFCE21CD5437000D1E20F /* enemy.wav in Resources */,
 				0C1AFCE31CD5437000D1E20F /* enemy2.wav in Resources */,
-				457B67311CD4292000EE127D /* mainMusic.mp3 in Resources */,
 				456647341CD562DF0061B5A4 /* LabData.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
