@@ -25,11 +25,11 @@ class OptionsView : UIView{
         optionsTitleLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
         optionsTitleLabel.textAlignment = .Center
         
-        diffLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
-        diffLabel.text = "Difficulty"
-        diffLabel.adjustsFontSizeToFitWidth = true
-        diffLabel.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.30,CGRectGetMaxY(self.frame) * 0.45)
-        diffLabel.textAlignment = .Center
+//        diffLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
+//        diffLabel.text = "Difficulty"
+//        diffLabel.adjustsFontSizeToFitWidth = true
+//        diffLabel.center = CGPointMake(CGRectGetMaxX(self.frame) * 0.30,CGRectGetMaxY(self.frame) * 0.45)
+//        diffLabel.textAlignment = .Center
         
         musicLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
         musicLabel.text = "Music Level"
@@ -46,13 +46,8 @@ class OptionsView : UIView{
         
         self.addSubview(musicLabel)
         self.addSubview(fxLabel)
-        self.addSubview(diffLabel)
+//        self.addSubview(diffLabel)
         self.addSubview(optionsTitleLabel)
     }
-    
-    func BackButtonPressed(){
-        print ("Back pressed, set up delegate!")
-        //        self.
-        //        self.navigationController?.popViewControllerAnimated(true)
-    }
+
 }

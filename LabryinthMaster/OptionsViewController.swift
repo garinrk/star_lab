@@ -16,15 +16,15 @@ class OptionsViewController : UIViewController{
     //difficulty, fx and music level
     var musicSlider : UISlider?
     var fxSlider : UISlider?
-    var easyButton = UIButton(type: UIButtonType.Custom)
-    var hardButton = UIButton(type: UIButtonType.Custom)
+//    var easyButton = UIButton(type: UIButtonType.Custom)
+//    var hardButton = UIButton(type: UIButtonType.Custom)
     var optionsView = OptionsView()
     var screenRect = UIScreen.mainScreen().bounds
     var diff : DifficultyMode? = .Easy
     var backButton = UIButton(type: UIButtonType.Custom)
     
-    var hardDifficultySelected = false
-    var easyDifficultySelected = false
+//    var hardDifficultySelected = false
+//    var easyDifficultySelected = false
     
     var _audio : AudioManager = AudioManager.sharedInstance
     var _scoreManager : ScoreManager = ScoreManager.sharedInstance
@@ -50,21 +50,21 @@ class OptionsViewController : UIViewController{
         fxSlider!.center = CGPointMake(CGRectGetMaxX(screenRect) * 0.75,CGRectGetMaxY(screenRect) * 0.60)
         musicSlider!.addTarget(self, action: #selector(OptionsViewController.MusicSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
         fxSlider!.addTarget(self, action: #selector(OptionsViewController.FxSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
-        
-        
-        easyButton.frame = CGRectMake(50,50, 50, 50)
-        easyButton.center = CGPointMake(CGRectGetMaxX(screenRect) * 0.70,CGRectGetMaxY(screenRect) * 0.45)
-        easyButton.setTitle("Easy", forState: UIControlState.Normal)
-        easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        easyButton.backgroundColor = UIColor.darkGrayColor()
-        easyButton.addTarget(self, action: #selector(OptionsViewController.EasyButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-        
-        hardButton.frame = CGRectMake(50,50, 50, 50)
-        hardButton.center = CGPointMake(CGRectGetMaxX(screenRect) * 0.80,CGRectGetMaxY(screenRect) * 0.45)
-        hardButton.setTitle("Hard", forState: UIControlState.Normal)
-        hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        hardButton.backgroundColor = UIColor.darkGrayColor()
-        hardButton.addTarget(self, action: #selector(OptionsViewController.HardButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+//        
+//        
+//        easyButton.frame = CGRectMake(50,50, 50, 50)
+//        easyButton.center = CGPointMake(CGRectGetMaxX(screenRect) * 0.70,CGRectGetMaxY(screenRect) * 0.45)
+//        easyButton.setTitle("Easy", forState: UIControlState.Normal)
+//        easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+//        easyButton.backgroundColor = UIColor.darkGrayColor()
+//        easyButton.addTarget(self, action: #selector(OptionsViewController.EasyButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+//        
+//        hardButton.frame = CGRectMake(50,50, 50, 50)
+//        hardButton.center = CGPointMake(CGRectGetMaxX(screenRect) * 0.80,CGRectGetMaxY(screenRect) * 0.45)
+//        hardButton.setTitle("Hard", forState: UIControlState.Normal)
+//        hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+//        hardButton.backgroundColor = UIColor.darkGrayColor()
+//        hardButton.addTarget(self, action: #selector(OptionsViewController.HardButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         
         backButton.frame = CGRectMake(50,50, 200, 50)
         backButton.center = CGPointMake(CGRectGetMidX(screenRect) * 0.40,CGRectGetMaxY(screenRect) * 0.15)
@@ -79,8 +79,8 @@ class OptionsViewController : UIViewController{
         musicSlider?.value = _audio.mainMusicVolume
         //add to optionsview
         self.optionsView.addSubview(backButton)
-        self.optionsView.addSubview(easyButton)
-        self.optionsView.addSubview(hardButton)
+//        self.optionsView.addSubview(easyButton)
+//        self.optionsView.addSubview(hardButton)
         self.optionsView.addSubview(musicSlider!)
         self.optionsView.addSubview(fxSlider!)
         self.view.addSubview(optionsView)
@@ -111,20 +111,20 @@ class OptionsViewController : UIViewController{
         _audio.effectsVolume = fxSlider!.value
         _audio.SetVolumes()
     }
-    
-    func EasyButtonPressed(){
-        diff = .Easy
-        easyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        print("Difficulty is \(diff.debugDescription)")
-    }
-    
-    func HardButtonPressed(){
-        diff = .Hard
-        hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        print("Difficulty is \(diff.debugDescription)")
-    }
+//    
+//    func EasyButtonPressed(){
+//        diff = .Easy
+//        easyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+//        hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+//        print("Difficulty is \(diff.debugDescription)")
+//    }
+//    
+//    func HardButtonPressed(){
+//        diff = .Hard
+//        hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+//        easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+//        print("Difficulty is \(diff.debugDescription)")
+//    }
     
     func BackButtonPressed(){
 //        print("Back Button Pressed")
