@@ -152,6 +152,7 @@ class GameManager: GameLoopDelegate {
     {
         timer.StopTimer()
         currentLevel += 1
+        currentScore = 0
         gameLoop.stop()
         delegate?.WinGameCall()
     }

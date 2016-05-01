@@ -22,8 +22,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     var _audioManager : AudioManager = AudioManager.sharedInstance
     var _gameManager : GameManager = GameManager.sharedInstance
-//    var gameManager: GameManager!
-//    var audioManager: AudioManager!
     
     var gameOverController : GameOverViewController?
     var levelCompleteController : LevelCompleteViewController?
@@ -37,8 +35,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         self.navigationController?.navigationBar.hidden = true
         
         //MANAGERS
-//        audioManager = AudioManager()
-//        gameManager = GameManager()
         _gameManager.delegate = self
         
         gyroManager = Gyro()
@@ -129,7 +125,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     }
     
     func PauseGame(){
-//        print("PAUSE")
         _gameManager.pause()
         gyroManager.Stop()
         pauseController = PauseViewController()
@@ -219,6 +214,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gameOverController = GameOverViewController()
         gameOverController?.delegate = self
         _audioManager.StopAllAudio()
+        gyroManager.Stop()
         self.navigationController?.pushViewController(gameOverController!, animated: false)
     }
     
@@ -227,6 +223,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         levelCompleteController?.delegate = self
         _audioManager.StopAllAudio()
         //silence sound effects maybe?
+        gyroManager.Stop()
         self.navigationController?.pushViewController(levelCompleteController!, animated: false)
     }
     
