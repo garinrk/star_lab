@@ -82,7 +82,7 @@ class ScoreManager {
             for score in savedScores!
             {
                 let scoreInfo: ScoreInfo = ScoreInfo(FromDict: score as! [String : AnyObject])
-                addScore(scoreInfo)
+                scores.append(scoreInfo)
             }
         }
         
@@ -109,6 +109,8 @@ class ScoreManager {
                 keepGoing = false
             }
         }
+        
+        saveScores()
     }
     
     
@@ -139,7 +141,7 @@ class ScoreManager {
         let filePath: String? = documentsDirectory?.stringByAppendingString("/LabScores")
         
         if filePath != nil {
-           return NSMutableArray(contentsOfFile: filePath!)!
+           return NSMutableArray(contentsOfFile: filePath!)
         }
         else {
             return nil
