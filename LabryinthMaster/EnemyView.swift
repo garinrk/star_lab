@@ -27,7 +27,7 @@ class EnemyView: UIView {
 	// 0 = totally dumb
 	// 1 = avoid walls
 	// 2 = move toward player (A star)
-	private let AIMode: Int = 1
+	var AIMode: Int = 1
     
     ////////////////////////////////////////
     
