@@ -108,7 +108,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         levelLabel.text = "LEVEL: \(_gameManager.currentLevel)"
         view.addSubview(levelLabel)
         
-        pauseButton.frame = CGRectMake(screenRect.width * 0.9, screenRect.width + 205.0, 75, 40.0)
+        pauseButton.frame = CGRectMake(0,0, 75, 40.0)
         pauseButton.setTitle("PAUSE", forState: UIControlState.Normal)
         pauseButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         pauseButton.layer.borderWidth = 5
@@ -117,8 +117,8 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         pauseButton.layer.borderColor = UIColor.whiteColor().CGColor
         pauseButton.addTarget(self, action: #selector(GameViewController.PauseGame), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(pauseButton)
-        // start the game
         
+        // start the game
         _gameManager.startGame()
         gyroManager.Unpause()
         

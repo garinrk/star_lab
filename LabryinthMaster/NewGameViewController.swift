@@ -90,7 +90,6 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
 
     func textFieldDidBeginEditing(textField: UITextField) {
         textField.text = nil
-        print("Hi")
     }
     
 
