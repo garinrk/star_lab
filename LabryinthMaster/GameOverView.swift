@@ -25,36 +25,39 @@ class GameOverView : UIView{
     
     override func drawRect(rect: CGRect) {
         
-//        gameOverLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
-        titleImageBackground.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
         titleImageBackground.image = titleImage
         self.addSubview(titleImageBackground)
-//        gameOverLabel.text = "Game Over"
-//        gameOverLabel.textColor = UIColor.redColor()
-//        gameOverLabel.adjustsFontSizeToFitWidth = true
-//        gameOverLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
-//        gameOverLabel.textAlignment = .Center
+        titleImageBackground.translatesAutoresizingMaskIntoConstraints = false
         
-//        scoreLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 100)
-//        scoreLabel.text = "Lifetime Score"
-//        scoreLabel.adjustsFontSizeToFitWidth = true
-//        scoreLabel.textAlignment = .Center
-//        scoreLabel.center.x = screenRect.midX
-//        scoreLabel.center.y = screenRect.midY
-        lifetimeScoreImageBackground.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
         lifetimeScoreImageBackground.image = lifetimeScoreImage
         self.addSubview(lifetimeScoreImageBackground)
+        lifetimeScoreImageBackground.translatesAutoresizingMaskIntoConstraints = false
         
-        lifetimeScore.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect) + 30, 200, 100)
+        
         lifetimeScore.text = lifetimeScoreAmt.description
-        lifetimeScore.textColor = UIColor.blueColor()
-        lifetimeScore.adjustsFontSizeToFitWidth = true
+        lifetimeScore.textColor = UIColor.redColor()
+        lifetimeScore.font = UIFont.systemFontOfSize(30)
+//        lifetimeScore.backgroundColor = UIColor.redColor()
+//        lifetimeScore.adjustsFontSizeToFitWidth = true
         lifetimeScore.textAlignment = .Center
-        lifetimeScore.center.x = screenRect.midX
-        //        lifetimeScore.center.y = screenRect.midY
-        
-//        self.addSubview(gameOverLabel)
-//        self.addSubview(scoreLabel)
+//        lifetimeScore.center.x = screenRect.midX
         self.addSubview(lifetimeScore)
-    }
+        lifetimeScore.translatesAutoresizingMaskIntoConstraints = false
+        
+        let views: [String:UIView] = ["main":titleImageBackground, "scoreImage":lifetimeScoreImageBackground, "score":lifetimeScore]
+        
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[main]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[scoreImage]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[main]-80-[scoreImage]-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        
+        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: lifetimeScoreImageBackground, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: lifetimeScoreImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 7.2, constant: 0.0))
+//        addConstraint(NSLayoutConstraint(item: lifetimeScore, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: lifetimeScore, attribute: NSLayoutAttribute.Height, multiplier: 5, constant: 0.0))
+}
+    
+//    required init?(coder aDecoder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
 }

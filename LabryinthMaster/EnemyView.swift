@@ -64,8 +64,8 @@ class EnemyView: UIView {
         
         super.init(frame: frame)
         
-        enemyHeight = bounds.width / CGFloat(30) * 0.55
-        enemyWidth = bounds.width / CGFloat(30) * 0.55
+        enemyHeight = bounds.width / CGFloat(30) * 0.80
+        enemyWidth = bounds.width / CGFloat(30) * 0.80
     }
 
     required init?(coder aDecoder: NSCoder) {
