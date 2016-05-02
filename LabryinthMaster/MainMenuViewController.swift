@@ -32,9 +32,10 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     override func viewDidLoad() {
         //set view
         mmview.frame = UIScreen.mainScreen().bounds
+        mmview.backgroundColor = UIColor(white: 0, alpha: 0)
         backgroundImageView.frame = screenRect
         backgroundImageView.image = backgroundImage
-        mmview.addSubview(backgroundImageView)
+        self.view.addSubview(backgroundImageView)
         self.view.addSubview(mmview)
         
         //play music

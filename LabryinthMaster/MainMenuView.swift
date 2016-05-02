@@ -31,6 +31,9 @@ class MainMenuView : UIView{
         newGameButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         newGameButton.backgroundColor = UIColor.grayColor()
         newGameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+        newGameButton.layer.borderWidth = 1
+        newGameButton.layer.borderColor = UIColor.whiteColor().CGColor
+        
         self.addSubview(newGameButton)
         newGameButton.translatesAutoresizingMaskIntoConstraints = false
 
