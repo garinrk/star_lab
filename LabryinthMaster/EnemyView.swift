@@ -83,8 +83,12 @@ class EnemyView: UIView {
         let y: CGFloat = bounds.minY + yPos
 
         let square: CGRect = CGRect(x: x, y: y, width: enemyWidth, height: enemyHeight)
-        CGContextSetFillColorWithColor(context, UIColor.purpleColor().CGColor)
-        CGContextFillRect(context, square)
+//        CGContextSetFillColorWithColor(context, UIColor.purpleColor().CGColor)
+//        CGContextFillRect(context, square)
+        backgroundImageView.frame = square
+        backgroundImageView.image = enemyImage
+        backgroundImageView.tag = 2016
+        self.addSubview(backgroundImageView)
         
         // clear the background
         self.backgroundColor = UIColor(white: 1, alpha: 0)

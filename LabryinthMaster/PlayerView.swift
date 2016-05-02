@@ -37,6 +37,8 @@ class PlayerView : UIView{
     var canMove: [Bool] = [true, true, true, true]
     
     weak var delegate: PlayerDelegate? = nil
+    var enemyImage = UIImage(named: "ship.png")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
 
     override init(frame: CGRect) {
         
@@ -44,7 +46,7 @@ class PlayerView : UIView{
         
         // set size of player
         
-        playerDiameter = frame.width * 0.02
+        playerDiameter = frame.width * 0.03
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -61,8 +63,12 @@ class PlayerView : UIView{
         let y: CGFloat = bounds.minY + yPos
         
         let square: CGRect = CGRect(x: x, y: y, width: playerDiameter, height: playerDiameter)
-        CGContextSetFillColorWithColor(context, UIColor.blueColor().CGColor)
-        CGContextFillEllipseInRect(context, square)
+//        CGContextSetFillColorWithColor(context, UIColor.blueColor().CGColor)
+//        CGContextFillEllipseInRect(context, square)
+        backgroundImageView.frame = square
+        backgroundImageView.image = enemyImage
+        backgroundImageView.tag = 2017
+        self.addSubview(backgroundImageView)
         
         // clear the background
         self.backgroundColor = UIColor(white: 1, alpha: 0)
