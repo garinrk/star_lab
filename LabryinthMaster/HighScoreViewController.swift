@@ -18,11 +18,16 @@ class HighScoreViewController : UIViewController{
     var highScore = HighScoreView()
     
     weak var delegate: HighScoreViewControllerDelegate? = nil
+    var backgroundImage = UIImage(named: "space6.jpg")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
     
     override func viewDidLoad() {
         
         highScore.frame = UIScreen.mainScreen().bounds
-        highScore.backgroundColor = UIColor.brownColor()
+        backgroundImageView.frame = screenRect
+        backgroundImageView.image = backgroundImage
+        highScore.addSubview(backgroundImageView)
+        self.view.addSubview(highScore)
         
         backButton.frame = CGRectMake(50,50, 200, 50)
         backButton.center = CGPointMake(CGRectGetMidX(screenRect) * 0.40,CGRectGetMaxY(screenRect) * 0.15)

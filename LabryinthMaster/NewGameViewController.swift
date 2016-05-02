@@ -30,10 +30,17 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     
     weak var delegate: NewGameViewControllerDelegate? = nil
     
+    var backgroundImage = UIImage(named: "space1.jpg")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
+    
     override func viewDidLoad() {
         
         newGameView.frame = UIScreen.mainScreen().bounds
-        newGameView.backgroundColor = UIColor.brownColor()
+        backgroundImageView.frame = screenRect
+        backgroundImageView.image = backgroundImage
+        newGameView.addSubview(backgroundImageView)
+        self.view.addSubview(newGameView)
+        
         //hide back button and top bar
         self.navigationItem.hidesBackButton = true
         self.navigationController?.navigationBar.hidden = true

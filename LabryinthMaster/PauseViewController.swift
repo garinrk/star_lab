@@ -33,10 +33,17 @@ class PauseViewController : UIViewController{
     
     weak var delegate: PauseViewDelegate? = nil
     
+    var backgroundImage = UIImage(named: "halo.jpg")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
+    
     override func viewDidLoad() {
         
         pauseView.frame = UIScreen.mainScreen().bounds
-        pauseView.backgroundColor = UIColor.brownColor()
+        backgroundImageView.frame = screenRect
+        backgroundImageView.image = backgroundImage
+        pauseView.addSubview(backgroundImageView)
+        self.view.addSubview(pauseView)
+        
         //hide back button and top bar
         self.navigationItem.hidesBackButton = true
         self.navigationController?.navigationBar.hidden = true
@@ -74,7 +81,7 @@ class PauseViewController : UIViewController{
         self.pauseView.addSubview(musicSlider!)
         self.pauseView.addSubview(fxSlider!)
         self.pauseView.addSubview(resumeButton)
-        self.view.addSubview(pauseView)
+        
     }
     
     /**

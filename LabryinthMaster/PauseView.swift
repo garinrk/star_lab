@@ -17,13 +17,16 @@ class PauseView : UIView{
     var currentScoreLabel = UILabel()
     var lifetimeScoreLabel = UILabel()
     var pauseTitleLabel = UILabel()
-    
-     var _gameManager : GameManager = GameManager.sharedInstance
+
+
+    var _gameManager : GameManager = GameManager.sharedInstance
     
     override func drawRect(rect: CGRect) {
+    
         
         pauseTitleLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
         pauseTitleLabel.text = "Pause Menu"
+        pauseTitleLabel.textColor = UIColor.blueColor()
         pauseTitleLabel.adjustsFontSizeToFitWidth = true
         pauseTitleLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
         pauseTitleLabel.textAlignment = .Center

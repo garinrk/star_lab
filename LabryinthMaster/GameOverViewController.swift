@@ -23,12 +23,20 @@ class GameOverViewController : UIViewController{
     
     weak var delegate: GameOverViewControllerDelegate? = nil
     
+    var backgroundImage = UIImage(named: "space5.jpg")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
+    
     override func viewDidLoad() {
         
         gameOverView.lifetimeScoreAmt = lifetimeScore
-        
         gameOverView.frame = UIScreen.mainScreen().bounds
-        gameOverView.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        
+        backgroundImageView.frame = screenRect
+        backgroundImageView.image = backgroundImage
+        gameOverView.addSubview(backgroundImageView)
+        self.view.addSubview(gameOverView)
+        
+        
         
         quitButton.frame = CGRectMake(50,50, 200, 50)
         quitButton.center = CGPointMake(CGRectGetMidX(screenRect) + 200, CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.90)
@@ -48,7 +56,6 @@ class GameOverViewController : UIViewController{
         
         self.gameOverView.addSubview(quitButton)
         self.gameOverView.addSubview(tryAgainButton)
-        self.view.addSubview(gameOverView)
         
     }
     

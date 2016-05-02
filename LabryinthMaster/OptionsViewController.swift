@@ -26,6 +26,9 @@ class OptionsViewController : UIViewController{
 //    var hardDifficultySelected = false
 //    var easyDifficultySelected = false
     
+    var backgroundImage = UIImage(named: "space3.jpg")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
+    
     var _audio : AudioManager = AudioManager.sharedInstance
     var _scoreManager : ScoreManager = ScoreManager.sharedInstance
     
@@ -34,7 +37,12 @@ class OptionsViewController : UIViewController{
     override func viewDidLoad() {
         //set up options view and hide back button
         optionsView.frame = UIScreen.mainScreen().bounds
-        optionsView.backgroundColor = UIColor.brownColor()
+        
+        
+        backgroundImageView.frame = screenRect
+        backgroundImageView.image = backgroundImage
+        optionsView.addSubview(backgroundImageView)
+        self.view.addSubview(optionsView)
         //hide back button and top bar
         self.navigationItem.hidesBackButton = true
         self.navigationController?.navigationBar.hidden = true

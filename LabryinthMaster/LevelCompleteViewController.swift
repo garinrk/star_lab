@@ -22,10 +22,17 @@ class LevelCompleteViewController : UIViewController{
     
     weak var delegate: LevelCompleteViewControllerDelegate? = nil
     
+    var backgroundImage = UIImage(named: "blackHole.jpg")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
+    
     override func viewDidLoad() {
         
         completeView.frame = UIScreen.mainScreen().bounds
-        completeView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        
+        backgroundImageView.frame = screenRect
+        backgroundImageView.image = backgroundImage
+        completeView.addSubview(backgroundImageView)
+        self.view.addSubview(completeView)
         
         quitButton.frame = CGRectMake(50,50, 200, 50)
         quitButton.center = CGPointMake(CGRectGetMidX(screenRect) + 200, CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.90)

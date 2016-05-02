@@ -14,8 +14,10 @@ class LevelCompleteView : UIView{
     var lifetimeScore = UILabel()
     var screenRect = UIScreen.mainScreen().bounds
     
+
+    
     override func drawRect(rect: CGRect) {
-        
+
         completeLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
         completeLabel.text = "Level Complete"
         completeLabel.textColor = UIColor.greenColor()

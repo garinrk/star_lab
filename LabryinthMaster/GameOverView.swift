@@ -16,6 +16,7 @@ class GameOverView : UIView{
     var _gameManager : GameManager = GameManager.sharedInstance
     
     var lifetimeScoreAmt: Int = 0
+
     
     override func drawRect(rect: CGRect) {
         
@@ -35,6 +36,7 @@ class GameOverView : UIView{
         
         lifetimeScore.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect) + 30, 200, 100)
         lifetimeScore.text = lifetimeScoreAmt.description
+        lifetimeScore.textColor = UIColor.blueColor()
         lifetimeScore.adjustsFontSizeToFitWidth = true
         lifetimeScore.textAlignment = .Center
         lifetimeScore.center.x = screenRect.midX

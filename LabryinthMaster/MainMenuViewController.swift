@@ -26,11 +26,16 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     var _audioManager : AudioManager = AudioManager.sharedInstance
     
     weak var delegate: MainMenuViewControllerDelegate? = nil
+    var backgroundImage = UIImage(named: "space2.jpg")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
     
     override func viewDidLoad() {
         //set view
         mmview.frame = UIScreen.mainScreen().bounds
-        mmview.backgroundColor = UIColor.brownColor()
+        backgroundImageView.frame = screenRect
+        backgroundImageView.image = backgroundImage
+        mmview.addSubview(backgroundImageView)
+        self.view.addSubview(mmview)
         
         //play music
         _audioManager.PlayAudio(SoundType.MainMusic)
