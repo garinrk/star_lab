@@ -15,7 +15,7 @@ enum DifficultyMode: Int {
 
 protocol GameManagerDelegate: class {
     func GameOverCall(score: Int)
-    func WinGameCall()
+    func WinGameCall(score: Int)
 }
 
 
@@ -167,7 +167,7 @@ class GameManager: GameLoopDelegate {
         currentLevel += 1
         currentScore = 0
         gameLoop.stop()
-        delegate?.WinGameCall()
+        delegate?.WinGameCall(lifetimeScore)
     }
     
     func kill()

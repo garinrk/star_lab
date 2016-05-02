@@ -69,6 +69,7 @@ class NewGameView : UIView{
         
         gameNameTextEntry.textAlignment = NSTextAlignment.Center
         gameNameTextEntry.font = UIFont.systemFontOfSize(15)
+        gameNameTextEntry.text = "ENTER NAME HERE"
         gameNameTextEntry.textColor = UIColor.blackColor()
         gameNameTextEntry.borderStyle = UITextBorderStyle.RoundedRect
         gameNameTextEntry.autocorrectionType = UITextAutocorrectionType.No

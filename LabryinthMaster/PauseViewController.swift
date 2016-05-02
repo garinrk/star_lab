@@ -64,7 +64,10 @@ class PauseViewController : UIViewController{
             .addTarget(self, action: #selector(PauseViewController.ResumeButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         resumeButton.setTitle("Resume Game",forState: UIControlState.Normal)
         resumeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        resumeButton.backgroundColor = UIColor.grayColor()
+        resumeButton.layer.borderWidth = 5
+        resumeButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        resumeButton.layer.cornerRadius = 5
+        resumeButton.layer.borderColor = UIColor.whiteColor().CGColor
         
         quitButton.frame = CGRectMake(50,50, 200, 50)
         quitButton.center = CGPointMake(CGRectGetMidX(screenRect) * 0.40,CGRectGetMaxY(screenRect) * 0.15)
@@ -72,7 +75,10 @@ class PauseViewController : UIViewController{
             .addTarget(self, action: #selector(PauseViewController.QuitButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         quitButton.setTitle("Quit Game", forState: UIControlState.Normal)
         quitButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        quitButton.backgroundColor = UIColor.grayColor()
+        quitButton.layer.borderWidth = 5
+        quitButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        quitButton.layer.cornerRadius = 5
+        quitButton.layer.borderColor = UIColor.whiteColor().CGColor
         
         
         fxSlider?.value = _audio.effectsVolume

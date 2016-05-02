@@ -19,6 +19,7 @@ class LevelCompleteViewController : UIViewController{
     var continueButton = UIButton(type: UIButtonType.Custom)
     var quitButton = UIButton(type: UIButtonType.Custom)
     var screenRect = UIScreen.mainScreen().bounds
+    var lifetimeScore: Int = 0
     
     weak var delegate: LevelCompleteViewControllerDelegate? = nil
     
@@ -28,7 +29,7 @@ class LevelCompleteViewController : UIViewController{
     override func viewDidLoad() {
         
         completeView.frame = UIScreen.mainScreen().bounds
-        
+        completeView.lifetimeScoreAmt = lifetimeScore
         backgroundImageView.frame = screenRect
         backgroundImageView.image = backgroundImage
         completeView.addSubview(backgroundImageView)
@@ -40,7 +41,10 @@ class LevelCompleteViewController : UIViewController{
             .addTarget(self, action: #selector(LevelCompleteViewController.QuitButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         quitButton.setTitle("Quit",forState: UIControlState.Normal)
         quitButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        quitButton.backgroundColor = UIColor.grayColor()
+        quitButton.layer.borderWidth = 5
+        quitButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        quitButton.layer.cornerRadius = 5
+        quitButton.layer.borderColor = UIColor.whiteColor().CGColor
         
         continueButton.frame = CGRectMake(50,50, 200, 50)
         continueButton.center = CGPointMake(CGRectGetMidX(screenRect) - 200,CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.90)
@@ -48,7 +52,10 @@ class LevelCompleteViewController : UIViewController{
             .addTarget(self, action: #selector(LevelCompleteViewController.ContinueButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         continueButton.setTitle("Continue", forState: UIControlState.Normal)
         continueButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        continueButton.backgroundColor = UIColor.grayColor()
+        continueButton.layer.borderWidth = 5
+        continueButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        continueButton.layer.cornerRadius = 5
+        continueButton.layer.borderColor = UIColor.whiteColor().CGColor
         
         self.completeView.addSubview(quitButton)
         self.completeView.addSubview(continueButton)

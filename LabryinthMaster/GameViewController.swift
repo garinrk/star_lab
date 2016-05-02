@@ -32,6 +32,8 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     var pauseController : PauseViewController?
     
     weak var delegate: GameViewControllerDelegate? = nil
+    var backgroundImage = UIImage(named: "halo.jpg")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
     
     override func loadView() {
         super.loadView()
@@ -39,7 +41,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         //MANAGERS
         _gameManager.delegate = self
         
@@ -47,6 +48,10 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gyroManager.delegate = self
         gyroManager.Start()
         gyroManager.Pause()
+        
+//        backgroundImageView.frame = screenRect
+//        backgroundImageView.image = backgroundImage
+//        self.view.addSubview(backgroundImageView)
     }
     
     func startNewGame(name: String, difficulty: DifficultyMode)
@@ -66,7 +71,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         _gameManager.makeNewLevel()
         
         // initialize maze view
-        
+//        mazeView.backgroundColor = UIColor(white: 0, alpha: 0)
         mazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
         for cell in _gameManager.maze.cells {
             mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
@@ -76,7 +81,6 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         }
         
         mazeView.placeGoalX(29, Y: 29)
-        
         // add subviews and assign delegates
         view.addSubview(mazeView)
         
@@ -107,7 +111,10 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         pauseButton.frame = CGRectMake(screenRect.width * 0.9, screenRect.width + 205.0, 75, 40.0)
         pauseButton.setTitle("PAUSE", forState: UIControlState.Normal)
         pauseButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        pauseButton.backgroundColor = UIColor.darkGrayColor()
+        pauseButton.layer.borderWidth = 5
+        pauseButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        pauseButton.layer.cornerRadius = 5
+        pauseButton.layer.borderColor = UIColor.whiteColor().CGColor
         pauseButton.addTarget(self, action: #selector(GameViewController.PauseGame), forControlEvents: UIControlEvents.TouchUpInside)
         view.addSubview(pauseButton)
         // start the game
@@ -231,9 +238,10 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         self.presentViewController(gameOverController!, animated: false, completion: nil)
     }
     
-    func WinGameCall(){
+    func WinGameCall(score : Int){
         levelCompleteController = LevelCompleteViewController()
         levelCompleteController?.delegate = self
+        levelCompleteController?.lifetimeScore = score
 //        _audioManager.StopAllAudio()
         //silence sound effects maybe?
         gyroManager.Pause()
