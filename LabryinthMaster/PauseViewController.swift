@@ -13,19 +13,10 @@ protocol PauseViewDelegate : class {
     func pausePressedQuit()
 }
 
-//protocol GameManagerDelegate: class {
-//    //    func redrawMaze()
-//    func GameOverCall()
-//    func WinGameCall()
-//}
-
 class PauseViewController : UIViewController{
     
     var pauseView  = PauseView()
-    var resumeButton = UIButton(type: UIButtonType.Custom)
-    var quitButton = UIButton(type: UIButtonType.Custom)
-    var musicSlider : UISlider?
-    var fxSlider : UISlider?
+
     var screenRect = UIScreen.mainScreen().bounds
     
     var _audio : AudioManager = AudioManager.sharedInstance
@@ -41,53 +32,19 @@ class PauseViewController : UIViewController{
         pauseView.frame = UIScreen.mainScreen().bounds
         backgroundImageView.frame = screenRect
         backgroundImageView.image = backgroundImage
-        pauseView.addSubview(backgroundImageView)
+        self.view.addSubview(backgroundImageView)
         self.view.addSubview(pauseView)
         
-        //hide back button and top bar
-        self.navigationItem.hidesBackButton = true
-        self.navigationController?.navigationBar.hidden = true
-        
         //set up sliders with handler methods
-        musicSlider = UISlider(frame: CGRectMake(CGRectGetMidX(screenRect), CGRectGetMidY(screenRect), 200, 50))
-        fxSlider = UISlider(frame: CGRectMake(CGRectGetMidX(screenRect), CGRectGetMidY(screenRect), 200, 50))
-        
-        musicSlider!.center = CGPointMake(CGRectGetMaxX(screenRect) * 0.75,CGRectGetMaxY(screenRect) * 0.55)
-        fxSlider!.center = CGPointMake(CGRectGetMaxX(screenRect) * 0.75,CGRectGetMaxY(screenRect) * 0.60)
-        musicSlider!.addTarget(self, action: #selector(PauseViewController.MusicSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
-        fxSlider!.addTarget(self, action: #selector(PauseViewController.FxSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
-        
-        resumeButton.frame = CGRectMake(50,50, 200, 50)
-        resumeButton.center = CGPointMake(CGRectGetMidX(screenRect), CGRectGetMaxY(screenRect) * 0.85)
-        
-        resumeButton
+        pauseView.musicSlider!.addTarget(self, action: #selector(PauseViewController.MusicSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
+        pauseView.fxSlider!.addTarget(self, action: #selector(PauseViewController.FxSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
+        pauseView.resumeButton
             .addTarget(self, action: #selector(PauseViewController.ResumeButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-        resumeButton.setTitle("Resume Game",forState: UIControlState.Normal)
-        resumeButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        resumeButton.layer.borderWidth = 5
-        resumeButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        resumeButton.layer.cornerRadius = 5
-        resumeButton.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        quitButton.frame = CGRectMake(50,50, 200, 50)
-        quitButton.center = CGPointMake(CGRectGetMidX(screenRect) * 0.40,CGRectGetMaxY(screenRect) * 0.15)
-        quitButton
+        pauseView.quitButton
             .addTarget(self, action: #selector(PauseViewController.QuitButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-        quitButton.setTitle("Quit Game", forState: UIControlState.Normal)
-        quitButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        quitButton.layer.borderWidth = 5
-        quitButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        quitButton.layer.cornerRadius = 5
-        quitButton.layer.borderColor = UIColor.whiteColor().CGColor
-        
-        
-        fxSlider?.value = _audio.effectsVolume
-        musicSlider?.value = _audio.mainMusicVolume
-        self.pauseView.addSubview(quitButton)
-        self.pauseView.addSubview(musicSlider!)
-        self.pauseView.addSubview(fxSlider!)
-        self.pauseView.addSubview(resumeButton)
-        
+          
+        pauseView.fxSlider?.value = _audio.effectsVolume
+        pauseView.musicSlider?.value = _audio.mainMusicVolume
     }
     
     /**
@@ -95,7 +52,7 @@ class PauseViewController : UIViewController{
      */
     func MusicSliderChanged(){
 //        print("Music: \(musicSlider!.value)")
-        _audio.mainMusicVolume = musicSlider!.value
+        _audio.mainMusicVolume = pauseView.musicSlider!.value
         _audio.SetVolumes()
     }
     
@@ -104,7 +61,7 @@ class PauseViewController : UIViewController{
      */
     func FxSliderChanged(){
 //        print("FX: \(fxSlider!.value)")
-        _audio.effectsVolume = fxSlider!.value
+        _audio.effectsVolume = pauseView.fxSlider!.value
         _audio.SetVolumes()
     }
     
