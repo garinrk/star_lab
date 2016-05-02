@@ -19,7 +19,7 @@ class MainMenuView : UIView{
         
         //better way to do this
         MainLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
-        MainLabel.text = "main label"
+        MainLabel.text = "Pac Man's Labryinth"
         MainLabel.adjustsFontSizeToFitWidth = true
         MainLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
         MainLabel.textAlignment = .Center

@@ -28,9 +28,14 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     weak var delegate: MainMenuViewControllerDelegate? = nil
     
     override func viewDidLoad() {
+        //set view
         mmview.frame = UIScreen.mainScreen().bounds
         mmview.backgroundColor = UIColor.brownColor()
+        
+        //play music
         _audioManager.PlayAudio(SoundType.MainMusic)
+        
+        
         newGameButton.frame = CGRectMake(50,50, 200, 50)
         newGameButton.center = CGPointMake(CGRectGetMidX(screenRect) - 200,CGRectGetMaxY(UIScreen.mainScreen().bounds) * 0.75)
         newGameButton
