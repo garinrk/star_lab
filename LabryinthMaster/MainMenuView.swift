@@ -11,21 +11,30 @@ import UIKit
 /// New, load, high scores, options
 class MainMenuView : UIView{
     
-    var MainLabel = UILabel()
+//    var MainLabel = UILabel()
     var newGameButton = UIButton(type: UIButtonType.Custom)
     var optionsButton = UIButton(type: UIButtonType.Custom)
     var scoresButton = UIButton(type: UIButtonType.Custom)
+    
+    var titleImage = UIImage(named: "title_logo.png")
+    var titleImageBackground = UIImageView(frame: CGRectZero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
 
-        MainLabel.text = "Star Labyrinth"
-        MainLabel.font = UIFont.systemFontOfSize(35)
-        MainLabel.textColor = UIColor(white: 1, alpha: 0.5)
-        MainLabel.textAlignment = .Center
-        self.addSubview(MainLabel)
-        MainLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleImageBackground.image = titleImage
+//        MainLabel.text = "Star Labyrinth"
+//        MainLabel.font = UIFont.systemFontOfSize(35)
+//        MainLabel.textColor = UIColor(white: 1, alpha: 0.5)
+//        MainLabel.textAlignment = .Center
+        self.addSubview(titleImageBackground)
+        titleImageBackground.translatesAutoresizingMaskIntoConstraints = false
+        
+//        backgroundImageView.frame = bounds
+//        backgroundImageView.image = coinImage
+//        backgroundImageView.tag = 2020
+//        self.addSubview(backgroundImageView)
         
         newGameButton.setTitle("New Game", forState: UIControlState.Normal)
         newGameButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
@@ -57,7 +66,7 @@ class MainMenuView : UIView{
         self.addSubview(scoresButton)
         scoresButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let views: [String:UIView] = ["main":MainLabel, "newGame":newGameButton, "options":optionsButton, "scores":scoresButton]
+        let views: [String:UIView] = ["main":titleImageBackground, "newGame":newGameButton, "options":optionsButton, "scores":scoresButton]
         
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[main]|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[newGame]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
@@ -67,7 +76,7 @@ class MainMenuView : UIView{
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[main][newGame]-80-[options(==newGame)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
 
         addConstraint(NSLayoutConstraint(item: newGameButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: newGameButton, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0.0))
-
+        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 7.2, constant: 0.0))
     }
     
     required init?(coder aDecoder: NSCoder) {
