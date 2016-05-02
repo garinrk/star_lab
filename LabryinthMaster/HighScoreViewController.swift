@@ -35,7 +35,10 @@ class HighScoreViewController : UIViewController{
             .addTarget(self, action: #selector(HighScoreViewController.BackButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         backButton.setTitle("Back", forState: UIControlState.Normal)
         backButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        backButton.backgroundColor = UIColor.grayColor()
+        backButton.layer.borderWidth = 5
+        backButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        backButton.layer.cornerRadius = 5
+        backButton.layer.borderColor = UIColor.whiteColor().CGColor
         
         self.view.addSubview(highScore)
         self.view.addSubview(backButton)

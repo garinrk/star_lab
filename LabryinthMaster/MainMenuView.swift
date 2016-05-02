@@ -22,32 +22,38 @@ class MainMenuView : UIView{
 
         MainLabel.text = "Star Labyrinth"
         MainLabel.font = UIFont.systemFontOfSize(35)
-
+        MainLabel.textColor = UIColor(white: 1, alpha: 0.5)
         MainLabel.textAlignment = .Center
         self.addSubview(MainLabel)
         MainLabel.translatesAutoresizingMaskIntoConstraints = false
         
         newGameButton.setTitle("New Game", forState: UIControlState.Normal)
         newGameButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        newGameButton.backgroundColor = UIColor.grayColor()
         newGameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
-        newGameButton.layer.borderWidth = 1
+        newGameButton.layer.borderWidth = 5
+        newGameButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        newGameButton.layer.cornerRadius = 5
         newGameButton.layer.borderColor = UIColor.whiteColor().CGColor
-        
         self.addSubview(newGameButton)
         newGameButton.translatesAutoresizingMaskIntoConstraints = false
 
         optionsButton.setTitle("Options",forState: UIControlState.Normal)
         optionsButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        optionsButton.backgroundColor = UIColor.grayColor()
         optionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+        optionsButton.layer.borderWidth = 5
+        optionsButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        optionsButton.layer.cornerRadius = 5
+        optionsButton.layer.borderColor = UIColor.whiteColor().CGColor
         self.addSubview(optionsButton)
         optionsButton.translatesAutoresizingMaskIntoConstraints = false
         
         scoresButton.setTitle("High Scores", forState: UIControlState.Normal)
         scoresButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         scoresButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
-        scoresButton.backgroundColor = UIColor.grayColor()
+        scoresButton.layer.borderWidth = 5
+        scoresButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        scoresButton.layer.cornerRadius = 5
+        scoresButton.layer.borderColor = UIColor.whiteColor().CGColor
         self.addSubview(scoresButton)
         scoresButton.translatesAutoresizingMaskIntoConstraints = false
         

@@ -80,7 +80,10 @@ class OptionsViewController : UIViewController{
             .addTarget(self, action: #selector(OptionsViewController.BackButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         backButton.setTitle("Back to Menu", forState: UIControlState.Normal)
         backButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        backButton.backgroundColor = UIColor.grayColor()
+        backButton.layer.borderWidth = 5
+        backButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        backButton.layer.cornerRadius = 5
+        backButton.layer.borderColor = UIColor.whiteColor().CGColor
         
         
         fxSlider?.value = _audio.effectsVolume
