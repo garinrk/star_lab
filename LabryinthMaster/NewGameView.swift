@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewGameView : UIView{
+class NewGameView : UIView, UITextFieldDelegate {
     
 //    var newSessionLabel = UILabel()
     var backButton = UIButton(type: UIButtonType.Custom)
@@ -60,6 +60,7 @@ class NewGameView : UIView{
         gameNameTextEntry.textAlignment = NSTextAlignment.Center
         gameNameTextEntry.font = UIFont.systemFontOfSize(15)
         gameNameTextEntry.text = "ENTER NAME HERE"
+        gameNameTextEntry.delegate = self
         gameNameTextEntry.textColor = UIColor.blackColor()
         gameNameTextEntry.borderStyle = UITextBorderStyle.RoundedRect
         gameNameTextEntry.autocorrectionType = UITextAutocorrectionType.No
@@ -70,17 +71,24 @@ class NewGameView : UIView{
         addSubview(gameNameTextEntry)
         gameNameTextEntry.translatesAutoresizingMaskIntoConstraints = false
 
-        let views: [String:UIView] = ["newSession":titleImageBackground, "back":backButton, "easy":easyButton, "hard":hardButton, "start":startButton, "text": gameNameTextEntry]
+        let spacer: UIView = UIView()
+        addSubview(spacer)
+        spacer.translatesAutoresizingMaskIntoConstraints = false
+        
+        let views: [String:UIView] = ["newSession":titleImageBackground, "back":backButton, "easy":easyButton, "hard":hardButton, "start":startButton, "text": gameNameTextEntry, "spacer":spacer]
         
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[back]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[spacer]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[newSession]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[text]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[easy]-[hard(==easy)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[start]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[back(<=40)][newSession][text]-20-[easy]-80-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-80-[newSession][text]-20-[hard]-80-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[back(<=40)][spacer(==150)][newSession]-(>=50)-[text]-20-[easy]-80-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(80)-[spacer(==150)][newSession]-(>=50)-[text]-20-[hard(==easy)]-80-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         
+        addConstraint(NSLayoutConstraint(item: startButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 0.7, constant: 0.0))
+
         addConstraint(NSLayoutConstraint(item: startButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: gameNameTextEntry, attribute: NSLayoutAttribute.Height, multiplier: 1.75, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 7.2, constant: 0.0))
 //        addConstraint(NSLayoutConstraint(item: backButton, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: startButton, attribute: NSLayoutAttribute.Width, multiplier: 0.75, constant: 0.0))
@@ -88,5 +96,16 @@ class NewGameView : UIView{
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        gameNameTextEntry.text = ""
+        textField.text = nil
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        textField.text = ""
+        gameNameTextEntry.text = ""
     }
 }
