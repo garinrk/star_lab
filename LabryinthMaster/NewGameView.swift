@@ -44,7 +44,7 @@ class NewGameView : UIView{
         playerNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         backButton.setTitle("Back", forState: UIControlState.Normal)
-        backBut∑ton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        backButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         backButton.backgroundColor = UIColor.orangeColor()
         addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
