@@ -37,10 +37,7 @@ class GameOverView : UIView{
         lifetimeScore.text = lifetimeScoreAmt.description
         lifetimeScore.textColor = UIColor.redColor()
         lifetimeScore.font = UIFont.systemFontOfSize(30)
-//        lifetimeScore.backgroundColor = UIColor.redColor()
-//        lifetimeScore.adjustsFontSizeToFitWidth = true
         lifetimeScore.textAlignment = .Center
-//        lifetimeScore.center.x = screenRect.midX
         self.addSubview(lifetimeScore)
         lifetimeScore.translatesAutoresizingMaskIntoConstraints = false
         

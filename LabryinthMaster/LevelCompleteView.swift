@@ -18,40 +18,40 @@ class LevelCompleteView : UIView{
     var titleImage = UIImage(named: "missioncomplete.png")
     var titleImageBackground = UIImageView(frame: CGRectZero)
     
-    var currentScoreImage = UIImage(named: "currentscore.png")
+    var currentScoreImage = UIImage(named: "lifetimescore.png")
     var currentScoreImageBackground = UIImageView(frame: CGRectZero)
     
     override func drawRect(rect: CGRect) {
 
-//        completeLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
-        titleImageBackground.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
         titleImageBackground.image = titleImage
         self.addSubview(titleImageBackground)
-//        completeLabel.text = "Level Complete"
-//        completeLabel.textColor = UIColor.greenColor()
-//        completeLabel.adjustsFontSizeToFitWidth = true
-//        completeLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
-//        completeLabel.textAlignment = .Center
+        titleImageBackground.translatesAutoresizingMaskIntoConstraints = false
         
-//        scoreLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 100)
-//        scoreLabel.text = "Lifetime Score"
-//        scoreLabel.adjustsFontSizeToFitWidth = true
-//        scoreLabel.textAlignment = .Center
-//        scoreLabel.center.x = screenRect.midX
-//        scoreLabel.center.y = screenRect.midY
-        currentScoreImageBackground.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
         currentScoreImageBackground.image = currentScoreImage
         self.addSubview(currentScoreImageBackground)
+        currentScoreImageBackground.translatesAutoresizingMaskIntoConstraints = false
         
-        lifetimeScore.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect) + 30, 200, 100)
         lifetimeScore.text = lifetimeScoreAmt.description
         lifetimeScore.adjustsFontSizeToFitWidth = true
         lifetimeScore.textAlignment = .Center
+        lifetimeScore.textColor = UIColor.redColor()
+        lifetimeScore.font = UIFont.systemFontOfSize(30)
         lifetimeScore.center.x = screenRect.midX
-        //        lifetimeScore.center.y = screenRect.midY
-        
-//        self.addSubview(completeLabel)
-//        self.addSubview(scoreLabel)
         self.addSubview(lifetimeScore)
+        lifetimeScore.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        let views: [String:UIView] = ["main":titleImageBackground, "scoreImage":currentScoreImageBackground, "score":lifetimeScore]
+        
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[main]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[scoreImage]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[main]-80-[scoreImage]-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        
+        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: currentScoreImageBackground, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: currentScoreImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 7.2, constant: 0.0))
+        
+        
     }
 }

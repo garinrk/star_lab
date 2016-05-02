@@ -35,25 +35,25 @@ class NewGameView : UIView, UITextFieldDelegate {
         
         backButton.setTitle("Back", forState: UIControlState.Normal)
         backButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        backButton.backgroundColor = UIColor.darkGrayColor()
+        backButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         
         startButton.setTitle("Start Game", forState: UIControlState.Normal)
         startButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Disabled)
-        startButton.backgroundColor = UIColor.redColor()
+        startButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         addSubview(startButton)
         startButton.translatesAutoresizingMaskIntoConstraints = false
         
         easyButton.setTitle("Easy", forState: UIControlState.Normal)
         easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        easyButton.backgroundColor = UIColor.darkGrayColor()
+        easyButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         addSubview(easyButton)
         easyButton.translatesAutoresizingMaskIntoConstraints = false
         
         hardButton.setTitle("Hard", forState: UIControlState.Normal)
         hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        hardButton.backgroundColor = UIColor.darkGrayColor()
+        hardButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         addSubview(hardButton)
         hardButton.translatesAutoresizingMaskIntoConstraints = false
         

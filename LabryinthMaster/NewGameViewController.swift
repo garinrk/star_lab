@@ -61,16 +61,20 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     
     func EasyButtonPressed(){
         diff = .Easy
-        newGameView.easyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        newGameView.hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        newGameView.easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        newGameView.easyButton.backgroundColor = UIColor.greenColor()
+        newGameView.hardButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        newGameView.hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         CheckForLegal()
         _audioManager.PlayAudio(SoundType.Confirm)
     }
     
     func HardButtonPressed(){
         diff = .Hard
-        newGameView.hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-        newGameView.easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        newGameView.hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        newGameView.hardButton.backgroundColor = UIColor.greenColor()
+        newGameView.easyButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        newGameView.easyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         CheckForLegal()
         _audioManager.PlayAudio(SoundType.Confirm)
 
