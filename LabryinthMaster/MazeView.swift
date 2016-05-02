@@ -25,6 +25,7 @@ class MazeViewCell: UIView {
     private var goalWidth: CGFloat = 0
     
     var coinImage = UIImage(named: "coin.png")
+    var goalImage = UIImage(named: "goal.png")
     var backgroundImageView = UIImageView(frame: CGRectZero)
     
     override init(frame: CGRect) {
@@ -113,15 +114,19 @@ class MazeViewCell: UIView {
         
         // draw exit
         if goal {
-            let halfDifferenceWidth: CGFloat = (bounds.width - goalWidth) * 0.5
-            let halfDifferenceHeight: CGFloat = (bounds.height - goalWidth) * 0.5
-            
-            let x: CGFloat = bounds.minX + halfDifferenceWidth
-            let y: CGFloat = bounds.minY + halfDifferenceHeight
-            
-            let square: CGRect = CGRect(x: x, y: y, width: goalWidth, height: goalWidth)
-            CGContextSetFillColorWithColor(context, UIColor.blueColor().CGColor)
-            CGContextFillRect(context, square)
+            backgroundImageView.frame = bounds
+            backgroundImageView.image = goalImage
+            backgroundImageView.tag = 2112
+            self.addSubview(backgroundImageView)
+//            let halfDifferenceWidth: CGFloat = (bounds.width - goalWidth) * 0.5
+//            let halfDifferenceHeight: CGFloat = (bounds.height - goalWidth) * 0.5
+//            
+//            let x: CGFloat = bounds.minX + halfDifferenceWidth
+//            let y: CGFloat = bounds.minY + halfDifferenceHeight
+//            
+//            let square: CGRect = CGRect(x: x, y: y, width: goalWidth, height: goalWidth)
+//            CGContextSetFillColorWithColor(context, UIColor.blueColor().CGColor)
+//            CGContextFillRect(context, square)
 
         }
 //        else{
@@ -239,6 +244,12 @@ class MazeView: UIView {
         if occupyingCell != nil && occupyingCell!.goal
         {
             goal = true
+            //remove the goal view
+            for sview in (occupyingCell?.subviews)!{
+                if sview.tag == 2112{
+                    sview.removeFromSuperview()
+                }
+            }
         }
         
         // check to see if object is centered in cell

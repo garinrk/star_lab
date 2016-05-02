@@ -50,6 +50,8 @@ class EnemyView: UIView {
     weak var delegate: EnemyViewDelegate? = nil
     
     private var collided: Bool = false
+    var enemyImage = UIImage(named: "alien.png")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
     
     override init(frame: CGRect) {
         horizVelocity = 0.0
