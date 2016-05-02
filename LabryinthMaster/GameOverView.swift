@@ -20,6 +20,9 @@ class GameOverView : UIView{
     var titleImage = UIImage(named: "gameover.png")
     var titleImageBackground = UIImageView(frame: CGRectZero)
     
+    var lifetimeScoreImage = UIImage(named: "lifetimescore.png")
+    var lifetimeScoreImageBackground = UIImageView(frame: CGRectZero)
+    
     override func drawRect(rect: CGRect) {
         
 //        gameOverLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
@@ -32,12 +35,15 @@ class GameOverView : UIView{
 //        gameOverLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
 //        gameOverLabel.textAlignment = .Center
         
-        scoreLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 100)
-        scoreLabel.text = "Lifetime Score"
-        scoreLabel.adjustsFontSizeToFitWidth = true
-        scoreLabel.textAlignment = .Center
-        scoreLabel.center.x = screenRect.midX
-        scoreLabel.center.y = screenRect.midY
+//        scoreLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 100)
+//        scoreLabel.text = "Lifetime Score"
+//        scoreLabel.adjustsFontSizeToFitWidth = true
+//        scoreLabel.textAlignment = .Center
+//        scoreLabel.center.x = screenRect.midX
+//        scoreLabel.center.y = screenRect.midY
+        lifetimeScoreImageBackground.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
+        lifetimeScoreImageBackground.image = lifetimeScoreImage
+        self.addSubview(lifetimeScoreImageBackground)
         
         lifetimeScore.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect) + 30, 200, 100)
         lifetimeScore.text = lifetimeScoreAmt.description
@@ -47,8 +53,8 @@ class GameOverView : UIView{
         lifetimeScore.center.x = screenRect.midX
         //        lifetimeScore.center.y = screenRect.midY
         
-        self.addSubview(gameOverLabel)
-        self.addSubview(scoreLabel)
+//        self.addSubview(gameOverLabel)
+//        self.addSubview(scoreLabel)
         self.addSubview(lifetimeScore)
     }
 }

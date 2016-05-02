@@ -92,8 +92,6 @@ class MainMenuView : UIView{
     
     override func drawRect(rect: CGRect) {
         
-
-        
         
     }
 }
