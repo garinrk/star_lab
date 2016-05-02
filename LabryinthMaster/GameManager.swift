@@ -14,7 +14,6 @@ enum DifficultyMode: Int {
 }
 
 protocol GameManagerDelegate: class {
-//    func redrawMaze()
     func GameOverCall(score: Int)
     func WinGameCall()
 }
@@ -191,6 +190,7 @@ class GameManager: GameLoopDelegate {
     {
         dead = true
         
+        isPaused = false
         timer.StopTimer()
         gameLoop.stop()
         currentScore = 0
