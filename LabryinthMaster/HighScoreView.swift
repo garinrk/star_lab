@@ -9,21 +9,12 @@
 import UIKit
 
 class HighScoreView : UIView{
-//    var highScoreLabel = UILabel()
     var _scoreManager : ScoreManager = ScoreManager.sharedInstance
     
     var titleImage = UIImage(named: "highscores.png")
     var titleImageBackground = UIImageView(frame: CGRectZero)
     
     override func drawRect(rect: CGRect) {
-//        highScoreLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
-//        highScoreLabel.font = UIFont.systemFontOfSize(35)
-//        highScoreLabel.text = "High Scores"
-//        highScoreLabel.textColor = UIColor.whiteColor()
-//        highScoreLabel.adjustsFontSizeToFitWidth = true
-//        highScoreLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
-//        highScoreLabel.textAlignment = .Center
-//        self.addSubview(highScoreLabel)
         
         titleImageBackground.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
         titleImageBackground.image = titleImage

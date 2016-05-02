@@ -76,7 +76,7 @@ class EnemyView: UIView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        let context: CGContext? = UIGraphicsGetCurrentContext()
+//        let context: CGContext? = UIGraphicsGetCurrentContext()
         
         // draw square
         let x: CGFloat = bounds.minX + xPos
