@@ -168,6 +168,8 @@ class AudioManager : NSObject{
         outOfTimePlayer.volume = effectsVolume
         startLevelPlayer.volume = effectsVolume
         
+        // music set to infinite loop
+        mainMusicPlayer.numberOfLoops = -1
     }
     
     
