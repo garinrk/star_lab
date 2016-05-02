@@ -24,6 +24,9 @@ class MazeViewCell: UIView {
     private var coinDiameter: CGFloat = 0
     private var goalWidth: CGFloat = 0
     
+    var coinImage = UIImage(named: "coin.png")
+    var backgroundImageView = UIImageView(frame: CGRectZero)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         coinDiameter = bounds.width * 0.5
@@ -91,15 +94,21 @@ class MazeViewCell: UIView {
         
         // draw coin
         if hasCoin {
-            let halfDifferenceWidth: CGFloat = (bounds.width - coinDiameter) * 0.5
-            let halfDifferenceHeight: CGFloat = (bounds.height - coinDiameter) * 0.5
             
-            let x: CGFloat = bounds.minX + halfDifferenceWidth
-            let y: CGFloat = bounds.minY + halfDifferenceHeight
-            
-            let square: CGRect = CGRect(x: x, y: y, width: coinDiameter, height: coinDiameter)
-            CGContextSetFillColorWithColor(context, UIColor.orangeColor().CGColor)
-            CGContextFillEllipseInRect(context, square)
+            //draw a coin
+            backgroundImageView.frame = bounds
+            backgroundImageView.image = coinImage
+            backgroundImageView.tag = 2020
+            self.addSubview(backgroundImageView)
+//            let halfDifferenceWidth: CGFloat = (bounds.width - coinDiameter) * 0.5
+//            let halfDifferenceHeight: CGFloat = (bounds.height - coinDiameter) * 0.5
+//            
+//            let x: CGFloat = bounds.minX + halfDifferenceWidth
+//            let y: CGFloat = bounds.minY + halfDifferenceHeight
+//            
+//            let square: CGRect = CGRect(x: x, y: y, width: coinDiameter, height: coinDiameter)
+//            CGContextSetFillColorWithColor(context, UIColor.orangeColor().CGColor)
+//            CGContextFillEllipseInRect(context, square)
         }
         
         // draw exit
@@ -115,6 +124,13 @@ class MazeViewCell: UIView {
             CGContextFillRect(context, square)
 
         }
+//        else{
+//            for sview in self.subviews{
+//                if sview.tag == 2020{
+////                    sview.removeFromSuperview()
+//                }
+//            }
+//        }
         
         self.backgroundColor = UIColor(white: 1, alpha: 0)
     }
@@ -209,6 +225,13 @@ class MazeView: UIView {
         if occupyingCell != nil && occupyingCell!.hasCoin
         {
             coin = true
+            
+            //remove the coin view
+            for sview in (occupyingCell?.subviews)!{
+                if sview.tag == 2020{
+                    sview.removeFromSuperview()
+                }
+            }
         }
         
         // goal collision

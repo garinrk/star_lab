@@ -47,6 +47,9 @@
 		4566473A1CD589F60061B5A4 /* HighScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 456647391CD589F60061B5A4 /* HighScoreViewController.swift */; };
 		4566473C1CD589FF0061B5A4 /* HighScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4566473B1CD589FF0061B5A4 /* HighScoreView.swift */; };
 		457B672F1CD426FE00EE127D /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457B672E1CD426FE00EE127D /* AudioManager.swift */; };
+		45A0BD261CD7EC72000A16B5 /* alien.png in Resources */ = {isa = PBXBuildFile; fileRef = 45A0BD231CD7EC72000A16B5 /* alien.png */; };
+		45A0BD271CD7EC72000A16B5 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = 45A0BD241CD7EC72000A16B5 /* coin.png */; };
+		45A0BD281CD7EC72000A16B5 /* ship.png in Resources */ = {isa = PBXBuildFile; fileRef = 45A0BD251CD7EC72000A16B5 /* ship.png */; };
 		45C7A4991CD6BFAC00594D16 /* mainMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 45C7A4981CD6BFAC00594D16 /* mainMusic.mp3 */; };
 		45C7A4A71CD6D77E00594D16 /* blackHole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45C7A49B1CD6D77E00594D16 /* blackHole.jpg */; };
 		45C7A4A81CD6D77E00594D16 /* halo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 45C7A49C1CD6D77E00594D16 /* halo.jpg */; };
@@ -105,6 +108,9 @@
 		456647391CD589F60061B5A4 /* HighScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreViewController.swift; sourceTree = "<group>"; };
 		4566473B1CD589FF0061B5A4 /* HighScoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreView.swift; sourceTree = "<group>"; };
 		457B672E1CD426FE00EE127D /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		45A0BD231CD7EC72000A16B5 /* alien.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = alien.png; path = Graphics/alien.png; sourceTree = "<group>"; };
+		45A0BD241CD7EC72000A16B5 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = coin.png; path = Graphics/coin.png; sourceTree = "<group>"; };
+		45A0BD251CD7EC72000A16B5 /* ship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ship.png; path = Graphics/ship.png; sourceTree = "<group>"; };
 		45C7A4981CD6BFAC00594D16 /* mainMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = mainMusic.mp3; sourceTree = "<group>"; };
 		45C7A49B1CD6D77E00594D16 /* blackHole.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = blackHole.jpg; path = Graphics/blackHole.jpg; sourceTree = "<group>"; };
 		45C7A49C1CD6D77E00594D16 /* halo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = halo.jpg; path = Graphics/halo.jpg; sourceTree = "<group>"; };
@@ -276,6 +282,9 @@
 		45C7A49A1CD6D77400594D16 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				45A0BD231CD7EC72000A16B5 /* alien.png */,
+				45A0BD241CD7EC72000A16B5 /* coin.png */,
+				45A0BD251CD7EC72000A16B5 /* ship.png */,
 				45C7A49B1CD6D77E00594D16 /* blackHole.jpg */,
 				45C7A49C1CD6D77E00594D16 /* halo.jpg */,
 				45C7A49D1CD6D77E00594D16 /* labryinth1.jpg */,
@@ -353,6 +362,7 @@
 			files = (
 				45C7A4B21CD6D77E00594D16 /* space6.jpg in Resources */,
 				0C1AFCE91CD5437000D1E20F /* win2.wav in Resources */,
+				45A0BD271CD7EC72000A16B5 /* coin.png in Resources */,
 				45C7A4A81CD6D77E00594D16 /* halo.jpg in Resources */,
 				45C7A4B11CD6D77E00594D16 /* space5.jpg in Resources */,
 				45C7A4AB1CD6D77E00594D16 /* shuttleLaunch.jpg in Resources */,
@@ -374,8 +384,10 @@
 				0C5EF7FB1CB9DC9B00707CFF /* Default-568h@2x.png in Resources */,
 				0C1AFCE21CD5437000D1E20F /* enemy.wav in Resources */,
 				0C1AFCE31CD5437000D1E20F /* enemy2.wav in Resources */,
+				45A0BD261CD7EC72000A16B5 /* alien.png in Resources */,
 				456647341CD562DF0061B5A4 /* LabData.plist in Resources */,
 				45C7A4AE1CD6D77E00594D16 /* space2.jpg in Resources */,
+				45A0BD281CD7EC72000A16B5 /* ship.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
