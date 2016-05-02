@@ -56,7 +56,7 @@ class PlayerView : UIView{
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
-        let context: CGContext? = UIGraphicsGetCurrentContext()
+//        let context: CGContext? = UIGraphicsGetCurrentContext()
         
         // draw circle
         let x: CGFloat = bounds.minX + xPos

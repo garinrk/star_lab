@@ -91,7 +91,7 @@ class NewGameView : UIView, UITextFieldDelegate {
 
         addConstraint(NSLayoutConstraint(item: startButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: gameNameTextEntry, attribute: NSLayoutAttribute.Height, multiplier: 1.75, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 7.2, constant: 0.0))
-//        addConstraint(NSLayoutConstraint(item: backButton, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: startButton, attribute: NSLayoutAttribute.Width, multiplier: 0.75, constant: 0.0))
+
     }
     
     required init?(coder aDecoder: NSCoder) {
