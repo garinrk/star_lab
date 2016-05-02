@@ -19,6 +19,9 @@ class MainMenuView : UIView{
     var titleImage = UIImage(named: "title_logo.png")
     var titleImageBackground = UIImageView(frame: CGRectZero)
     
+    var authorsImage = UIImage(named: "authors.png")
+    var authorsImageBackground = UIImageView(frame: CGRectZero)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -31,6 +34,10 @@ class MainMenuView : UIView{
         titleImageBackground.image = titleImage
         self.addSubview(titleImageBackground)
         titleImageBackground.translatesAutoresizingMaskIntoConstraints = false
+
+        authorsImageBackground.image = authorsImage
+        self.addSubview(authorsImageBackground)
+        authorsImageBackground.translatesAutoresizingMaskIntoConstraints = false
 
         
         newGameButton.setTitle("New Game", forState: UIControlState.Normal)
@@ -63,17 +70,19 @@ class MainMenuView : UIView{
         self.addSubview(scoresButton)
         scoresButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let views: [String:UIView] = ["main":titleImageBackground, "newGame":newGameButton, "options":optionsButton, "scores":scoresButton]
+        let views: [String:UIView] = ["main":titleImageBackground, "authors":authorsImageBackground, "newGame":newGameButton, "options":optionsButton, "scores":scoresButton]
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[main]|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[main]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[authors]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[newGame]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[scores]-[options(==scores)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[main][newGame]-80-[scores(==newGame)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[main][newGame]-80-[options(==newGame)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[main]-[authors]-100-[newGame]-80-[scores(==newGame)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[main]-[authors]-100-[newGame]-80-[options(==newGame)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
 
         addConstraint(NSLayoutConstraint(item: newGameButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: newGameButton, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 7.2, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: authorsImageBackground, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: authorsImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 13.7, constant: 0.0))
     }
     
     required init?(coder aDecoder: NSCoder) {
