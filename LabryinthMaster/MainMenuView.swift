@@ -13,18 +13,62 @@ class MainMenuView : UIView{
     
     var MainLabel = UILabel()
     var newGameButton = UIButton(type: UIButtonType.Custom)
+    var optionsButton = UIButton(type: UIButtonType.Custom)
+    var scoresButton = UIButton(type: UIButtonType.Custom)
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+
+        MainLabel.text = "Star Labyrinth"
+        MainLabel.font = UIFont.systemFontOfSize(35)
+
+        MainLabel.textAlignment = .Center
+        self.addSubview(MainLabel)
+        MainLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        newGameButton.setTitle("New Game", forState: UIControlState.Normal)
+        newGameButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        newGameButton.backgroundColor = UIColor.grayColor()
+        newGameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+        self.addSubview(newGameButton)
+        newGameButton.translatesAutoresizingMaskIntoConstraints = false
+
+        optionsButton.setTitle("Options",forState: UIControlState.Normal)
+        optionsButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        optionsButton.backgroundColor = UIColor.grayColor()
+        optionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+        self.addSubview(optionsButton)
+        optionsButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        scoresButton.setTitle("High Scores", forState: UIControlState.Normal)
+        scoresButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        scoresButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Center
+        scoresButton.backgroundColor = UIColor.grayColor()
+        self.addSubview(scoresButton)
+        scoresButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let views: [String:UIView] = ["main":MainLabel, "newGame":newGameButton, "options":optionsButton, "scores":scoresButton]
+        
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[main]|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[newGame]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[scores]-[options(==scores)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[main][newGame]-80-[scores(==newGame)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[main][newGame]-80-[options(==newGame)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+
+        addConstraint(NSLayoutConstraint(item: newGameButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: newGameButton, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0.0))
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     override func drawRect(rect: CGRect) {
         
-        //better way to do this
-        MainLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
-        MainLabel.text = "Pac Man's Labryinth"
-        MainLabel.adjustsFontSizeToFitWidth = true
-        MainLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
-        MainLabel.textAlignment = .Center
-        
-        self.addSubview(MainLabel)
+
         
         
     }
