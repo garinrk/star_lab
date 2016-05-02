@@ -9,23 +9,28 @@
 import UIKit
 
 class OptionsView : UIView{
-    var optionsTitleLabel = UILabel()
+//    var optionsTitleLabel = UILabel()
     var diffLabel = UILabel()
     var musicLabel = UILabel()
     var fxLabel = UILabel()
     
+    var titleImage = UIImage(named: "options.png")
+    var titleImageBackground = UIImageView(frame: CGRectZero)
     
     var screenRect = UIScreen.mainScreen().bounds
     
     override func drawRect(rect: CGRect) {
         
-        optionsTitleLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
-        optionsTitleLabel.text = "Options Menu"
-        optionsTitleLabel.font = UIFont.systemFontOfSize(35)
-        optionsTitleLabel.textColor = UIColor.whiteColor()
-        optionsTitleLabel.adjustsFontSizeToFitWidth = true
-        optionsTitleLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
-        optionsTitleLabel.textAlignment = .Center
+//        optionsTitleLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
+//        optionsTitleLabel.text = "Options Menu"
+//        optionsTitleLabel.font = UIFont.systemFontOfSize(35)
+//        optionsTitleLabel.textColor = UIColor.whiteColor()
+//        optionsTitleLabel.adjustsFontSizeToFitWidth = true
+//        optionsTitleLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
+//        optionsTitleLabel.textAlignment = .Center
+        titleImageBackground.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
+        titleImageBackground.image = titleImage
+        self.addSubview(titleImageBackground)
         
         musicLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
         musicLabel.text = "Music Level"
@@ -46,7 +51,7 @@ class OptionsView : UIView{
         
         self.addSubview(musicLabel)
         self.addSubview(fxLabel)
-        self.addSubview(optionsTitleLabel)
+        self.addSubview(titleImageBackground)
     }
 
 }

@@ -23,18 +23,15 @@ class MainMenuView : UIView{
         super.init(frame: frame)
         
 
-        titleImageBackground.image = titleImage
+
 //        MainLabel.text = "Star Labyrinth"
 //        MainLabel.font = UIFont.systemFontOfSize(35)
 //        MainLabel.textColor = UIColor(white: 1, alpha: 0.5)
 //        MainLabel.textAlignment = .Center
+        titleImageBackground.image = titleImage
         self.addSubview(titleImageBackground)
         titleImageBackground.translatesAutoresizingMaskIntoConstraints = false
-        
-//        backgroundImageView.frame = bounds
-//        backgroundImageView.image = coinImage
-//        backgroundImageView.tag = 2020
-//        self.addSubview(backgroundImageView)
+
         
         newGameButton.setTitle("New Game", forState: UIControlState.Normal)
         newGameButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
