@@ -11,8 +11,6 @@ import UIKit
 class NewGameView : UIView{
     
     var newSessionLabel = UILabel()
-    var diffLabel = UILabel()
-    var playerNameLabel = UILabel()
     var backButton = UIButton(type: UIButtonType.Custom)
     var easyButton = UIButton(type: UIButtonType.Custom)
     var hardButton = UIButton(type: UIButtonType.Custom)
@@ -31,25 +29,13 @@ class NewGameView : UIView{
         addSubview(newSessionLabel)
         newSessionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        diffLabel.text = "Difficulty:"
-        diffLabel.textAlignment = .Center
-        diffLabel.font = UIFont.systemFontOfSize(15)
-        addSubview(diffLabel)
-        diffLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        playerNameLabel.text = "Player Name:"
-        playerNameLabel.textAlignment = .Center
-        playerNameLabel.font = UIFont.systemFontOfSize(15)
-        addSubview(playerNameLabel)
-        playerNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         backButton.setTitle("Back", forState: UIControlState.Normal)
         backButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        backButton.backgroundColor = UIColor.orangeColor()
+        backButton.backgroundColor = UIColor.darkGrayColor()
         addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         
-        startButton.setTitle("Start Game",forState: UIControlState.Normal)
+        startButton.setTitle("Start Game", forState: UIControlState.Normal)
         startButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Disabled)
         startButton.backgroundColor = UIColor.redColor()
         addSubview(startButton)
@@ -80,21 +66,19 @@ class NewGameView : UIView{
         addSubview(gameNameTextEntry)
         gameNameTextEntry.translatesAutoresizingMaskIntoConstraints = false
 
-        let views: [String:UIView] = ["newSession":newSessionLabel, "diff":diffLabel, "name":playerNameLabel, "back":backButton, "easy":easyButton, "hard":hardButton, "start":startButton, "text": gameNameTextEntry]
+        let views: [String:UIView] = ["newSession":newSessionLabel, "back":backButton, "easy":easyButton, "hard":hardButton, "start":startButton, "text": gameNameTextEntry]
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[back]-100-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[back]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[newSession]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[name]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[text]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[diff]-80-[easy]-[hard(==easy)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[easy]-[hard(==easy)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[start]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[back(<=40)][newSession][text]-20-[easy]-80-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-80-[newSession][text]-20-[hard]-80-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         
-//        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[back][newSession][name][text]-40-[diff]-80-[start]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[back][newSession][name][text]-40-[diff(==name)]-80-[start(==name)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[newSession][name][text]-40-[easy(==name)]-80-[start(==name)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[newSession][name][text]-40-[hard(==name)]-80-[start(==name)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        
-        addConstraint(NSLayoutConstraint(item: playerNameLabel, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: gameNameTextEntry, attribute: NSLayoutAttribute.Height, multiplier: 1.75, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: startButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: gameNameTextEntry, attribute: NSLayoutAttribute.Height, multiplier: 1.75, constant: 0.0))
+//        addConstraint(NSLayoutConstraint(item: backButton, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: startButton, attribute: NSLayoutAttribute.Width, multiplier: 0.75, constant: 0.0))
     }
     
     required init?(coder aDecoder: NSCoder) {
