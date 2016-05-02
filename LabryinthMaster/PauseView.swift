@@ -17,6 +17,9 @@ class PauseView : UIView{
     var currentScoreLabel = UILabel()
     var lifetimeScoreLabel = UILabel()
     var pauseTitleLabel = UILabel()
+    
+    var titleImage = UIImage(named: "pause.png")
+    var titleImageBackground = UIImageView(frame: CGRectZero)
 
 
     var _gameManager : GameManager = GameManager.sharedInstance

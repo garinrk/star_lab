@@ -10,24 +10,28 @@ import UIKit
 
 class NewGameView : UIView{
     
-    var newSessionLabel = UILabel()
+//    var newSessionLabel = UILabel()
     var backButton = UIButton(type: UIButtonType.Custom)
     var easyButton = UIButton(type: UIButtonType.Custom)
     var hardButton = UIButton(type: UIButtonType.Custom)
     var startButton = UIButton(type: UIButtonType.Custom)
     var gameNameTextEntry = UITextField(frame: CGRectZero)
     
-    
+    var titleImage = UIImage(named: "newmission.png")
+    var titleImageBackground = UIImageView(frame: CGRectZero)
     var screenRect = UIScreen.mainScreen().bounds
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        newSessionLabel.text = "New Mission"
-        newSessionLabel.textAlignment = .Center
-        newSessionLabel.font = UIFont.systemFontOfSize(35)
-        addSubview(newSessionLabel)
-        newSessionLabel.translatesAutoresizingMaskIntoConstraints = false
+//        newSessionLabel.text = "New Mission"
+//        newSessionLabel.textAlignment = .Center
+//        newSessionLabel.font = UIFont.systemFontOfSize(35)
+//        titleImageBackground.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 50)
+        titleImageBackground.image = titleImage
+        self.addSubview(titleImageBackground)
+        addSubview(titleImageBackground)
+        titleImageBackground.translatesAutoresizingMaskIntoConstraints = false
         
         backButton.setTitle("Back", forState: UIControlState.Normal)
         backButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
@@ -66,7 +70,7 @@ class NewGameView : UIView{
         addSubview(gameNameTextEntry)
         gameNameTextEntry.translatesAutoresizingMaskIntoConstraints = false
 
-        let views: [String:UIView] = ["newSession":newSessionLabel, "back":backButton, "easy":easyButton, "hard":hardButton, "start":startButton, "text": gameNameTextEntry]
+        let views: [String:UIView] = ["newSession":titleImageBackground, "back":backButton, "easy":easyButton, "hard":hardButton, "start":startButton, "text": gameNameTextEntry]
         
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[back]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[newSession]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
@@ -78,6 +82,7 @@ class NewGameView : UIView{
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-80-[newSession][text]-20-[hard]-80-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         
         addConstraint(NSLayoutConstraint(item: startButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: gameNameTextEntry, attribute: NSLayoutAttribute.Height, multiplier: 1.75, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 7.2, constant: 0.0))
 //        addConstraint(NSLayoutConstraint(item: backButton, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: startButton, attribute: NSLayoutAttribute.Width, multiplier: 0.75, constant: 0.0))
     }
     

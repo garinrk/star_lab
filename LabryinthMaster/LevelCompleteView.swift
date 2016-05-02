@@ -15,15 +15,20 @@ class LevelCompleteView : UIView{
     var screenRect = UIScreen.mainScreen().bounds
     var lifetimeScoreAmt : Int = 0
 
+    var titleImage = UIImage(named: "missioncomplete.png")
+    var titleImageBackground = UIImageView(frame: CGRectZero)
     
     override func drawRect(rect: CGRect) {
 
-        completeLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
-        completeLabel.text = "Level Complete"
-        completeLabel.textColor = UIColor.greenColor()
-        completeLabel.adjustsFontSizeToFitWidth = true
-        completeLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
-        completeLabel.textAlignment = .Center
+//        completeLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
+        titleImageBackground.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
+        titleImageBackground.image = titleImage
+        self.addSubview(titleImageBackground)
+//        completeLabel.text = "Level Complete"
+//        completeLabel.textColor = UIColor.greenColor()
+//        completeLabel.adjustsFontSizeToFitWidth = true
+//        completeLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
+//        completeLabel.textAlignment = .Center
         
         scoreLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 100)
         scoreLabel.text = "Lifetime Score"
@@ -39,7 +44,7 @@ class LevelCompleteView : UIView{
         lifetimeScore.center.x = screenRect.midX
         //        lifetimeScore.center.y = screenRect.midY
         
-        self.addSubview(completeLabel)
+//        self.addSubview(completeLabel)
         self.addSubview(scoreLabel)
         self.addSubview(lifetimeScore)
     }

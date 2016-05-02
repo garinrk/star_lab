@@ -16,16 +16,21 @@ class GameOverView : UIView{
     var _gameManager : GameManager = GameManager.sharedInstance
     
     var lifetimeScoreAmt: Int = 0
-
+    
+    var titleImage = UIImage(named: "gameover.png")
+    var titleImageBackground = UIImageView(frame: CGRectZero)
     
     override func drawRect(rect: CGRect) {
         
-        gameOverLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
-        gameOverLabel.text = "Game Over"
-        gameOverLabel.textColor = UIColor.redColor()
-        gameOverLabel.adjustsFontSizeToFitWidth = true
-        gameOverLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
-        gameOverLabel.textAlignment = .Center
+//        gameOverLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
+        titleImageBackground.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 400, 100)
+        titleImageBackground.image = titleImage
+        self.addSubview(titleImageBackground)
+//        gameOverLabel.text = "Game Over"
+//        gameOverLabel.textColor = UIColor.redColor()
+//        gameOverLabel.adjustsFontSizeToFitWidth = true
+//        gameOverLabel.center = CGPointMake(CGRectGetMidX(self.frame),CGRectGetMaxY(self.frame) * 0.25)
+//        gameOverLabel.textAlignment = .Center
         
         scoreLabel.frame = CGRectMake(CGRectGetMidX(rect), CGRectGetMidY(rect), 200, 100)
         scoreLabel.text = "Lifetime Score"
