@@ -19,9 +19,7 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     var ngvc : NewGameViewController?
     var ovc : OptionsViewController?
     var hsvc : HighScoreViewController?
-    var newGameButton = UIButton(type: UIButtonType.Custom)
-    var optionsButton = UIButton(type: UIButtonType.Custom)
-    var scoresButton = UIButton(type: UIButtonType.Custom)
+
     var screenRect : CGRect = UIScreen.mainScreen().bounds
     var _audioManager : AudioManager = AudioManager.sharedInstance
     
@@ -32,11 +30,16 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     override func viewDidLoad() {
         //set view
         mmview.frame = UIScreen.mainScreen().bounds
+<<<<<<< HEAD
         backgroundImageView.frame = screenRect
         backgroundImageView.image = backgroundImage
         mmview.addSubview(backgroundImageView)
         self.view.addSubview(mmview)
         
+=======
+        mmview.backgroundColor = UIColor.brownColor()
+
+>>>>>>> 73dfc35b9674b57a8c86c248bb46ad85cf74f151
         //play music
         _audioManager.PlayAudio(SoundType.MainMusic)
         
