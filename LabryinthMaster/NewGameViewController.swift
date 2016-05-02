@@ -75,14 +75,23 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
         _audioManager.PlayAudio(SoundType.Confirm)
 
     }
-    
+    //MARK: UITextFieldDelegate Methods
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        newGameView.gameNameTextEntry.endEditing(true)
+        textField.endEditing(true)
         CheckForLegal()
         
         return false
     }
     
+
+    func textFieldDidBeginEditing(textField: UITextField) {
+        textField.text = nil
+        print("Hi")
+    }
+    
+
+    
+
     /**
      Checks to make sure that a difficulty has been set, and that a player's name has
      been input into the text field. Enables the start game button if so.

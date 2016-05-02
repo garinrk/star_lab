@@ -84,8 +84,8 @@ class NewGameView : UIView, UITextFieldDelegate {
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[easy]-[hard(==easy)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[start]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
 
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[back(<=40)][spacer(==150)][newSession]-(>=50)-[text]-20-[easy]-80-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(80)-[spacer(==150)][newSession]-(>=50)-[text]-20-[hard(==easy)]-80-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[back(<=40)][spacer(==150)][newSession]-(>=50)-[text]-20-[easy]-100-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(80)-[spacer(==150)][newSession]-(>=50)-[text]-20-[hard(==easy)]-100-[start(==easy)]-40-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         
         addConstraint(NSLayoutConstraint(item: startButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 0.7, constant: 0.0))
 
@@ -99,13 +99,5 @@ class NewGameView : UIView, UITextFieldDelegate {
     }
     
     
-    func textFieldDidBeginEditing(textField: UITextField) {
-        gameNameTextEntry.text = ""
-        textField.text = nil
-    }
-    
-    func textFieldDidEndEditing(textField: UITextField) {
-        textField.text = ""
-        gameNameTextEntry.text = ""
-    }
+
 }
