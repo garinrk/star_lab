@@ -36,15 +36,15 @@ class PauseViewController : UIViewController{
         self.view.addSubview(pauseView)
         
         //set up sliders with handler methods
-        pauseView.musicSlider!.addTarget(self, action: #selector(PauseViewController.MusicSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
-        pauseView.fxSlider!.addTarget(self, action: #selector(PauseViewController.FxSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
+        pauseView.musicSlider.addTarget(self, action: #selector(PauseViewController.MusicSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
+        pauseView.fxSlider.addTarget(self, action: #selector(PauseViewController.FxSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
         pauseView.resumeButton
             .addTarget(self, action: #selector(PauseViewController.ResumeButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
         pauseView.quitButton
             .addTarget(self, action: #selector(PauseViewController.QuitButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
           
-        pauseView.fxSlider?.value = _audio.effectsVolume
-        pauseView.musicSlider?.value = _audio.mainMusicVolume
+        pauseView.fxSlider.value = _audio.effectsVolume
+        pauseView.musicSlider.value = _audio.mainMusicVolume
     }
     
     /**
@@ -52,7 +52,7 @@ class PauseViewController : UIViewController{
      */
     func MusicSliderChanged(){
 //        print("Music: \(musicSlider!.value)")
-        _audio.mainMusicVolume = pauseView.musicSlider!.value
+        _audio.mainMusicVolume = pauseView.musicSlider.value
         _audio.SetVolumes()
     }
     
@@ -61,7 +61,7 @@ class PauseViewController : UIViewController{
      */
     func FxSliderChanged(){
 //        print("FX: \(fxSlider!.value)")
-        _audio.effectsVolume = pauseView.fxSlider!.value
+        _audio.effectsVolume = pauseView.fxSlider.value
         _audio.SetVolumes()
     }
     

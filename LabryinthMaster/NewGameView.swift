@@ -35,25 +35,37 @@ class NewGameView : UIView, UITextFieldDelegate {
         
         backButton.setTitle("Back", forState: UIControlState.Normal)
         backButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        backButton.layer.borderWidth = 5
         backButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        backButton.layer.cornerRadius = 5
+        backButton.layer.borderColor = UIColor.whiteColor().CGColor
         addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         
         startButton.setTitle("Start Game", forState: UIControlState.Normal)
         startButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Disabled)
+        startButton.layer.borderWidth = 5
         startButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        startButton.layer.cornerRadius = 5
+        startButton.layer.borderColor = UIColor.whiteColor().CGColor
         addSubview(startButton)
         startButton.translatesAutoresizingMaskIntoConstraints = false
         
         easyButton.setTitle("Easy", forState: UIControlState.Normal)
         easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        easyButton.layer.borderWidth = 5
         easyButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        easyButton.layer.cornerRadius = 5
+        easyButton.layer.borderColor = UIColor.whiteColor().CGColor
         addSubview(easyButton)
         easyButton.translatesAutoresizingMaskIntoConstraints = false
         
         hardButton.setTitle("Hard", forState: UIControlState.Normal)
         hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        hardButton.layer.borderWidth = 5
         hardButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        hardButton.layer.cornerRadius = 5
+        hardButton.layer.borderColor = UIColor.whiteColor().CGColor
         addSubview(hardButton)
         hardButton.translatesAutoresizingMaskIntoConstraints = false
         
