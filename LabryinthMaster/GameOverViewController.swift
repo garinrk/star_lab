@@ -33,7 +33,7 @@ class GameOverViewController : UIViewController{
         
         backgroundImageView.frame = screenRect
         backgroundImageView.image = backgroundImage
-        gameOverView.addSubview(backgroundImageView)
+        self.view.addSubview(backgroundImageView)
         self.view.addSubview(gameOverView)
         
         

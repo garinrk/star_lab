@@ -56,6 +56,11 @@ class PlayerView : UIView{
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
+        // get rid of previous views
+        for sview in subviews {
+            sview.removeFromSuperview()
+        }
+
 //        let context: CGContext? = UIGraphicsGetCurrentContext()
         
         // draw circle
@@ -79,7 +84,6 @@ class PlayerView : UIView{
             
             canMove = [!coll.north, !coll.east, !coll.south, !coll.west]
             if coll.coin {
-                
                 delegate!.coinCollected(coll)
             }
             

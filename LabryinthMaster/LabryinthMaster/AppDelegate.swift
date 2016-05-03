@@ -32,9 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
 
         mainNavController.setNavigationBarHidden(true, animated: false)
         mainNavController.pushViewController(mainMenuViewController, animated: false)
+//        mainNavController.pushViewController(gameViewController, animated: false)
         
         mainMenuViewController.delegate = self
         gameViewController.delegate = self
+        
+        
+//        gameViewController.startNewGame("test", difficulty: .Easy)
         
         window?.makeKeyAndVisible()
         
@@ -78,6 +82,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
 
     // MARK: MainMenuViewControllerDelegate functions
     func startNewGame(name: String, difficulty: DifficultyMode) {
+        
+//        mainNavController.popViewControllerAnimated(false)
+//        mainNavController.pushViewController(gameViewController, animated: false)
+//        gameViewController.startNewGame(name, difficulty: difficulty)
+        
         mainNavController.presentViewController(gameViewController, animated: false, completion: {
             () -> Void in
         self.gameViewController.startNewGame(name, difficulty: difficulty)
@@ -88,6 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
     func backToMainPressed() {
         mainNavController.dismissViewControllerAnimated(false, completion: nil)
 //        mainNavController.popViewControllerAnimated(false)
+//        mainNavController.pushViewController(mainMenuViewController, animated: false)
     }
 }
 
