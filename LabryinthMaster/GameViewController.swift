@@ -32,7 +32,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     var pauseController : PauseViewController?
     
     weak var delegate: GameViewControllerDelegate? = nil
-    var backgroundImage = UIImage(named: "halo.jpg")
+    var backgroundImage = UIImage(named: "space.jpg")
     var backgroundImageView = UIImageView(frame: CGRectZero)
     
     override func loadView() {
@@ -49,9 +49,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gyroManager.Start()
         gyroManager.Pause()
         
-//        backgroundImageView.frame = screenRect
-//        backgroundImageView.image = backgroundImage
-//        self.view.addSubview(backgroundImageView)
+
     }
     
     func startNewGame(name: String, difficulty: DifficultyMode)
@@ -67,6 +65,12 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         for sview in view.subviews {
             sview.removeFromSuperview()
         }
+        
+        // put in background
+        //        self.view.backgroundColor = UIColor.yellowColor()
+        backgroundImageView.frame = screenRect
+        backgroundImageView.image = backgroundImage
+        self.view.addSubview(backgroundImageView)
         
         _gameManager.makeNewLevel()
         
@@ -202,7 +206,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         return mazeView.detectCollisionWithRect(square)
     }
     func coinCollected(coll: Collision)
-    {
+    {        
         for coinView in mazeView.subviews{
             if coinView.tag == coll.collisionTag
             {

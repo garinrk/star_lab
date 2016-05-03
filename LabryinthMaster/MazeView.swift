@@ -41,10 +41,16 @@ class MazeViewCell: UIView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
+        // get rid of previous views
+        for sview in subviews {
+            sview.removeFromSuperview()
+        }
+        
         let context: CGContext? = UIGraphicsGetCurrentContext()
         
         // draw background
         let background: CGRect = CGRect(x: bounds.minX, y: bounds.minY, width: bounds.width, height: bounds.height)
+//        let semiTransparentBackground: UIColor = UIColor(white: 1, alpha: 0.5)
         CGContextSetFillColorWithColor(context, UIColor.whiteColor().CGColor)
         CGContextFillRect(context, background)
     
@@ -54,43 +60,59 @@ class MazeViewCell: UIView {
         if north
         {
             CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
+            CGContextMoveToPoint(context, bounds.minX, bounds.minY)
+            CGContextAddLineToPoint(context, bounds.maxX, bounds.minY)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         else {
             CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+            CGContextMoveToPoint(context, bounds.minX, bounds.minY)
+            CGContextAddLineToPoint(context, bounds.maxX, bounds.minY)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
-        CGContextMoveToPoint(context, bounds.minX, bounds.minY)
-        CGContextAddLineToPoint(context, bounds.maxX, bounds.minY)
-        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+
         if east
         {
             CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
+            CGContextMoveToPoint(context, bounds.maxX, bounds.minY)
+            CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         else {
             CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+            CGContextMoveToPoint(context, bounds.maxX, bounds.minY)
+            CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
-        CGContextMoveToPoint(context, bounds.maxX, bounds.minY)
-        CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+
         if south
         {
             CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
+            CGContextMoveToPoint(context, bounds.minX, bounds.maxY)
+            CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         else {
             CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+            CGContextMoveToPoint(context, bounds.minX, bounds.maxY)
+            CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
-        CGContextMoveToPoint(context, bounds.minX, bounds.maxY)
-        CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+
         if west
         {
             CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
+            CGContextMoveToPoint(context, bounds.minX, bounds.minY)
+            CGContextAddLineToPoint(context, bounds.minX, bounds.maxY)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
         else {
             CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+            CGContextMoveToPoint(context, bounds.minX, bounds.minY)
+            CGContextAddLineToPoint(context, bounds.minX, bounds.maxY)
+            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
         }
-        CGContextMoveToPoint(context, bounds.minX, bounds.minY)
-        CGContextAddLineToPoint(context, bounds.minX, bounds.maxY)
-        CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+
 
         
         // draw coin
@@ -137,7 +159,7 @@ class MazeViewCell: UIView {
 //            }
 //        }
         
-        self.backgroundColor = UIColor(white: 1, alpha: 0)
+//        self.backgroundColor = UIColor(white: 1, alpha: 0)
     }
     
 }
@@ -230,13 +252,6 @@ class MazeView: UIView {
         if occupyingCell != nil && occupyingCell!.hasCoin
         {
             coin = true
-            
-            //remove the coin view
-            for sview in (occupyingCell?.subviews)!{
-                if sview.tag == 2020{
-                    sview.removeFromSuperview()
-                }
-            }
         }
         
         // goal collision
@@ -244,12 +259,12 @@ class MazeView: UIView {
         if occupyingCell != nil && occupyingCell!.goal
         {
             goal = true
-            //remove the goal view
-            for sview in (occupyingCell?.subviews)!{
-                if sview.tag == 2112{
-                    sview.removeFromSuperview()
-                }
-            }
+//            //remove the goal view
+//            for sview in (occupyingCell?.subviews)!{
+//                if sview.tag == 2112{
+//                    sview.removeFromSuperview()
+//                }
+//            }
         }
         
         // check to see if object is centered in cell

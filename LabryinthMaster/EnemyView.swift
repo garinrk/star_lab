@@ -76,6 +76,11 @@ class EnemyView: UIView {
     override func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
+        // get rid of previous views
+        for sview in subviews {
+            sview.removeFromSuperview()
+        }
+        
 //        let context: CGContext? = UIGraphicsGetCurrentContext()
         
         // draw square
@@ -85,6 +90,7 @@ class EnemyView: UIView {
         let square: CGRect = CGRect(x: x, y: y, width: enemyWidth, height: enemyHeight)
 //        CGContextSetFillColorWithColor(context, UIColor.purpleColor().CGColor)
 //        CGContextFillRect(context, square)
+        
         backgroundImageView.frame = square
         backgroundImageView.image = enemyImage
         backgroundImageView.tag = 2016
