@@ -13,6 +13,7 @@ To install and play the game, do the following:
         NOTE: You must make sure that your "Team" is selected under the "Team" dropdown field
         in the LabryinthMaster project settings on the top most level of the hierarchy on the
         left
+        NOTE: This game was developed using an iPhone 6s and iPad AIR 2!
 
     3) Build and Run the game on your device.
     NOTE: There is a well known xcode bug concerning the latency of the keyboard popping up when entering your name in the New Mission name field. This is only present when running in "Debug" mode (When you install and launch the game via xcode) but not when you run it in "RELEASE" mode.
