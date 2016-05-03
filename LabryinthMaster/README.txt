@@ -30,6 +30,9 @@ Rules of the game:
 
     You can check out high scores, saved across app launches, via the "High Scores" button in the main menu.
 
+Also NOTE:
+    We attempted to make views look good on both iPad and iPhone, but some of the iPhone views aren't optimal.  Again, iPad preferred.
+
 If you have ANY ISSUES launching or building the application, please contact the developers at:
 
 Garin Richards : Garin2010@gmail.com

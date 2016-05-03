@@ -32,7 +32,7 @@ class PauseViewController : UIViewController{
         pauseView.frame = UIScreen.mainScreen().bounds
         backgroundImageView.frame = screenRect
         backgroundImageView.image = backgroundImage
-        self.view.addSubview(backgroundImageView)
+        pauseView.addSubview(backgroundImageView)
         self.view.addSubview(pauseView)
         
         //set up sliders with handler methods
