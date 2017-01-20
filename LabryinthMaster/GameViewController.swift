@@ -43,16 +43,13 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         super.viewDidLoad()
         //MANAGERS
         _gameManager.delegate = self
-        
         gyroManager = Gyro()
         gyroManager.delegate = self
         gyroManager.Start()
         gyroManager.Pause()
-        
-
     }
     
-    func startNewGame(_ name: String, difficulty: DifficultyMode)
+    func startNewGame(name: String, difficulty: DifficultyMode)
     {
         _gameManager.playerName = name
         _gameManager.mode = difficulty
@@ -78,13 +75,13 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
 //        mazeView.backgroundColor = UIColor(white: 0, alpha: 0)
         mazeView = MazeView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
         for cell in _gameManager.maze.cells {
-            mazeView.addCellNorth(cell.north, East: cell.east, South: cell.south, West: cell.west, AtX: cell.x, Y: cell.y)
+            mazeView.addCell(north: cell.north, east: cell.east, south: cell.south, west: cell.west, x: cell.x, y: cell.y)
         }
         for _ in 0 ..< _gameManager.coinAmt {
             mazeView.placeRandomCoin()
         }
         
-        mazeView.placeGoalX(29, Y: 29)
+        mazeView.placeGoal(x: 29, y: 29)
         // add subviews and assign delegates
         view.addSubview(mazeView)
         
@@ -126,10 +123,8 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         _gameManager.startGame()
         gyroManager.Unpause()
         
-        _audioManager.PlayAudio(SoundType.startLevel)
+        _audioManager.PlayAudio(type: SoundType.startLevel)
     }
-    
-    
     
     // MARK: GyroDelegate functions
     
@@ -140,7 +135,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
      - parameter x: magnitude in x
      - parameter y: magnitude in y
      */
-    func UpdatePlayerPosition(_ magX: CGFloat, magY: CGFloat)
+    func UpdatePlayerPosition(magX: CGFloat, magY: CGFloat)
     {
         _gameManager.currentGyroMagX = magX
         _gameManager.currentGyroMagY = magY
@@ -151,16 +146,15 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         gyroManager.Pause()
         pauseController = PauseViewController()
         pauseController!.delegate = self
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         self.present(pauseController!, animated: false, completion: nil)
     }
 
     func UnpauseGame() {
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         _gameManager.unpause()
         gyroManager.Unpause()
     }
-
     
     // MARK: EnemyViewDelegate functions
     func getMazeDimension() -> Int
@@ -168,12 +162,12 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         return _gameManager.maze.dimension
     }
     
-    func getMazeCellPosX(_ x: Int, Y y: Int) -> CGPoint
+    func getMazeCellPos(x: Int, y: Int) -> CGPoint
     {
-        return mazeView.getCellPosX(x, Y: y)
+        return mazeView.getCellPos(x: x, y: y)
     }
     
-    func getMazeCellAtX(_ x: Int, Y y: Int) -> MazeViewCell?
+    func getMazeCellAt(x: Int, y: Int) -> MazeViewCell?
     {
         return mazeView.cells["\(x),\(y)"]
     }
@@ -183,57 +177,60 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         return mazeView.getCellSize()
     }
     
-    func detectCollisionFromEnemy(_ square: CGRect) -> Collision
+    func detectCollisionFromEnemy(square: CGRect) -> Collision
     {
-        return mazeView.detectCollisionWithRect(square)
+        return mazeView.detectCollisionWith(rect: square)
     }
     
     func getPlayerCell() -> MazeViewCell
     {
-        return getMazeCellAtX(_gameManager.player.cellX, Y: _gameManager.player.cellY)!
+        return getMazeCellAt(x: _gameManager.player.cellX, y: _gameManager.player.cellY)!
     }
 
     func reportPlayerCollision()
     {
-        _audioManager.PlayAudio(SoundType.enemyKill)
+        _audioManager.PlayAudio(type: SoundType.enemyKill)
         _gameManager.kill()
     }
 
     
     // MARK: PlayerDelegate functions
-    func detectCollisionFromPlayer(_ square: CGRect) -> Collision
+    func detectCollisionFromPlayer(square: CGRect) -> Collision
     {
-        return mazeView.detectCollisionWithRect(square)
+        return mazeView.detectCollisionWith(rect: square)
     }
-    func coinCollected(_ coll: Collision)
+    
+    func coinCollected(coll collision: Collision)
     {        
         for coinView in mazeView.subviews{
-            if coinView.tag == coll.collisionTag
+            if coinView.tag == collision.collisionTag
             {
                 coinView.setNeedsDisplay()
             }
         }
-        mazeView.cells["\(coll.cellX),\(coll.cellY)"]?.hasCoin = false        
+        mazeView.cells["\(collision.cellX),\(collision.cellY)"]?.hasCoin = false
         _gameManager.coinCollected()
-        _audioManager.PlayAudio(SoundType.coin)
+        _audioManager.PlayAudio(type: SoundType.coin)
         scoreLabel.text = "SCORE: \(_gameManager.currentScore)"
     }
-    func reportNewColliderPosition(_ position: CGRect)
+    
+    func reportNewCollider(position: CGRect)
     {
         for enemy in _gameManager.enemies
         {
-            enemy.updatePlayerCollisionLoc(position)
+            enemy.updatePlayerCollision(location: position)
         }
     }
+    
     func goalReached()
     {
-        _audioManager.PlayAudio(SoundType.win)
+        _audioManager.PlayAudio(type: SoundType.win)
         _gameManager.win()
         levelLabel.text = "LEVEL: \(_gameManager.currentLevel)"
     }
     
     // MARK: GameManagerDelegate functions
-    func GameOverCall(_ score: Int){
+    func GameOverCall(score: Int){
         gameOverController = GameOverViewController()
         gameOverController?.lifetimeScore = score
         gameOverController?.delegate = self
@@ -242,7 +239,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         self.present(gameOverController!, animated: false, completion: nil)
     }
     
-    func WinGameCall(_ score : Int){
+    func WinGameCall(score : Int){
         levelCompleteController = LevelCompleteViewController()
         levelCompleteController?.delegate = self
         levelCompleteController?.lifetimeScore = score
@@ -253,13 +250,13 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     }
     
     // MARK: GameTimerDelegate functions
-    func updateTime(_ time: Int)
+    func updateTime(time: Int)
     {
         _gameManager.timeLeft = time
         timerLabel.text = "TIME LEFT: \(_gameManager.timeLeft)"
         if time <= 0
         {
-            _audioManager.PlayAudio(SoundType.outOfTime)
+            _audioManager.PlayAudio(type: SoundType.outOfTime)
             _gameManager.kill()
         }
     }
@@ -273,7 +270,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     func gameOverPressedExit()
     {
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         _gameManager.quit()
         self.dismiss(animated: false, completion: nil)
         delegate?.backToMainPressed()
@@ -288,7 +285,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     func levelCompletePressedExit()
     {
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         _gameManager.quit()
         self.dismiss(animated: false, completion: nil)
         delegate?.backToMainPressed()
@@ -296,7 +293,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     
     // MARK: PauseViewDelegate functions
     func pausePressedQuit() {
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         _gameManager.quit()
         self.dismiss(animated: false, completion: nil)
         delegate?.backToMainPressed()

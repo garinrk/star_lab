@@ -39,7 +39,6 @@ class HighScoreView : UIView{
         addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
         
-        
         //load scores
         _scoreManager.loadScores()
         var entry: ScoreInfo? = nil

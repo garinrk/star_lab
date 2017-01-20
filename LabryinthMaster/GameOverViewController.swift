@@ -36,8 +36,6 @@ class GameOverViewController : UIViewController{
         self.view.addSubview(backgroundImageView)
         self.view.addSubview(gameOverView)
         
-        
-        
         quitButton.frame = CGRect(x: 50,y: 50, width: 200, height: 50)
         quitButton.center = CGPoint(x: screenRect.midX + 200, y: UIScreen.main.bounds.maxY * 0.90)
         quitButton
@@ -62,7 +60,6 @@ class GameOverViewController : UIViewController{
         
         self.gameOverView.addSubview(quitButton)
         self.gameOverView.addSubview(tryAgainButton)
-        
     }
     
     func TryAgainPressed(){
@@ -71,6 +68,5 @@ class GameOverViewController : UIViewController{
     
     func QuitButtonPressed(){
         delegate?.gameOverPressedExit()
-    }
-    
+    }    
 }

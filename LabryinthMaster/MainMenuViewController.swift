@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MainMenuViewControllerDelegate: class {
-    func startNewGame(_ name: String, difficulty: DifficultyMode)
+    func startNewGame(name: String, difficulty: DifficultyMode)
 }
 
 class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, OptionsViewControllerDelegate, HighScoreViewControllerDelegate {
@@ -39,9 +39,7 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
         self.view.addSubview(mmview)
         
         //play music
-        _audioManager.PlayAudio(SoundType.mainMusic)
-        
-
+        _audioManager.PlayAudio(type: SoundType.mainMusic)
         
         mmview.newGameButton
             .addTarget(self, action: #selector(MainMenuViewController.NewGameButtonPressed), for: UIControlEvents.touchUpInside)
@@ -58,46 +56,44 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     func NewGameButtonPressed(){
         ngvc = NewGameViewController()
         ngvc!.delegate = self
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         self.present(ngvc!, animated: false, completion: nil)
     }
     
     func OptionsButtonPressed(){
         ovc = OptionsViewController()
         ovc!.delegate = self
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         self.present(ovc!, animated: false, completion: nil)
     }
     
     func ScoresButtonPressed(){
         hsvc = HighScoreViewController()
         hsvc!.delegate = self
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         self.present(hsvc!, animated: false, completion: nil)
     }
     
     // MARK: NewGameViewControllerDelegate functions
     func newGamePressedBack() {
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         self.dismiss(animated: false, completion: nil)
     }
     
-    func newGamePressedStart(_ name: String, difficulty: DifficultyMode) {
+    func newGamePressedStart(name: String, difficulty: DifficultyMode) {
         self.dismiss(animated: false, completion: nil)
-        delegate?.startNewGame(name, difficulty: difficulty)
+        delegate?.startNewGame(name: name, difficulty: difficulty)
     }
     
     // MARK: OptionsViewControllerDelegate functions 
     func optionsPressedBack() {
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         self.dismiss(animated: false, completion: nil)
     }
     
     // MARK: HighScoreViewControllerDelegate functions
     func highScorePressedBack() {
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
         self.dismiss(animated: false, completion: nil)
     }
-    
-    
 }

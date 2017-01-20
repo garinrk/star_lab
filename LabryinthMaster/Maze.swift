@@ -49,12 +49,12 @@ class Maze {
             visited!.append(false)
         }
         
-        carvePassagesFromX(0, Y: 0)
+        carvePassagesFrom(x: 0, y: 0)
     }
     
-    func clearRandomWalls(_ amt: Int)
+    func clearRandomWalls(amount: Int)
     {
-        for _ in 0 ..< amt {
+        for _ in 0 ..< amount {
             
             var keepGoing = true
             
@@ -70,28 +70,28 @@ class Maze {
                     if cell.north && cell.y != 0
                     {
                         keepGoing = false
-                        clearWallInCell(cell, InDir: 0)
+                        clearWallIn(cell: cell, direction: 0)
                     }
                     break
                 case 1:
                     if cell.east && cell.x != (dimension - 1)
                     {
                         keepGoing = false
-                        clearWallInCell(cell, InDir: 1)
+                        clearWallIn(cell: cell, direction: 1)
                     }
                     break
                 case 2:
                     if cell.south && cell.y != (dimension - 1)
                     {
                         keepGoing = false
-                        clearWallInCell(cell, InDir: 2)
+                        clearWallIn(cell: cell, direction: 2)
                     }
                     break
                 case 3:
                     if cell.west && cell.x != 0
                     {
                         keepGoing = false
-                        clearWallInCell(cell, InDir: 3)
+                        clearWallIn(cell: cell, direction: 3)
                     }
                     break
                 default:
@@ -101,29 +101,26 @@ class Maze {
         }
     }
     
-    
-    
-    fileprivate func carvePassagesFromX(_ x:Int, Y y:Int)
+    fileprivate func carvePassagesFrom(x: Int, y: Int)
     {
-        markVisitedX(x, Y: y)
+        markVisited(x: x, y: y)
         
-        let cell: MazeCell = cellAtX(x, Y: y)!
+        let cell: MazeCell = cellAt(x: x, y: y)!
         
         let directions: [Int] = randomDirections()
         
         for direction in directions
         {
-            let neighbor: MazeCell? = neighborCell(cell, InDir: direction)
-            if neighbor != nil && !getVisitedX(neighbor!.x, Y: neighbor!.y)
+            let neighbor: MazeCell? = self.neighbor(cell: cell, direction: direction)
+            if neighbor != nil && !getVisited(x: neighbor!.x, y: neighbor!.y)
             {
-                clearWallInCell(cell, InDir: direction)
-                carvePassagesFromX(neighbor!.x, Y: neighbor!.y)
+                clearWallIn(cell: cell, direction: direction)
+                carvePassagesFrom(x: neighbor!.x, y: neighbor!.y)
             }            
         }
     }
     
-
-    fileprivate func cellAtX(_ x: Int, Y y: Int) -> MazeCell?
+    fileprivate func cellAt(x: Int, y: Int) -> MazeCell?
     {
         if x < 0 || y < 0 || x >= dimension || y >= dimension
         {
@@ -135,22 +132,21 @@ class Maze {
     }
     
     /// dir: 0 = north, 1 = east, 2 = south, 3 = west
-    fileprivate func neighborCell(_ cell: MazeCell, InDir dir: Int) -> MazeCell?
+    fileprivate func neighbor(cell: MazeCell, direction: Int) -> MazeCell?
     {
-        switch dir {
+        switch direction {
         case 0:
-            return cellAtX(cell.x, Y: cell.y-1)
+            return cellAt(x: cell.x, y: cell.y-1)
         case 1:
-            return cellAtX(cell.x+1, Y: cell.y)
+            return cellAt(x: cell.x+1, y: cell.y)
         case 2:
-            return cellAtX(cell.x, Y: cell.y+1)
+            return cellAt(x: cell.x, y: cell.y+1)
         case 3:
-            return cellAtX(cell.x-1, Y: cell.y)
+            return cellAt(x: cell.x-1, y: cell.y)
         default:
             return nil
         }
     }
-    
     
     fileprivate func randomDirections() -> [Int]
     {
@@ -173,11 +169,11 @@ class Maze {
         return [first, second, third, fourth]
     }
 
-    fileprivate func clearWallInCell(_ cell: MazeCell, InDir dir: Int)
+    fileprivate func clearWallIn(cell: MazeCell, direction: Int)
     {        
-        let neighbor: MazeCell? = neighborCell(cell, InDir: dir)
+        let neighbor: MazeCell? = self.neighbor(cell: cell, direction: direction)
         
-        switch dir {
+        switch direction {
         case 0:
             cell.north = false
             neighbor?.south = false
@@ -199,23 +195,20 @@ class Maze {
         }
     }
     
-    fileprivate func getVisitedX(_ x: Int, Y y: Int) -> Bool
+    fileprivate func getVisited(x: Int, y: Int) -> Bool
     {
-        if visited == nil{
+        if visited == nil {
             print ("Something extraordinarily bad happened")
         }
         
         return visited![x*dimension + y]
-        
-        
     }
     
-    fileprivate func markVisitedX(_ x: Int, Y y: Int)
+    fileprivate func markVisited(x: Int, y: Int)
     {
-        if visited == nil{
+        if visited == nil {
             return
         }
         visited![x*dimension + y] = true
     }
-    
 }

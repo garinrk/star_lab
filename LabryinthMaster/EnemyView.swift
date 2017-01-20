@@ -20,13 +20,12 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
 protocol EnemyViewDelegate: class {
     func getMazeDimension() -> Int
-    func getMazeCellPosX(_ x: Int, Y y: Int) -> CGPoint
-    func getMazeCellAtX(_ x: Int, Y y: Int) -> MazeViewCell?
+    func getMazeCellPos(x: Int, y: Int) -> CGPoint
+    func getMazeCellAt(x: Int, y: Int) -> MazeViewCell?
     func getMazeCellSize() -> CGSize
-    func detectCollisionFromEnemy(_ square: CGRect) -> Collision
+    func detectCollisionFromEnemy(square: CGRect) -> Collision
 	func getPlayerCell() -> MazeViewCell
     func reportPlayerCollision()
 }
@@ -85,7 +84,6 @@ class EnemyView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
@@ -112,12 +110,11 @@ class EnemyView: UIView {
         // clear the background
         self.backgroundColor = UIColor(white: 1, alpha: 0)
 
-
         // check for collisions
         
         if delegate != nil
         {
-            let coll: Collision = delegate!.detectCollisionFromEnemy(square)
+            let coll: Collision = delegate!.detectCollisionFromEnemy(square: square)
             self.cellX = coll.cellX
             self.cellY = coll.cellY
             
@@ -152,11 +149,11 @@ class EnemyView: UIView {
                     moveInRandomDirection()
                 }
             }
+                
             else if coll.east || coll.north || coll.south || coll.west
             {
                 setCollision()
             }
-            
             
             // check for player collision
             if playerCollisionBox != nil {
@@ -183,7 +180,6 @@ class EnemyView: UIView {
             horizVelocity *= -1
             vertVelocity *= -1
         }
-        
     }
     
     func start()
@@ -207,9 +203,7 @@ class EnemyView: UIView {
         default:
             break
         }
-        
     }
-    
     
     func randomizeLocation()
     {
@@ -222,7 +216,7 @@ class EnemyView: UIView {
         self.cellX = cellX
         self.cellY = cellY
         
-        let cellOrigin: CGPoint = delegate!.getMazeCellPosX(cellX, Y: cellY)
+        let cellOrigin: CGPoint = delegate!.getMazeCellPos(x: cellX, y: cellY)
         
         let halfDifferenceWidth: CGFloat = (cellSize.width - enemyWidth) * 0.5
         let halfDifferenceHeight: CGFloat = (cellSize.height - enemyHeight) * 0.5
@@ -234,7 +228,7 @@ class EnemyView: UIView {
     func moveInRandomDirection()
     {
         let dir: Int = Int(arc4random_uniform(4))
-        moveInDirection(dir)
+        moveIn(direction: dir)
     }
     
     func moveInRandomDirectionAvoidingWalls()
@@ -244,7 +238,7 @@ class EnemyView: UIView {
             return
         }
         
-        let cell: MazeViewCell? = delegate!.getMazeCellAtX(self.cellX, Y: self.cellY)
+        let cell: MazeViewCell? = delegate!.getMazeCellAt(x: self.cellX, y: self.cellY)
         if cell == nil {
             return
         }
@@ -271,15 +265,15 @@ class EnemyView: UIView {
         // choose a random direction from the possibilities
         let dirIndex: Int = Int(arc4random_uniform(UInt32(possibleDirections.count)))
         
-        moveInDirection(possibleDirections[dirIndex])
+        moveIn(direction: possibleDirections[dirIndex])
     }
     
-	fileprivate func manhattanDistance(_ a: MazeViewCell, ToB b: MazeViewCell) -> Int
+	fileprivate func manhattanDistance(a: MazeViewCell, b: MazeViewCell) -> Int
 	{
 		return abs(a.x - b.x) + abs(a.y - b.y)
 	}
 	
-	fileprivate func neighborDirections(_ cell: MazeViewCell) -> [Int]
+	fileprivate func neighborDirections(cell: MazeViewCell) -> [Int]
 	{
 		var result: [Int] = []
 		
@@ -317,12 +311,12 @@ class EnemyView: UIView {
 		let frontier: MazeViewCellPriorityQueue = MazeViewCellPriorityQueue()
 
 		// add current cell
-        let currentCell: MazeViewCell? = delegate!.getMazeCellAtX(self.cellX, Y: self.cellY)
+        let currentCell: MazeViewCell? = delegate!.getMazeCellAt(x: self.cellX, y: self.cellY)
         if currentCell == nil {
             return
         }
         
-		frontier.addCell(currentCell!, WithPriority: 1)
+		frontier.addCell(cell: currentCell!, priority: 1)
 		
         var cameFrom: [String : MazeViewCell?] = ["\(self.cellX),\(self.cellY)" : nil]
         var costSoFar: [String : Int] = ["\(self.cellX),\(self.cellY)" : 0]
@@ -336,7 +330,7 @@ class EnemyView: UIView {
 				break
 			}
 			
-			for cell in neighborDirections(current!)
+			for cell in neighborDirections(cell: current!)
 			{
 				let newCost: Int = costSoFar["\(current!.x),\(current!.y)"]! + 1
 				
@@ -346,19 +340,19 @@ class EnemyView: UIView {
                 {
                 case 0:
                     cellLocString = "\(current!.x),\(current!.y - 1)"
-                    nextCell = delegate!.getMazeCellAtX(current!.x, Y: current!.y - 1)
+                    nextCell = delegate!.getMazeCellAt(x: current!.x, y: current!.y - 1)
                     break
                 case 1:
                     cellLocString = "\(current!.x + 1),\(current!.y)"
-                    nextCell = delegate!.getMazeCellAtX(current!.x + 1, Y: current!.y)
+                    nextCell = delegate!.getMazeCellAt(x: current!.x + 1, y: current!.y)
                     break
                 case 2:
                     cellLocString = "\(current!.x),\(current!.y + 1)"
-                    nextCell = delegate!.getMazeCellAtX(current!.x, Y: current!.y + 1)
+                    nextCell = delegate!.getMazeCellAt(x: current!.x, y: current!.y + 1)
                     break
                 case 3:
                     cellLocString = "\(current!.x - 1),\(current!.y)"
-                    nextCell = delegate!.getMazeCellAtX(current!.x - 1, Y: current!.y)
+                    nextCell = delegate!.getMazeCellAt(x: current!.x - 1, y: current!.y)
                     break
                 default:
                     break
@@ -371,18 +365,18 @@ class EnemyView: UIView {
                 
                 let costToCell: Int? = costSoFar[cellLocString]
 
-				if costToCell == nil || newCost < costToCell
+				if costToCell == nil || newCost < costToCell // TODO: fixme
 				{
 					costSoFar[cellLocString] = newCost
-                    let priority: Int = newCost + manhattanDistance(currentCell!, ToB: nextCell!)
-					frontier.addCell(nextCell!, WithPriority: priority)
+                    let priority: Int = newCost + manhattanDistance(a: currentCell!, b: nextCell!)
+					frontier.addCell(cell: nextCell!, priority: priority)
 					cameFrom[cellLocString] = current
 				}
 			}			
 		}		
 		
 		// now trace our way back to find the step to take
-		let myCell: MazeViewCell? = delegate!.getMazeCellAtX(cellX, Y: cellY)
+        let myCell: MazeViewCell? = delegate!.getMazeCellAt(x: cellX, y: cellY)
         if myCell == nil
         {
             return
@@ -394,33 +388,33 @@ class EnemyView: UIView {
 		{
 			let tempCell: MazeViewCell! = cameFrom["\(nextStep.x),\(nextStep.y)"]!
 		
-			nextStep = delegate!.getMazeCellAtX(tempCell.x, Y: tempCell.y)!
+            nextStep = delegate!.getMazeCellAt(x: tempCell.x, y: tempCell.y)!
 		}
 		
-		moveTowardCell(nextStep)
+        moveToward(cell: nextStep)
 	}
 	
-	fileprivate func moveTowardCell(_ cell: MazeViewCell)
+	fileprivate func moveToward(cell: MazeViewCell)
 	{
 		if cellX < cell.x
 		{
-			moveInDirection(4)
+            moveIn(direction: 4)
 		}
 		else if cellX > cell.x
 		{
-			moveInDirection(1)
+			moveIn(direction: 1)
 		}
 		else if cellY > cell.y
 		{
-			moveInDirection(3)
+			moveIn(direction: 3)
 		}
 		else if cellY < cell.y
 		{
-			moveInDirection(0)
+			moveIn(direction: 0)
 		}		
 	}
 	
-    fileprivate func moveInDirection(_ direction: Int)
+    fileprivate func moveIn(direction: Int)
     {
         switch direction {
         case 0:
@@ -444,7 +438,7 @@ class EnemyView: UIView {
         }
     }
 
-    func updatePlayerCollisionLoc(_ location: CGRect)
+    func updatePlayerCollision(location: CGRect)
     {
         playerCollisionBox = location
     }
@@ -462,5 +456,4 @@ class EnemyView: UIView {
         
         setNeedsDisplay()
     }
-    
 }

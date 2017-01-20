@@ -31,7 +31,6 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
 class MazeViewCell: UIView {
     var north: Bool = true
     var east: Bool = true
@@ -136,8 +135,6 @@ class MazeViewCell: UIView {
             context?.addLine(to: CGPoint(x: bounds.minX, y: bounds.maxY))
             context?.drawPath(using: CGPathDrawingMode.stroke)
         }
-
-
         
         // draw coin
         if hasCoin {
@@ -173,7 +170,6 @@ class MazeViewCell: UIView {
 //            let square: CGRect = CGRect(x: x, y: y, width: goalWidth, height: goalWidth)
 //            CGContextSetFillColorWithColor(context, UIColor.blueColor().CGColor)
 //            CGContextFillRect(context, square)
-
         }
 //        else{
 //            for sview in self.subviews{
@@ -185,7 +181,6 @@ class MazeViewCell: UIView {
         
 //        self.backgroundColor = UIColor(white: 1, alpha: 0)
     }
-    
 }
 
 //protocol MazeViewDelegate: class {
@@ -206,12 +201,10 @@ class MazeView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
         cellWidth = bounds.width / CGFloat(dimension)
         cellHeight = bounds.height / CGFloat(dimension)
         
         originCellCenter = CGPoint(x: (cellWidth / 2), y: (cellHeight / 2))
-        
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -226,7 +219,7 @@ class MazeView: UIView {
         self.dimension = dimension
     }
     
-    func addCellNorth(_ north: Bool, East east: Bool, South south: Bool, West west: Bool, AtX x: Int, Y y: Int) {
+    func addCell(north: Bool, east: Bool, south: Bool, west: Bool, x: Int, y: Int) {
         
         let xPos: CGFloat = bounds.minX + (CGFloat(x) * cellWidth)
         let yPos: CGFloat = bounds.minY + (CGFloat(y) * cellHeight)
@@ -247,7 +240,7 @@ class MazeView: UIView {
         addSubview(newCell)
     }
     
-    func detectCollisionWithRect(_ rect: CGRect) -> Collision
+    func detectCollisionWith(rect: CGRect) -> Collision
     {
         // get the cell that rect's center is in
         
@@ -308,7 +301,6 @@ class MazeView: UIView {
             }
 		}
 		
-		
         // look at the cell to determine possible collisions
         
         var north: Bool = false
@@ -323,7 +315,6 @@ class MazeView: UIView {
             {
                 north = true
             }
-            
         }
 
         // check for east collision
@@ -335,7 +326,6 @@ class MazeView: UIView {
                 east = true
             }
         }
-        
         
         // check for south collision
         if occupyingCell != nil && rect.maxY >= occupyingCell!.frame.maxY
@@ -361,12 +351,10 @@ class MazeView: UIView {
             collisionTag = occupyingCell!.label
         }
       
-      
         return Collision(north: north, east: east, south: south, west: west, coin: coin, cellX: x, cellY: y, centeredX: centeredX, centeredY: centeredY, collisionTag: collisionTag, goal: goal)
     }
     
     func placeRandomCoin() {
-        
         var tryAgain: Bool = true
         
         while tryAgain {
@@ -382,11 +370,11 @@ class MazeView: UIView {
         }
     }
     
-    func placeGoalX(_ x: Int, Y y: Int) {
+    func placeGoal(x: Int, y: Int) {
         cells["\(x),\(y)"]?.goal = true
     }
     
-    func getCellPosX(_ x: Int, Y y: Int) -> CGPoint
+    func getCellPos(x: Int, y: Int) -> CGPoint
     {
         let cell: MazeViewCell! = cells["\(x),\(y)"]
         let viewIndex: Int? = subviews.index(of: cell)

@@ -39,5 +39,4 @@ class GameLoop: NSObject {
         displayLink = nil
 //        print("stopped")
     }
-    
 }

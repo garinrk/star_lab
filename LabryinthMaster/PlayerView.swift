@@ -9,11 +9,11 @@
 import UIKit
 
 protocol PlayerDelegate: class {
-    func getMazeCellPosX(_ x: Int, Y y: Int) -> CGPoint
+    func getMazeCellPos(x: Int, y: Int) -> CGPoint
     func getMazeCellSize() -> CGSize
-    func detectCollisionFromPlayer(_ square: CGRect) -> Collision
-    func coinCollected(_ coll: Collision)
-    func reportNewColliderPosition(_ position: CGRect)
+    func detectCollisionFromPlayer(square: CGRect) -> Collision
+    func coinCollected(coll: Collision)
+    func reportNewCollider(position: CGRect)
     func goalReached()
 }
 
@@ -41,11 +41,9 @@ class PlayerView : UIView{
     var backgroundImageView = UIImageView(frame: CGRect.zero)
 
     override init(frame: CGRect) {
-        
         super.init(frame: frame)
         
         // set size of player
-        
         playerDiameter = frame.width * 0.03
     }
     
@@ -80,11 +78,11 @@ class PlayerView : UIView{
         
         // detect collisions
         if delegate != nil {
-            let coll: Collision = delegate!.detectCollisionFromPlayer(square)
+            let coll: Collision = delegate!.detectCollisionFromPlayer(square: square)
             
             canMove = [!coll.north, !coll.east, !coll.south, !coll.west]
             if coll.coin {
-                delegate!.coinCollected(coll)
+                delegate!.coinCollected(coll: coll)
             }
             
             if coll.goal {
@@ -94,15 +92,14 @@ class PlayerView : UIView{
             cellX = coll.cellX
             cellY = coll.cellY
             
-            delegate!.reportNewColliderPosition(square)
+            delegate!.reportNewCollider(position: square)
         }
         else {
             canMove = [true, true, true, true]
-        }
-        
+        }        
     }
 
-    func moveX(_ xMagnitude: CGFloat, Y yMagnitude: CGFloat) {
+    func move(xMagnitude: CGFloat, yMagnitude: CGFloat) {
         
         var xMove = xMagnitude
         var yMove = -yMagnitude
@@ -143,7 +140,7 @@ class PlayerView : UIView{
     {
         // put player in the center of cell 0,0
         
-        let cellOrigin: CGPoint = delegate!.getMazeCellPosX(0, Y: 0)
+        let cellOrigin: CGPoint = delegate!.getMazeCellPos(x: 0, y: 0)
         let cellSize: CGSize = delegate!.getMazeCellSize()
         
         let halfDifferenceWidth: CGFloat = (cellSize.width - playerDiameter) * 0.5

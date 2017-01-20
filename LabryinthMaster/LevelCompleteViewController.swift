@@ -60,7 +60,6 @@ class LevelCompleteViewController : UIViewController{
         self.completeView.addSubview(quitButton)
         self.completeView.addSubview(continueButton)
         self.view.addSubview(completeView)
-        
     }
     
     func ContinueButtonPressed(){
@@ -70,5 +69,4 @@ class LevelCompleteViewController : UIViewController{
     func QuitButtonPressed(){
         delegate?.levelCompletePressedExit()
     }
-    
 }

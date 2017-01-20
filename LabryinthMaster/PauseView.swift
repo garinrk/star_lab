@@ -103,7 +103,6 @@ class PauseView : UIView{
         self.addSubview(lifetimeScore)
         lifetimeScore.translatesAutoresizingMaskIntoConstraints = false
         
-        
         self.addSubview(fxSlider)
         fxSlider.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(musicSlider)
@@ -112,8 +111,6 @@ class PauseView : UIView{
 //        let views: [String:UIView] = [ "main":titleImageBackground,"musicImage":musicLevelImageBackground, "fximage":fxLevelImageBackground,"currentScoreImage":currentScoreImageBackground,"currentScore":currentScore,"quit":quitButton]
         
         let views: [String:UIView] = ["main":titleImageBackground, "lifetimeScoreImage":lifetimeScoreImageBackground, "lifetimeScore":lifetimeScore, "musicImage":musicLevelImageBackground, "fximage":fxLevelImageBackground,"currentScoreImage":currentScoreImageBackground,"currentScore":currentScore,"fxSlider":fxSlider,"musicSlider":musicSlider,"quit":quitButton,"resume":resumeButton]
-        
-
         
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[quit(<=120)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(<=240)-[main(<=240)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
@@ -143,9 +140,5 @@ class PauseView : UIView{
 //        
 //        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[main]-80-[scoreImage]-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
 //        
-        
-        
-        
-        
     }
 }

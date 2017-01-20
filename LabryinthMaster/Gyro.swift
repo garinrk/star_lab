@@ -11,7 +11,7 @@ import CoreMotion
 import UIKit
 
 protocol GyroDelegate : class{
-    func UpdatePlayerPosition(_ magX : CGFloat, magY: CGFloat)
+    func UpdatePlayerPosition(magX : CGFloat, magY: CGFloat)
 }
 
 class Gyro{
@@ -28,10 +28,8 @@ class Gyro{
         
         //start recording data
         gyroManger.startAccelerometerUpdates(to: motionQueue) { (accelerometerData: CMAccelerometerData?, NSError) -> Void in
-            if !self.paused{
-                
-            
-            self.HandleAccData(accelerometerData!.acceleration)
+            if !self.paused {
+                self.HandleAccData(accelerometerData!.acceleration)
             }
             if(NSError != nil) {
                 print("\(NSError)")
@@ -47,7 +45,7 @@ class Gyro{
         
 //        print("UPDATE interval: \(gyroManger.accelerometerUpdateInterval)")
         
-        delegate?.UpdatePlayerPosition(CGFloat(acc.x), magY: CGFloat(acc.y))
+        delegate?.UpdatePlayerPosition(magX: CGFloat(acc.x), magY: CGFloat(acc.y))
     }
 
     func Pause(){

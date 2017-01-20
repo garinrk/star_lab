@@ -165,26 +165,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0CA0130A1CD6AC3A00C218CB /* In-Game View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				4566472F1CD561F10061B5A4 /* LevelCompleteViewController.swift */,
-				456647311CD561FC0061B5A4 /* GameOverViewController.swift */,
-				450CA1791CD4565400D78B63 /* PauseViewController.swift */,
-			);
-			name = "In-Game View Controllers";
-			sourceTree = "<group>";
-		};
-		0CA0130B1CD6B2FB00C218CB /* In-Game Views */ = {
-			isa = PBXGroup;
-			children = (
-				450CA1711CD4560700D78B63 /* PauseView.swift */,
-				4566472B1CD561D50061B5A4 /* GameOverView.swift */,
-				4566472D1CD561E40061B5A4 /* LevelCompleteView.swift */,
-			);
-			name = "In-Game Views";
-			sourceTree = "<group>";
-		};
 		0CC9EE9A1CD57F5E0031028A /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,30 +182,6 @@
 				0C97F9841CCDC74000C7C2CD /* Collision.swift */,
 			);
 			name = Helpers;
-			sourceTree = "<group>";
-		};
-		450CA16B1CD4558D00D78B63 /* MenuViews */ = {
-			isa = PBXGroup;
-			children = (
-				450CA16D1CD455DD00D78B63 /* MainMenuView.swift */,
-				450CA16F1CD455F300D78B63 /* OptionsView.swift */,
-				450CA1731CD4561500D78B63 /* NewGameView.swift */,
-				4566473B1CD589FF0061B5A4 /* HighScoreView.swift */,
-			);
-			name = MenuViews;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		450CA16C1CD4559400D78B63 /* MenuViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				450CA1751CD4562600D78B63 /* MainMenuViewController.swift */,
-				450CA17B1CD4583F00D78B63 /* NewGameViewController.swift */,
-				450CA1771CD4563900D78B63 /* OptionsViewController.swift */,
-				456647391CD589F60061B5A4 /* HighScoreViewController.swift */,
-			);
-			name = MenuViewControllers;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		453B5D111CB85C0600FF61F8 = {
@@ -249,23 +205,11 @@
 		453B5D1C1CB85C0600FF61F8 /* LabryinthMaster */ = {
 			isa = PBXGroup;
 			children = (
-				45A0BD2D1CD7F41F000A16B5 /* TitleGraphics */,
-				45C7A49A1CD6D77400594D16 /* Graphics */,
-				45C7A4981CD6BFAC00594D16 /* mainMusic.mp3 */,
 				453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */,
-				450CA16C1CD4559400D78B63 /* MenuViewControllers */,
-				450CA16B1CD4558D00D78B63 /* MenuViews */,
+				4C6DE1CC1E32BBFB00182EE8 /* UI */,
 				0CC9EE9A1CD57F5E0031028A /* Managers */,
 				453B5D311CB85C3800FF61F8 /* Game */,
-				0C1AFCD81CD5437000D1E20F /* coin.wav */,
-				0C1AFCD91CD5437000D1E20F /* enemy.wav */,
-				0C1AFCDA1CD5437000D1E20F /* enemy2.wav */,
-				0C1AFCDB1CD5437000D1E20F /* highscore.wav */,
-				0C1AFCDC1CD5437000D1E20F /* menu.wav */,
-				0C1AFCDD1CD5437000D1E20F /* outoftime.wav */,
-				0C1AFCDE1CD5437000D1E20F /* start.wav */,
-				0C1AFCDF1CD5437000D1E20F /* win.wav */,
-				0C1AFCE01CD5437000D1E20F /* win2.wav */,
+				4C6DE1C61E32BB7600182EE8 /* Assets */,
 				453B5D241CB85C0600FF61F8 /* Assets.xcassets */,
 				453B5D291CB85C0600FF61F8 /* Info.plist */,
 				456647331CD562DF0061B5A4 /* LabData.plist */,
@@ -292,8 +236,6 @@
 				453B5D301CB85C3200FF61F8 /* Game Objects */,
 				457B672B1CD426D600EE127D /* Device Managers */,
 				0CCC74AC1CD405F200FF9895 /* Helpers */,
-				0CA0130A1CD6AC3A00C218CB /* In-Game View Controllers */,
-				0CA0130B1CD6B2FB00C218CB /* In-Game Views */,
 			);
 			name = Game;
 			path = ..;
@@ -349,6 +291,133 @@
 				45C7A4A61CD6D77E00594D16 /* space6.jpg */,
 			);
 			name = Graphics;
+			sourceTree = "<group>";
+		};
+		4C6DE1C11E32BB0200182EE8 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				45C7A4981CD6BFAC00594D16 /* mainMusic.mp3 */,
+				0C1AFCD81CD5437000D1E20F /* coin.wav */,
+				0C1AFCD91CD5437000D1E20F /* enemy.wav */,
+				0C1AFCDA1CD5437000D1E20F /* enemy2.wav */,
+				0C1AFCDB1CD5437000D1E20F /* highscore.wav */,
+				0C1AFCDC1CD5437000D1E20F /* menu.wav */,
+				0C1AFCDD1CD5437000D1E20F /* outoftime.wav */,
+				0C1AFCDE1CD5437000D1E20F /* start.wav */,
+				0C1AFCDF1CD5437000D1E20F /* win.wav */,
+				0C1AFCE01CD5437000D1E20F /* win2.wav */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		4C6DE1C21E32BB4000182EE8 /* Main Menu */ = {
+			isa = PBXGroup;
+			children = (
+				450CA1751CD4562600D78B63 /* MainMenuViewController.swift */,
+				450CA16D1CD455DD00D78B63 /* MainMenuView.swift */,
+			);
+			name = "Main Menu";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4C6DE1C31E32BB4800182EE8 /* New Game */ = {
+			isa = PBXGroup;
+			children = (
+				450CA17B1CD4583F00D78B63 /* NewGameViewController.swift */,
+				450CA1731CD4561500D78B63 /* NewGameView.swift */,
+			);
+			name = "New Game";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4C6DE1C41E32BB5000182EE8 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				450CA1771CD4563900D78B63 /* OptionsViewController.swift */,
+				450CA16F1CD455F300D78B63 /* OptionsView.swift */,
+			);
+			name = Options;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4C6DE1C51E32BB5500182EE8 /* High Score */ = {
+			isa = PBXGroup;
+			children = (
+				456647391CD589F60061B5A4 /* HighScoreViewController.swift */,
+				4566473B1CD589FF0061B5A4 /* HighScoreView.swift */,
+			);
+			name = "High Score";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4C6DE1C61E32BB7600182EE8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				45A0BD2D1CD7F41F000A16B5 /* TitleGraphics */,
+				45C7A49A1CD6D77400594D16 /* Graphics */,
+				4C6DE1C11E32BB0200182EE8 /* Audio */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		4C6DE1C71E32BBA800182EE8 /* Level Complete */ = {
+			isa = PBXGroup;
+			children = (
+				4566472F1CD561F10061B5A4 /* LevelCompleteViewController.swift */,
+				4566472D1CD561E40061B5A4 /* LevelCompleteView.swift */,
+			);
+			name = "Level Complete";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4C6DE1C81E32BBB200182EE8 /* Game Over */ = {
+			isa = PBXGroup;
+			children = (
+				456647311CD561FC0061B5A4 /* GameOverViewController.swift */,
+				4566472B1CD561D50061B5A4 /* GameOverView.swift */,
+			);
+			name = "Game Over";
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4C6DE1C91E32BBBD00182EE8 /* Pause */ = {
+			isa = PBXGroup;
+			children = (
+				450CA1791CD4565400D78B63 /* PauseViewController.swift */,
+				450CA1711CD4560700D78B63 /* PauseView.swift */,
+			);
+			name = Pause;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		4C6DE1CA1E32BBD900182EE8 /* In Game */ = {
+			isa = PBXGroup;
+			children = (
+				4C6DE1C71E32BBA800182EE8 /* Level Complete */,
+				4C6DE1C81E32BBB200182EE8 /* Game Over */,
+				4C6DE1C91E32BBBD00182EE8 /* Pause */,
+			);
+			name = "In Game";
+			sourceTree = "<group>";
+		};
+		4C6DE1CB1E32BBF300182EE8 /* Menus */ = {
+			isa = PBXGroup;
+			children = (
+				4C6DE1C21E32BB4000182EE8 /* Main Menu */,
+				4C6DE1C31E32BB4800182EE8 /* New Game */,
+				4C6DE1C41E32BB5000182EE8 /* Options */,
+				4C6DE1C51E32BB5500182EE8 /* High Score */,
+			);
+			name = Menus;
+			sourceTree = "<group>";
+		};
+		4C6DE1CC1E32BBFB00182EE8 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				4C6DE1CB1E32BBF300182EE8 /* Menus */,
+				4C6DE1CA1E32BBD900182EE8 /* In Game */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

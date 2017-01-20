@@ -21,7 +21,6 @@ class HighScoreViewController : UIViewController{
     var backgroundImageView = UIImageView(frame: CGRect.zero)
     
     override func viewDidLoad() {
-        
 //        highScore.frame =
         backgroundImageView.frame = screenRect
         backgroundImageView.image = backgroundImage
@@ -35,5 +34,4 @@ class HighScoreViewController : UIViewController{
     func BackButtonPressed(){
         delegate?.highScorePressedBack()
     }
-    
 }

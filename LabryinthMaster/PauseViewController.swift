@@ -27,8 +27,7 @@ class PauseViewController : UIViewController{
     var backgroundImage = UIImage(named: "halo.jpg")
     var backgroundImageView = UIImageView(frame: CGRect.zero)
     
-    override func viewDidLoad() {
-        
+    override func viewDidLoad() {        
         pauseView.frame = UIScreen.main.bounds
         backgroundImageView.frame = screenRect
         backgroundImageView.image = backgroundImage
@@ -64,7 +63,6 @@ class PauseViewController : UIViewController{
         _audio.effectsVolume = pauseView.fxSlider.value
         _audio.SetVolumes()
     }
-    
     
     func ResumeButtonPressed(){
         delegate?.pausePressedUnpause()

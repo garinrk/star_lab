@@ -103,13 +103,9 @@ class NewGameView : UIView, UITextFieldDelegate {
 
         addConstraint(NSLayoutConstraint(item: startButton, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: gameNameTextEntry, attribute: NSLayoutAttribute.height, multiplier: 1.75, constant: 0.0))
         addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.height, multiplier: 7.2, constant: 0.0))
-
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-
 }

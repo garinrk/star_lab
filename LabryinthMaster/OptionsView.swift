@@ -13,7 +13,6 @@ class OptionsView : UIView{
     var musicSlider : UISlider = UISlider()
     var fxSlider : UISlider = UISlider()
     var backButton = UIButton(type: UIButtonType.custom)
-
     
     var titleImage = UIImage(named: "options.png")
     var titleImageBackground = UIImageView(frame: CGRect.zero)
@@ -64,16 +63,13 @@ class OptionsView : UIView{
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-100-[fxSlider(==musicSlider)]-100-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[back]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         
-        
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[title]-40-[music]-[musicSlider]-[fx]-[fxSlider]-80-[back(<=100,>=50)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-
 
         addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.height, multiplier: 2.2, constant: 0.0))
         
         addConstraint(NSLayoutConstraint(item: musicImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: musicImageBackground, attribute: NSLayoutAttribute.height, multiplier: 3.6, constant: 0.0))
         
         addConstraint(NSLayoutConstraint(item: fxImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: fxImageBackground, attribute: NSLayoutAttribute.height, multiplier: 2.7, constant: 0.0))
-    
     
 //        addConstraint(NSLayoutConstraint(item: backButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: backButton, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0.0))
         
@@ -82,5 +78,4 @@ class OptionsView : UIView{
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
 }

@@ -48,7 +48,6 @@ struct ScoreInfo {
             timestamp = Date()
         }
     }
-    
 }
 
 class ScoreManager {
@@ -76,7 +75,6 @@ class ScoreManager {
     var scores: [ScoreInfo] = [] // sorted based on score
     
     init(){
-        
         let savedScores: NSMutableArray? = loadScores()
         if savedScores != nil {
             for score in savedScores!
@@ -85,9 +83,7 @@ class ScoreManager {
                 scores.append(scoreInfo)
             }
         }
-        
     }
-    
     
     func addScore(_ newScore: ScoreInfo)
     {
@@ -109,7 +105,6 @@ class ScoreManager {
                 keepGoing = false
             }
         }
-        
         saveScores()
     }
     
@@ -118,7 +113,6 @@ class ScoreManager {
      Saves scoreinfos to the plist
      */
     func saveScores(){
-        
         let documentsDirectory: String? = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String?
         let filePath: String? = (documentsDirectory)! + "/LabScores.plist"
         
@@ -133,7 +127,6 @@ class ScoreManager {
         if filePath != nil {
             array.write(toFile: filePath!, atomically: true)
         }
-    
     }
     
     func loadScores() -> NSMutableArray? {
@@ -147,7 +140,4 @@ class ScoreManager {
             return nil
         }
     }
-    
-
-    
 }

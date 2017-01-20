@@ -25,8 +25,6 @@ class MainMenuView : UIView{
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-
-
 //        MainLabel.text = "Star Labyrinth"
 //        MainLabel.font = UIFont.systemFontOfSize(35)
 //        MainLabel.textColor = UIColor(white: 1, alpha: 0.5)
@@ -38,7 +36,6 @@ class MainMenuView : UIView{
         authorsImageBackground.image = authorsImage
         self.addSubview(authorsImageBackground)
         authorsImageBackground.translatesAutoresizingMaskIntoConstraints = false
-
         
         newGameButton.setTitle("New Game", for: UIControlState())
         newGameButton.setTitleColor(UIColor.white, for: UIControlState())
@@ -91,7 +88,6 @@ class MainMenuView : UIView{
     
     
     override func draw(_ rect: CGRect) {
-        
         
     }
 }

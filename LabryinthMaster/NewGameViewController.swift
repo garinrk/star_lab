@@ -10,19 +10,14 @@ import UIKit
 
 protocol NewGameViewControllerDelegate: class {
     func newGamePressedBack()
-    func newGamePressedStart(_ name: String, difficulty: DifficultyMode)
+    func newGamePressedStart(name: String, difficulty: DifficultyMode)
 }
 
 class NewGameViewController : UIViewController, UITextFieldDelegate{
-    
     var screenRect = UIScreen.main.bounds
     var diff : DifficultyMode? = nil
-
     var newGameView = NewGameView()
-
     var _audioManager : AudioManager = AudioManager.sharedInstance
-
-    
     var gvc : GameViewController?
     
     weak var delegate: NewGameViewControllerDelegate? = nil
@@ -56,7 +51,7 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     }
     
     func StartButtonPressed(){
-        delegate?.newGamePressedStart(newGameView.gameNameTextEntry.text!, difficulty: diff!)
+        delegate?.newGamePressedStart(name: newGameView.gameNameTextEntry.text!, difficulty: diff!)
     }
     
     func EasyButtonPressed(){
@@ -66,7 +61,7 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
         newGameView.hardButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         newGameView.hardButton.setTitleColor(UIColor.black, for: UIControlState())
         CheckForLegal()
-        _audioManager.PlayAudio(SoundType.confirm)
+        _audioManager.PlayAudio(type: SoundType.confirm)
     }
     
     func HardButtonPressed(){
@@ -76,8 +71,7 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
         newGameView.easyButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         newGameView.easyButton.setTitleColor(UIColor.black, for: UIControlState())
         CheckForLegal()
-        _audioManager.PlayAudio(SoundType.confirm)
-
+        _audioManager.PlayAudio(type: SoundType.confirm)
     }
     //MARK: UITextFieldDelegate Methods
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -91,9 +85,6 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = nil
     }
-    
-
-    
 
     /**
      Checks to make sure that a difficulty has been set, and that a player's name has

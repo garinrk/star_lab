@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct Collision {
-    
+struct Collision {    
     let north: Bool
     let east: Bool
     let south: Bool

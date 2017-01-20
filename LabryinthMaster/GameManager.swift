@@ -14,11 +14,9 @@ enum DifficultyMode: Int {
 }
 
 protocol GameManagerDelegate: class {
-    func GameOverCall(_ score: Int)
-    func WinGameCall(_ score: Int)
+    func GameOverCall(score: Int)
+    func WinGameCall(score: Int)
 }
-
-
 
 class GameManager: GameLoopDelegate {
     
@@ -104,7 +102,7 @@ class GameManager: GameLoopDelegate {
             gameTime = minGameTime
         }
         
-        maze.clearRandomWalls(actualWallsToClear)
+        maze.clearRandomWalls(amount: actualWallsToClear)
         
         // initialize player and enemies, etc.
         
@@ -167,7 +165,7 @@ class GameManager: GameLoopDelegate {
         currentLevel += 1
         currentScore = 0
         gameLoop.stop()
-        delegate?.WinGameCall(lifetimeScore)
+        delegate?.WinGameCall(score: lifetimeScore)
     }
     
     func kill()
@@ -182,7 +180,7 @@ class GameManager: GameLoopDelegate {
         // update scoremanager with lifetime score
         _scoreManager.addScore(ScoreInfo(name: playerName, score: lifetimeScore, difficulty: mode, timestamp: Date()))
         
-        delegate?.GameOverCall(lifetimeScore)
+        delegate?.GameOverCall(score: lifetimeScore)
         lifetimeScore = 0
     }
     
@@ -199,8 +197,6 @@ class GameManager: GameLoopDelegate {
         lifetimeScore = 0
     }
     
-    
-    
     // MARK: GameLoopDelegate functions
     
     func update() {
@@ -208,7 +204,7 @@ class GameManager: GameLoopDelegate {
             return
         }
         
-        player.moveX(currentGyroMagX, Y: currentGyroMagY)
+        player.move(xMagnitude: currentGyroMagX, yMagnitude: currentGyroMagY)
         player.update()
         
         for enemy in enemies {

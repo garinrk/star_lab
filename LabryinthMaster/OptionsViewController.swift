@@ -47,7 +47,6 @@ class OptionsViewController : UIViewController{
 
         optionsView.backButton
             .addTarget(self, action: #selector(OptionsViewController.BackButtonPressed), for: UIControlEvents.touchUpInside)
-
     }
     
     /**
@@ -71,7 +70,4 @@ class OptionsViewController : UIViewController{
     func BackButtonPressed(){
         delegate?.optionsPressedBack()
     }
-    
-    
-    
 }

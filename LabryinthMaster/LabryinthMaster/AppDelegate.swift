@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
         mainMenuViewController.delegate = self
         gameViewController.delegate = self
         
-        
 //        gameViewController.startNewGame("test", difficulty: .Easy)
         
         window?.makeKeyAndVisible()
@@ -81,7 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
     }
 
     // MARK: MainMenuViewControllerDelegate functions
-    func startNewGame(_ name: String, difficulty: DifficultyMode) {
+    func startNewGame(name: String, difficulty: DifficultyMode) {
         
 //        mainNavController.popViewControllerAnimated(false)
 //        mainNavController.pushViewController(gameViewController, animated: false)
@@ -89,7 +88,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
         
         mainNavController.present(gameViewController, animated: false, completion: {
             () -> Void in
-        self.gameViewController.startNewGame(name, difficulty: difficulty)
+        self.gameViewController.startNewGame(name: name, difficulty: difficulty)
         })
     }
     

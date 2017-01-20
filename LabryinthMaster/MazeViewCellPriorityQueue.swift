@@ -27,7 +27,7 @@ class MazeViewCellPriorityQueue
         return queue.remove(at: 0).object
     }
     
-    func addCell(_ cell: MazeViewCell, WithPriority priority: Int)
+    func addCell(cell: MazeViewCell, priority: Int)
     {
         let newNode: MazeViewCellPriorityQueueNode = MazeViewCellPriorityQueueNode(object: cell, priority: priority)
         
@@ -39,11 +39,9 @@ class MazeViewCellPriorityQueue
         while keepGoing && i > 0{
             if queue[i].priority > queue[i-1].priority
             {
-                let tmp: MazeViewCellPriorityQueueNode = queue[i-1]
-                
+                let tmp: MazeViewCellPriorityQueueNode = queue[i-1]                
                 queue[i-1] = queue[i]
                 queue[i] = tmp
-                
                 i-=1
             }
             else

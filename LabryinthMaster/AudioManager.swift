@@ -20,7 +20,6 @@ enum SoundType{
 }
 
 class AudioManager : NSObject{
-    
     var mainMusicPlayer : AVAudioPlayer!
     var confirmPlayer : AVAudioPlayer!
     var enemyKillPlayer : AVAudioPlayer!
@@ -32,9 +31,7 @@ class AudioManager : NSObject{
     var mainMusicVolume : Float = 0.25
     var effectsVolume : Float = 0.5
     
-    
     class var sharedInstance : AudioManager{
-        
         struct Static{
             static var instance : AudioManager?
         }
@@ -46,7 +43,6 @@ class AudioManager : NSObject{
         
         return Static.instance!
     }
-    
     
     override init(){
         super.init()
@@ -151,7 +147,6 @@ class AudioManager : NSObject{
         outOfTimePlayer.delegate = self
         startLevelPlayer.delegate = self
         
-        
         mainMusicPlayer.prepareToPlay()
         confirmPlayer.prepareToPlay()
         enemyKillPlayer.prepareToPlay()
@@ -171,7 +166,6 @@ class AudioManager : NSObject{
         // music set to infinite loop
         mainMusicPlayer.numberOfLoops = -1
     }
-    
     
     /**
      Pauses all audio players
@@ -204,7 +198,6 @@ class AudioManager : NSObject{
         if startLevelPlayer.isPlaying{
             startLevelPlayer.pause()
         }
-
     }
     
     func StopAllAudio(){
@@ -235,9 +228,7 @@ class AudioManager : NSObject{
         if startLevelPlayer.isPlaying{
             startLevelPlayer.stop()
         }
-        
     }
-    
     
     /**
      Sets the volumes of the audio players to whatever is in the current
@@ -251,7 +242,6 @@ class AudioManager : NSObject{
         winPlayer.volume = effectsVolume
         outOfTimePlayer.volume = effectsVolume
         startLevelPlayer.volume = effectsVolume
-        
     }
     
     /**
@@ -273,10 +263,9 @@ class AudioManager : NSObject{
      
      - parameter audioType: The type of audio to play
      */
-    func PlayAudio(_ audioType : SoundType)
+    func PlayAudio(type: SoundType)
     {
-        switch audioType{
-            
+        switch type{
         case .mainMusic:
             mainMusicPlayer.play()
             break
@@ -298,11 +287,9 @@ class AudioManager : NSObject{
         case .startLevel:
             startLevelPlayer.play()
             break
-
         }
     }
 }
-
 
 // MARK: AVAudioPlayerDelegate
 extension AudioManager : AVAudioPlayerDelegate {
@@ -310,11 +297,9 @@ extension AudioManager : AVAudioPlayerDelegate {
 //        print("finished playing \(flag)")
     }
     
-    
     func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         if let e = error {
             print("\(e.localizedDescription)")
         }
     }
-    
 }

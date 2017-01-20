@@ -9,10 +9,10 @@
 import Foundation
 
 protocol GameTimerDelegate: class {
-    func updateTime(_ time: Int)
+    func updateTime(time: Int)
 }
 
-class GameTimer{
+class GameTimer {
     
     //get the timelimit from the game manager
     let timeLimit: Int
@@ -23,7 +23,7 @@ class GameTimer{
     
     weak var delegate: GameTimerDelegate? = nil
     
-    init(timeLimit: Int){
+    init(timeLimit: Int) {
         self.timeLimit = timeLimit
         currentTime = timeLimit
     }
@@ -32,7 +32,7 @@ class GameTimer{
         gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(GameTimer.TimerUpdate), userInfo: nil, repeats: true)
     }
     
-    @objc func TimerUpdate(){
+    @objc func TimerUpdate() {
         if paused {
             return
         }
@@ -41,10 +41,10 @@ class GameTimer{
         if timeLimit <= 0{
             StopTimer()
         }
-        delegate?.updateTime(currentTime)
+        delegate?.updateTime(time: currentTime)
     }
     
-    func StopTimer(){
+    func StopTimer() {
         gameTimer.invalidate()
     }
     
@@ -55,5 +55,4 @@ class GameTimer{
     func UnpauseTimer() {
         paused = false
     }
-    
 }
