@@ -13,12 +13,12 @@ protocol HighScoreViewControllerDelegate: class {
 }
 
 class HighScoreViewController : UIViewController{
-    var screenRect = UIScreen.mainScreen().bounds
-    var highScore = HighScoreView(frame: UIScreen.mainScreen().bounds)
+    var screenRect = UIScreen.main.bounds
+    var highScore = HighScoreView(frame: UIScreen.main.bounds)
     
     weak var delegate: HighScoreViewControllerDelegate? = nil
     var backgroundImage = UIImage(named: "space6.jpg")
-    var backgroundImageView = UIImageView(frame: CGRectZero)
+    var backgroundImageView = UIImageView(frame: CGRect.zero)
     
     override func viewDidLoad() {
         
@@ -29,7 +29,7 @@ class HighScoreViewController : UIViewController{
         self.view.addSubview(highScore)
         
         highScore.backButton
-            .addTarget(self, action: #selector(HighScoreViewController.BackButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+            .addTarget(self, action: #selector(HighScoreViewController.BackButtonPressed), for: UIControlEvents.touchUpInside)
     }
     
     func BackButtonPressed(){

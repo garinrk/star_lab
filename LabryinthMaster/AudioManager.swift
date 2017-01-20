@@ -10,13 +10,13 @@ import Foundation
 import AVFoundation
 
 enum SoundType{
-    case MainMusic
-    case Confirm
-    case EnemyKill
-    case Coin
-    case Win
-    case OutOfTime
-    case StartLevel
+    case mainMusic
+    case confirm
+    case enemyKill
+    case coin
+    case win
+    case outOfTime
+    case startLevel
 }
 
 class AudioManager : NSObject{
@@ -60,34 +60,34 @@ class AudioManager : NSObject{
     func LoadFilesIntoPlayers(){
         
         //Step 1: Get files
-        guard let mainMusicURL = NSBundle.mainBundle().URLForResource("mainMusic", withExtension: "mp3") else {
+        guard let mainMusicURL = Bundle.main.url(forResource: "mainMusic", withExtension: "mp3") else {
             print("could not read main Music file")
             return
         }
-        guard let confirmURL = NSBundle.mainBundle().URLForResource("menu", withExtension: "wav") else {
+        guard let confirmURL = Bundle.main.url(forResource: "menu", withExtension: "wav") else {
             print("could not read confirm file")
             return
         }
         
-        guard let enemyKillURL = NSBundle.mainBundle().URLForResource("enemy", withExtension: "wav") else {
+        guard let enemyKillURL = Bundle.main.url(forResource: "enemy", withExtension: "wav") else {
             print("could not read reject file")
             return
         }
         
-        guard let coinURL = NSBundle.mainBundle().URLForResource("coin", withExtension: "wav") else {
+        guard let coinURL = Bundle.main.url(forResource: "coin", withExtension: "wav") else {
             print("could not read fx1 file")
             return
         }
         
-        guard let winURL = NSBundle.mainBundle().URLForResource("win2", withExtension: "wav") else {
+        guard let winURL = Bundle.main.url(forResource: "win2", withExtension: "wav") else {
             print("could not read fx2 file")
             return
         }
-        guard let outOfTimeURL = NSBundle.mainBundle().URLForResource("outoftime", withExtension: "wav") else {
+        guard let outOfTimeURL = Bundle.main.url(forResource: "outoftime", withExtension: "wav") else {
             print("could not read fx3 file")
             return
         }
-        guard let startLevelURL = NSBundle.mainBundle().URLForResource("start", withExtension: "wav") else {
+        guard let startLevelURL = Bundle.main.url(forResource: "start", withExtension: "wav") else {
             print("could not read fx4 file")
             return
         }
@@ -95,47 +95,47 @@ class AudioManager : NSObject{
         //Step 2: Load
         
         do {
-            try self.mainMusicPlayer = AVAudioPlayer(contentsOfURL: mainMusicURL)
+            try self.mainMusicPlayer = AVAudioPlayer(contentsOf: mainMusicURL)
         } catch {
             print("could not create mainMusicPlayer \(error)")
             return
         }
         
         do {
-            try self.confirmPlayer = AVAudioPlayer(contentsOfURL: confirmURL)
+            try self.confirmPlayer = AVAudioPlayer(contentsOf: confirmURL)
         } catch {
             print("could not create confirmplayer \(error)")
             return
         }
         
         do {
-            try self.enemyKillPlayer = AVAudioPlayer(contentsOfURL: enemyKillURL)
+            try self.enemyKillPlayer = AVAudioPlayer(contentsOf: enemyKillURL)
         } catch {
             print("could not create rejectplayer \(error)")
             return
         }
         
         do {
-            try self.coinPlayer = AVAudioPlayer(contentsOfURL: coinURL)
+            try self.coinPlayer = AVAudioPlayer(contentsOf: coinURL)
         } catch {
             print("could not create fx1Player \(error)")
             return
         }
         
         do {
-            try self.winPlayer = AVAudioPlayer(contentsOfURL: winURL)
+            try self.winPlayer = AVAudioPlayer(contentsOf: winURL)
         } catch {
             print("could not create fx2Player \(error)")
             return
         }
         do {
-            try self.outOfTimePlayer = AVAudioPlayer(contentsOfURL: outOfTimeURL)
+            try self.outOfTimePlayer = AVAudioPlayer(contentsOf: outOfTimeURL)
         } catch {
             print("could not create fx3Player \(error)")
             return
         }
         do {
-            try self.startLevelPlayer = AVAudioPlayer(contentsOfURL: startLevelURL)
+            try self.startLevelPlayer = AVAudioPlayer(contentsOf: startLevelURL)
         } catch {
             print("could not create fx4Player \(error)")
             return
@@ -177,62 +177,62 @@ class AudioManager : NSObject{
      Pauses all audio players
      */
     func PauseAllAudio(){
-        if mainMusicPlayer.playing{
+        if mainMusicPlayer.isPlaying{
             mainMusicPlayer.pause()
         }
         
-        if confirmPlayer.playing{
+        if confirmPlayer.isPlaying{
             confirmPlayer.pause()
         }
         
-        if enemyKillPlayer.playing{
+        if enemyKillPlayer.isPlaying{
             enemyKillPlayer.pause()
         }
         
-        if coinPlayer.playing{
+        if coinPlayer.isPlaying{
             coinPlayer.pause()
         }
         
-        if winPlayer.playing{
+        if winPlayer.isPlaying{
             winPlayer.pause()
         }
         
-        if outOfTimePlayer.playing{
+        if outOfTimePlayer.isPlaying{
             outOfTimePlayer.pause()
         }
         
-        if startLevelPlayer.playing{
+        if startLevelPlayer.isPlaying{
             startLevelPlayer.pause()
         }
 
     }
     
     func StopAllAudio(){
-        if mainMusicPlayer.playing{
+        if mainMusicPlayer.isPlaying{
             mainMusicPlayer.stop()
         }
         
-        if confirmPlayer.playing{
+        if confirmPlayer.isPlaying{
             confirmPlayer.stop()
         }
         
-        if enemyKillPlayer.playing{
+        if enemyKillPlayer.isPlaying{
             enemyKillPlayer.stop()
         }
         
-        if coinPlayer.playing{
+        if coinPlayer.isPlaying{
             coinPlayer.stop()
         }
         
-        if winPlayer.playing{
+        if winPlayer.isPlaying{
             winPlayer.stop()
         }
         
-        if outOfTimePlayer.playing{
+        if outOfTimePlayer.isPlaying{
             outOfTimePlayer.stop()
         }
         
-        if startLevelPlayer.playing{
+        if startLevelPlayer.isPlaying{
             startLevelPlayer.stop()
         }
         
@@ -261,7 +261,7 @@ class AudioManager : NSObject{
     func SetupAudioSession(){
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: AVAudioSessionCategoryOptions.MixWithOthers)
+            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.mixWithOthers)
             try audioSession.setActive(true)
         } catch {
             print("couldn't set category \(error)")
@@ -273,29 +273,29 @@ class AudioManager : NSObject{
      
      - parameter audioType: The type of audio to play
      */
-    func PlayAudio(audioType : SoundType)
+    func PlayAudio(_ audioType : SoundType)
     {
         switch audioType{
             
-        case .MainMusic:
+        case .mainMusic:
             mainMusicPlayer.play()
             break
-        case .Confirm:
+        case .confirm:
             confirmPlayer.play()
             break
-        case .EnemyKill:
+        case .enemyKill:
             enemyKillPlayer.play()
             break
-        case .Coin:
+        case .coin:
             coinPlayer.play()
             break
-        case .Win:
+        case .win:
             winPlayer.play()
             break
-        case .OutOfTime:
+        case .outOfTime:
             outOfTimePlayer.play()
             break
-        case .StartLevel:
+        case .startLevel:
             startLevelPlayer.play()
             break
 
@@ -306,12 +306,12 @@ class AudioManager : NSObject{
 
 // MARK: AVAudioPlayerDelegate
 extension AudioManager : AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
 //        print("finished playing \(flag)")
     }
     
     
-    func audioPlayerDecodeErrorDidOccur(player: AVAudioPlayer, error: NSError?) {
+    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
         if let e = error {
             print("\(e.localizedDescription)")
         }

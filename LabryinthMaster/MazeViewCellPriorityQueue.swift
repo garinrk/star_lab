@@ -16,7 +16,7 @@ struct MazeViewCellPriorityQueueNode
 
 class MazeViewCellPriorityQueue
 {
-    private var queue: [MazeViewCellPriorityQueueNode] = []
+    fileprivate var queue: [MazeViewCellPriorityQueueNode] = []
     var empty: Bool
     {
         return queue.isEmpty
@@ -24,10 +24,10 @@ class MazeViewCellPriorityQueue
     
     func next() -> MazeViewCell?
     {
-        return queue.removeAtIndex(0).object
+        return queue.remove(at: 0).object
     }
     
-    func addCell(cell: MazeViewCell, WithPriority priority: Int)
+    func addCell(_ cell: MazeViewCell, WithPriority priority: Int)
     {
         let newNode: MazeViewCellPriorityQueueNode = MazeViewCellPriorityQueueNode(object: cell, priority: priority)
         

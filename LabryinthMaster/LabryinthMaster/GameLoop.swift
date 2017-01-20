@@ -29,12 +29,12 @@ class GameLoop: NSObject {
     func start() {
         displayLink = CADisplayLink(target: self, selector: #selector(GameLoop.callUpdate))
         displayLink.frameInterval = frameInterval
-        displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+        displayLink.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
     }
     
     func stop() {
         if displayLink != nil {
-            displayLink.removeFromRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+            displayLink.remove(from: RunLoop.main, forMode: RunLoopMode.commonModes)
         }
         displayLink = nil
 //        print("stopped")

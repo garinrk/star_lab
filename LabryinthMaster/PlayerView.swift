@@ -9,11 +9,11 @@
 import UIKit
 
 protocol PlayerDelegate: class {
-    func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
+    func getMazeCellPosX(_ x: Int, Y y: Int) -> CGPoint
     func getMazeCellSize() -> CGSize
-    func detectCollisionFromPlayer(square: CGRect) -> Collision
-    func coinCollected(coll: Collision)
-    func reportNewColliderPosition(position: CGRect)
+    func detectCollisionFromPlayer(_ square: CGRect) -> Collision
+    func coinCollected(_ coll: Collision)
+    func reportNewColliderPosition(_ position: CGRect)
     func goalReached()
 }
 
@@ -21,13 +21,13 @@ class PlayerView : UIView{
     
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
-    private let moveSpeed: CGFloat = 10.0
+    fileprivate let moveSpeed: CGFloat = 10.0
     
     ////////////////////////////////////////
     
-    private var xPos: CGFloat = 0
-    private var yPos: CGFloat = 0
-    private var playerDiameter: CGFloat!
+    fileprivate var xPos: CGFloat = 0
+    fileprivate var yPos: CGFloat = 0
+    fileprivate var playerDiameter: CGFloat!
     
     var cellX: Int = 0
     var cellY: Int = 0
@@ -38,7 +38,7 @@ class PlayerView : UIView{
     
     weak var delegate: PlayerDelegate? = nil
     var enemyImage = UIImage(named: "ship.png")
-    var backgroundImageView = UIImageView(frame: CGRectZero)
+    var backgroundImageView = UIImageView(frame: CGRect.zero)
 
     override init(frame: CGRect) {
         
@@ -53,8 +53,8 @@ class PlayerView : UIView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         // get rid of previous views
         for sview in subviews {
@@ -102,7 +102,7 @@ class PlayerView : UIView{
         
     }
 
-    func moveX(xMagnitude: CGFloat, Y yMagnitude: CGFloat) {
+    func moveX(_ xMagnitude: CGFloat, Y yMagnitude: CGFloat) {
         
         var xMove = xMagnitude
         var yMove = -yMagnitude

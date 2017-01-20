@@ -7,6 +7,30 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class MazeViewCell: UIView {
     var north: Bool = true
@@ -21,12 +45,12 @@ class MazeViewCell: UIView {
     var x: Int = 0
     var y: Int = 0
     
-    private var coinDiameter: CGFloat = 0
-    private var goalWidth: CGFloat = 0
+    fileprivate var coinDiameter: CGFloat = 0
+    fileprivate var goalWidth: CGFloat = 0
     
     var coinImage = UIImage(named: "coin.png")
     var goalImage = UIImage(named: "goal.png")
-    var backgroundImageView = UIImageView(frame: CGRectZero)
+    var backgroundImageView = UIImageView(frame: CGRect.zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,8 +62,8 @@ class MazeViewCell: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         // get rid of previous views
         for sview in subviews {
@@ -51,66 +75,66 @@ class MazeViewCell: UIView {
         // draw background
         let background: CGRect = CGRect(x: bounds.minX, y: bounds.minY, width: bounds.width, height: bounds.height)
 //        let semiTransparentBackground: UIColor = UIColor(white: 1, alpha: 0.5)
-        CGContextSetFillColorWithColor(context, UIColor.whiteColor().CGColor)
-        CGContextFillRect(context, background)
+        context?.setFillColor(UIColor.white.cgColor)
+        context?.fill(background)
     
         // draw walls
 
-        CGContextSetLineWidth(context, bounds.width * 0.05)
+        context?.setLineWidth(bounds.width * 0.05)
         if north
         {
-            CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
-            CGContextMoveToPoint(context, bounds.minX, bounds.minY)
-            CGContextAddLineToPoint(context, bounds.maxX, bounds.minY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            context?.setStrokeColor(UIColor.red.cgColor)
+            context?.move(to: CGPoint(x: bounds.minX, y: bounds.minY))
+            context?.addLine(to: CGPoint(x: bounds.maxX, y: bounds.minY))
+            context?.drawPath(using: CGPathDrawingMode.stroke)
         }
         else {
-            CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
-            CGContextMoveToPoint(context, bounds.minX, bounds.minY)
-            CGContextAddLineToPoint(context, bounds.maxX, bounds.minY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            context?.setStrokeColor(UIColor.white.cgColor)
+            context?.move(to: CGPoint(x: bounds.minX, y: bounds.minY))
+            context?.addLine(to: CGPoint(x: bounds.maxX, y: bounds.minY))
+            context?.drawPath(using: CGPathDrawingMode.stroke)
         }
 
         if east
         {
-            CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
-            CGContextMoveToPoint(context, bounds.maxX, bounds.minY)
-            CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            context?.setStrokeColor(UIColor.red.cgColor)
+            context?.move(to: CGPoint(x: bounds.maxX, y: bounds.minY))
+            context?.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
+            context?.drawPath(using: CGPathDrawingMode.stroke)
         }
         else {
-            CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
-            CGContextMoveToPoint(context, bounds.maxX, bounds.minY)
-            CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            context?.setStrokeColor(UIColor.white.cgColor)
+            context?.move(to: CGPoint(x: bounds.maxX, y: bounds.minY))
+            context?.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
+            context?.drawPath(using: CGPathDrawingMode.stroke)
         }
 
         if south
         {
-            CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
-            CGContextMoveToPoint(context, bounds.minX, bounds.maxY)
-            CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            context?.setStrokeColor(UIColor.red.cgColor)
+            context?.move(to: CGPoint(x: bounds.minX, y: bounds.maxY))
+            context?.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
+            context?.drawPath(using: CGPathDrawingMode.stroke)
         }
         else {
-            CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
-            CGContextMoveToPoint(context, bounds.minX, bounds.maxY)
-            CGContextAddLineToPoint(context, bounds.maxX, bounds.maxY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            context?.setStrokeColor(UIColor.white.cgColor)
+            context?.move(to: CGPoint(x: bounds.minX, y: bounds.maxY))
+            context?.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
+            context?.drawPath(using: CGPathDrawingMode.stroke)
         }
 
         if west
         {
-            CGContextSetStrokeColorWithColor(context, UIColor.redColor().CGColor)
-            CGContextMoveToPoint(context, bounds.minX, bounds.minY)
-            CGContextAddLineToPoint(context, bounds.minX, bounds.maxY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            context?.setStrokeColor(UIColor.red.cgColor)
+            context?.move(to: CGPoint(x: bounds.minX, y: bounds.minY))
+            context?.addLine(to: CGPoint(x: bounds.minX, y: bounds.maxY))
+            context?.drawPath(using: CGPathDrawingMode.stroke)
         }
         else {
-            CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
-            CGContextMoveToPoint(context, bounds.minX, bounds.minY)
-            CGContextAddLineToPoint(context, bounds.minX, bounds.maxY)
-            CGContextDrawPath(context, CGPathDrawingMode.Stroke)
+            context?.setStrokeColor(UIColor.white.cgColor)
+            context?.move(to: CGPoint(x: bounds.minX, y: bounds.minY))
+            context?.addLine(to: CGPoint(x: bounds.minX, y: bounds.maxY))
+            context?.drawPath(using: CGPathDrawingMode.stroke)
         }
 
 
@@ -172,12 +196,12 @@ class MazeView: UIView {
     
     var cells: [String: MazeViewCell] = [:]
     
-    private var dimension: Int = 30
-    private var cellWidth: CGFloat!
-    private var cellHeight: CGFloat!
-    private var originCellCenter: CGPoint!
+    fileprivate var dimension: Int = 30
+    fileprivate var cellWidth: CGFloat!
+    fileprivate var cellHeight: CGFloat!
+    fileprivate var originCellCenter: CGPoint!
     
-    private var cellLabeller: Int = 1
+    fileprivate var cellLabeller: Int = 1
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -194,15 +218,15 @@ class MazeView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
     }
     
-    func setDimension(dimension: Int) {
+    func setDimension(_ dimension: Int) {
         self.dimension = dimension
     }
     
-    func addCellNorth(north: Bool, East east: Bool, South south: Bool, West west: Bool, AtX x: Int, Y y: Int) {
+    func addCellNorth(_ north: Bool, East east: Bool, South south: Bool, West west: Bool, AtX x: Int, Y y: Int) {
         
         let xPos: CGFloat = bounds.minX + (CGFloat(x) * cellWidth)
         let yPos: CGFloat = bounds.minY + (CGFloat(y) * cellHeight)
@@ -223,7 +247,7 @@ class MazeView: UIView {
         addSubview(newCell)
     }
     
-    func detectCollisionWithRect(rect: CGRect) -> Collision
+    func detectCollisionWithRect(_ rect: CGRect) -> Collision
     {
         // get the cell that rect's center is in
         
@@ -358,14 +382,14 @@ class MazeView: UIView {
         }
     }
     
-    func placeGoalX(x: Int, Y y: Int) {
+    func placeGoalX(_ x: Int, Y y: Int) {
         cells["\(x),\(y)"]?.goal = true
     }
     
-    func getCellPosX(x: Int, Y y: Int) -> CGPoint
+    func getCellPosX(_ x: Int, Y y: Int) -> CGPoint
     {
         let cell: MazeViewCell! = cells["\(x),\(y)"]
-        let viewIndex: Int? = subviews.indexOf(cell)
+        let viewIndex: Int? = subviews.index(of: cell)
         if viewIndex != nil
         {
             let view: UIView = subviews[viewIndex!]

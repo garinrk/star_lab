@@ -10,12 +10,12 @@ import UIKit
 
 protocol NewGameViewControllerDelegate: class {
     func newGamePressedBack()
-    func newGamePressedStart(name: String, difficulty: DifficultyMode)
+    func newGamePressedStart(_ name: String, difficulty: DifficultyMode)
 }
 
 class NewGameViewController : UIViewController, UITextFieldDelegate{
     
-    var screenRect = UIScreen.mainScreen().bounds
+    var screenRect = UIScreen.main.bounds
     var diff : DifficultyMode? = nil
 
     var newGameView = NewGameView()
@@ -28,26 +28,26 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     weak var delegate: NewGameViewControllerDelegate? = nil
     
     var backgroundImage = UIImage(named: "space1.jpg")
-    var backgroundImageView = UIImageView(frame: CGRectZero)
+    var backgroundImageView = UIImageView(frame: CGRect.zero)
     
     override func viewDidLoad() {
         
-        newGameView.frame = UIScreen.mainScreen().bounds
+        newGameView.frame = UIScreen.main.bounds
         backgroundImageView.frame = screenRect
         backgroundImageView.image = backgroundImage
         self.view.addSubview(backgroundImageView)
         self.view.addSubview(newGameView)
 
         newGameView.backButton
-            .addTarget(self, action: #selector(NewGameViewController.BackButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+            .addTarget(self, action: #selector(NewGameViewController.BackButtonPressed), for: UIControlEvents.touchUpInside)
         newGameView.startButton
-            .addTarget(self, action: #selector(NewGameViewController.StartButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-        newGameView.easyButton.addTarget(self, action: #selector(NewGameViewController.EasyButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
-        newGameView.hardButton.addTarget(self, action: #selector(NewGameViewController.HardButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+            .addTarget(self, action: #selector(NewGameViewController.StartButtonPressed), for: UIControlEvents.touchUpInside)
+        newGameView.easyButton.addTarget(self, action: #selector(NewGameViewController.EasyButtonPressed), for: UIControlEvents.touchUpInside)
+        newGameView.hardButton.addTarget(self, action: #selector(NewGameViewController.HardButtonPressed), for: UIControlEvents.touchUpInside)
         
         newGameView.gameNameTextEntry.delegate = self
         
-        newGameView.startButton.enabled = false
+        newGameView.startButton.isEnabled = false
     }
     
     
@@ -60,27 +60,27 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     }
     
     func EasyButtonPressed(){
-        diff = .Easy
-        newGameView.easyButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        newGameView.easyButton.backgroundColor = UIColor.greenColor()
+        diff = .easy
+        newGameView.easyButton.setTitleColor(UIColor.white, for: UIControlState())
+        newGameView.easyButton.backgroundColor = UIColor.green
         newGameView.hardButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        newGameView.hardButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        newGameView.hardButton.setTitleColor(UIColor.black, for: UIControlState())
         CheckForLegal()
-        _audioManager.PlayAudio(SoundType.Confirm)
+        _audioManager.PlayAudio(SoundType.confirm)
     }
     
     func HardButtonPressed(){
-        diff = .Hard
-        newGameView.hardButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        newGameView.hardButton.backgroundColor = UIColor.greenColor()
+        diff = .hard
+        newGameView.hardButton.setTitleColor(UIColor.white, for: UIControlState())
+        newGameView.hardButton.backgroundColor = UIColor.green
         newGameView.easyButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        newGameView.easyButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        newGameView.easyButton.setTitleColor(UIColor.black, for: UIControlState())
         CheckForLegal()
-        _audioManager.PlayAudio(SoundType.Confirm)
+        _audioManager.PlayAudio(SoundType.confirm)
 
     }
     //MARK: UITextFieldDelegate Methods
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
         CheckForLegal()
         
@@ -88,7 +88,7 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
     }
     
 
-    func textFieldDidBeginEditing(textField: UITextField) {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = nil
     }
     
@@ -101,11 +101,11 @@ class NewGameViewController : UIViewController, UITextFieldDelegate{
      */
     func CheckForLegal(){
         //did they set a difficulty?
-        if diff == .Hard || diff == .Easy {
+        if diff == .hard || diff == .easy {
             if newGameView.gameNameTextEntry.text != ""{
-                newGameView.startButton.backgroundColor = UIColor.greenColor()
-                newGameView.startButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-                newGameView.startButton.enabled = true
+                newGameView.startButton.backgroundColor = UIColor.green
+                newGameView.startButton.setTitleColor(UIColor.black, for: UIControlState())
+                newGameView.startButton.isEnabled = true
             }
         }
     }

@@ -7,13 +7,26 @@
 //
 
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 protocol EnemyViewDelegate: class {
     func getMazeDimension() -> Int
-    func getMazeCellPosX(x: Int, Y y: Int) -> CGPoint
-    func getMazeCellAtX(x: Int, Y y: Int) -> MazeViewCell?
+    func getMazeCellPosX(_ x: Int, Y y: Int) -> CGPoint
+    func getMazeCellAtX(_ x: Int, Y y: Int) -> MazeViewCell?
     func getMazeCellSize() -> CGSize
-    func detectCollisionFromEnemy(square: CGRect) -> Collision
+    func detectCollisionFromEnemy(_ square: CGRect) -> Collision
 	func getPlayerCell() -> MazeViewCell
     func reportPlayerCollision()
 }
@@ -22,7 +35,7 @@ class EnemyView: UIView {
     
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
-    private let moveSpeed: CGFloat = 24.0
+    fileprivate let moveSpeed: CGFloat = 24.0
 	
 	// 0 = totally dumb
 	// 1 = avoid walls
@@ -31,33 +44,33 @@ class EnemyView: UIView {
     
     ////////////////////////////////////////
     
-    private var xPos: CGFloat
-    private var yPos: CGFloat
+    fileprivate var xPos: CGFloat
+    fileprivate var yPos: CGFloat
     
-    private var cellX: Int = 0
-    private var cellY: Int = 0
+    fileprivate var cellX: Int = 0
+    fileprivate var cellY: Int = 0
     
-    private var horizVelocity: CGFloat
-    private var vertVelocity: CGFloat
+    fileprivate var horizVelocity: CGFloat
+    fileprivate var vertVelocity: CGFloat
     
-    private var lastTime: NSDate
+    fileprivate var lastTime: Date
     
-    private var enemyWidth: CGFloat!
-    private var enemyHeight: CGFloat!
+    fileprivate var enemyWidth: CGFloat!
+    fileprivate var enemyHeight: CGFloat!
     
-    private var playerCollisionBox: CGRect!
+    fileprivate var playerCollisionBox: CGRect!
     
     weak var delegate: EnemyViewDelegate? = nil
     
-    private var collided: Bool = false
+    fileprivate var collided: Bool = false
     var enemyImage = UIImage(named: "alien.png")
-    var backgroundImageView = UIImageView(frame: CGRectZero)
+    var backgroundImageView = UIImageView(frame: CGRect.zero)
     
     override init(frame: CGRect) {
         horizVelocity = 0.0
         vertVelocity = 0.0
         
-        lastTime = NSDate()
+        lastTime = Date()
         
         xPos = 0
         yPos = 0
@@ -73,8 +86,8 @@ class EnemyView: UIView {
     }
     
     
-    override func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         // get rid of previous views
         for sview in subviews {
@@ -261,12 +274,12 @@ class EnemyView: UIView {
         moveInDirection(possibleDirections[dirIndex])
     }
     
-	private func manhattanDistance(a: MazeViewCell, ToB b: MazeViewCell) -> Int
+	fileprivate func manhattanDistance(_ a: MazeViewCell, ToB b: MazeViewCell) -> Int
 	{
 		return abs(a.x - b.x) + abs(a.y - b.y)
 	}
 	
-	private func neighborDirections(cell: MazeViewCell) -> [Int]
+	fileprivate func neighborDirections(_ cell: MazeViewCell) -> [Int]
 	{
 		var result: [Int] = []
 		
@@ -387,7 +400,7 @@ class EnemyView: UIView {
 		moveTowardCell(nextStep)
 	}
 	
-	private func moveTowardCell(cell: MazeViewCell)
+	fileprivate func moveTowardCell(_ cell: MazeViewCell)
 	{
 		if cellX < cell.x
 		{
@@ -407,7 +420,7 @@ class EnemyView: UIView {
 		}		
 	}
 	
-    private func moveInDirection(direction: Int)
+    fileprivate func moveInDirection(_ direction: Int)
     {
         switch direction {
         case 0:
@@ -431,15 +444,15 @@ class EnemyView: UIView {
         }
     }
 
-    func updatePlayerCollisionLoc(location: CGRect)
+    func updatePlayerCollisionLoc(_ location: CGRect)
     {
         playerCollisionBox = location
     }
 
     func update()
     {
-        let currentTime: NSDate = NSDate()
-        let deltaTime: CGFloat = CGFloat(currentTime.timeIntervalSinceDate(lastTime))
+        let currentTime: Date = Date()
+        let deltaTime: CGFloat = CGFloat(currentTime.timeIntervalSince(lastTime))
         lastTime = currentTime
         
 //        print ("deltaTime: \(deltaTime)")

@@ -15,11 +15,11 @@ protocol OptionsViewControllerDelegate: class {
 class OptionsViewController : UIViewController{
 
     var optionsView : OptionsView!
-    var screenRect = UIScreen.mainScreen().bounds
-    var diff : DifficultyMode? = .Easy
+    var screenRect = UIScreen.main.bounds
+    var diff : DifficultyMode? = .easy
     
     var backgroundImage = UIImage(named: "space3.jpg")
-    var backgroundImageView = UIImageView(frame: CGRectZero)
+    var backgroundImageView = UIImageView(frame: CGRect.zero)
     
     var _audio : AudioManager = AudioManager.sharedInstance
     var _scoreManager : ScoreManager = ScoreManager.sharedInstance
@@ -39,14 +39,14 @@ class OptionsViewController : UIViewController{
         //first
         
         //set up sliders with handler methods
-        optionsView.musicSlider.addTarget(self, action: #selector(OptionsViewController.MusicSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
-        optionsView.fxSlider.addTarget(self, action: #selector(OptionsViewController.FxSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
+        optionsView.musicSlider.addTarget(self, action: #selector(OptionsViewController.MusicSliderChanged), for: UIControlEvents.valueChanged)
+        optionsView.fxSlider.addTarget(self, action: #selector(OptionsViewController.FxSliderChanged), for: UIControlEvents.valueChanged)
         
         optionsView.fxSlider.value = _audio.effectsVolume
         optionsView.musicSlider.value = _audio.mainMusicVolume
 
         optionsView.backButton
-            .addTarget(self, action: #selector(OptionsViewController.BackButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+            .addTarget(self, action: #selector(OptionsViewController.BackButtonPressed), for: UIControlEvents.touchUpInside)
 
     }
     

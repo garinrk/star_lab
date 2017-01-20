@@ -12,16 +12,16 @@ class LevelCompleteView : UIView{
     var completeLabel = UILabel()
     var scoreLabel = UILabel()
     var lifetimeScore = UILabel()
-    var screenRect = UIScreen.mainScreen().bounds
+    var screenRect = UIScreen.main.bounds
     var lifetimeScoreAmt : Int = 0
 
     var titleImage = UIImage(named: "missioncomplete.png")
-    var titleImageBackground = UIImageView(frame: CGRectZero)
+    var titleImageBackground = UIImageView(frame: CGRect.zero)
     
     var currentScoreImage = UIImage(named: "lifetimescore.png")
-    var currentScoreImageBackground = UIImageView(frame: CGRectZero)
+    var currentScoreImageBackground = UIImageView(frame: CGRect.zero)
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
 
         titleImageBackground.image = titleImage
         self.addSubview(titleImageBackground)
@@ -33,9 +33,9 @@ class LevelCompleteView : UIView{
         
         lifetimeScore.text = lifetimeScoreAmt.description
         lifetimeScore.adjustsFontSizeToFitWidth = true
-        lifetimeScore.textAlignment = .Center
-        lifetimeScore.textColor = UIColor.redColor()
-        lifetimeScore.font = UIFont.systemFontOfSize(30)
+        lifetimeScore.textAlignment = .center
+        lifetimeScore.textColor = UIColor.red
+        lifetimeScore.font = UIFont.systemFont(ofSize: 30)
         lifetimeScore.center.x = screenRect.midX
         self.addSubview(lifetimeScore)
         lifetimeScore.translatesAutoresizingMaskIntoConstraints = false
@@ -43,14 +43,14 @@ class LevelCompleteView : UIView{
         
         let views: [String:UIView] = ["main":titleImageBackground, "scoreImage":currentScoreImageBackground, "score":lifetimeScore]
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[main]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[scoreImage]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-80-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[main]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[scoreImage]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         
-        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-200-[main]-80-[scoreImage]-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-200-[main]-80-[scoreImage]-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         
-        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0.0))
-        addConstraint(NSLayoutConstraint(item: currentScoreImageBackground, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: currentScoreImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 7.2, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.width, multiplier: 0.2, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: currentScoreImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: currentScoreImageBackground, attribute: NSLayoutAttribute.height, multiplier: 7.2, constant: 0.0))
         
         
     }

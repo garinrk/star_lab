@@ -9,7 +9,7 @@
 import Foundation
 
 protocol GameTimerDelegate: class {
-    func updateTime(time: Int)
+    func updateTime(_ time: Int)
 }
 
 class GameTimer{
@@ -17,9 +17,9 @@ class GameTimer{
     //get the timelimit from the game manager
     let timeLimit: Int
     var currentTime: Int
-    var gameTimer : NSTimer!
+    var gameTimer : Timer!
     
-    private var paused: Bool = false
+    fileprivate var paused: Bool = false
     
     weak var delegate: GameTimerDelegate? = nil
     
@@ -29,7 +29,7 @@ class GameTimer{
     }
     
     func StartTimer() {
-        gameTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameTimer.TimerUpdate), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(GameTimer.TimerUpdate), userInfo: nil, repeats: true)
     }
     
     @objc func TimerUpdate(){

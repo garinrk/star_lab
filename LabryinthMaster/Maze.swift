@@ -27,7 +27,7 @@ class Maze {
     
     let dimension: Int = 30
     var cells: [MazeCell] = []
-    private var visited: [Bool]?
+    fileprivate var visited: [Bool]?
     
     init ()
     {
@@ -52,7 +52,7 @@ class Maze {
         carvePassagesFromX(0, Y: 0)
     }
     
-    func clearRandomWalls(amt: Int)
+    func clearRandomWalls(_ amt: Int)
     {
         for _ in 0 ..< amt {
             
@@ -103,7 +103,7 @@ class Maze {
     
     
     
-    private func carvePassagesFromX(x:Int, Y y:Int)
+    fileprivate func carvePassagesFromX(_ x:Int, Y y:Int)
     {
         markVisitedX(x, Y: y)
         
@@ -123,7 +123,7 @@ class Maze {
     }
     
 
-    private func cellAtX(x: Int, Y y: Int) -> MazeCell?
+    fileprivate func cellAtX(_ x: Int, Y y: Int) -> MazeCell?
     {
         if x < 0 || y < 0 || x >= dimension || y >= dimension
         {
@@ -135,7 +135,7 @@ class Maze {
     }
     
     /// dir: 0 = north, 1 = east, 2 = south, 3 = west
-    private func neighborCell(cell: MazeCell, InDir dir: Int) -> MazeCell?
+    fileprivate func neighborCell(_ cell: MazeCell, InDir dir: Int) -> MazeCell?
     {
         switch dir {
         case 0:
@@ -152,7 +152,7 @@ class Maze {
     }
     
     
-    private func randomDirections() -> [Int]
+    fileprivate func randomDirections() -> [Int]
     {
         let first: Int = Int(arc4random_uniform(4))
  
@@ -173,7 +173,7 @@ class Maze {
         return [first, second, third, fourth]
     }
 
-    private func clearWallInCell(cell: MazeCell, InDir dir: Int)
+    fileprivate func clearWallInCell(_ cell: MazeCell, InDir dir: Int)
     {        
         let neighbor: MazeCell? = neighborCell(cell, InDir: dir)
         
@@ -199,7 +199,7 @@ class Maze {
         }
     }
     
-    private func getVisitedX(x: Int, Y y: Int) -> Bool
+    fileprivate func getVisitedX(_ x: Int, Y y: Int) -> Bool
     {
         if visited == nil{
             print ("Something extraordinarily bad happened")
@@ -210,7 +210,7 @@ class Maze {
         
     }
     
-    private func markVisitedX(x: Int, Y y: Int)
+    fileprivate func markVisitedX(_ x: Int, Y y: Int)
     {
         if visited == nil{
             return

@@ -17,7 +17,7 @@ class PauseViewController : UIViewController{
     
     var pauseView  = PauseView()
 
-    var screenRect = UIScreen.mainScreen().bounds
+    var screenRect = UIScreen.main.bounds
     
     var _audio : AudioManager = AudioManager.sharedInstance
     var _gameManager : GameManager = GameManager.sharedInstance
@@ -25,23 +25,23 @@ class PauseViewController : UIViewController{
     weak var delegate: PauseViewDelegate? = nil
     
     var backgroundImage = UIImage(named: "halo.jpg")
-    var backgroundImageView = UIImageView(frame: CGRectZero)
+    var backgroundImageView = UIImageView(frame: CGRect.zero)
     
     override func viewDidLoad() {
         
-        pauseView.frame = UIScreen.mainScreen().bounds
+        pauseView.frame = UIScreen.main.bounds
         backgroundImageView.frame = screenRect
         backgroundImageView.image = backgroundImage
         pauseView.addSubview(backgroundImageView)
         self.view.addSubview(pauseView)
         
         //set up sliders with handler methods
-        pauseView.musicSlider.addTarget(self, action: #selector(PauseViewController.MusicSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
-        pauseView.fxSlider.addTarget(self, action: #selector(PauseViewController.FxSliderChanged), forControlEvents: UIControlEvents.ValueChanged)
+        pauseView.musicSlider.addTarget(self, action: #selector(PauseViewController.MusicSliderChanged), for: UIControlEvents.valueChanged)
+        pauseView.fxSlider.addTarget(self, action: #selector(PauseViewController.FxSliderChanged), for: UIControlEvents.valueChanged)
         pauseView.resumeButton
-            .addTarget(self, action: #selector(PauseViewController.ResumeButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+            .addTarget(self, action: #selector(PauseViewController.ResumeButtonPressed), for: UIControlEvents.touchUpInside)
         pauseView.quitButton
-            .addTarget(self, action: #selector(PauseViewController.QuitButtonPressed), forControlEvents: UIControlEvents.TouchUpInside)
+            .addTarget(self, action: #selector(PauseViewController.QuitButtonPressed), for: UIControlEvents.touchUpInside)
           
         pauseView.fxSlider.value = _audio.effectsVolume
         pauseView.musicSlider.value = _audio.mainMusicVolume

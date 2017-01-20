@@ -9,13 +9,13 @@
 import UIKit
 
 enum DifficultyMode: Int {
-    case Easy
-    case Hard
+    case easy
+    case hard
 }
 
 protocol GameManagerDelegate: class {
-    func GameOverCall(score: Int)
-    func WinGameCall(score: Int)
+    func GameOverCall(_ score: Int)
+    func WinGameCall(_ score: Int)
 }
 
 
@@ -24,23 +24,23 @@ class GameManager: GameLoopDelegate {
     
     //// GAMEPLAY ADJUSTMENT VARIABLES /////
     
-    private let enemyAmt: Int = 4
-    private let maxEnemyAmt: Int = 10
+    fileprivate let enemyAmt: Int = 4
+    fileprivate let maxEnemyAmt: Int = 10
     let coinAmt: Int = 30
-    private let coinScoreAmt: Int = 1
-    private let wallsToClear: Int = 350
-    private let levelProgressionAmt: Int = 50
-    private let gameTimeAmt: Int = 90
-    private let timeProgressionAmt: Int = 5
-    private let minGameTime: Int = 45
+    fileprivate let coinScoreAmt: Int = 1
+    fileprivate let wallsToClear: Int = 350
+    fileprivate let levelProgressionAmt: Int = 50
+    fileprivate let gameTimeAmt: Int = 90
+    fileprivate let timeProgressionAmt: Int = 5
+    fileprivate let minGameTime: Int = 45
     
     ////////////////////////////////////////
     
     weak var delegate: GameManagerDelegate? = nil
     
-    let screenRect = UIScreen.mainScreen().bounds
+    let screenRect = UIScreen.main.bounds
     
-    var mode: DifficultyMode = DifficultyMode.Easy
+    var mode: DifficultyMode = DifficultyMode.easy
     var playerName: String = ""
     var lifetimeScore: Int = 0
     var currentScore: Int = 0
@@ -57,10 +57,10 @@ class GameManager: GameLoopDelegate {
     
     let gameLoop: GameLoop = GameLoop()
     
-    private var dead: Bool = false
-    private var isPaused : Bool = false
+    fileprivate var dead: Bool = false
+    fileprivate var isPaused : Bool = false
     
-    private var gameOverController : GameOverViewController?
+    fileprivate var gameOverController : GameOverViewController?
     
     var _scoreManager : ScoreManager = ScoreManager.sharedInstance
     
@@ -114,7 +114,7 @@ class GameManager: GameLoopDelegate {
         for _ in 0 ..< enemiesToMake {
             let newEnemy: EnemyView = EnemyView(frame: CGRect(x: 0, y: 50.0, width: screenRect.width, height: screenRect.width))
             
-            if mode == .Easy {
+            if mode == .easy {
                 newEnemy.AIMode = 1
             }
             else {
@@ -180,7 +180,7 @@ class GameManager: GameLoopDelegate {
         gameLoop.stop()
         
         // update scoremanager with lifetime score
-        _scoreManager.addScore(ScoreInfo(name: playerName, score: lifetimeScore, difficulty: mode, timestamp: NSDate()))
+        _scoreManager.addScore(ScoreInfo(name: playerName, score: lifetimeScore, difficulty: mode, timestamp: Date()))
         
         delegate?.GameOverCall(lifetimeScore)
         lifetimeScore = 0
@@ -195,7 +195,7 @@ class GameManager: GameLoopDelegate {
         gameLoop.stop()
         currentScore = 0
         currentLevel = 1
-        _scoreManager.addScore(ScoreInfo(name: playerName, score: lifetimeScore, difficulty: mode, timestamp: NSDate()))
+        _scoreManager.addScore(ScoreInfo(name: playerName, score: lifetimeScore, difficulty: mode, timestamp: Date()))
         lifetimeScore = 0
     }
     
