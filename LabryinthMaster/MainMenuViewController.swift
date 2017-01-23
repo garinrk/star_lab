@@ -14,69 +14,52 @@ protocol MainMenuViewControllerDelegate: class {
 
 class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, OptionsViewControllerDelegate, HighScoreViewControllerDelegate {
     
-    var mmview = MainMenuView()
-    
-    var ngvc : NewGameViewController?
-    var ovc : OptionsViewController?
-    var hsvc : HighScoreViewController?
-    var newGameButton = UIButton(type: UIButtonType.custom)
-    var optionsButton = UIButton(type: UIButtonType.custom)
-    var scoresButton = UIButton(type: UIButtonType.custom)
-    var screenRect : CGRect = UIScreen.main.bounds
-    var _audioManager : AudioManager = AudioManager.sharedInstance
-    
+    var audioManager : AudioManager = AudioManager.sharedInstance
     weak var delegate: MainMenuViewControllerDelegate? = nil
-    var backgroundImage = UIImage(named: "space2.jpg")
-    var backgroundImageView = UIImageView(frame: CGRect.zero)
+    
+    fileprivate var contentView: MainMenuView {
+        return view as! MainMenuView
+    }
+    
+    override func loadView() {
+        view = MainMenuView()
+    }
     
     override func viewDidLoad() {
-        //set view
-        mmview.frame = UIScreen.main.bounds
-        mmview.backgroundColor = UIColor(white: 0, alpha: 0)
-        backgroundImageView.frame = screenRect
-        backgroundImageView.image = backgroundImage
-        self.view.addSubview(backgroundImageView)
-        self.view.addSubview(mmview)
+        audioManager.PlayAudio(type: SoundType.mainMusic)
         
-        //play music
-        _audioManager.PlayAudio(type: SoundType.mainMusic)
-        
-        mmview.newGameButton
+        contentView.newGameButton
             .addTarget(self, action: #selector(MainMenuViewController.NewGameButtonPressed), for: UIControlEvents.touchUpInside)
-        
-        mmview.optionsButton
+        contentView.optionsButton
             .addTarget(self, action: #selector(MainMenuViewController.OptionsButtonPressed), for: UIControlEvents.touchUpInside)
-        
-        mmview.scoresButton
+        contentView.scoresButton
             .addTarget(self, action: #selector(MainMenuViewController.ScoresButtonPressed), for: UIControlEvents.touchUpInside)
-        
-        self.view.addSubview(mmview)
     }
     
     func NewGameButtonPressed(){
-        ngvc = NewGameViewController()
-        ngvc!.delegate = self
-        _audioManager.PlayAudio(type: SoundType.confirm)
-        self.present(ngvc!, animated: false, completion: nil)
+        let ngvc = NewGameViewController()
+        ngvc.delegate = self
+        audioManager.PlayAudio(type: SoundType.confirm)
+        self.present(ngvc, animated: false, completion: nil)
     }
     
     func OptionsButtonPressed(){
-        ovc = OptionsViewController()
-        ovc!.delegate = self
-        _audioManager.PlayAudio(type: SoundType.confirm)
-        self.present(ovc!, animated: false, completion: nil)
+        let ovc = OptionsViewController()
+        ovc.delegate = self
+        audioManager.PlayAudio(type: SoundType.confirm)
+        self.present(ovc, animated: false, completion: nil)
     }
     
     func ScoresButtonPressed(){
-        hsvc = HighScoreViewController()
-        hsvc!.delegate = self
-        _audioManager.PlayAudio(type: SoundType.confirm)
-        self.present(hsvc!, animated: false, completion: nil)
+        let hsvc = HighScoreViewController()
+        hsvc.delegate = self
+        audioManager.PlayAudio(type: SoundType.confirm)
+        self.present(hsvc, animated: false, completion: nil)
     }
     
     // MARK: NewGameViewControllerDelegate functions
     func newGamePressedBack() {
-        _audioManager.PlayAudio(type: SoundType.confirm)
+        audioManager.PlayAudio(type: SoundType.confirm)
         self.dismiss(animated: false, completion: nil)
     }
     
@@ -87,13 +70,13 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     
     // MARK: OptionsViewControllerDelegate functions 
     func optionsPressedBack() {
-        _audioManager.PlayAudio(type: SoundType.confirm)
+        audioManager.PlayAudio(type: SoundType.confirm)
         self.dismiss(animated: false, completion: nil)
     }
     
     // MARK: HighScoreViewControllerDelegate functions
     func highScorePressedBack() {
-        _audioManager.PlayAudio(type: SoundType.confirm)
+        audioManager.PlayAudio(type: SoundType.confirm)
         self.dismiss(animated: false, completion: nil)
     }
 }

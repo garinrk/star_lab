@@ -165,13 +165,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0CC9EE9A1CD57F5E0031028A /* Managers */ = {
+		0CC9EE9A1CD57F5E0031028A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				185EFBFD1CCACE0300C3F3BB /* ScoreManager.swift */,
 				457B672E1CD426FE00EE127D /* AudioManager.swift */,
+				185EFC011CCACFA800C3F3BB /* GameManager.swift */,
 			);
-			name = Managers;
+			name = Shared;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -207,7 +208,7 @@
 			children = (
 				453B5D1D1CB85C0600FF61F8 /* AppDelegate.swift */,
 				4C6DE1CC1E32BBFB00182EE8 /* UI */,
-				0CC9EE9A1CD57F5E0031028A /* Managers */,
+				0CC9EE9A1CD57F5E0031028A /* Shared */,
 				453B5D311CB85C3800FF61F8 /* Game */,
 				4C6DE1C61E32BB7600182EE8 /* Assets */,
 				453B5D241CB85C0600FF61F8 /* Assets.xcassets */,
@@ -232,7 +233,6 @@
 			isa = PBXGroup;
 			children = (
 				4553B6E61CCAD3710010C746 /* GameViewController.swift */,
-				185EFC011CCACFA800C3F3BB /* GameManager.swift */,
 				453B5D301CB85C3200FF61F8 /* Game Objects */,
 				457B672B1CD426D600EE127D /* Device Managers */,
 				0CCC74AC1CD405F200FF9895 /* Helpers */,
