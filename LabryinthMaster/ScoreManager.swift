@@ -14,33 +14,29 @@ struct ScoreInfo {
     var difficulty: DifficultyMode
     var timestamp: Date
     
-    func toDict() -> [String:AnyObject]
-    {
+    func toDict() -> [String:AnyObject] {
         return ["Name":name as AnyObject, "Score": score as AnyObject, "Difficulty": difficulty.rawValue as AnyObject, "Time": timestamp as AnyObject]
     }
     
-    init(name: String, score: Int, difficulty: DifficultyMode, timestamp: Date)
-    {
+    init(name: String, score: Int, difficulty: DifficultyMode, timestamp: Date) {
         self.name = name
         self.score = score
         self.difficulty = difficulty
         self.timestamp = timestamp
     }
     
-    init(FromDict dict: [String:AnyObject])
-    {
+    init(FromDict dict: [String:AnyObject]) {
         let _name: String? = dict["Name"] as? String
         let _score: Int? = dict["Score"] as? Int
         let _difficulty: Int? = dict["Difficulty"] as? Int
         let _timestamp: Date? = dict["Time"] as? Date
         
-        if _name != nil && _score != nil && _difficulty != nil && _timestamp != nil{
+        if (_name != nil && _score != nil && _difficulty != nil && _timestamp != nil) {
             name = _name!
             score = _score!
             difficulty = DifficultyMode(rawValue: _difficulty!)!
             timestamp = _timestamp!
-        }
-        else {
+        } else {
             print("FAILED TO INITIALIZE FROM SAVED FILE")
             name = ""
             score = 0
@@ -52,29 +48,26 @@ struct ScoreInfo {
 
 class ScoreManager {
     
-    fileprivate var _effectsSoundLevel : Float?
-    fileprivate var _musicSoundLevel : Float?
+    var scores: [ScoreInfo] = [] // sorted based on score
+
     fileprivate var _gameDifficulty : DifficultyMode = .easy
     fileprivate var _lifetimeScore : Int?
     fileprivate var _levelsComplete : Int?
     fileprivate var _playerName : String?
     
-    class var sharedInstance : ScoreManager{
-        struct Static{
+    class var sharedInstance : ScoreManager {
+        struct Static {
             static var instance : ScoreManager?
         }
         
-        if(Static.instance == nil)
-        {
+        if (Static.instance == nil) {
             Static.instance = ScoreManager()
         }
         
         return Static.instance!
     }
     
-    var scores: [ScoreInfo] = [] // sorted based on score
-    
-    init(){
+    init() {
         let savedScores: NSMutableArray? = loadScores()
         if savedScores != nil {
             for score in savedScores!
@@ -85,34 +78,36 @@ class ScoreManager {
         }
     }
     
-    func addScore(_ newScore: ScoreInfo)
-    {
+    func addScore(_ newScore: ScoreInfo) {
         scores.append(newScore)
         
         // bubble new item up by score
         var keepGoing: Bool = true
         var i: Int = scores.count - 1
-        while keepGoing && i > 0{
-            if scores[i].score > scores[i-1].score
-            {
+        while keepGoing && i > 0 {
+            if scores[i].score > scores[i-1].score {
                 let tmp: ScoreInfo = scores[i-1]
                 scores[i-1] = scores[i]
                 scores[i] = tmp
                 i-=1
-            }
-            else
-            {
+            } else {
                 keepGoing = false
             }
         }
         saveScores()
     }
     
+    func generateRandomScores(numberOfScores: Int) {
+        for _ in 0..<numberOfScores {
+            let newScore = ScoreInfo(name: "fake person", score: Int(arc4random_uniform(1000)), difficulty: .easy, timestamp: Date())
+            addScore(newScore)
+        }
+    }
     
     /**
      Saves scoreinfos to the plist
      */
-    func saveScores(){
+    func saveScores() {
         let documentsDirectory: String? = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String?
         let filePath: String? = (documentsDirectory)! + "/LabScores.plist"
         

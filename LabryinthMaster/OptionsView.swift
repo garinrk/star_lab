@@ -10,8 +10,8 @@ import UIKit
 
 class OptionsView : UIView {
     
-    let musicSlider : UISlider = UISlider()
-    let fxSlider : UISlider = UISlider()
+    let musicSlider = UISlider()
+    let fxSlider = UISlider()
     let backButton = UIButton(type: UIButtonType.custom)
     
     fileprivate let background = UIImageView(image: UIImage(named: "space3.jpg"))
