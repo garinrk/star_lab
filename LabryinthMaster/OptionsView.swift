@@ -8,74 +8,98 @@
 
 import UIKit
 
-class OptionsView : UIView{
+class OptionsView : UIView {
     
-    var musicSlider : UISlider = UISlider()
-    var fxSlider : UISlider = UISlider()
-    var backButton = UIButton(type: UIButtonType.custom)
+    let musicSlider : UISlider = UISlider()
+    let fxSlider : UISlider = UISlider()
+    let backButton = UIButton(type: UIButtonType.custom)
     
-    var titleImage = UIImage(named: "options.png")
-    var titleImageBackground = UIImageView(frame: CGRect.zero)
-    
-    var musicImage = UIImage(named: "musiclevel.png")
-    var musicImageBackground = UIImageView()
-    
-    var fxImage = UIImage(named: "fxlevel.png")
-    var fxImageBackground = UIImageView()
-    
-    var screenRect = UIScreen.main.bounds
+    fileprivate let background = UIImageView(image: UIImage(named: "space3.jpg"))
+    fileprivate let title = UIImageView(image: UIImage(named: "options.png"))
+    fileprivate let musicLabel = UIImageView(image: UIImage(named: "musiclevel.png"))
+    fileprivate let fxLabel = UIImageView(image: UIImage(named: "fxlevel.png"))
+    fileprivate let stackView = UIStackView()
     
     override init(frame: CGRect) {
         super.init(frame:frame)
         
-        titleImageBackground.image = titleImage
-        addSubview(titleImageBackground)
-        titleImageBackground.translatesAutoresizingMaskIntoConstraints = false
-        
-        musicImageBackground.image = musicImage
-        addSubview(musicImageBackground)
-        musicImageBackground.translatesAutoresizingMaskIntoConstraints = false
+        background.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(background)
 
-        fxImageBackground.image = fxImage
-        addSubview(fxImageBackground)
-        fxImageBackground.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.distribution = .fillProportionally
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(stackView)
         
-        backButton.setTitle("Back to Menu", for: UIControlState())
+        title.contentMode = .scaleAspectFit
+        title.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(title)
+        
+        musicLabel.contentMode = .scaleAspectFit
+        musicLabel.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(musicLabel)
+        
+        musicSlider.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(musicSlider)
+
+        fxLabel.contentMode = .scaleAspectFit
+        fxLabel.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(fxLabel)
+        
+        fxSlider.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(fxSlider)
+
+        backButton.setTitle("Back", for: UIControlState())
         backButton.setTitleColor(UIColor.white, for: UIControlState())
         backButton.layer.borderWidth = 5
         backButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         backButton.layer.cornerRadius = 5
         backButton.layer.borderColor = UIColor.white.cgColor
-        addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(backButton)
         
-        addSubview(musicSlider)
-        musicSlider.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(fxSlider)
-        fxSlider.translatesAutoresizingMaskIntoConstraints = false
+        let views: [String:UIView] = ["background":background, "stackView":stackView, "title":title, "back":backButton, "music":musicLabel, "musicSlider":musicSlider, "fx":fxLabel, "fxSlider":fxSlider]
+        let metrics: [String:CGFloat] = ["sp":20, "vsp":OptionsView.verticalSpacer, "bw":OptionsView.buttonWidth, "bh":OptionsView.buttonHeight, "lw":OptionsView.labelWidth, "tw":OptionsView.titleWidth]
         
-        let views: [String:UIView] = ["title":titleImageBackground, "back":backButton, "music":musicImageBackground, "musicSlider":musicSlider, "fx":fxImageBackground, "fxSlider":fxSlider]
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[background]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[background]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[title]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-100-[music(==musicSlider)]-100-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-100-[musicSlider]-100-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-100-[fx(==musicSlider)]-100-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-100-[fxSlider(==musicSlider)]-100-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[back]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-vsp-[stackView]-vsp-|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-[title]-40-[music]-[musicSlider]-[fx]-[fxSlider]-80-[back(<=100,>=50)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-
-        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.height, multiplier: 2.2, constant: 0.0))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[back(bw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-sp-[back(bh)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraint(NSLayoutConstraint(item: backButton, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         
-        addConstraint(NSLayoutConstraint(item: musicImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: musicImageBackground, attribute: NSLayoutAttribute.height, multiplier: 3.6, constant: 0.0))
-        
-        addConstraint(NSLayoutConstraint(item: fxImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: fxImageBackground, attribute: NSLayoutAttribute.height, multiplier: 2.7, constant: 0.0))
-    
-//        addConstraint(NSLayoutConstraint(item: backButton, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: backButton, attribute: NSLayoutAttribute.Width, multiplier: 0.2, constant: 0.0))
-        
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[title(tw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[music(lw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[musicSlider(lw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[fx(lw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[fxSlider(lw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    static var verticalSpacer: CGFloat {
+        return UIScreen.main.bounds.height / 4
+    }
+    
+    static var titleWidth: CGFloat {
+        return UIScreen.main.bounds.width * 0.9
+    }
+    
+    static var labelWidth: CGFloat {
+        return UIScreen.main.bounds.width / 2
+    }
+    
+    static var buttonWidth: CGFloat {
+        return UIScreen.main.bounds.width / 2.5
+    }
+    
+    static var buttonHeight: CGFloat {
+        return UIScreen.main.bounds.height / 15
     }
 }
