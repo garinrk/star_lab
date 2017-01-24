@@ -52,7 +52,6 @@ class PauseViewController : UIViewController{
     func MusicSliderChanged(){
 //        print("Music: \(musicSlider!.value)")
         _audio.mainMusicVolume = pauseView.musicSlider.value
-        _audio.SetVolumes()
     }
     
     /**
@@ -61,7 +60,6 @@ class PauseViewController : UIViewController{
     func FxSliderChanged(){
 //        print("FX: \(fxSlider!.value)")
         _audio.effectsVolume = pauseView.fxSlider.value
-        _audio.SetVolumes()
     }
     
     func ResumeButtonPressed(){

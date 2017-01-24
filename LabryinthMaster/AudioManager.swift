@@ -20,20 +20,41 @@ enum SoundType{
 }
 
 class AudioManager : NSObject{
-    var mainMusicPlayer : AVAudioPlayer!
-    var confirmPlayer : AVAudioPlayer!
-    var enemyKillPlayer : AVAudioPlayer!
-    var coinPlayer : AVAudioPlayer!
-    var winPlayer : AVAudioPlayer!
-    var outOfTimePlayer : AVAudioPlayer!
-    var startLevelPlayer : AVAudioPlayer!
+    fileprivate var mainMusicPlayer: AVAudioPlayer!
+    fileprivate var confirmPlayer: AVAudioPlayer!
+    fileprivate var enemyKillPlayer: AVAudioPlayer!
+    fileprivate var coinPlayer: AVAudioPlayer!
+    fileprivate var winPlayer: AVAudioPlayer!
+    fileprivate var outOfTimePlayer: AVAudioPlayer!
+    fileprivate var startLevelPlayer: AVAudioPlayer!
     
-    var mainMusicVolume : Float = 0.25
-    var effectsVolume : Float = 0.5
+    fileprivate var _mainMusicVolume: Float = 0.25
+    var mainMusicVolume: Float {
+        get {
+            return _mainMusicVolume
+        }
+        
+        set {
+            _mainMusicVolume = newValue
+            mainMusicPlayer.volume = _mainMusicVolume
+        }
+    }
     
-    class var sharedInstance : AudioManager{
+    fileprivate var _effectsVolume: Float = 0.5
+    var effectsVolume: Float {
+        get {
+            return _effectsVolume
+        }
+        
+        set {
+            _effectsVolume = newValue
+            updateVolumeLevels()
+        }
+    }
+    
+    class var sharedInstance: AudioManager{
         struct Static{
-            static var instance : AudioManager?
+            static var instance: AudioManager?
         }
         
         if(Static.instance == nil)
@@ -53,7 +74,7 @@ class AudioManager : NSObject{
     /**
      Loads the appropriate files into their respective players, a setup
      */
-    func LoadFilesIntoPlayers(){
+    fileprivate func LoadFilesIntoPlayers(){
         
         //Step 1: Get files
         guard let mainMusicURL = Bundle.main.url(forResource: "mainMusic", withExtension: "mp3") else {
@@ -231,11 +252,9 @@ class AudioManager : NSObject{
     }
     
     /**
-     Sets the volumes of the audio players to whatever is in the current
-     global properties
+     Sets the volumes of the audio players to match current effects volume
      */
-    func SetVolumes(){
-        mainMusicPlayer.volume = mainMusicVolume
+    fileprivate func updateVolumeLevels(){
         confirmPlayer.volume = effectsVolume
         enemyKillPlayer.volume = effectsVolume
         coinPlayer.volume = effectsVolume
@@ -248,7 +267,7 @@ class AudioManager : NSObject{
      Sets up audio session for players to be able to play
      audio
      */
-    func SetupAudioSession(){
+    fileprivate func SetupAudioSession(){
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.mixWithOthers)

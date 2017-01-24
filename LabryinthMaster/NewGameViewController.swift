@@ -49,7 +49,7 @@ class NewGameViewController : UIViewController, UITextFieldDelegate {
      Checks to make sure that a difficulty has been set, and that a player's name has
      been input into the text field. Enables the start game button if so.
      */
-    func validateAndUpdate() {
+    fileprivate func validateAndUpdate() {
         if (difficulty != nil && contentView.nameTextField.text != "") {
             contentView.startButton.backgroundColor = UIColor.green
             contentView.startButton.isEnabled = true
@@ -61,15 +61,15 @@ class NewGameViewController : UIViewController, UITextFieldDelegate {
     
     //MARK:- button targets
     
-    func backButtonPressed() {
+    @objc fileprivate func backButtonPressed() {
         delegate?.newGamePressedBack()
     }
     
-    func startButtonPressed() {
+    @objc fileprivate func startButtonPressed() {
         delegate?.newGamePressedStart(name: contentView.nameTextField.text!, difficulty: difficulty!)
     }
     
-    func easyButtonPressed() {
+    @objc fileprivate func easyButtonPressed() {
         difficulty = .easy
         contentView.easyButton.setTitleColor(UIColor.black, for: UIControlState())
         contentView.easyButton.backgroundColor = UIColor.green
@@ -79,7 +79,7 @@ class NewGameViewController : UIViewController, UITextFieldDelegate {
         audioManager.PlayAudio(type: SoundType.confirm)
     }
     
-    func hardButtonPressed() {
+    @objc fileprivate func hardButtonPressed() {
         difficulty = .hard
         contentView.hardButton.setTitleColor(UIColor.black, for: UIControlState())
         contentView.hardButton.backgroundColor = UIColor.green
@@ -89,19 +89,19 @@ class NewGameViewController : UIViewController, UITextFieldDelegate {
         audioManager.PlayAudio(type: SoundType.confirm)
     }
     
-    func screenTapped() {
+    @objc fileprivate func screenTapped() {
         contentView.endEditing(true)
         validateAndUpdate()
     }
     
     //MARK:- UITextFieldDelegate Methods
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         contentView.endEditing(true)
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    internal func textFieldDidEndEditing(_ textField: UITextField) {
         validateAndUpdate()
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainMenuView : UIView{
+class MainMenuView : UIView {
     
     let newGameButton = UIButton(type: UIButtonType.custom)
     let optionsButton = UIButton(type: UIButtonType.custom)
