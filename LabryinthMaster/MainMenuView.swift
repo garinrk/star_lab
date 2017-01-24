@@ -9,18 +9,16 @@
 import UIKit
 
 class MainMenuView : UIView{
-
-    let background = UIImageView(image: UIImage(named: "space2.jpg"))
-    
-    let titleContainer = UIView()
-    let title = UIImageView(image: UIImage(named: "title_logo.png"))
-    let authors = UIImageView(image: UIImage(named: "authors.png"))
     
     let newGameButton = UIButton(type: UIButtonType.custom)
     let optionsButton = UIButton(type: UIButtonType.custom)
     let scoresButton = UIButton(type: UIButtonType.custom)
     
-    let stackView = UIStackView()
+    fileprivate let background = UIImageView(image: UIImage(named: "space2.jpg"))
+    fileprivate let titleContainer = UIView()
+    fileprivate let title = UIImageView(image: UIImage(named: "title_logo.png"))
+    fileprivate let authors = UIImageView(image: UIImage(named: "authors.png"))
+    fileprivate let stackView = UIStackView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

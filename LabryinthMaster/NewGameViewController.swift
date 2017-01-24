@@ -13,92 +13,96 @@ protocol NewGameViewControllerDelegate: class {
     func newGamePressedStart(name: String, difficulty: DifficultyMode)
 }
 
-class NewGameViewController : UIViewController, UITextFieldDelegate{
-    var screenRect = UIScreen.main.bounds
-    var diff : DifficultyMode? = nil
-    var newGameView = NewGameView()
-    var _audioManager : AudioManager = AudioManager.sharedInstance
-    var gvc : GameViewController?
+class NewGameViewController : UIViewController, UITextFieldDelegate {
     
+    var difficulty : DifficultyMode? = nil
     weak var delegate: NewGameViewControllerDelegate? = nil
     
-    var backgroundImage = UIImage(named: "space1.jpg")
-    var backgroundImageView = UIImageView(frame: CGRect.zero)
+    fileprivate let audioManager: AudioManager = AudioManager.sharedInstance
+    fileprivate let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
+    
+    fileprivate var contentView: NewGameView {
+        return view as! NewGameView
+    }
+    
+    override func loadView() {
+        view = NewGameView()
+    }
     
     override func viewDidLoad() {
+        // gesture recognizer for dismissing keyboard when screen is tapped
+        tapRecognizer.addTarget(self, action: #selector(screenTapped))
+        tapRecognizer.cancelsTouchesInView = false
+        contentView.addGestureRecognizer(tapRecognizer)
         
-        newGameView.frame = UIScreen.main.bounds
-        backgroundImageView.frame = screenRect
-        backgroundImageView.image = backgroundImage
-        self.view.addSubview(backgroundImageView)
-        self.view.addSubview(newGameView)
-
-        newGameView.backButton
-            .addTarget(self, action: #selector(NewGameViewController.BackButtonPressed), for: UIControlEvents.touchUpInside)
-        newGameView.startButton
-            .addTarget(self, action: #selector(NewGameViewController.StartButtonPressed), for: UIControlEvents.touchUpInside)
-        newGameView.easyButton.addTarget(self, action: #selector(NewGameViewController.EasyButtonPressed), for: UIControlEvents.touchUpInside)
-        newGameView.hardButton.addTarget(self, action: #selector(NewGameViewController.HardButtonPressed), for: UIControlEvents.touchUpInside)
+        contentView.backButton.addTarget(self, action: #selector(backButtonPressed), for: UIControlEvents.touchUpInside)
+        contentView.startButton.addTarget(self, action: #selector(startButtonPressed), for: UIControlEvents.touchUpInside)
+        contentView.easyButton.addTarget(self, action: #selector(easyButtonPressed), for: UIControlEvents.touchUpInside)
+        contentView.hardButton.addTarget(self, action: #selector(hardButtonPressed), for: UIControlEvents.touchUpInside)
         
-        newGameView.gameNameTextEntry.delegate = self
+        contentView.nameTextField.delegate = self
         
-        newGameView.startButton.isEnabled = false
+        contentView.startButton.isEnabled = false
     }
     
-    
-    func BackButtonPressed(){
-        delegate?.newGamePressedBack()
-    }
-    
-    func StartButtonPressed(){
-        delegate?.newGamePressedStart(name: newGameView.gameNameTextEntry.text!, difficulty: diff!)
-    }
-    
-    func EasyButtonPressed(){
-        diff = .easy
-        newGameView.easyButton.setTitleColor(UIColor.white, for: UIControlState())
-        newGameView.easyButton.backgroundColor = UIColor.green
-        newGameView.hardButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        newGameView.hardButton.setTitleColor(UIColor.black, for: UIControlState())
-        CheckForLegal()
-        _audioManager.PlayAudio(type: SoundType.confirm)
-    }
-    
-    func HardButtonPressed(){
-        diff = .hard
-        newGameView.hardButton.setTitleColor(UIColor.white, for: UIControlState())
-        newGameView.hardButton.backgroundColor = UIColor.green
-        newGameView.easyButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        newGameView.easyButton.setTitleColor(UIColor.black, for: UIControlState())
-        CheckForLegal()
-        _audioManager.PlayAudio(type: SoundType.confirm)
-    }
-    //MARK: UITextFieldDelegate Methods
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)
-        CheckForLegal()
-        
-        return false
-    }
-    
-
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = nil
-    }
-
     /**
      Checks to make sure that a difficulty has been set, and that a player's name has
      been input into the text field. Enables the start game button if so.
      */
-    func CheckForLegal(){
-        //did they set a difficulty?
-        if diff == .hard || diff == .easy {
-            if newGameView.gameNameTextEntry.text != ""{
-                newGameView.startButton.backgroundColor = UIColor.green
-                newGameView.startButton.setTitleColor(UIColor.black, for: UIControlState())
-                newGameView.startButton.isEnabled = true
-            }
+    func validateAndUpdate() {
+        if (difficulty != nil && contentView.nameTextField.text != "") {
+            contentView.startButton.backgroundColor = UIColor.green
+            contentView.startButton.isEnabled = true
+        } else {
+            contentView.startButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+            contentView.startButton.isEnabled = false
         }
+    }
+    
+    //MARK:- button targets
+    
+    func backButtonPressed() {
+        delegate?.newGamePressedBack()
+    }
+    
+    func startButtonPressed() {
+        delegate?.newGamePressedStart(name: contentView.nameTextField.text!, difficulty: difficulty!)
+    }
+    
+    func easyButtonPressed() {
+        difficulty = .easy
+        contentView.easyButton.setTitleColor(UIColor.black, for: UIControlState())
+        contentView.easyButton.backgroundColor = UIColor.green
+        contentView.hardButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        contentView.hardButton.setTitleColor(UIColor.white, for: UIControlState())
+        validateAndUpdate()
+        audioManager.PlayAudio(type: SoundType.confirm)
+    }
+    
+    func hardButtonPressed() {
+        difficulty = .hard
+        contentView.hardButton.setTitleColor(UIColor.black, for: UIControlState())
+        contentView.hardButton.backgroundColor = UIColor.green
+        contentView.easyButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        contentView.easyButton.setTitleColor(UIColor.white, for: UIControlState())
+        validateAndUpdate()
+        audioManager.PlayAudio(type: SoundType.confirm)
+    }
+    
+    func screenTapped() {
+        contentView.endEditing(true)
+        validateAndUpdate()
+    }
+    
+    //MARK:- UITextFieldDelegate Methods
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        contentView.endEditing(true)
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        validateAndUpdate()
     }
 }
 

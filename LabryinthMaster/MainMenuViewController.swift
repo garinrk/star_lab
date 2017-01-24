@@ -14,8 +14,9 @@ protocol MainMenuViewControllerDelegate: class {
 
 class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, OptionsViewControllerDelegate, HighScoreViewControllerDelegate {
     
-    var audioManager : AudioManager = AudioManager.sharedInstance
     weak var delegate: MainMenuViewControllerDelegate? = nil
+
+    fileprivate let audioManager: AudioManager = AudioManager.sharedInstance
     
     fileprivate var contentView: MainMenuView {
         return view as! MainMenuView
@@ -57,7 +58,8 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
         self.present(hsvc, animated: false, completion: nil)
     }
     
-    // MARK: NewGameViewControllerDelegate functions
+    // MARK:- NewGameViewControllerDelegate functions
+    
     func newGamePressedBack() {
         audioManager.PlayAudio(type: SoundType.confirm)
         self.dismiss(animated: false, completion: nil)
@@ -68,13 +70,15 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
         delegate?.startNewGame(name: name, difficulty: difficulty)
     }
     
-    // MARK: OptionsViewControllerDelegate functions 
+    // MARK:- OptionsViewControllerDelegate functions
+    
     func optionsPressedBack() {
         audioManager.PlayAudio(type: SoundType.confirm)
         self.dismiss(animated: false, completion: nil)
     }
     
-    // MARK: HighScoreViewControllerDelegate functions
+    // MARK:- HighScoreViewControllerDelegate functions
+    
     func highScorePressedBack() {
         audioManager.PlayAudio(type: SoundType.confirm)
         self.dismiss(animated: false, completion: nil)
