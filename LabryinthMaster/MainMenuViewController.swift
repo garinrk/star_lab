@@ -27,6 +27,7 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
 //        audioManager.PlayAudio(type: rSoundType.mainMusic)
         
         contentView.newGameButton

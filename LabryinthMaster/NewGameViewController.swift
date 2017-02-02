@@ -30,6 +30,8 @@ class NewGameViewController : UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         // gesture recognizer for dismissing keyboard when screen is tapped
         tapRecognizer.addTarget(self, action: #selector(screenTapped))
         tapRecognizer.cancelsTouchesInView = false

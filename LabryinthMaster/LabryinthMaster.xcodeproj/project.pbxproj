@@ -455,7 +455,7 @@
 				TargetAttributes = {
 					453B5D191CB85C0600FF61F8 = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = HXH9MZBPRJ;
+						DevelopmentTeam = 398V3563NP;
 						LastSwiftMigration = 0820;
 					};
 				};
@@ -666,11 +666,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = HXH9MZBPRJ;
+				DEVELOPMENT_TEAM = 398V3563NP;
 				INFOPLIST_FILE = LabryinthMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster2;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -683,11 +683,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = HXH9MZBPRJ;
+				DEVELOPMENT_TEAM = 398V3563NP;
 				INFOPLIST_FILE = LabryinthMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster2;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.utah.cs4962.LabryinthMaster3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;

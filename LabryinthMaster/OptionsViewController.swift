@@ -28,6 +28,8 @@ class OptionsViewController : UIViewController {
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+
         contentView.fxSlider.value = audioManager.effectsVolume
         contentView.musicSlider.value = audioManager.mainMusicVolume
 
