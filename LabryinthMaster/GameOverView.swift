@@ -9,13 +9,20 @@
 import UIKit
 
 class GameOverView : UIView{
+    
+    var tryAgainButton = UIButton(type: UIButtonType.custom)
+    var quitButton = UIButton(type: UIButtonType.custom)
+
+    var backgroundImage = UIImage(named: "space5.jpg")
+    var backgroundImageView = UIImageView(frame: CGRect.zero)
+
     var gameOverLabel = UILabel()
     var scoreLabel = UILabel()
     var lifetimeScore = UILabel()
     var screenRect = UIScreen.main.bounds
     var _gameManager : GameManager = GameManager.sharedInstance
     
-    var lifetimeScoreAmt: Int = 0
+    var lifetimeScoreAmt : Int = 0
     
     var titleImage = UIImage(named: "gameover.png")
     var titleImageBackground = UIImageView(frame: CGRect.zero)
@@ -40,6 +47,21 @@ class GameOverView : UIView{
         lifetimeScore.textAlignment = .center
         self.addSubview(lifetimeScore)
         lifetimeScore.translatesAutoresizingMaskIntoConstraints = false
+        
+        quitButton.setTitle("Quit",for: UIControlState())
+        quitButton.setTitleColor(UIColor.white, for: UIControlState())
+        quitButton.layer.borderWidth = 5
+        quitButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        quitButton.layer.cornerRadius = 5
+        quitButton.layer.borderColor = UIColor.white.cgColor
+        
+        tryAgainButton.setTitle("Try Again", for: UIControlState())
+        tryAgainButton.setTitleColor(UIColor.white, for: UIControlState())
+        tryAgainButton.layer.borderWidth = 5
+        tryAgainButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        tryAgainButton.layer.cornerRadius = 5
+        tryAgainButton.layer.borderColor = UIColor.white.cgColor
+
         
         let views: [String:UIView] = ["main":titleImageBackground, "scoreImage":lifetimeScoreImageBackground, "score":lifetimeScore]
         
