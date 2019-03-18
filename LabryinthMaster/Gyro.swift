@@ -32,7 +32,7 @@ class Gyro{
                 self.HandleAccData(accelerometerData!.acceleration)
             }
             if(NSError != nil) {
-                print("\(NSError)")
+                print("\(NSError.debugDescription)")
             }
         }
     }

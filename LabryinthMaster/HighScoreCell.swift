@@ -36,7 +36,7 @@ class HighScoreCell: UITableViewCell {
     
     fileprivate let scoreLabel = UILabel()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.backgroundColor = UIColor.clear
@@ -51,8 +51,8 @@ class HighScoreCell: UITableViewCell {
         let views: [String:UIView] = ["label":scoreLabel]
         let metrics: [String:CGFloat] = ["sp":20]
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[label]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[label]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[label]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -10,9 +10,9 @@ import UIKit
 
 class MainMenuView : UIView {
     
-    let newGameButton = UIButton(type: UIButtonType.custom)
-    let optionsButton = UIButton(type: UIButtonType.custom)
-    let scoresButton = UIButton(type: UIButtonType.custom)
+    let newGameButton = UIButton(type: UIButton.ButtonType.custom)
+    let optionsButton = UIButton(type: UIButton.ButtonType.custom)
+    let scoresButton = UIButton(type: UIButton.ButtonType.custom)
     
     fileprivate let background = UIImageView(image: UIImage(named: "space2.jpg"))
     fileprivate let titleContainer = UIView()
@@ -37,9 +37,9 @@ class MainMenuView : UIView {
         titleContainer.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(titleContainer)
         
-        newGameButton.setTitle("New Game", for: UIControlState())
-        newGameButton.setTitleColor(UIColor.white, for: UIControlState())
-        newGameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
+        newGameButton.setTitle("New Game", for: UIControl.State())
+        newGameButton.setTitleColor(UIColor.white, for: UIControl.State())
+        newGameButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.center
         newGameButton.layer.borderWidth = 5
         newGameButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         newGameButton.layer.cornerRadius = 5
@@ -47,9 +47,9 @@ class MainMenuView : UIView {
         newGameButton.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(newGameButton)
         
-        optionsButton.setTitle("Options",for: UIControlState())
-        optionsButton.setTitleColor(UIColor.white, for: UIControlState())
-        optionsButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
+        optionsButton.setTitle("Options",for: UIControl.State())
+        optionsButton.setTitleColor(UIColor.white, for: UIControl.State())
+        optionsButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.center
         optionsButton.layer.borderWidth = 5
         optionsButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         optionsButton.layer.cornerRadius = 5
@@ -57,9 +57,9 @@ class MainMenuView : UIView {
         optionsButton.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(optionsButton)
         
-        scoresButton.setTitle("High Scores", for: UIControlState())
-        scoresButton.setTitleColor(UIColor.white, for: UIControlState())
-        scoresButton.contentHorizontalAlignment = UIControlContentHorizontalAlignment.center
+        scoresButton.setTitle("High Scores", for: UIControl.State())
+        scoresButton.setTitleColor(UIColor.white, for: UIControl.State())
+        scoresButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.center
         scoresButton.layer.borderWidth = 5
         scoresButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         scoresButton.layer.cornerRadius = 5
@@ -77,25 +77,25 @@ class MainMenuView : UIView {
         
         let metrics: [String:CGFloat] = ["sp" : MainMenuView.spacer, "bsp" : MainMenuView.bigSpacer, "vsp" : MainMenuView.verticalSpacer, "bw" : MainMenuView.buttonWidth, "bh" : MainMenuView.buttonHeight]
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[background]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[background]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[background]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[background]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-vsp-[stackView]-vsp-|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-vsp-[stackView]-vsp-|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
-        titleContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[title]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        titleContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-bsp-[authors]-bsp-|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        titleContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[title]-sp-[authors]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        titleContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[title]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        titleContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-bsp-[authors]-bsp-|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        titleContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[title]-sp-[authors]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
         // constrain button sizes
         
-        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[newGame(bw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[scores(bw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[options(bw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[newGame(bw)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[scores(bw)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[options(bw)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
-        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[newGame(bh)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[scores(bh)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[options(bh)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[newGame(bh)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[scores(bh)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[options(bh)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -10,7 +10,7 @@ import UIKit
 
 class HighScoreView : UIView {
     
-    let backButton = UIButton(type: UIButtonType.custom)
+    let backButton = UIButton(type: UIButton.ButtonType.custom)
     let scores = UITableView()
     
     fileprivate let background = UIImageView(image: UIImage(named: "space6.jpg"))
@@ -26,8 +26,8 @@ class HighScoreView : UIView {
         title.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(title)
         
-        backButton.setTitle("Back", for: UIControlState())
-        backButton.setTitleColor(UIColor.white, for: UIControlState())
+        backButton.setTitle("Back", for: UIControl.State())
+        backButton.setTitleColor(UIColor.white, for: UIControl.State())
         backButton.layer.borderWidth = 5
         backButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         backButton.layer.cornerRadius = 5
@@ -42,15 +42,15 @@ class HighScoreView : UIView {
         let views: [String:UIView] = ["background":background, "title":title, "back":backButton, "scores":scores]
         let metrics: [String:CGFloat] = ["sp":20, "bw":HighScoreView.buttonWidth, "bh":HighScoreView.buttonHeight, "ts":HighScoreView.buttonHeight + 40]
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[background]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[background]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[background]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[background]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
 
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[back(bw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-sp-[back(bh)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[back(bw)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-sp-[back(bh)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[title]-sp-|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[scores]-sp-|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-ts-[title]-sp-[scores]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[title]-sp-|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[scores]-sp-|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-ts-[title]-sp-[scores]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -33,9 +33,9 @@ class OptionsViewController : UIViewController {
         contentView.fxSlider.value = audioManager.effectsVolume
         contentView.musicSlider.value = audioManager.mainMusicVolume
 
-        contentView.musicSlider.addTarget(self, action: #selector(musicSliderChanged), for: UIControlEvents.valueChanged)
-        contentView.fxSlider.addTarget(self, action: #selector(fxSliderChanged), for: UIControlEvents.valueChanged)
-        contentView.backButton.addTarget(self, action: #selector(backButtonPressed), for: UIControlEvents.touchUpInside)
+        contentView.musicSlider.addTarget(self, action: #selector(musicSliderChanged), for: UIControl.Event.valueChanged)
+        contentView.fxSlider.addTarget(self, action: #selector(fxSliderChanged), for: UIControl.Event.valueChanged)
+        contentView.backButton.addTarget(self, action: #selector(backButtonPressed), for: UIControl.Event.touchUpInside)
     }
     
     @objc fileprivate func musicSliderChanged() {

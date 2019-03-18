@@ -31,11 +31,11 @@ class MainMenuViewController : UIViewController, NewGameViewControllerDelegate, 
 //        audioManager.PlayAudio(type: rSoundType.mainMusic)
         
         contentView.newGameButton
-            .addTarget(self, action: #selector(MainMenuViewController.NewGameButtonPressed), for: UIControlEvents.touchUpInside)
+            .addTarget(self, action: #selector(MainMenuViewController.NewGameButtonPressed), for: UIControl.Event.touchUpInside)
         contentView.optionsButton
-            .addTarget(self, action: #selector(MainMenuViewController.OptionsButtonPressed), for: UIControlEvents.touchUpInside)
+            .addTarget(self, action: #selector(MainMenuViewController.OptionsButtonPressed), for: UIControl.Event.touchUpInside)
         contentView.scoresButton
-            .addTarget(self, action: #selector(MainMenuViewController.ScoresButtonPressed), for: UIControlEvents.touchUpInside)
+            .addTarget(self, action: #selector(MainMenuViewController.ScoresButtonPressed), for: UIControl.Event.touchUpInside)
     }
     
     @objc fileprivate func NewGameButtonPressed() {

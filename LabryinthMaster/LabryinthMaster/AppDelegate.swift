@@ -25,20 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MainMenuViewControllerDel
     let mainMenuViewController = MainMenuViewController()
     let gameViewController = GameViewController()
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = mainNavController
 
         mainNavController.setNavigationBarHidden(true, animated: false)
-//        mainNavController.pushViewController(mainMenuViewController, animated: false)
-        
-        
-        
-        let lcvc = GameOverViewController()
-        mainNavController.pushViewController(lcvc, animated: false)
-
-        
+        mainNavController.pushViewController(mainMenuViewController, animated: false)
         
         mainMenuViewController.delegate = self
         gameViewController.delegate = self

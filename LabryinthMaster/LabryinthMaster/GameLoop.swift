@@ -15,26 +15,24 @@ protocol GameLoopDelegate: class {
 class GameLoop: NSObject {
     
     var displayLink: CADisplayLink!
-    var frameInterval: Int = 1
-    // 1 is equal to refresh rate of display
-    // see https://developer.apple.com/library/ios/documentation/QuartzCore/Reference/CADisplayLink_ClassRef/#//apple_ref/occ/instp/CADisplayLink/frameInterval
+    let frameRate = 60
     
     weak var delegate: GameLoopDelegate? = nil
     
-    func callUpdate() {
+    @objc func callUpdate() {
         delegate?.update()
 //        print ("frameInterval: \(frameInterval)")
     }
     
     func start() {
         displayLink = CADisplayLink(target: self, selector: #selector(GameLoop.callUpdate))
-        displayLink.frameInterval = frameInterval
-        displayLink.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
+        displayLink.preferredFramesPerSecond = frameRate
+        displayLink.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
     }
     
     func stop() {
         if displayLink != nil {
-            displayLink.remove(from: RunLoop.main, forMode: RunLoopMode.commonModes)
+            displayLink.remove(from: RunLoop.main, forMode: RunLoop.Mode.common)
         }
         displayLink = nil
 //        print("stopped")

@@ -33,7 +33,7 @@ class HighScoreViewController : UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        contentView.backButton.addTarget(self, action: #selector(backButtonPressed), for: UIControlEvents.touchUpInside)
+        contentView.backButton.addTarget(self, action: #selector(backButtonPressed), for: UIControl.Event.touchUpInside)
         
         tableView.register(HighScoreCell.self, forCellReuseIdentifier: "HighScoreCell")
         tableView.delegate = self

@@ -10,8 +10,8 @@ import UIKit
 
 class GameOverView : UIView{
     
-    var tryAgainButton = UIButton(type: UIButtonType.custom)
-    var quitButton = UIButton(type: UIButtonType.custom)
+    var tryAgainButton = UIButton(type: UIButton.ButtonType.custom)
+    var quitButton = UIButton(type: UIButton.ButtonType.custom)
 
     var backgroundImage = UIImage(named: "space5.jpg")
     var backgroundImageView = UIImageView(frame: CGRect.zero)
@@ -48,15 +48,15 @@ class GameOverView : UIView{
         self.addSubview(lifetimeScore)
         lifetimeScore.translatesAutoresizingMaskIntoConstraints = false
         
-        quitButton.setTitle("Quit",for: UIControlState())
-        quitButton.setTitleColor(UIColor.white, for: UIControlState())
+        quitButton.setTitle("Quit",for: UIControl.State())
+        quitButton.setTitleColor(UIColor.white, for: UIControl.State())
         quitButton.layer.borderWidth = 5
         quitButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         quitButton.layer.cornerRadius = 5
         quitButton.layer.borderColor = UIColor.white.cgColor
         
-        tryAgainButton.setTitle("Try Again", for: UIControlState())
-        tryAgainButton.setTitleColor(UIColor.white, for: UIControlState())
+        tryAgainButton.setTitle("Try Again", for: UIControl.State())
+        tryAgainButton.setTitleColor(UIColor.white, for: UIControl.State())
         tryAgainButton.layer.borderWidth = 5
         tryAgainButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         tryAgainButton.layer.cornerRadius = 5
@@ -65,14 +65,14 @@ class GameOverView : UIView{
         
         let views: [String:UIView] = ["main":titleImageBackground, "scoreImage":lifetimeScoreImageBackground, "score":lifetimeScore]
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[main]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[scoreImage]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[main]-80-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[scoreImage]-80-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[score]-80-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-200-[main]-80-[scoreImage]-[score]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-200-[main]-80-[scoreImage]-[score]-80-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
         
-        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.width, multiplier: 0.2, constant: 0.0))
-        addConstraint(NSLayoutConstraint(item: lifetimeScoreImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: lifetimeScoreImageBackground, attribute: NSLayoutAttribute.height, multiplier: 7.2, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: titleImageBackground, attribute: NSLayoutConstraint.Attribute.width, multiplier: 0.2, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: lifetimeScoreImageBackground, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: lifetimeScoreImageBackground, attribute: NSLayoutConstraint.Attribute.height, multiplier: 7.2, constant: 0.0))
 //        addConstraint(NSLayoutConstraint(item: lifetimeScore, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: lifetimeScore, attribute: NSLayoutAttribute.Height, multiplier: 5, constant: 0.0))
 }
     

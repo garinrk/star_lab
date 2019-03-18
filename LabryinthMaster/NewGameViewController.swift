@@ -37,10 +37,10 @@ class NewGameViewController : UIViewController, UITextFieldDelegate {
         tapRecognizer.cancelsTouchesInView = false
         contentView.addGestureRecognizer(tapRecognizer)
         
-        contentView.backButton.addTarget(self, action: #selector(backButtonPressed), for: UIControlEvents.touchUpInside)
-        contentView.startButton.addTarget(self, action: #selector(startButtonPressed), for: UIControlEvents.touchUpInside)
-        contentView.easyButton.addTarget(self, action: #selector(easyButtonPressed), for: UIControlEvents.touchUpInside)
-        contentView.hardButton.addTarget(self, action: #selector(hardButtonPressed), for: UIControlEvents.touchUpInside)
+        contentView.backButton.addTarget(self, action: #selector(backButtonPressed), for: UIControl.Event.touchUpInside)
+        contentView.startButton.addTarget(self, action: #selector(startButtonPressed), for: UIControl.Event.touchUpInside)
+        contentView.easyButton.addTarget(self, action: #selector(easyButtonPressed), for: UIControl.Event.touchUpInside)
+        contentView.hardButton.addTarget(self, action: #selector(hardButtonPressed), for: UIControl.Event.touchUpInside)
         
         contentView.nameTextField.delegate = self
         
@@ -73,20 +73,20 @@ class NewGameViewController : UIViewController, UITextFieldDelegate {
     
     @objc fileprivate func easyButtonPressed() {
         difficulty = .easy
-        contentView.easyButton.setTitleColor(UIColor.black, for: UIControlState())
+        contentView.easyButton.setTitleColor(UIColor.black, for: UIControl.State())
         contentView.easyButton.backgroundColor = UIColor.green
         contentView.hardButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        contentView.hardButton.setTitleColor(UIColor.white, for: UIControlState())
+        contentView.hardButton.setTitleColor(UIColor.white, for: UIControl.State())
         validateAndUpdate()
         audioManager.PlayAudio(type: SoundType.confirm)
     }
     
     @objc fileprivate func hardButtonPressed() {
         difficulty = .hard
-        contentView.hardButton.setTitleColor(UIColor.black, for: UIControlState())
+        contentView.hardButton.setTitleColor(UIColor.black, for: UIControl.State())
         contentView.hardButton.backgroundColor = UIColor.green
         contentView.easyButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        contentView.easyButton.setTitleColor(UIColor.white, for: UIControlState())
+        contentView.easyButton.setTitleColor(UIColor.white, for: UIControl.State())
         validateAndUpdate()
         audioManager.PlayAudio(type: SoundType.confirm)
     }

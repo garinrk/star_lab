@@ -270,7 +270,12 @@ class AudioManager : NSObject{
     fileprivate func SetupAudioSession(){
         let audioSession = AVAudioSession.sharedInstance()
         do {
-            try audioSession.setCategory(AVAudioSessionCategoryPlayAndRecord, with: AVAudioSessionCategoryOptions.mixWithOthers)
+            if #available(iOS 10.0, *) {
+                try
+                    audioSession.setCategory(AVAudioSession.Category.playback, mode: AVAudioSession.Mode.default, options: AVAudioSession.CategoryOptions.mixWithOthers)
+            } else {
+                // Fallback on earlier versions
+            }
             try audioSession.setActive(true)
         } catch {
             print("couldn't set category \(error)")
@@ -321,4 +326,9 @@ extension AudioManager : AVAudioPlayerDelegate {
             print("\(e.localizedDescription)")
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

@@ -10,10 +10,10 @@ import UIKit
 
 class NewGameView : UIView, UITextFieldDelegate {
     
-    let backButton = UIButton(type: UIButtonType.custom)
-    let easyButton = UIButton(type: UIButtonType.custom)
-    let hardButton = UIButton(type: UIButtonType.custom)
-    let startButton = UIButton(type: UIButtonType.custom)
+    let backButton = UIButton(type: UIButton.ButtonType.custom)
+    let easyButton = UIButton(type: UIButton.ButtonType.custom)
+    let hardButton = UIButton(type: UIButton.ButtonType.custom)
+    let startButton = UIButton(type: UIButton.ButtonType.custom)
     let nameTextField = UITextField(frame: CGRect.zero)
 
     fileprivate let background = UIImageView(image: UIImage(named: "space1.jpg"))
@@ -27,8 +27,8 @@ class NewGameView : UIView, UITextFieldDelegate {
         background.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(background)
         
-        backButton.setTitle("Back", for: UIControlState())
-        backButton.setTitleColor(UIColor.white, for: UIControlState())
+        backButton.setTitle("Back", for: UIControl.State())
+        backButton.setTitleColor(UIColor.white, for: UIControl.State())
         backButton.layer.borderWidth = 5
         backButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         backButton.layer.cornerRadius = 5
@@ -54,17 +54,17 @@ class NewGameView : UIView, UITextFieldDelegate {
         nameTextField.placeholder = "Enter Name"
         nameTextField.delegate = self
         nameTextField.textColor = UIColor.black
-        nameTextField.borderStyle = UITextBorderStyle.roundedRect
+        nameTextField.borderStyle = UITextField.BorderStyle.roundedRect
         nameTextField.autocorrectionType = UITextAutocorrectionType.no
         nameTextField.keyboardType = UIKeyboardType.default
         nameTextField.returnKeyType = UIReturnKeyType.done
-        nameTextField.clearButtonMode = UITextFieldViewMode.whileEditing;
-        nameTextField.contentVerticalAlignment = UIControlContentVerticalAlignment.center
+        nameTextField.clearButtonMode = UITextField.ViewMode.whileEditing;
+        nameTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         inputContainer.addSubview(nameTextField)
 
-        easyButton.setTitle("Easy", for: UIControlState())
-        easyButton.setTitleColor(UIColor.white, for: UIControlState())
+        easyButton.setTitle("Easy", for: UIControl.State())
+        easyButton.setTitleColor(UIColor.white, for: UIControl.State())
         easyButton.layer.borderWidth = 5
         easyButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         easyButton.layer.cornerRadius = 5
@@ -72,8 +72,8 @@ class NewGameView : UIView, UITextFieldDelegate {
         easyButton.translatesAutoresizingMaskIntoConstraints = false
         inputContainer.addSubview(easyButton)
         
-        hardButton.setTitle("Hard", for: UIControlState())
-        hardButton.setTitleColor(UIColor.white, for: UIControlState())
+        hardButton.setTitle("Hard", for: UIControl.State())
+        hardButton.setTitleColor(UIColor.white, for: UIControl.State())
         hardButton.layer.borderWidth = 5
         hardButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         hardButton.layer.cornerRadius = 5
@@ -81,9 +81,9 @@ class NewGameView : UIView, UITextFieldDelegate {
         hardButton.translatesAutoresizingMaskIntoConstraints = false
         inputContainer.addSubview(hardButton)
         
-        startButton.setTitle("Start Game", for: UIControlState())
-        startButton.setTitleColor(UIColor(white: 1, alpha: 0.5), for: UIControlState.disabled)
-        startButton.setTitleColor(UIColor.black, for: UIControlState.normal)
+        startButton.setTitle("Start Game", for: UIControl.State())
+        startButton.setTitleColor(UIColor(white: 1, alpha: 0.5), for: UIControl.State.disabled)
+        startButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
         startButton.layer.borderWidth = 5
         startButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         startButton.layer.cornerRadius = 5
@@ -95,22 +95,22 @@ class NewGameView : UIView, UITextFieldDelegate {
         
         let metrics: [String:CGFloat] = ["sp":20, "vsp":NewGameView.verticalSpacer, "bw":NewGameView.buttonWidth, "bh":NewGameView.buttonHeight]
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[background]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[background]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[background]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[background]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[back(bw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-sp-[back(bh)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[back(bw)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-sp-[back(bh)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-vsp-[stackView]-vsp-|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[stackView]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-vsp-[stackView]-vsp-|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
-        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[start(bw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[start(bh)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[start(bw)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        stackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[start(bh)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
-        inputContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[text]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        inputContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[easy(bw)]-sp-[hard(bw)]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        inputContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[text(bh)]-sp-[easy(bh)]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        inputContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[text]-sp-[hard(bh)]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        inputContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[text]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        inputContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[easy(bw)]-sp-[hard(bw)]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        inputContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[text(bh)]-sp-[easy(bh)]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        inputContainer.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[text]-sp-[hard(bh)]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -12,8 +12,8 @@ class LevelCompleteView : UIView {
 
     var lifetimeScoreAmt : Int = 0
     
-    let continueButton = UIButton(type: UIButtonType.custom)
-    let quitButton = UIButton(type: UIButtonType.custom)
+    let continueButton = UIButton(type: UIButton.ButtonType.custom)
+    let quitButton = UIButton(type: UIButton.ButtonType.custom)
     
     fileprivate let stackView = UIStackView()
     fileprivate let background = UIImageView(image: UIImage(named: "blackHole.jpg"))
@@ -61,8 +61,8 @@ class LevelCompleteView : UIView {
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(buttonStackView)
         
-        quitButton.setTitle("Quit",for: UIControlState())
-        quitButton.setTitleColor(UIColor.white, for: UIControlState())
+        quitButton.setTitle("Quit",for: UIControl.State())
+        quitButton.setTitleColor(UIColor.white, for: UIControl.State())
         quitButton.layer.borderWidth = 5
         quitButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         quitButton.layer.cornerRadius = 5
@@ -70,8 +70,8 @@ class LevelCompleteView : UIView {
         quitButton.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.addArrangedSubview(quitButton)
         
-        continueButton.setTitle("Continue", for: UIControlState())
-        continueButton.setTitleColor(UIColor.white, for: UIControlState())
+        continueButton.setTitle("Continue", for: UIControl.State())
+        continueButton.setTitleColor(UIColor.white, for: UIControl.State())
         continueButton.layer.borderWidth = 5
         continueButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         continueButton.layer.cornerRadius = 5
@@ -82,19 +82,19 @@ class LevelCompleteView : UIView {
         let views: [String:UIView] = ["bg":background, "stackView":stackView, "quit":quitButton, "continue":continueButton]
         let metrics: [String:CGFloat] = ["sp":20, "vsp":LevelCompleteView.verticalSpacer, "bh":LevelCompleteView.buttonHeight, "bw":LevelCompleteView.buttonWidth]
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[bg]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[bg]|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[bg]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[bg]|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
 
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[stackView]-sp-|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-vsp-[stackView]-vsp-|", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-sp-[stackView]-sp-|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-vsp-[stackView]-vsp-|", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
         // constrain button sizes
         
-        buttonStackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[quit(bw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        buttonStackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[continue(bw)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        buttonStackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[quit(bw)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        buttonStackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[continue(bw)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
         
-        buttonStackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[quit(bh)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
-        buttonStackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[continue(bh)]", options: NSLayoutFormatOptions(), metrics: metrics, views: views))
+        buttonStackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[quit(bh)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
+        buttonStackView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[continue(bh)]", options: NSLayoutConstraint.FormatOptions(), metrics: metrics, views: views))
     }
     
     required init?(coder aDecoder: NSCoder) {

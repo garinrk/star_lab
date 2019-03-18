@@ -32,15 +32,15 @@ class LevelCompleteViewController : UIViewController{
         
         contentView.lifetimeScoreAmt = lifetimeScore
         
-        contentView.quitButton.addTarget(self, action: #selector(LevelCompleteViewController.QuitButtonPressed), for: UIControlEvents.touchUpInside)
-        contentView.continueButton.addTarget(self, action: #selector(LevelCompleteViewController.ContinueButtonPressed), for: UIControlEvents.touchUpInside)
+        contentView.quitButton.addTarget(self, action: #selector(LevelCompleteViewController.QuitButtonPressed), for: UIControl.Event.touchUpInside)
+        contentView.continueButton.addTarget(self, action: #selector(LevelCompleteViewController.ContinueButtonPressed), for: UIControl.Event.touchUpInside)
     }
     
-    func ContinueButtonPressed(){
+    @objc func ContinueButtonPressed(){
         delegate?.levelCompletePressedRetry()
     }
     
-    func QuitButtonPressed(){
+    @objc func QuitButtonPressed(){
         delegate?.levelCompletePressedExit()
     }
 }

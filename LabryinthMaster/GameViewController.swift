@@ -20,7 +20,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
     var scoreLabel: UILabel!
     var timerLabel: UILabel!
     var levelLabel: UILabel!
-    var pauseButton = UIButton(type: UIButtonType.custom)
+    var pauseButton = UIButton(type: UIButton.ButtonType.custom)
     
     var mazeView: MazeView!
     
@@ -110,13 +110,13 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         view.addSubview(levelLabel)
         
         pauseButton.frame = CGRect(x: 0,y: 0, width: 75, height: 40.0)
-        pauseButton.setTitle("PAUSE", for: UIControlState())
-        pauseButton.setTitleColor(UIColor.white, for: UIControlState())
+        pauseButton.setTitle("PAUSE", for: UIControl.State())
+        pauseButton.setTitleColor(UIColor.white, for: UIControl.State())
         pauseButton.layer.borderWidth = 5
         pauseButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         pauseButton.layer.cornerRadius = 5
         pauseButton.layer.borderColor = UIColor.white.cgColor
-        pauseButton.addTarget(self, action: #selector(GameViewController.PauseGame), for: UIControlEvents.touchUpInside)
+        pauseButton.addTarget(self, action: #selector(GameViewController.PauseGame), for: UIControl.Event.touchUpInside)
         view.addSubview(pauseButton)
         
         // start the game
@@ -141,7 +141,7 @@ class GameViewController : UIViewController, GyroDelegate, EnemyViewDelegate, Pl
         _gameManager.currentGyroMagY = magY
     }
     
-    func PauseGame(){
+    @objc func PauseGame(){
         _gameManager.pause()
         gyroManager.Pause()
         pauseController = PauseViewController()

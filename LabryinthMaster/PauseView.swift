@@ -9,8 +9,8 @@
 import UIKit
 
 class PauseView : UIView{
-    var resumeButton = UIButton(type: UIButtonType.custom)
-    var quitButton = UIButton(type: UIButtonType.custom)
+    var resumeButton = UIButton(type: UIButton.ButtonType.custom)
+    var quitButton = UIButton(type: UIButton.ButtonType.custom)
     var musicSlider = UISlider()
     var fxSlider = UISlider()
     
@@ -42,8 +42,8 @@ class PauseView : UIView{
     
     override func draw(_ rect: CGRect) {
         
-        resumeButton.setTitle("Resume Game",for: UIControlState())
-        resumeButton.setTitleColor(UIColor.white, for: UIControlState())
+        resumeButton.setTitle("Resume Game",for: UIControl.State())
+        resumeButton.setTitleColor(UIColor.white, for: UIControl.State())
         resumeButton.layer.borderWidth = 5
         resumeButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         resumeButton.layer.cornerRadius = 5
@@ -51,8 +51,8 @@ class PauseView : UIView{
         addSubview(resumeButton)
         resumeButton.translatesAutoresizingMaskIntoConstraints = false
         
-        quitButton.setTitle("Quit Game", for: UIControlState())
-        quitButton.setTitleColor(UIColor.white, for: UIControlState())
+        quitButton.setTitle("Quit Game", for: UIControl.State())
+        quitButton.setTitleColor(UIColor.white, for: UIControl.State())
         quitButton.layer.borderWidth = 5
         quitButton.backgroundColor = UIColor(white: 0, alpha: 0.5)
         quitButton.layer.cornerRadius = 5
@@ -112,25 +112,25 @@ class PauseView : UIView{
         
         let views: [String:UIView] = ["main":titleImageBackground, "lifetimeScoreImage":lifetimeScoreImageBackground, "lifetimeScore":lifetimeScore, "musicImage":musicLevelImageBackground, "fximage":fxLevelImageBackground,"currentScoreImage":currentScoreImageBackground,"currentScore":currentScore,"fxSlider":fxSlider,"musicSlider":musicSlider,"quit":quitButton,"resume":resumeButton]
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[quit(<=120)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(<=240)-[main(<=240)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(<=80)-[musicImage(<=160)]-[musicSlider(<=160)]-(<=80)-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(<=80)-[fximage(<=160)]-[fxSlider(<=160)]-(<=80)-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[currentScoreImage(<=160)]-[lifetimeScoreImage(==currentScoreImage)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[currentScore(<=160)]-[lifetimeScore(==currentScore)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(<=240)-[resume(<=240)]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[quit(<=120)]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(<=240)-[main(<=240)]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(<=80)-[musicImage(<=160)]-[musicSlider(<=160)]-(<=80)-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(<=80)-[fximage(<=160)]-[fxSlider(<=160)]-(<=80)-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[currentScoreImage(<=160)]-[lifetimeScoreImage(==currentScoreImage)]-80-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-80-[currentScore(<=160)]-[lifetimeScore(==currentScore)]-80-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(<=240)-[resume(<=240)]-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[quit(<=60,>=40)]-80-[main]-80-[musicImage]-80-[fximage(==musicImage)]-80-[currentScoreImage(<=60)][currentScore(==musicImage)]-[resume(==quit)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(<=160)-[main]-80-[musicSlider]-80-[fxSlider]-(>=80)-[lifetimeScoreImage(==currentScoreImage)][lifetimeScore(==musicImage)]-[resume(==quit)]-80-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[quit(<=60,>=40)]-80-[main]-80-[musicImage]-80-[fximage(==musicImage)]-80-[currentScoreImage(<=60)][currentScore(==musicImage)]-[resume(==quit)]-80-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-(<=160)-[main]-80-[musicSlider]-80-[fxSlider]-(>=80)-[lifetimeScoreImage(==currentScoreImage)][lifetimeScore(==musicImage)]-[resume(==quit)]-80-|", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: views))
 //        addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-80-[musicImage]-[fximage]-[currentScoreImage]-[currentScore]-|", options: NSLayoutFormatOptions(), metrics: nil, views: views))
         
-        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: titleImageBackground, attribute: NSLayoutAttribute.height, multiplier: 2.2, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: titleImageBackground, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: titleImageBackground, attribute: NSLayoutConstraint.Attribute.height, multiplier: 2.2, constant: 0.0))
         
-        addConstraint(NSLayoutConstraint(item: musicLevelImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: musicLevelImageBackground, attribute: NSLayoutAttribute.height, multiplier: 3.6, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: musicLevelImageBackground, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: musicLevelImageBackground, attribute: NSLayoutConstraint.Attribute.height, multiplier: 3.6, constant: 0.0))
         
-        addConstraint(NSLayoutConstraint(item: fxLevelImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: fxLevelImageBackground, attribute: NSLayoutAttribute.height, multiplier: 2.7, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: fxLevelImageBackground, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: fxLevelImageBackground, attribute: NSLayoutConstraint.Attribute.height, multiplier: 2.7, constant: 0.0))
         
-        addConstraint(NSLayoutConstraint(item: currentScoreImageBackground, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: currentScoreImageBackground, attribute: NSLayoutAttribute.height, multiplier: 2.7, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: currentScoreImageBackground, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: currentScoreImageBackground, attribute: NSLayoutConstraint.Attribute.height, multiplier: 2.7, constant: 0.0))
         
 //        addConstraint(NSLayoutConstraint(item: lifetimeScoreImageBackground, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: lifetimeScoreImageBackground, attribute: NSLayoutAttribute.Height, multiplier: 2.7, constant: 0.0))
         

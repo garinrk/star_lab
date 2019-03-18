@@ -32,16 +32,16 @@ class GameOverViewController : UIViewController{
         contentView.lifetimeScoreAmt = lifetimeScore
         
         contentView.quitButton
-            .addTarget(self, action: #selector(GameOverViewController.QuitButtonPressed), for: UIControlEvents.touchUpInside)
+            .addTarget(self, action: #selector(GameOverViewController.QuitButtonPressed), for: UIControl.Event.touchUpInside)
         contentView.tryAgainButton
-            .addTarget(self, action: #selector(GameOverViewController.TryAgainPressed), for: UIControlEvents.touchUpInside)
+            .addTarget(self, action: #selector(GameOverViewController.TryAgainPressed), for: UIControl.Event.touchUpInside)
     }
     
-    func TryAgainPressed(){
+    @objc func TryAgainPressed(){
         delegate?.gameOverPressedRetry()
     }
     
-    func QuitButtonPressed(){
+    @objc func QuitButtonPressed(){
         delegate?.gameOverPressedExit()
     }    
 }

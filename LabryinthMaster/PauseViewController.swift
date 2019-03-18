@@ -35,12 +35,12 @@ class PauseViewController : UIViewController{
         self.view.addSubview(pauseView)
         
         //set up sliders with handler methods
-        pauseView.musicSlider.addTarget(self, action: #selector(PauseViewController.MusicSliderChanged), for: UIControlEvents.valueChanged)
-        pauseView.fxSlider.addTarget(self, action: #selector(PauseViewController.FxSliderChanged), for: UIControlEvents.valueChanged)
+        pauseView.musicSlider.addTarget(self, action: #selector(PauseViewController.MusicSliderChanged), for: UIControl.Event.valueChanged)
+        pauseView.fxSlider.addTarget(self, action: #selector(PauseViewController.FxSliderChanged), for: UIControl.Event.valueChanged)
         pauseView.resumeButton
-            .addTarget(self, action: #selector(PauseViewController.ResumeButtonPressed), for: UIControlEvents.touchUpInside)
+            .addTarget(self, action: #selector(PauseViewController.ResumeButtonPressed), for: UIControl.Event.touchUpInside)
         pauseView.quitButton
-            .addTarget(self, action: #selector(PauseViewController.QuitButtonPressed), for: UIControlEvents.touchUpInside)
+            .addTarget(self, action: #selector(PauseViewController.QuitButtonPressed), for: UIControl.Event.touchUpInside)
           
         pauseView.fxSlider.value = _audio.effectsVolume
         pauseView.musicSlider.value = _audio.mainMusicVolume
@@ -49,7 +49,7 @@ class PauseViewController : UIViewController{
     /**
      The music's volume has been modified
      */
-    func MusicSliderChanged(){
+    @objc func MusicSliderChanged(){
 //        print("Music: \(musicSlider!.value)")
         _audio.mainMusicVolume = pauseView.musicSlider.value
     }
@@ -57,16 +57,16 @@ class PauseViewController : UIViewController{
     /**
      The FX volume has been modified
      */
-    func FxSliderChanged(){
+    @objc func FxSliderChanged(){
 //        print("FX: \(fxSlider!.value)")
         _audio.effectsVolume = pauseView.fxSlider.value
     }
     
-    func ResumeButtonPressed(){
+    @objc func ResumeButtonPressed(){
         delegate?.pausePressedUnpause()
     }
     
-    func QuitButtonPressed(){
+    @objc func QuitButtonPressed(){
         delegate?.pausePressedQuit()
     }
 }
